@@ -13,8 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'api/*',
-        // Permitir envio do formulário de inclusão sem verificar CSRF
-        // Mantém as demais rotas protegidas
-        'documentos-dp/inclusao'
+        // Mantido apenas para APIs; rotas web voltarão a exigir CSRF
     ];
 }

@@ -241,6 +241,11 @@
                         </div>
                     </div>
 
+                    <div id="alertaFardamento" class="alert alert-warning" style="display: none;">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <span id="alertaFardamentoTexto"></span>
+                    </div>
+
                     <!-- Produtos -->
                     <div class="form-group">
                         <label class="font-weight-bold">
@@ -262,6 +267,7 @@
                                     <div class="col-md-4">
                                         <label>Quantidade</label>
                                         <input type="number" class="form-control quantidade-input" name="produtos[0][quantidade]" min="1" required>
+                                        <small class="text-warning d-none aviso-minimo"></small>
                                     </div>
                                     <div class="col-md-2 d-flex align-items-end">
                                         <button type="button" class="btn btn-danger btn-sm remover-produto" style="display: none;">
@@ -474,26 +480,94 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="produtoQuantidade" class="font-weight-bold">Quantidade em Estoque</label>
-                                    <input type="number" class="form-control" id="produtoQuantidade" min="0" placeholder="0" required>
+                                    <label for="produtoNcm" class="font-weight-bold">
+                                        <i class="fas fa-barcode mr-1"></i> NCM
+                                    </label>
+                                    <input type="text" class="form-control" id="produtoNcm" placeholder="00000000" maxlength="10">
                                 </div>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label for="produtoDescricao" class="font-weight-bold">Descrição</label>
-                            <textarea class="form-control" id="produtoDescricao" rows="3" placeholder="Descrição do produto (opcional)"></textarea>
+                            <textarea class="form-control" id="produtoDescricao" rows="2" placeholder="Descrição do produto (opcional)"></textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="produtoUnidade" class="font-weight-bold">Unidade</label>
+                                    <select class="form-control" id="produtoUnidade">
+                                        <option value="UN">UN - Unidade</option>
+                                        <option value="PC">PC - Peça</option>
+                                        <option value="PCT">PCT - Pacote</option>
+                                        <option value="CX">CX - Caixa</option>
+                                        <option value="KG">KG - Quilograma</option>
+                                        <option value="LT">LT - Litro</option>
+                                        <option value="MT">MT - Metro</option>
+                                        <option value="M2">M² - Metro Quadrado</option>
+                                        <option value="M3">M³ - Metro Cúbico</option>
+                                        <option value="PAR">PAR - Par</option>
+                                        <option value="JG">JG - Jogo</option>
+                                        <option value="KIT">KIT - Kit</option>
+                                        <option value="RL">RL - Rolo</option>
+                                        <option value="SC">SC - Saco</option>
+                                        <option value="FD">FD - Fardo</option>
+                                        <option value="BD">BD - Balde</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="produtoQuantidade" class="font-weight-bold">Quantidade</label>
+                                    <input type="number" class="form-control" id="produtoQuantidade" min="0" placeholder="0" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="produtoEstoqueMinimo" class="font-weight-bold">
+                                        <i class="fas fa-arrow-down text-danger mr-1"></i> Mínimo
+                                    </label>
+                                    <input type="number" class="form-control" id="produtoEstoqueMinimo" min="0" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="produtoEstoqueMaximo" class="font-weight-bold">
+                                        <i class="fas fa-arrow-up text-success mr-1"></i> Máximo
+                                    </label>
+                                    <input type="number" class="form-control" id="produtoEstoqueMaximo" min="0" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="produtoCodigoBarras" class="font-weight-bold">Código de Barras</label>
+                                    <input type="text" class="form-control" id="produtoCodigoBarras" placeholder="EAN/GTIN" maxlength="20">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="produtoPrecoCusto" class="font-weight-bold">Preço de Custo</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">R$</span>
+                                        </div>
+                                        <input type="text" class="form-control money-input" id="produtoPrecoCusto" placeholder="0,00">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="form-group">
-                            <div class="alert alert-info">
+                            <div class="alert alert-info py-2">
                                 <i class="fas fa-info-circle mr-2"></i>
-                                <strong>Informações do Produto:</strong>
-                                <ul class="mb-0 mt-2">
-                                    <li>ID: <span id="infoProdutoId">-</span></li>
-                                    <li>Criado em: <span id="infoProdutoCriado">-</span></li>
-                                    <li>Última atualização: <span id="infoProdutoAtualizado">-</span></li>
-                                </ul>
+                                <strong>Info:</strong>
+                                ID: <span id="infoProdutoId">-</span> | 
+                                Criado: <span id="infoProdutoCriado">-</span> | 
+                                Atualizado: <span id="infoProdutoAtualizado">-</span>
                             </div>
                         </div>
                         
@@ -1003,7 +1077,7 @@
     
     // Função para carregar funcionários (agora só carrega a lista)
     function carregarFuncionarios() {
-        $.get('/api/funcionarios')
+        $.get('/api/estoque/funcionarios')
             .done(function(data) {
                 funcionarios = data;
                 $('#funcionario').attr('placeholder', 'Digite pelo menos 3 letras para buscar...');
@@ -1035,7 +1109,7 @@
             });
     }
     
-    // Autocomplete para funcionários
+    // Autocomplete para funcionários + verificação automática quando match único
     $('#funcionario').on('input', function() {
         const query = $(this).val().trim();
         const resultsContainer = $('#funcionarioResults');
@@ -1044,13 +1118,15 @@
             resultsContainer.hide().empty();
             $('#funcionario_id').val('');
             $('#infoFuncionario').hide();
+            $('#alertaFardamento').hide();
             return;
         }
         
         // Filtrar funcionários que começam com a consulta
-        const filteredFuncionarios = funcionarios.filter(funcionario => 
-            funcionario.nome.toLowerCase().startsWith(query.toLowerCase())
-        );
+        const filteredFuncionarios = funcionarios.filter(function(funcionario){
+            const nome = (funcionario.nome||'').toLowerCase();
+            return nome.startsWith(query.toLowerCase()) || nome.includes(' ' + query.toLowerCase());
+        });
         
         if (filteredFuncionarios.length > 0) {
             let resultsHtml = '';
@@ -1079,6 +1155,46 @@
             }
             
             resultsContainer.html(resultsHtml).show();
+            // Se houver apenas 1 resultado, auto-selecionar e disparar verificação
+            if (filteredFuncionarios.length === 1) {
+                const unico = filteredFuncionarios[0];
+                $('#funcionario').val(unico.nome);
+                $('#funcionario_id').val(unico.id);
+                $('#funcionarioNome').text(unico.nome);
+                $('#funcionarioFuncao').text(unico.funcao);
+                $('#funcionarioCpf').text(unico.cpf);
+                $('#infoFuncionario').show();
+                resultsContainer.hide();
+
+                // Limpar alerta
+                $('#alertaFardamento').hide();
+                $('#alertaFardamentoTexto').text('');
+
+                const csrfToken = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '/api/baixas/verificar-funcionario',
+                    method: 'POST',
+                    headers: { 'X-CSRF-TOKEN': csrfToken, 'Content-Type': 'application/json' },
+                    data: JSON.stringify({ funcionario_id: unico.id })
+                }).done(function(resp){
+                    if (resp && resp.success && Array.isArray(resp.avisos) && resp.avisos.length > 0) {
+                        const linhas = resp.avisos.map(function(a){
+                            const qtd = a.quantidade ? ` (qtd: ${a.quantidade})` : '';
+                            return `- ${a.produto}${qtd} em ${a.data}`;
+                        });
+                        $('#alertaFardamentoTexto').text(linhas.join(' '));
+                        $('#alertaFardamento').show();
+                        if (typeof Swal !== 'undefined') {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'EPI já retirado neste mês',
+                                html: linhas.map(l=>`<div style=\"text-align:left\">${l}</div>`).join(''),
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    }
+                }).fail(function(){});
+            }
         } else {
             resultsContainer.html('<div class="no-results">Nenhum funcionário encontrado</div>').show();
         }
@@ -1101,6 +1217,41 @@
         $('#funcionarioFuncao').text(funcao);
         $('#funcionarioCpf').text(cpf);
         $('#infoFuncionario').show();
+
+        // Limpar alerta
+        $('#alertaFardamento').hide();
+        $('#alertaFardamentoTexto').text('');
+
+        // Verificar em tempo real fardamentos recentes do funcionário
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '/api/baixas/verificar-funcionario',
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({ funcionario_id: funcionarioId })
+        }).done(function(resp){
+            if (resp && resp.success && Array.isArray(resp.avisos) && resp.avisos.length > 0) {
+                const linhas = resp.avisos.map(function(a){
+                    const qtd = a.quantidade ? ` (qtd: ${a.quantidade})` : '';
+                    return `- ${a.produto}${qtd} em ${a.data}`;
+                });
+                $('#alertaFardamentoTexto').text(linhas.join(' '));
+                $('#alertaFardamento').show();
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'EPI já retirado neste mês',
+                        html: linhas.map(l=>`<div style="text-align:left">${l}</div>`).join(''),
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        }).fail(function(){
+            // silencioso
+        });
     });
     
     // Ocultar resultados quando clicar fora
@@ -1196,6 +1347,7 @@
             resultsContainer.hide();
             $(this).siblings('.produto-id').val('');
             $(this).closest('.produto-item').find('.estoque-info').text('');
+            $(this).closest('.produto-item').find('.aviso-minimo').addClass('d-none').text('');
             return;
         }
         
@@ -1217,6 +1369,7 @@
                     <div class="produto-result-item" data-id="${produto.id}" 
                          data-nome="${escapeHtml(produto.nome)}" 
                          data-estoque="${produto.quantidade}"
+                         data-minimo="${produto.minimo || 0}"
                          data-descricao="${escapeHtml(produto.descricao || '')}">
                         <div class="produto-result-name">${escapeHtml(produto.nome)}</div>
                         <div class="produto-result-info">Estoque: ${produto.quantidade} unidades${produto.descricao ? ' - ' + escapeHtml(produto.descricao) : ''}</div>
@@ -1253,6 +1406,7 @@
                             <div class="produto-result-item" data-id="${produto.id}" 
                                  data-nome="${escapeHtml(produto.nome)}" 
                                  data-estoque="${produto.quantidade}"
+                                 data-minimo="${produto.minimo || 0}"
                                  data-descricao="${escapeHtml(produto.descricao || '')}">
                                 <div class="produto-result-name">${escapeHtml(produto.nome)}</div>
                                 <div class="produto-result-info">Estoque: ${produto.quantidade} unidades${produto.descricao ? ' - ' + escapeHtml(produto.descricao) : ''}</div>
@@ -1272,6 +1426,7 @@
         const produtoId = $(this).data('id');
         const produtoNome = $(this).data('nome');
         const produtoEstoque = $(this).data('estoque');
+        const produtoMinimo = parseInt($(this).data('minimo') || 0, 10);
         const produtoDescricao = $(this).data('descricao');
         
         const container = $(this).closest('.produto-search-container');
@@ -1300,6 +1455,68 @@
         } else {
             quantidadeInput.attr('disabled', false).removeClass('text-danger');
         }
+
+        // Exibir aviso se houver mínimo configurado e estoque atual já estiver abaixo do mínimo
+        const minimoCfg = isNaN(produtoMinimo) ? 0 : produtoMinimo;
+        if (minimoCfg > 0 && produtoEstoque < minimoCfg) {
+            produtoItem.find('.aviso-minimo').removeClass('d-none').text(`Atenção: estoque atual (${produtoEstoque}) abaixo do mínimo definido (${minimoCfg}).`);
+        } else {
+            produtoItem.find('.aviso-minimo').addClass('d-none').text('');
+        }
+
+        // Guardar estoque atual e mínimo no container para cálculo em tempo real ao digitar quantidade
+        produtoItem.attr('data-estoque', produtoEstoque);
+        produtoItem.attr('data-minimo', minimoCfg);
+    });
+
+    // Aviso em tempo real: ao digitar quantidade, calcular saldo previsto e comparar com mínimo
+    $(document).on('input change', '.quantidade-input', function(){
+        const produtoItem = $(this).closest('.produto-item');
+        const qtd = parseInt($(this).val() || '0', 10);
+        const estoqueAtual = parseInt(produtoItem.attr('data-estoque') || '0', 10);
+        const minimoCfg = parseInt(produtoItem.attr('data-minimo') || '0', 10);
+        const jaAvisouMin = produtoItem.data('avisou-min') === true;
+        const jaAvisouEst = produtoItem.data('avisou-est') === true;
+
+        // Oculta se não houver seleção de produto
+        if (!estoqueAtual && estoqueAtual !== 0) {
+            produtoItem.find('.aviso-minimo').addClass('d-none').text('');
+            return;
+        }
+
+        // Mensagem se exceder estoque atual
+        if (!isNaN(qtd) && qtd > estoqueAtual) {
+            produtoItem.find('.aviso-minimo').removeClass('d-none').text(`Quantidade excede o estoque disponível (${estoqueAtual}).`);
+            if (!jaAvisouEst) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Quantidade inválida',
+                    text: `A quantidade digitada excede o estoque disponível (${estoqueAtual}).`,
+                    confirmButtonColor: '#007bff'
+                });
+                produtoItem.data('avisou-est', true);
+            }
+            return;
+        } else {
+            produtoItem.data('avisou-est', false);
+        }
+
+        const saldoPrevisto = estoqueAtual - (isNaN(qtd) ? 0 : qtd);
+        if (minimoCfg > 0 && saldoPrevisto < minimoCfg) {
+            produtoItem.find('.aviso-minimo').removeClass('d-none').text(`Atenção: com esta saída o saldo ficará ${saldoPrevisto}, abaixo do mínimo (${minimoCfg}).`);
+            if (!jaAvisouMin) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Estoque abaixo do mínimo',
+                    html: `Com esta saída o saldo ficará <b>${saldoPrevisto}</b>, abaixo do mínimo (<b>${minimoCfg}</b>).`,
+                    confirmButtonColor: '#ffc107'
+                });
+                produtoItem.data('avisou-min', true);
+            }
+        } else {
+            produtoItem.find('.aviso-minimo').addClass('d-none').text('');
+            produtoItem.data('avisou-min', false);
+        }
     });
     
     // Esconder resultados ao clicar fora
@@ -1325,6 +1542,7 @@
                     <div class="col-md-4">
                         <label>Quantidade</label>
                         <input type="number" class="form-control quantidade-input" name="produtos[${contadorProdutos}][quantidade]" min="1" required>
+                        <small class="text-warning d-none aviso-minimo"></small>
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
                         <button type="button" class="btn btn-danger btn-sm remover-produto">
@@ -1382,11 +1600,19 @@
         $('.produto-item').each(function() {
             const produtoId = $(this).find('.produto-id').val();
             const quantidade = $(this).find('.quantidade-input').val();
+            const estoqueInfoText = $(this).find('.estoque-info').text();
+            const matchEstoque = estoqueInfoText.match(/Estoque disponível:\s*(\d+)/);
+            const estoqueAtual = matchEstoque ? parseInt(matchEstoque[1], 10) : null;
+            const minimoText = $(this).find('.aviso-minimo').text();
+            const matchMin = minimoText.match(/mínimo definido \((\d+)\)/i);
+            const minimoCfg = matchMin ? parseInt(matchMin[1], 10) : 0;
             
             if (produtoId && quantidade) {
                 baixas.push({
                     produto_id: produtoId,
-                    quantidade: parseInt(quantidade)
+                    quantidade: parseInt(quantidade),
+                    estoque_atual: estoqueAtual,
+                    minimo_definido: minimoCfg
                 });
             }
         });
@@ -1396,41 +1622,88 @@
             return;
         }
         
-        // Mostrar loading
+        // Mostrar loading inicial (verificação)
         const submitBtn = $('#formRegistrarSaida button[type="submit"]');
         const originalText = submitBtn.html();
-        submitBtn.html('<i class="fas fa-spinner fa-spin mr-1"></i> Registrando...').prop('disabled', true);
-        
-        // Enviar dados
-        $.ajax({
-            url: '/api/baixas',
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify({
-                funcionario_id: funcionarioId,
-                centro_custo_id: centroCustoId,
-                baixas: baixas,
-                observacoes: observacoes
-            }),
-            success: function(response) {
-                showModernNotification(response.message, 'success');
-                $('#modalRegistrarSaida').modal('hide');
-                
-                // Recarregar a página para atualizar os dados
-                setTimeout(() => {
-                    location.reload();
-                }, 1500);
-            },
-            error: function(xhr) {
-                const response = xhr.responseJSON;
-                showModernNotification(response?.message || 'Erro ao registrar saída', 'error');
-            },
-            complete: function() {
-                submitBtn.html(originalText).prop('disabled', false);
+        submitBtn.html('<i class="fas fa-spinner fa-spin mr-1"></i> Verificando...').prop('disabled', true);
+
+        // Verificar prazos de fardamento e aviso de mínimo antes de enviar
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
+        const verificacoes = baixas.map(function(item){
+            return $.ajax({
+                url: '/api/baixas/verificar',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({
+                    funcionario_id: funcionarioId,
+                    produto_id: item.produto_id
+                })
+            }).then(function(resp){
+                // Adicionar alerta local de estoque mínimo
+                if (item.minimo_definido && item.estoque_atual !== null) {
+                    if (item.estoque_atual - item.quantidade < item.minimo_definido) {
+                        resp = resp || { success: true };
+                        resp.alertar = true;
+                        resp.mensagem = (resp.mensagem ? resp.mensagem + '\n' : '') +
+                            `Atenção: após a saída, o estoque do produto (${item.estoque_atual - item.quantidade}) ficará abaixo do mínimo (${item.minimo_definido}).`;
+                    }
+                }
+                return resp;
+            }).catch(function(){
+                return { success: false };
+            });
+        });
+
+        Promise.all(verificacoes).then(function(resultados){
+            const mensagensAlerta = [];
+            (resultados || []).forEach(function(r){
+                if (r && r.success && r.alertar && r.mensagem) {
+                    mensagensAlerta.push(r.mensagem);
+                }
+            });
+
+            if (mensagensAlerta.length > 0) {
+                const confirmar = window.confirm(mensagensAlerta.join('\n\n'));
+                if (!confirmar) {
+                    submitBtn.html(originalText).prop('disabled', false);
+                    return;
+                }
             }
+
+            // Prosseguir com o envio após verificação
+            submitBtn.html('<i class="fas fa-spinner fa-spin mr-1"></i> Registrando...').prop('disabled', true);
+            $.ajax({
+                url: '/api/baixas',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({
+                    funcionario_id: funcionarioId,
+                    centro_custo_id: centroCustoId,
+                    baixas: baixas,
+                    observacoes: observacoes
+                }),
+                success: function(response) {
+                    showModernNotification(response.message, 'success');
+                    $('#modalRegistrarSaida').modal('hide');
+                    setTimeout(function(){ location.reload(); }, 1500);
+                },
+                error: function(xhr) {
+                    const response = xhr.responseJSON;
+                    showModernNotification((response && response.message) || 'Erro ao registrar saída', 'error');
+                },
+                complete: function() {
+                    submitBtn.html(originalText).prop('disabled', false);
+                }
+            });
+        }).catch(function(){
+            showModernNotification('Erro ao verificar prazo de fardamento', 'error');
+            submitBtn.html(originalText).prop('disabled', false);
         });
     });
     
@@ -1826,16 +2099,27 @@
                 if (produtos.length > 0) {
                     let listHtml = '';
                     produtos.forEach(function(produto) {
+                        // Escapar dados para evitar problemas com aspas
+                        const produtoJson = JSON.stringify(produto).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+                        const nomeEscapado = (produto.nome || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        const descricaoEscapada = (produto.descricao || 'Sem descrição').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        
                         listHtml += `
-                            <div class="list-group-item list-group-item-action produto-item" data-produto='${JSON.stringify(produto)}'>
+                            <div class="list-group-item list-group-item-action produto-consulta-item" data-produto-id="${produto.id}">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1">${produto.nome}</h6>
+                                    <h6 class="mb-1">${nomeEscapado}</h6>
                                     <small>ID: #${produto.id}</small>
                                 </div>
-                                <p class="mb-1">${produto.descricao || 'Sem descrição'}</p>
+                                <p class="mb-1">${descricaoEscapada}</p>
                                 <small>Estoque: <span class="badge badge-${produto.quantidade > 0 ? 'success' : 'danger'}">${produto.quantidade} unidades</span></small>
                             </div>
                         `;
+                    });
+                    
+                    // Armazenar produtos em cache para acesso posterior
+                    window.produtosConsultaCache = {};
+                    produtos.forEach(function(produto) {
+                        window.produtosConsultaCache[produto.id] = produto;
                     });
                     
                     $('#listaProdutosEncontrados').html(listHtml);
@@ -1862,15 +2146,36 @@
         buscarProdutos();
     });
     
-    // Selecionar produto da lista
-    $(document).on('click', '.produto-item', function() {
-        produtoSelecionado = JSON.parse($(this).attr('data-produto'));
+    // Selecionar produto da lista (modal Consultar Produto)
+    $(document).on('click', '.produto-consulta-item', function() {
+        const produtoId = $(this).data('produto-id');
+        produtoSelecionado = window.produtosConsultaCache[produtoId];
+        
+        if (!produtoSelecionado) {
+            alert('Erro ao carregar produto. Tente buscar novamente.');
+            return;
+        }
         
         // Preencher formulário
         $('#produtoId').val(produtoSelecionado.id);
         $('#produtoNome').val(produtoSelecionado.nome);
         $('#produtoDescricao').val(produtoSelecionado.descricao || '');
         $('#produtoQuantidade').val(produtoSelecionado.quantidade);
+        
+        // Novos campos
+        $('#produtoNcm').val(produtoSelecionado.ncm || '');
+        $('#produtoUnidade').val(produtoSelecionado.unidade || 'UN');
+        $('#produtoCodigoBarras').val(produtoSelecionado.codigo_barras || '');
+        $('#produtoEstoqueMinimo').val(produtoSelecionado.minimo || 0);
+        $('#produtoEstoqueMaximo').val(produtoSelecionado.maximo || '');
+        
+        // Preço de custo formatado
+        if (produtoSelecionado.preco_custo) {
+            const preco = parseFloat(produtoSelecionado.preco_custo).toFixed(2);
+            $('#produtoPrecoCusto').val(preco.replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
+        } else {
+            $('#produtoPrecoCusto').val('');
+        }
         
         // Preencher informações
         $('#infoProdutoId').text('#' + produtoSelecionado.id);
@@ -1882,7 +2187,7 @@
         $('#resultadosBusca').hide();
         
         // Destacar item selecionado
-        $('.produto-item').removeClass('active');
+        $('.produto-consulta-item').removeClass('active');
         $(this).addClass('active');
     });
     
@@ -1892,10 +2197,24 @@
         
         if (!produtoSelecionado) return;
         
+        // Converter preço de custo de formato brasileiro para número
+        let precoCusto = $('#produtoPrecoCusto').val().trim();
+        if (precoCusto) {
+            precoCusto = parseFloat(precoCusto.replace(/\./g, '').replace(',', '.')) || null;
+        } else {
+            precoCusto = null;
+        }
+        
         const data = {
             nome: $('#produtoNome').val(),
             descricao: $('#produtoDescricao').val(),
-            quantidade: parseInt($('#produtoQuantidade').val())
+            quantidade: parseInt($('#produtoQuantidade').val()),
+            ncm: $('#produtoNcm').val().trim() || null,
+            codigo_barras: $('#produtoCodigoBarras').val().trim() || null,
+            unidade: $('#produtoUnidade').val() || 'UN',
+            preco_custo: precoCusto,
+            estoque_minimo: parseInt($('#produtoEstoqueMinimo').val()) || 0,
+            estoque_maximo: parseInt($('#produtoEstoqueMaximo').val()) || null
         };
         
         const submitBtn = $('#formEditarProduto button[type="submit"]');
@@ -1953,7 +2272,6 @@
         $('#formEditarProduto')[0].reset();
     });
     
-    // Funcionalidades do modal Cadastrar Produto
     $('#formCadastrarProduto').submit(function(e) {
         e.preventDefault();
         
@@ -2038,6 +2356,15 @@
     
     // Funcionalidades do modal Registrar Entrada
     let produtoEntradaSelecionado = null;
+    let produtosEntradaCache = {}; // Cache para armazenar produtos por ID
+    
+    // Função para escapar HTML
+    function escapeHtmlEntrada(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>"']/g, function(c) {
+            return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c];
+        });
+    }
     
     // Busca de produtos para entrada
     function buscarProdutosEntrada() {
@@ -2051,12 +2378,15 @@
         $.get('/api/estoque/produtos/buscar', { nome: nome })
             .done(function(produtos) {
                 if (produtos.length > 0) {
+                    produtosEntradaCache = {}; // Limpar cache
                     let listHtml = '';
                     produtos.forEach(function(produto) {
+                        // Armazenar no cache
+                        produtosEntradaCache[produto.id] = produto;
                         listHtml += `
-                            <div class="produto-entrada-result-item" data-produto='${JSON.stringify(produto)}'>
-                                <div class="produto-nome">${produto.nome}</div>
-                                <div class="produto-descricao">${produto.descricao || 'Sem descrição'}</div>
+                            <div class="produto-entrada-result-item" data-produto-id="${produto.id}">
+                                <div class="produto-nome">${escapeHtmlEntrada(produto.nome)}</div>
+                                <div class="produto-descricao">${escapeHtmlEntrada(produto.descricao) || 'Sem descrição'}</div>
                                 <div class="produto-estoque">Estoque atual: ${produto.quantidade} unidades</div>
                             </div>
                         `;
@@ -2078,8 +2408,17 @@
     });
     
     // Selecionar produto da lista
-    $(document).on('click', '.produto-entrada-result-item', function() {
-        produtoEntradaSelecionado = JSON.parse($(this).attr('data-produto'));
+    $(document).on('click', '.produto-entrada-result-item', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const produtoId = $(this).data('produto-id');
+        produtoEntradaSelecionado = produtosEntradaCache[produtoId];
+        
+        if (!produtoEntradaSelecionado) {
+            alert('Erro ao selecionar produto. Tente novamente.');
+            return;
+        }
         
         // Preencher informações do produto
         $('#produtoEntradaId').val(produtoEntradaSelecionado.id);
@@ -2296,8 +2635,8 @@
         border-top: none;
         max-height: 250px;
         overflow-y: auto;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 9999;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         border-radius: 0 0 5px 5px;
     }
     
@@ -2306,6 +2645,7 @@
         border-bottom: 1px solid #f0f0f0;
         cursor: pointer;
         transition: background-color 0.2s;
+        pointer-events: auto;
     }
     
     .produto-entrada-result-item:hover {
@@ -2403,6 +2743,80 @@
     
     .centro-custo-results::-webkit-scrollbar-thumb:hover {
         background: #555;
+    }
+    
+    /* Dark mode para dropdowns de autocomplete */
+    html[data-theme="dark"] .centro-custo-results,
+    html[data-theme="dark"] .search-results,
+    html[data-theme="dark"] .produto-results,
+    html[data-theme="dark"] .produto-entrada-results {
+        background: #1e293b !important;
+        border-color: #475569 !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+    }
+    
+    html[data-theme="dark"] .centro-custo-item,
+    html[data-theme="dark"] .search-result-item,
+    html[data-theme="dark"] .produto-result-item {
+        background-color: #1e293b !important;
+        color: #f1f5f9 !important;
+        border-bottom-color: #334155 !important;
+    }
+    
+    html[data-theme="dark"] .centro-custo-item:hover,
+    html[data-theme="dark"] .search-result-item:hover,
+    html[data-theme="dark"] .produto-result-item:hover {
+        background-color: #334155 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Produto results dropdown - Dark Mode */
+    html[data-theme="dark"] .produto-results {
+        background: #1e293b !important;
+        border-color: #475569 !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+    }
+    
+    html[data-theme="dark"] .produto-result-item {
+        background-color: #1e293b !important;
+        border-bottom-color: #334155 !important;
+    }
+    
+    html[data-theme="dark"] .produto-result-name {
+        color: #f1f5f9 !important;
+    }
+    
+    html[data-theme="dark"] .produto-result-info {
+        color: #94a3b8 !important;
+    }
+    
+    /* Modal Entrada - Dropdown de produtos */
+    html[data-theme="dark"] .produto-entrada-results,
+    html[data-theme="dark"] #produtoEntradaResults {
+        background: #1e293b !important;
+        border-color: #475569 !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+    }
+    
+    html[data-theme="dark"] .produto-entrada-result-item {
+        background-color: #1e293b !important;
+        border-bottom-color: #334155 !important;
+    }
+    
+    html[data-theme="dark"] .produto-entrada-result-item:hover {
+        background-color: #334155 !important;
+    }
+    
+    html[data-theme="dark"] .produto-entrada-result-item .produto-nome {
+        color: #f1f5f9 !important;
+    }
+    
+    html[data-theme="dark"] .produto-entrada-result-item .produto-descricao {
+        color: #94a3b8 !important;
+    }
+    
+    html[data-theme="dark"] .produto-entrada-result-item .produto-estoque {
+        color: #4ade80 !important;
     }
     
     .produto-result-item {

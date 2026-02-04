@@ -1,5 +1,27 @@
 /vendor
 /node_modules
-.env
 /storage/logs/*
 /bootstrap/cache/*
+
+# Arquivos sensíveis
+.env
+.env.backup
+.env.local
+.env.*.local
+1.env
+*.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.log
+*.sql
+*.json.backup

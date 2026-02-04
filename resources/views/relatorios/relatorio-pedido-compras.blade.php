@@ -9,7 +9,7 @@
       <i class="fas fa-file-invoice-dollar text-info mr-2"></i>
       Relatório de Pedido de Compras
     </h1>
-    <small class="text-muted">Visualize pedidos aprovados ou rejeitados. Clique para ver detalhes e imprimir.</small>
+    <small class="text-muted">Visualize pedidos aprovados. Clique para ver detalhes e imprimir.</small>
   </div>
 </div>
 @stop
@@ -24,27 +24,23 @@
     </div>
     <div class="card-body">
       <div class="form-row">
-        <div class="col-md-3 mb-2">
-          <label class="font-weight-bold">Status</label>
-          <select id="filtro_status" class="form-control">
-            <option value="aprovados" selected>Pedidos Aprovados</option>
-            <option value="rejeitados">Pedidos Rejeitados</option>
-          </select>
-        </div>
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
           <label class="font-weight-bold">Data início</label>
           <input type="date" id="data_ini" class="form-control" />
         </div>
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
           <label class="font-weight-bold">Data fim</label>
           <input type="date" id="data_fim" class="form-control" />
         </div>
-        <div class="col-md-3 mb-2 d-flex align-items-end">
-          <button id="btnFiltrar" class="btn btn-primary mr-2">
+        <div class="col-md-4 mb-2">
+          <label class="font-weight-bold">Nº Pedido</label>
+          <input type="text" id="num_pedido" class="form-control" placeholder="Ex.: PED-2025..." />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button id="btnFiltrar" class="btn btn-primary">
             <i class="fas fa-search"></i> Buscar
-          </button>
-          <button id="btnImprimir" class="btn btn-secondary">
-            <i class="fas fa-print"></i> Imprimir
           </button>
         </div>
       </div>
@@ -60,12 +56,13 @@
         <table class="table table-hover table-striped" id="tabelaPedidos">
           <thead class="thead-dark">
             <tr>
-              <th>Data Solicitação</th>
+              <th>Data Aprovação</th>
               <th>Nº Pedido</th>
               <th>Solicitante</th>
-              <th>Centro de Custo</th>
+              <th>Rota</th>
               <th>Itens</th>
               <th>Qtd Total</th>
+              <th>Visualizado</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -133,14 +130,20 @@ let hashAtual = null; // Para armazenar o hash do pedido atual no modal
 const esc = s => String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function carregar() {
-  const status = document.getElementById('filtro_status').value;
   const di = document.getElementById('data_ini').value;
   const df = document.getElementById('data_fim').value;
-  const qs = new URLSearchParams({ data_ini: di || '', data_fim: df || '' }).toString();
-  const base = status === 'aprovados' ? '/api/relatorio-pc/aprovados' : '/api/relatorio-pc/rejeitados';
+  const np = document.getElementById('num_pedido').value;
+  const qs = new URLSearchParams({ data_ini: di || '', data_fim: df || '', num_pedido: np || '' }).toString();
+  const base = '/api/relatorio-pc/aprovados'; // Sempre aprovados
   const url = qs ? `${base}?${qs}` : base;
   fetch(url)
-    .then(r => r.json())
+    .then(async r => {
+      if (!r.ok) {
+        const txt = await r.text();
+        throw new Error('Falha na API: ' + r.status + ' ' + txt.substring(0,200));
+      }
+      return r.json();
+    })
     .then(j => {
       if (!j.success) { alert('Erro ao carregar'); return; }
       dadosAtual = j.data || [];
@@ -155,12 +158,13 @@ function preencherTabela(dados) {
   dados.forEach((g, idx) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${g.data_solicitacao || ''}</td>
+      <td>${g.data_aprovacao || ''}</td>
       <td><span class="badge badge-dark">${esc(g.num_pedido || '-')}</span></td>
       <td>${esc(g.solicitante || '-')}</td>
-      <td>${esc(g.centro_custo_nome || '-')}</td>
+      <td>${esc(g.rota_nome || '-')}</td>
       <td>${g.itens || 0}</td>
       <td>${g.quantidade_total || 0}</td>
+      <td>${g.visualizado_em ? esc(g.visualizado_em) : '—'}</td>
       <td>
         <button class="btn btn-sm btn-outline-primary" onclick="abrirDetalhes('${g.grupo_hash}')">
           <i class="fas fa-eye"></i> Ver
@@ -172,15 +176,26 @@ function preencherTabela(dados) {
 
 function abrirDetalhes(hash) {
   hashAtual = hash; // Armazena o hash para usar na impressão
-  fetch(`/api/relatorio-pc/detalhes/${hash}`)
-    .then(r => r.json())
+  // Marca visualizado (global)
+  fetch(`/api/relatorio-pc/visualizado/${hash}`, { method: 'POST', headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+    .then(()=>carregar())
+    .catch(()=>{});
+  const qs = new URLSearchParams({ status: 'aprovados' }).toString();
+  fetch(`/api/relatorio-pc/detalhes/${hash}?${qs}`)
+    .then(async r => {
+      if (!r.ok) {
+        const txt = await r.text();
+        throw new Error('Falha na API: ' + r.status + ' ' + txt.substring(0,200));
+      }
+      return r.json();
+    })
     .then(j => {
       if (!j.success) { alert('Não encontrado'); return; }
       const d = j.data;
       document.getElementById('cabecalhoPedido').innerHTML = `
         <div class="row">
           <div class="col-md-6"><strong>Nº Pedido:</strong> ${esc(d.cabecalho.num_pedido || '-')}</div>
-          <div class="col-md-6"><strong>Data:</strong> ${esc(d.cabecalho.data_solicitacao || '-')}</div>
+          <div class="col-md-6"><strong>Data Aprovação:</strong> ${esc(d.cabecalho.data_aprovacao || '-')}
           <div class="col-md-6"><strong>Centro de Custo:</strong> ${esc(d.cabecalho.centro_custo_nome || '-')}</div>
           <div class="col-md-6"><strong>Prioridade:</strong> ${esc(d.cabecalho.prioridade || '-')}
         </div>`;
@@ -223,7 +238,6 @@ function imprimirLista() {
 }
 
 document.getElementById('btnFiltrar').addEventListener('click', carregar);
-document.getElementById('btnImprimir').addEventListener('click', imprimirLista);
 document.getElementById('btnImprimirModal').addEventListener('click', function(){
   if (!hashAtual) {
     alert('Erro: Não foi possível identificar o pedido para impressão');
@@ -262,7 +276,8 @@ document.getElementById('btnImprimirModal').addEventListener('click', function()
   };
   
   // Define a URL para carregar
-  iframe.src = `/relatorio-pc/imprimir/${hashAtual}`;
+  const qs = new URLSearchParams({ status: 'aprovados' }).toString();
+  iframe.src = `/relatorio-pc/imprimir/${hashAtual}?${qs}`;
 });
 
 // Auto-carregar ao abrir

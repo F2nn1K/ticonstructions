@@ -1,0 +1,74 @@
+/* Menu lateral: melhora hierarquia com recuo e setinha nos submenus (Hostinger public_html) */
+
+/* Indentação mais clara para itens de submenu (nível 1) */
+.sidebar .nav-sidebar .nav-treeview > .nav-item > .nav-link {
+  padding-left: 2.25rem; /* padrão ~1.5rem; adiciona recuo */
+  position: relative;
+}
+
+/* Nível 2 (se existir) */
+.sidebar .nav-sidebar .nav-treeview .nav-treeview > .nav-item > .nav-link {
+  padding-left: 3rem;
+}
+
+/* Setinha antes do texto do submenu */
+.sidebar .nav-sidebar .nav-treeview > .nav-item > .nav-link::before {
+  content: '›';
+  position: absolute;
+  left: 1.05rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .9rem;
+  color: #94a3b8; /* cinza suave */
+}
+
+/* Linha guia vertical discreta à esquerda do grupo */
+.sidebar .nav-sidebar .nav-treeview {
+  position: relative;
+}
+.sidebar .nav-sidebar .nav-treeview::before {
+  content: '';
+  position: absolute;
+  left: .9rem;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: #e2e8f0;
+}
+
+/* Mais respiro entre itens de submenu */
+.sidebar .nav-sidebar .nav-treeview > .nav-item {
+  margin: 2px 0;
+}
+
+/* Estado ativo igual ao menu principal: azul com fonte branca */
+.sidebar .nav-sidebar .nav-treeview > .nav-item > .nav-link.active,
+.sidebar .nav-sidebar .nav-treeview > .nav-item > .nav-link.active:hover,
+.sidebar .nav-sidebar .nav-treeview > .nav-item > .nav-link.active:focus {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+}
+
+/* Força o estilo para AdminLTE - TODAS as variações possíveis */
+.main-sidebar .nav-sidebar .nav-treeview .nav-item .nav-link.active,
+.sidebar .nav-sidebar .nav-treeview .nav-item .nav-link.active,
+.nav-sidebar .nav-treeview .nav-item .nav-link.active,
+.nav-treeview .nav-item .nav-link.active,
+.nav-link.active {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+/* CSS super agressivo para sobrescrever tudo */
+[class*="nav-treeview"] [class*="nav-link"][class*="active"] {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+/* Responsivo: recuo levemente menor em telas estreitas */
+@media (max-width: 991.98px) {
+  .sidebar .nav-sidebar .nav-treeview > .nav-item > .nav-link {
+    padding-left: 2rem;
+  }
+}

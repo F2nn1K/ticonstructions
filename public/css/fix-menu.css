@@ -1,0 +1,14 @@
+/* Fix urgente para menu ativo - sobrescreve AdminLTE */
+.nav-treeview .nav-item .nav-link.active,
+.main-sidebar .nav-treeview .nav-link.active,
+.sidebar .nav-treeview .nav-link.active {
+    background-color: #007bff !important;
+    color: #ffffff !important;
+    font-weight: normal !important;
+}
+
+/* Força ainda mais */
+body .nav-treeview .nav-link.active {
+    background-color: #007bff !important;
+    color: #ffffff !important;
+}

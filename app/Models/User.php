@@ -97,8 +97,9 @@ class User extends Authenticatable
 
         static::updated(function ($user) {
             try {
-                // Usar cache flush em vez de tags
-                cache()->flush();
+                // Cache específico por usuário em vez de flush global
+                cache()->forget("user_permissions_{$user->id}");
+                cache()->forget("user_profile_{$user->id}");
             } catch (\Exception $e) {
                 \Log::warning('Erro ao limpar cache na atualização do usuário: ' . $e->getMessage());
             }
@@ -106,8 +107,9 @@ class User extends Authenticatable
 
         static::saved(function ($user) {
             try {
-                // Usar cache flush em vez de tags
-                cache()->flush();
+                // Cache específico por usuário em vez de flush global
+                cache()->forget("user_permissions_{$user->id}");
+                cache()->forget("user_profile_{$user->id}");
             } catch (\Exception $e) {
                 \Log::warning('Erro ao limpar cache ao salvar usuário: ' . $e->getMessage());
             }

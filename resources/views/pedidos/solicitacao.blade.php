@@ -57,9 +57,31 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="centro_custo">Centro de Custo</label>
-                                <input type="text" class="form-control" id="centro_custo" readonly>
+                                <input type="text" class="form-control" id="centro_custo" placeholder="Digite ao menos 3 letras para buscar centro de custo..." autocomplete="off">
                                 <input type="hidden" id="centro_custo_id" name="centro_custo_id">
                                 <div id="cc-suggestions" class="dropdown-menu w-100" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Campos Rota e Roteirização -->
+                    <div class="row" id="rota-container">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="rota">Rota</label>
+                                <select class="form-control" id="rota" disabled>
+                                    <option value="">Selecione primeiro um centro de custo...</option>
+                                </select>
+                                <input type="hidden" id="rota_id" name="rota_id">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="roteirizacao">Roteirização</label>
+                                <select class="form-control" id="roteirizacao" disabled>
+                                    <option value="">Selecione primeiro uma rota...</option>
+                                </select>
+                                <input type="hidden" id="roteirizacao_id" name="roteirizacao_id">
                             </div>
                         </div>
                     </div>
@@ -199,6 +221,35 @@
         margin-top: 2px;
     }
     
+    /* Modo escuro - Autocomplete Styles */
+    html[data-theme="dark"] #produto-suggestions, 
+    html[data-theme="dark"] #cc-suggestions {
+        background: #1e293b !important;
+        border: 1px solid #475569 !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+    }
+    
+    html[data-theme="dark"] .suggestion-item {
+        border-bottom: 1px solid #334155 !important;
+        background: #1e293b !important;
+    }
+    
+    html[data-theme="dark"] .suggestion-item:hover {
+        background-color: #334155 !important;
+    }
+    
+    html[data-theme="dark"] .suggestion-name {
+        color: #f1f5f9 !important;
+    }
+    
+    html[data-theme="dark"] .suggestion-desc {
+        color: #94a3b8 !important;
+    }
+    
+    html[data-theme="dark"] .suggestion-cc {
+        color: #94a3b8 !important;
+    }
+    
     /* Estilos para os cards de produtos */
     .produto-card {
         border: 1px solid #e3e6f0;
@@ -231,11 +282,7 @@
         margin-top: 8px;
     }
     
-    /* Campo readonly para centro de custo */
-    #centro_custo[readonly] {
-        background-color: #f8f9fa;
-        cursor: not-allowed;
-    }
+
     
     /* Estilo para empty state */
     .empty-produtos {
@@ -307,6 +354,29 @@
             }, 300);
         });
         
+        // Autocomplete para centro de custo
+        let centroCustoTimeoutId;
+        $('#centro_custo').on('input', function() {
+            const termo = $(this).val();
+            
+            // Limpar timeout anterior
+            if (centroCustoTimeoutId) {
+                clearTimeout(centroCustoTimeoutId);
+            }
+            
+            // Esconder sugestões se termo for muito curto
+            if (termo.length < 3) {
+                $('#cc-suggestions').hide();
+                $('#centro_custo_id').val('');
+                return;
+            }
+            
+            // Delay para evitar muitas requisições
+            centroCustoTimeoutId = setTimeout(function() {
+                buscarCentrosCusto(termo);
+            }, 300);
+        });
+        
         // Centro de custo agora é preenchido automaticamente ao escolher o produto
         
         // Esconder sugestões ao clicar fora
@@ -317,6 +387,26 @@
             if (!$(e.target).closest('#centro_custo, #cc-suggestions').length) {
                 $('#cc-suggestions').hide();
             }
+        });
+        
+        // Event listeners para os novos campos Rota e Roteirização
+        // Quando selecionar uma rota
+        $('#rota').on('change', function() {
+            const rotaId = $(this).val();
+            $('#rota_id').val(rotaId);
+            
+            if (rotaId) {
+                carregarRoteirizacoesPorRota(rotaId);
+            } else {
+                $('#roteirizacao').html('<option value="">Selecione primeiro uma rota...</option>').prop('disabled', true);
+                $('#roteirizacao_id').val('');
+            }
+        });
+        
+        // Quando selecionar uma roteirização
+        $('#roteirizacao').on('change', function() {
+            const roteirizacaoId = $(this).val();
+            $('#roteirizacao_id').val(roteirizacaoId);
         });
         
         // Página de Solicitação de Pedido de Compras carregada
@@ -454,6 +544,8 @@
         // Preparar dados para envio
         const dados = {
             centro_custo_id: centroCustoId,
+            rota_id: $('#rota_id').val(),
+            roteirizacao_id: $('#roteirizacao_id').val(),
             prioridade: prioridade,
             observacao: $('#observacoes').val(),
             produtos: produtosSelecionados
@@ -500,12 +592,20 @@
         $('#prioridade').val('media');
         $('#observacoes').val('');
         
+        // Limpar campos Rota e Roteirização
+        $('#rota').html('<option value="">Selecione primeiro um centro de custo...</option>').prop('disabled', true);
+        $('#roteirizacao').html('<option value="">Selecione primeiro uma rota...</option>').prop('disabled', true);
+        $('#rota_id').val('');
+        $('#roteirizacao_id').val('');
+        $('#rota-container').hide();
+        
         // Limpar produtos
         produtosSelecionados = [];
         atualizarTabelaProdutos();
         limparFormularioProduto();
         
-        // Centro de custo não precisa limpar sugestões pois é readonly
+        // Limpar sugestões de centro de custo também
+        $('#cc-suggestions').hide();
     }
     
     function buscarCentrosCusto(termo) {
@@ -529,6 +629,9 @@
                             $('#centro_custo').val(cc.nome);
                             $('#centro_custo_id').val(cc.id);
                             suggestions.hide();
+                            
+                            // Carregar rotas do centro de custo selecionado
+                            carregarRotasPorCentroCusto(cc.id);
                         });
                         
                         suggestions.append(item);
@@ -579,7 +682,7 @@
                     });
                     suggestions.show();
                 } else {
-                    suggestions.append('<div class="suggestion-item">Nenhum produto encontrado</div>');
+                    suggestions.append(`<div class="suggestion-item">Nenhum produto encontrado para "${termo}"</div>`);
                     suggestions.show();
                 }
             },
@@ -587,6 +690,69 @@
                 const suggestions = $('#produto-suggestions');
                 suggestions.html('<div class="suggestion-item">Erro ao buscar produtos</div>');
                 suggestions.show();
+            }
+        });
+    }
+    
+    // Função para carregar rotas por centro de custo
+    function carregarRotasPorCentroCusto(centroCustoId) {
+        // Limpar campos dependentes
+        $('#rota').html('<option value="">Carregando rotas...</option>').prop('disabled', true);
+        $('#roteirizacao').html('<option value="">Selecione primeiro uma rota...</option>').prop('disabled', true);
+        $('#rota_id').val('');
+        $('#roteirizacao_id').val('');
+        
+        $.ajax({
+            url: '/api/rotas/por-centro-custo',
+            method: 'GET',
+            data: { centro_custo_id: centroCustoId },
+            success: function(response) {
+                const rotaSelect = $('#rota');
+                rotaSelect.empty();
+                
+                if (response.success && response.data && response.data.length > 0) {
+                    rotaSelect.append('<option value="">Selecione uma rota...</option>');
+                    response.data.forEach(function(rota) {
+                        rotaSelect.append(`<option value="${rota.id}">${rota.nome_rota}</option>`);
+                    });
+                    rotaSelect.prop('disabled', false);
+                    $('#rota-container').show();
+                } else {
+                    rotaSelect.append('<option value="">Nenhuma rota encontrada para este centro de custo</option>');
+                }
+            },
+            error: function() {
+                $('#rota').html('<option value="">Erro ao carregar rotas</option>');
+            }
+        });
+    }
+    
+    // Função para carregar roteirizações por rota
+    function carregarRoteirizacoesPorRota(rotaId) {
+        // Limpar campo dependente
+        $('#roteirizacao').html('<option value="">Carregando roteirizações...</option>').prop('disabled', true);
+        $('#roteirizacao_id').val('');
+        
+        $.ajax({
+            url: '/api/roteirizacoes/por-rota',
+            method: 'GET',
+            data: { rota_id: rotaId },
+            success: function(response) {
+                const roteirizacaoSelect = $('#roteirizacao');
+                roteirizacaoSelect.empty();
+                
+                if (response.success && response.data && response.data.length > 0) {
+                    roteirizacaoSelect.append('<option value="">Selecione uma roteirização...</option>');
+                    response.data.forEach(function(roteirizacao) {
+                        roteirizacaoSelect.append(`<option value="${roteirizacao.id}">${roteirizacao.nome}</option>`);
+                    });
+                    roteirizacaoSelect.prop('disabled', false);
+                } else {
+                    roteirizacaoSelect.append('<option value="">Nenhuma roteirização encontrada para esta rota</option>');
+                }
+            },
+            error: function() {
+                $('#roteirizacao').html('<option value="">Erro ao carregar roteirizações</option>');
             }
         });
     }

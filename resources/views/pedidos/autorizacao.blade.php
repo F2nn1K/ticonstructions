@@ -155,9 +155,9 @@
     });
 
     function atualizarContagens() {
-        $.get('/api/pedidos-pendentes', function(r){ if(r.success) $('#count-pendentes').text(r.data.length); });
-        $.get('/api/pedidos-aprovados', function(r){ if(r.success) $('#count-aprovadas').text(r.data.length); });
-        $.get('/api/pedidos-rejeitados', function(r){ if(r.success) $('#count-rejeitadas').text(r.data.length); });
+        $.get('/api/pedidos-pendentes-agrupados', function(r){ if(r.success) $('#count-pendentes').text(r.data.length); });
+        $.get('/api/pedidos-aprovados-agrupados', function(r){ if(r.success) $('#count-aprovadas').text(r.data.length); });
+        $.get('/api/pedidos-rejeitados-agrupados', function(r){ if(r.success) $('#count-rejeitadas').text(r.data.length); });
     }
 </script>
 @stop

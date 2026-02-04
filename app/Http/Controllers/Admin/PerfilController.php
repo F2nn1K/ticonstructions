@@ -48,12 +48,14 @@ class PerfilController extends Controller
             'name' => $request->name,
             'description' => $request->description
         ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Perfil criado com sucesso',
-            'data' => $perfil
-        ]);
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Perfil criado com sucesso',
+                'data' => $perfil
+            ]);
+        }
+        return redirect('/perfis')->with('success', 'Perfil criado com sucesso');
     }
 
     public function update(Request $request, $id)
@@ -90,15 +92,17 @@ class PerfilController extends Controller
             ->where('profile_permissions.profile_id', $id)
             ->select('permissions.*')
             ->get();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Perfil atualizado com sucesso',
-            'data' => [
-                'perfil' => $perfil,
-                'permissions' => $permissoes
-            ]
-        ]);
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Perfil atualizado com sucesso',
+                'data' => [
+                    'perfil' => $perfil,
+                    'permissions' => $permissoes
+                ]
+            ]);
+        }
+        return redirect('/perfis')->with('success', 'Perfil atualizado com sucesso');
     }
 
     public function destroy($id)
@@ -108,11 +112,13 @@ class PerfilController extends Controller
         
         // Remover perfil
         DB::table('profiles')->where('id', $id)->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Perfil excluído com sucesso'
-        ]);
+        if (request()->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Perfil excluído com sucesso'
+            ]);
+        }
+        return redirect('/perfis')->with('success', 'Perfil excluído com sucesso');
     }
 
     public function getPermissoes()

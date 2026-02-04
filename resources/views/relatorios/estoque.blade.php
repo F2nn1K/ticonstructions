@@ -83,8 +83,8 @@
             <div class="card card-modern">
                 <div class="card-header">
                     <h5 class="mb-0">
-                        <i class="fas fa-table mr-2"></i>
-                        Movimentações de Estoque
+                        <i class="fas fa-warehouse mr-2"></i>
+                        Estoque Atual (Produtos)
                     </h5>
                 </div>
                 <div class="card-body">
@@ -92,30 +92,10 @@
                         <table class="table table-modern" id="tabelaRelatorio">
                             <thead class="table-dark">
                                 <tr>
-                                    <th width="80px">
-                                        <i class="fas fa-calendar mr-1"></i>
-                                        Data/Hora
-                                    </th>
-                                    <th>
-                                        <i class="fas fa-user mr-1"></i>
-                                        Funcionário
-                                    </th>
-                                    <th>
-                                        <i class="fas fa-building mr-1"></i>
-                                        Centro de Custo
-                                    </th>
-                                    <th>
-                                        <i class="fas fa-boxes mr-1"></i>
-                                        Produtos Retirados
-                                    </th>
-                                    <th width="80px">
-                                        <i class="fas fa-sort-numeric-down mr-1"></i>
-                                        Total Itens
-                                    </th>
-                                    <th>
-                                        <i class="fas fa-comment mr-1"></i>
-                                        Observações
-                                    </th>
+                                    <th width="80px">ID</th>
+                                    <th width="280px">Nome</th>
+                                    <th>Descrição</th>
+                                    <th width="140px" class="text-right">Quantidade</th>
                                 </tr>
                             </thead>
                             <tbody id="tabelaBody">
@@ -231,6 +211,8 @@ function escapeHtml(str) {
     });
 }
 
+let dadosRelatorio = [];
+
 $(document).ready(function() {
     // Carregar dados iniciais
     carregarProdutos();
@@ -241,6 +223,9 @@ $(document).ready(function() {
     
     $('#data_inicio').val(mesPassado.toISOString().split('T')[0]);
     $('#data_fim').val(hoje.toISOString().split('T')[0]);
+
+    // Carregar relatório automaticamente ao abrir (estoque geral)
+    gerarRelatorio();
     
     // Submissão do formulário
     $('#formFiltros').submit(function(e) {
@@ -310,10 +295,9 @@ function gerarRelatorio() {
         },
         success: function(response) {
             if (response.success) {
-                preencherTabelaComArmazenamento(response.dados);
+                dadosRelatorio = Array.isArray(response.dados) ? response.dados : [];
+                preencherTabelaEstoque(dadosRelatorio);
                 $('#btnImprimir').prop('disabled', false);
-                
-                // Atualizar contadores
                 $('#totalRegistros').text(response.total_registros);
                 $('#registroInicio').text(response.total_registros > 0 ? 1 : 0);
                 $('#registroFim').text(response.total_registros);
@@ -332,61 +316,39 @@ function gerarRelatorio() {
     });
 }
 
-function preencherTabela(dados) {
-    if (dados.length === 0) {
+function preencherTabelaEstoque(dados) {
+    if (!dados || dados.length === 0) {
         $('#tabelaBody').html(`
             <tr>
-                <td colspan="6" class="text-center py-4">
-                    <i class="fas fa-inbox text-muted fa-2x mb-2"></i>
+                <td colspan="4" class="text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
                     <br>
-                    <span class="text-muted">Nenhuma movimentação encontrada no período</span>
+                    <span class="text-muted">Nenhum produto encontrado</span>
                 </td>
             </tr>
         `);
         return;
     }
-    
     let html = '';
-    dados.forEach(function(item) {
-        let produtosHtml = '';
-        item.produtos.forEach(function(produto, index) {
-            if (index > 0) produtosHtml += '<br>';
-            produtosHtml += `<span class="badge badge-secondary mr-1">${escapeHtml(produto.nome)} (${produto.quantidade})</span>`;
-        });
-        
+    dados.forEach(function(p, index){
+        const rowClass = index % 2 === 0 ? '' : 'table-light';
+        const desc = p.descricao && p.descricao.trim() !== '' ? p.descricao : 'Sem descrição';
         html += `
-            <tr>
-                <td>
-                    <div class="font-weight-bold">${item.data}</div>
-                    <small class="text-muted">${item.hora}</small>
-                </td>
-                <td>
-                    <div class="font-weight-bold">${escapeHtml(item.funcionario.nome)}</div>
-                    <small class="text-muted">${escapeHtml(item.funcionario.funcao)}</small>
-                </td>
-                <td>
-                    <span class="badge badge-info">${escapeHtml(item.centro_custo.nome)}</span>
-                </td>
-                <td>
-                    ${produtosHtml}
-                </td>
-                <td class="text-center">
-                    <span class="badge badge-primary">${item.total_itens}</span>
-                </td>
-                <td>
-                    <small class="text-muted">${item.observacoes || 'Sem observações'}</small>
-                </td>
+            <tr class="${rowClass}">
+                <td>${p.id}</td>
+                <td><strong>${escapeHtml(p.nome)}</strong></td>
+                <td><small class="text-muted">${escapeHtml(desc)}</small></td>
+                <td class="text-right"><span class="badge badge-primary">${Number(p.quantidade).toLocaleString('pt-BR')}</span></td>
             </tr>
         `;
     });
-    
     $('#tabelaBody').html(html);
 }
 
 function mostrarErro(mensagem) {
     $('#tabelaBody').html(`
         <tr>
-            <td colspan="6" class="text-center py-4">
+            <td colspan="4" class="text-center py-4">
                 <i class="fas fa-exclamation-triangle text-danger fa-2x mb-2"></i>
                 <br>
                     <span class="text-danger">${escapeHtml(mensagem)}</span>
@@ -394,264 +356,271 @@ function mostrarErro(mensagem) {
         </tr>
     `);
 }
-
-let dadosRelatorio = []; // Variável global para armazenar dados
-
-function preencherTabelaComArmazenamento(dados) {
-    dadosRelatorio = dados; // Armazenar dados para impressão
-    preencherTabela(dados);
-}
-
 function imprimirRelatorio() {
-    if (dadosRelatorio.length === 0) {
+    if (!dadosRelatorio || dadosRelatorio.length === 0) {
         alert('Nenhum dado disponível para impressão. Gere um relatório primeiro.');
         return;
     }
+
+    // Obter dados dos filtros para o cabeçalho
+    const dataInicio = $('#data_inicio').val() || 'Não informado';
+    const dataFim = $('#data_fim').val() || 'Não informado';
+    const produtoSel = $('#produto_id option:selected').text() || 'Todos os produtos';
     
-    // Obter dados dos filtros
-    const dataInicio = $('#data_inicio').val();
-    const dataFim = $('#data_fim').val();
-    const produtoSelecionado = $('#produto_id option:selected').text();
-    
-    // Criar HTML da impressão
+    // Criar HTML da impressão (estoque geral)
     let htmlImpressao = `
     <!DOCTYPE html>
     <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Relatório de Movimentação de Estoque</title>
+        <title>Relatório de Estoque Atual</title>
         <style>
-            @page {
-                size: A4;
-                margin: 2cm 1.5cm;
+            @page { 
+                size: A4 landscape; 
+                margin: 15mm 20mm 15mm 20mm; 
             }
-            
-            * {
+            body { 
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                font-size: 11px; 
+                color: #2c3e50; 
+                line-height: 1.4;
                 margin: 0;
                 padding: 0;
-                box-sizing: border-box;
             }
-            
-            body {
-                font-family: 'Arial', sans-serif;
-                font-size: 12px;
-                color: #333;
-                line-height: 1.4;
-            }
-            
-            .header {
-                text-align: center;
-                margin-bottom: 25px;
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 20px;
                 padding-bottom: 15px;
-                border-bottom: 2px solid #333;
+                border-bottom: 3px solid #3498db;
             }
-            
-            .header h1 {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 5px;
-                color: #000;
+            .logo-section {
+                display: flex;
+                align-items: center;
+                gap: 15px;
             }
-            
-            .header h2 {
+            .logo {
+                width: 60px;
+                height: 60px;
+                object-fit: contain;
+            }
+            .company-info h1 {
+                font-size: 22px;
+                font-weight: 700;
+                color: #2c3e50;
+                margin: 0 0 5px 0;
+                letter-spacing: 0.5px;
+            }
+            .company-info .subtitle {
                 font-size: 14px;
-                font-weight: normal;
-                color: #666;
+                color: #7f8c8d;
+                margin: 0;
+                font-weight: 500;
             }
-            
-            .filtros {
-                margin-bottom: 20px;
-                padding: 10px;
-                background: #f8f9fa;
-                border: 1px solid #ddd;
-                border-radius: 5px;
+            .report-info {
+                text-align: right;
+                font-size: 11px;
+                color: #5a6c7d;
             }
-            
-            .filtros h3 {
-                font-size: 12px;
+            .report-info .date {
+                font-weight: 600;
+                color: #34495e;
                 margin-bottom: 8px;
-                font-weight: bold;
             }
-            
-            .filtros p {
-                font-size: 10px;
-                margin: 2px 0;
-                color: #555;
-            }
-            
-            .table-container {
+            .filters-section {
+                background: #f0f8ff;
+                padding: 12px 15px;
+                border-radius: 6px;
                 margin-bottom: 20px;
+                border-left: 4px solid #3498db;
             }
-            
-            table {
-                width: 100%;
-                border-collapse: collapse;
+            .filters-title {
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 8px;
+                font-size: 12px;
+            }
+            .filters-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            .filter-item {
+                font-size: 11px;
+            }
+            .filter-label {
+                font-weight: 600;
+                color: #34495e;
+            }
+            .filter-value {
+                color: #5a6c7d;
+                margin-left: 5px;
+            }
+            table { 
+                width: 100%; 
+                border-collapse: collapse; 
                 font-size: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border-radius: 6px;
+                overflow: hidden;
+                margin: 15px 0;
             }
-            
             thead {
-                background: #333;
+                background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
                 color: white;
             }
-            
-            th {
-                padding: 8px 6px;
+            th { 
+                padding: 12px 8px;
+                font-weight: 600;
                 text-align: left;
-                font-weight: bold;
-                border: 1px solid #333;
-                font-size: 10px;
+                font-size: 11px;
+                letter-spacing: 0.3px;
+                border: none;
             }
-            
-            td {
-                padding: 6px 6px;
-                border: 1px solid #ddd;
-                font-size: 10px;
+            tbody tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+            tbody tr:hover {
+                background-color: #e3f2fd;
+            }
+            td { 
+                padding: 10px 8px;
+                border-bottom: 1px solid #e0e6ed;
                 vertical-align: top;
+                border-left: none;
+                border-right: none;
             }
-            
-            tr:nth-child(even) {
-                background: #f9f9f9;
+            .qtd { 
+                text-align: right; 
+                white-space: nowrap;
+                font-weight: 600;
+                color: #2980b9;
             }
-            
-            .funcionario {
-                font-weight: bold;
-                color: #000;
+            .total-summary {
+                background: #f8f9fa;
+                padding: 12px;
+                border-radius: 6px;
+                margin-top: 15px;
+                border-left: 4px solid #27ae60;
             }
-            
-            .funcao {
-                font-size: 9px;
-                color: #666;
-                font-style: italic;
+            .total-row {
+                display: flex;
+                justify-content: space-between;
+                font-weight: 600;
+                color: #2c3e50;
             }
-            
-            .centro-custo {
-                background: #e3f2fd;
-                padding: 2px 4px;
-                border-radius: 3px;
-                font-weight: bold;
-                font-size: 9px;
-                color: #1976d2;
-            }
-            
-            .produto-item {
-                margin-bottom: 2px;
-                padding: 1px 3px;
-                background: #f5f5f5;
-                border-radius: 2px;
-                font-size: 9px;
-                border-left: 2px solid #28a745;
-            }
-            
-            .total-badge {
-                background: #007bff;
-                color: white;
-                padding: 2px 6px;
-                border-radius: 3px;
-                font-weight: bold;
-                font-size: 9px;
-            }
-            
-            .data-hora {
-                font-weight: bold;
-                color: #000;
-            }
-            
-            .hora {
-                font-size: 8px;
-                color: #666;
-            }
-            
             .footer {
-                margin-top: 20px;
+                margin-top: 25px;
                 padding-top: 15px;
-                border-top: 1px solid #ddd;
+                border-top: 2px solid #bdc3c7;
                 text-align: center;
                 font-size: 10px;
-                color: #666;
+                color: #7f8c8d;
             }
-            
-
+            @media print { 
+                .no-print { display: none !important; }
+                body { -webkit-print-color-adjust: exact; }
+            }
         </style>
     </head>
     <body>
-        <div class="header">
-            <h1>RELATÓRIO DE MOVIMENTAÇÃO DE ESTOQUE</h1>
-            <h2>Sistema de Controle Interno</h2>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="/img/brs-logo.png" alt="BRS Logo" class="logo" />
+                <div class="company-info">
+                    <h1>RELATÓRIO DE ESTOQUE</h1>
+                    <p class="subtitle">Controle de Inventário e Produtos</p>
+                </div>
+            </div>
+            <div class="report-info">
+                <div class="date">Emitido em: ${new Date().toLocaleString('pt-BR')}</div>
+                <div>Total de produtos: ${dadosRelatorio.length}</div>
+            </div>
         </div>
         
-        <div class="filtros">
-            <h3>Filtros Aplicados:</h3>
-            <p><strong>Período:</strong> ${formatarData(dataInicio)} até ${formatarData(dataFim)}</p>
-            <p><strong>Produto:</strong> ${produtoSelecionado}</p>
-            <p><strong>Data de Impressão:</strong> ${new Date().toLocaleString('pt-BR')}</p>
+        <div class="filters-section">
+            <div class="filters-title">FILTROS APLICADOS</div>
+            <div class="filters-grid">
+                <div class="filter-item">
+                    <span class="filter-label">Período:</span>
+                    <span class="filter-value">${dataInicio} até ${dataFim}</span>
+                </div>
+                <div class="filter-item">
+                    <span class="filter-label">Produto:</span>
+                    <span class="filter-value">${produtoSel}</span>
+                </div>
+                <div class="filter-item">
+                    <span class="filter-label">Tipo:</span>
+                    <span class="filter-value">Estoque Atual</span>
+                </div>
+            </div>
         </div>
-        
 
-        
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="20%">Funcionário</th>
-                        <th width="15%">Centro de Custo</th>
-                        <th width="35%">Produtos</th>
-                        <th width="10%">Total</th>
-                        <th width="20%">Data</th>
-                    </tr>
-                </thead>
-                <tbody>`;
-    
-    // Preencher dados da tabela
-    dadosRelatorio.forEach(function(item) {
-        let produtosHtml = '';
-        item.produtos.forEach(function(produto) {
-            produtosHtml += `<div class="produto-item">${produto.nome} (${produto.quantidade})</div>`;
-        });
-        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 70px;">ID</th>
+                    <th style="width: 260px;">Nome</th>
+                    <th>Descrição</th>
+                    <th style="width: 120px;" class="qtd">Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+    let total = 0;
+    dadosRelatorio.forEach(function(p){
+        const desc = (p.descricao || '').trim() || 'Sem descrição';
+        total += Number(p.quantidade || 0);
         htmlImpressao += `
-                    <tr>
-                        <td>
-                            <div class="funcionario">${item.funcionario.nome}</div>
-                            <div class="funcao">${item.funcionario.funcao}</div>
-                        </td>
-                        <td>
-                            <span class="centro-custo">${item.centro_custo.nome}</span>
-                        </td>
-                        <td>
-                            ${produtosHtml}
-                        </td>
-                        <td style="text-align: center;">
-                            <span class="total-badge">${item.total_itens}</span>
-                        </td>
-                        <td>
-                            <div class="data-hora">${item.data}</div>
-                            <div class="hora">${item.hora}</div>
-                        </td>
-                    </tr>`;
+            <tr>
+                <td>${p.id}</td>
+                <td>${escapeHtml(p.nome)}</td>
+                <td>${escapeHtml(desc)}</td>
+                <td class="qtd">${Number(p.quantidade||0).toLocaleString('pt-BR')}</td>
+            </tr>`;
     });
-    
+
     htmlImpressao += `
-                </tbody>
-            </table>
+            </tbody>
+        </table>
+        
+        <div class="total-summary">
+            <div class="total-row">
+                <span>TOTAL DE ITENS EM ESTOQUE:</span>
+                <span>${total.toLocaleString('pt-BR')} unidades</span>
+            </div>
         </div>
         
         <div class="footer">
-            <p>Relatório gerado automaticamente pelo Sistema de Controle de Estoque</p>
-            <p>Total de ${dadosRelatorio.length} movimentação(ões) encontrada(s) no período especificado</p>
+            <p>Sistema Integrado de Gestão Operacional (SIGO) - BRS Transportes</p>
         </div>
     </body>
     </html>`;
-    
-    // Abrir nova janela e imprimir
-    const janelaImpressao = window.open('', '_blank');
-    janelaImpressao.document.write(htmlImpressao);
-    janelaImpressao.document.close();
-    
-    // Aguardar carregar e imprimir
-    janelaImpressao.onload = function() {
-        janelaImpressao.print();
-        janelaImpressao.close();
+
+    // Imprimir sem abrir nova aba: usar iframe oculto
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    doc.open();
+    doc.write(htmlImpressao);
+    doc.close();
+
+    iframe.onload = function(){
+        try {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+        } finally {
+            setTimeout(function(){ document.body.removeChild(iframe); }, 400);
+        }
     };
 }
 

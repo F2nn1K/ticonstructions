@@ -100,141 +100,25 @@
                     </div>
                 </div>
 
-                <!-- Seção de Documentos -->
-                <div class="row mb-5">
+                <!-- Documento Unificado -->
+                <div class="row mb-4">
                     <div class="col-12">
                         <h5 class="mb-4">
                             <i class="fas fa-file-alt mr-2 text-primary"></i>
-                            Documentos Necessários
-                            <span class="text-muted ml-2">(Selecione conforme necessário)</span>
-                        </h5>
-                        <p class="text-center text-muted mb-4">
-                            <i class="fas fa-info-circle mr-1"></i>
-                            Anexe os documentos conforme a necessidade de cada funcionário
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Grid de Documentos -->
-                <div class="row">
-                    <div class="col-lg-6 mb-4">
-                        <div class="document-card">
-                            <div class="document-header">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="doc_fotos" name="documentos[]" value="02 fotos 3x4">
-                                    <label class="custom-control-label document-label" for="doc_fotos">
-                                        <i class="fas fa-camera mr-2 text-primary"></i>
-                                        02 fotos 3x4
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="document-actions">
-                                <button type="button" class="btn btn-outline-primary btn-sm anexar-btn" data-target="arquivo_fotos">
-                                    <i class="fas fa-paperclip mr-1"></i> Anexar
-                                </button>
-                                <input type="file" id="arquivo_fotos" name="arquivo_fotos" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
-                                <small class="file-selected d-none text-success mt-2"></small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cards de Documentos -->
-                    @php
-                    $documentos = [
-                        ['id' => 'carteira_saude', 'icon' => 'fas fa-clinic-medical', 'label' => 'Carteira de saúde atualizada com foto 3x4', 'desc' => 'Posto de saúde ou clínica'],
-                        ['id' => 'encaminhamento', 'icon' => 'fas fa-file-prescription', 'label' => 'Encaminhamento para exame admissional', 'desc' => 'Fornecido pela empresa'],
-                        ['id' => 'antecedente', 'icon' => 'fas fa-shield-alt', 'label' => 'Antecedente cível e criminal', 'desc' => 'Certidão negativa'],
-                        ['id' => 'rg', 'icon' => 'fas fa-id-card', 'label' => 'R.G. (identidade)', 'desc' => 'Documento de identidade'],
-                        ['id' => 'cpf', 'icon' => 'fas fa-hashtag', 'label' => 'CPF', 'desc' => 'Cadastro de Pessoa Física'],
-                        ['id' => 'cnh', 'icon' => 'fas fa-car', 'label' => 'CNH (carteira nacional de habilitação)', 'desc' => 'Se houver'],
-                        ['id' => 'titulo', 'icon' => 'fas fa-vote-yea', 'label' => 'Título Eleitoral', 'desc' => 'Documento eleitoral'],
-                        ['id' => 'endereco', 'icon' => 'fas fa-home', 'label' => 'Comprovante de endereço (com CEP)', 'desc' => 'Conta ou documento oficial'],
-                        ['id' => 'carteira_trabalho', 'icon' => 'fas fa-briefcase', 'label' => 'Carteira de trabalho, frente e verso', 'desc' => 'Física ou digital']
-                    ];
-                    @endphp
-
-                    @foreach($documentos as $index => $doc)
-                        @if($index % 2 == 1)
-                            <div class="col-lg-6 mb-4">
-                        @endif
-                        @if($index % 2 == 0)
-                            <div class="col-lg-6 mb-4">
-                        @endif
-                            <div class="document-card">
-                                <div class="document-header">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="doc_{{ $doc['id'] }}" name="documentos[]" value="{{ $doc['label'] }}">
-                                        <label class="custom-control-label document-label" for="doc_{{ $doc['id'] }}">
-                                            <i class="{{ $doc['icon'] }} mr-2 text-primary"></i>
-                                            {{ $doc['label'] }}
-                                        </label>
-                                    </div>
-                                    @if(isset($doc['desc']))
-                                        <small class="text-muted d-block mt-1">{{ $doc['desc'] }}</small>
-                                    @endif
-                                </div>
-                                <div class="document-actions">
-                                    <button type="button" class="btn btn-outline-primary btn-sm anexar-btn" data-target="arquivo_{{ $doc['id'] }}">
-                                        <i class="fas fa-paperclip mr-1"></i> Anexar
-                                    </button>
-                                    <input type="file" id="arquivo_{{ $doc['id'] }}" name="arquivo_{{ $doc['id'] }}" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
-                                    <small class="file-selected d-none text-success mt-2"></small>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <!-- Seção de Documentos dos Filhos -->
-                <div class="modern-card mt-4">
-                    <div class="card-header-modern bg-warning">
-                        <h5 class="card-title-modern mb-0">
-                            <i class="fas fa-child mr-2"></i>
-                            Documentos dos Filhos (se menores de 14 anos)
+                            Documento Unificado
                         </h5>
                     </div>
-                    <div class="card-body-modern">
-                        <p class="text-muted mb-4">
-                            <i class="fas fa-info-circle mr-1"></i>
-                            Anexe os documentos abaixo apenas se o funcionário possuir filhos menores de 14 anos
-                        </p>
-
-                        @php
-                        $documentosFilhos = [
-                            ['id' => 'certidao_nascimento', 'icon' => 'fas fa-certificate', 'label' => 'Certidão de nascimento', 'desc' => 'Do(s) filho(s)'],
-                            ['id' => 'cpf_filho', 'icon' => 'fas fa-hashtag', 'label' => 'CPF filho', 'desc' => 'Se já possuir'],
-                            ['id' => 'vacinacao', 'icon' => 'fas fa-syringe', 'label' => 'Carteira de vacinação (menor 07 anos)', 'desc' => 'Atualizada'],
-                            ['id' => 'frequencia', 'icon' => 'fas fa-school', 'label' => 'Comprovante de frequência escolar (maior 07 anos)', 'desc' => 'Declaração da escola']
-                        ];
-                        @endphp
-
-                        <div class="row">
-                            @foreach($documentosFilhos as $index => $doc)
-                                <div class="col-lg-6 mb-4">
-                                    <div class="document-card document-card-child">
-                                        <div class="document-header">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="doc_{{ $doc['id'] }}" name="documentos[]" value="{{ $doc['label'] }}">
-                                                <label class="custom-control-label document-label" for="doc_{{ $doc['id'] }}">
-                                                    <i class="{{ $doc['icon'] }} mr-2 text-warning"></i>
-                                                    {{ $doc['label'] }}
-                                                </label>
-                                            </div>
-                                            @if(isset($doc['desc']))
-                                                <small class="text-muted d-block mt-1">{{ $doc['desc'] }}</small>
-                                            @endif
-                                        </div>
-                                        <div class="document-actions">
-                                            <button type="button" class="btn btn-outline-warning btn-sm anexar-btn" data-target="arquivo_{{ $doc['id'] }}">
-                                                <i class="fas fa-paperclip mr-1"></i> Anexar
-                                            </button>
-                                            <input type="file" id="arquivo_{{ $doc['id'] }}" name="arquivo_{{ $doc['id'] }}" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
-                                            <small class="file-selected d-none text-success mt-2"></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                    <div class="col-lg-8 mb-3">
+                        <label for="documento_unificado_nome" class="font-weight-bold text-muted mb-2">
+                            <i class="fas fa-paperclip mr-1"></i>
+                            Anexar arquivo <span class="text-muted">(opcional)</span>
+                        </label>
+                        <input type="text" id="documento_unificado_nome" class="form-control modern-input mb-2" value="" placeholder="Nenhum arquivo escolhido" readonly>
+                        <button type="button" id="btn-escolher-documento" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-folder-open mr-1"></i> Escolher arquivo
+                        </button>
+                        <input type="file" id="documento_unificado" name="documento_unificado" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
+                        <small class="text-muted d-block mt-2">Formatos aceitos: PDF, JPG, JPEG, PNG. Tamanho máximo 70MB.</small>
                     </div>
                 </div>
 
@@ -262,6 +146,15 @@
     font-size: 14px;
     transition: all 0.3s ease;
     background: #f8fafc;
+}
+
+/* Ajuste específico para selects para não cortar o texto */
+select.modern-input {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto;            /* deixa o navegador calcular a altura correta */
+    min-height: 44px;        /* garante altura confortável */
+    line-height: 1.4;        /* melhora alinhamento vertical do texto */
 }
 
 .modern-input:focus {
@@ -481,76 +374,54 @@ $(document).ready(function() {
         }
     });
 
-    // Função para anexar arquivos
-    $('.anexar-btn').click(function() {
-        const targetId = $(this).data('target');
-        $('#' + targetId).click();
+    // Documento Unificado: botão externo abre o input escondido
+    $('#btn-escolher-documento').on('click', function() {
+        $('#documento_unificado').trigger('click');
     });
 
-    // Mostrar nome do arquivo selecionado com animação
-    $('input[type="file"]').change(function() {
-        const file = this.files[0];
-        const $button = $(this).siblings('.anexar-btn');
-        const $small = $(this).siblings('.file-selected');
-        const $card = $(this).closest('.document-card');
-        
-        if (file) {
-            // Animação de sucesso
-            $card.addClass('border-success');
-            $button.removeClass('btn-outline-primary btn-outline-warning')
-                   .addClass('btn-success')
-                   .html('<i class="fas fa-check mr-1"></i> Anexado');
-            
-            $small.text(`📎 ${file.name}`)
-                  .removeClass('d-none')
-                  .addClass('text-success')
-                  .hide()
-                  .fadeIn(300);
-                  
-            // Marcar checkbox automaticamente
-            $card.find('input[type="checkbox"]').prop('checked', true);
-            
-        } else {
-            // Resetar estado
-            $card.removeClass('border-success');
-            $button.removeClass('btn-success')
-                   .addClass($card.hasClass('document-card-child') ? 'btn-outline-warning' : 'btn-outline-primary')
-                   .html('<i class="fas fa-paperclip mr-1"></i> Anexar');
-            $small.addClass('d-none');
-            
-            // Desmarcar checkbox
-            $card.find('input[type="checkbox"]').prop('checked', false);
-        }
+    // Mostrar nome do arquivo escolhido
+    $('#documento_unificado').on('change', function() {
+        const file = this.files && this.files[0] ? this.files[0] : null;
+        $('#documento_unificado_nome').val(file ? file.name : '');
     });
 
     // Loading state no formulário
     $('#form-documentos').submit(function(e) {
         const $btnSalvar = $('#btn-salvar');
-        
-        // Verificar se pelo menos um arquivo foi anexado
-        const arquivosAnexados = $('input[type="file"]').filter(function() {
-            return this.files.length > 0;
-        }).length;
-        
-        if (arquivosAnexados === 0) {
-            e.preventDefault();
-            alert('Por favor, anexe pelo menos um documento antes de enviar.');
-            return false;
-        }
-        
-        // Loading state
+        // Agora o anexo é opcional; apenas aplicamos loading
         $btnSalvar.prop('disabled', true)
                   .html('<i class="fas fa-spinner fa-spin mr-2"></i>Salvando...');
     });
 
     // Validação em tempo real dos campos obrigatórios
-    // Máscara para CPF
+    // Máscara para CPF + trava de duplicidade
     $('#cpf').on('input', function() {
         let cpf = $(this).val().replace(/\D/g, ''); // Remove tudo que não é dígito
         cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona ponto após o terceiro dígito
         cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); // Adiciona ponto após o sexto dígito
         cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona hífen antes dos dois últimos dígitos
         $(this).val(cpf);
+    });
+
+    // Ao sair do campo, checar duplicidade (AJAX)
+    $('#cpf').on('blur', async function(){
+        const raw = $(this).val().replace(/\D/g, '');
+        if (raw.length !== 11) return;
+        try {
+            const resp = await fetch(`/api/documentos-dp/check-cpf?cpf=${raw}`);
+            const data = await resp.json();
+            if (data && data.exists) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'CPF já cadastrado',
+                    html: `Já existe um funcionário com este CPF${data.nome ? `: <strong>${data.nome}</strong>` : ''}.`,
+                    confirmButtonText: 'OK'
+                });
+                $('#btn-salvar').prop('disabled', true);
+            } else {
+                $('#btn-salvar').prop('disabled', false);
+            }
+        } catch (e) { /* silencioso */ }
     });
 
     $('#nome_funcionario, #funcao, #cpf, #sexo').on('input change', function() {
@@ -571,36 +442,23 @@ $(document).ready(function() {
         });
     });
 
-    // Contador de documentos selecionados
-    function atualizarContador() {
-        const totalSelecionados = $('input[type="checkbox"]:checked').length;
-        const totalArquivos = $('input[type="file"]').filter(function() {
-            return this.files.length > 0;
-        }).length;
-        
-        // Atualizar título do card principal
-        const titulo = totalArquivos > 0 ? 
-            `Cadastro de Documentos Necessários (${totalArquivos} anexado${totalArquivos > 1 ? 's' : ''})` :
-            'Cadastro de Documentos Necessários';
-            
-        $('.card-title-modern').first().html(`
-            <i class="fas fa-plus-circle mr-2 text-primary"></i>
-            ${titulo}
-        `);
-    }
-
-    // Monitorar mudanças nos checkboxes e arquivos
-    $('input[type="checkbox"], input[type="file"]').change(atualizarContador);
+    // Atualizar título com feedback simples
+    $('#documento_unificado').on('change', function() {
+        const temArquivo = this.files && this.files.length > 0;
+        const titulo = temArquivo ? 'Documento Unificado (1 arquivo anexado)' : 'Documento Unificado';
+        $('.card-title-modern').first().html(`<i class="fas fa-plus-circle mr-2 text-primary"></i>${titulo}`);
+    });
 
     // Validação de tamanho de arquivo
-    $('input[type="file"]').change(function() {
-        const file = this.files[0];
-        if (file && file.size > 15 * 1024 * 1024) { // 15MB
-            $(this).val(''); // Limpar
+    $('#documento_unificado').on('change', function() {
+        const file = this.files && this.files[0] ? this.files[0] : null;
+        if (file && file.size > 70 * 1024 * 1024) {
+            $(this).val('');
+            $('#documento_unificado_nome').val('');
             Swal.fire({
                 icon: 'error',
                 title: 'Arquivo muito grande',
-                text: 'O arquivo deve ter no máximo 15MB.',
+                text: 'O arquivo deve ter no máximo 70MB.',
                 confirmButtonColor: '#ef4444'
             });
         }
@@ -609,5 +467,5 @@ $(document).ready(function() {
 </script>
 
 <!-- SweetAlert2 para alertas modernos -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 @stop

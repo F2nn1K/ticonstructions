@@ -1,0 +1,7751 @@
+[
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000140",
+    "nome": "COPO PLASTICO COPOBRAS 180 ML",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "001149",
+    "nome": "COPO PLASTICO COPOBRAS 50 ML",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000442",
+    "nome": "COPO PLASTICO CRISTALCOPO 180 ML",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000455",
+    "nome": "— COPO PLASTICO CRISTALCOPO 50 ML",
+    "um": "UN",
+    "valor": "4,49"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000672",
+    "nome": "GUARDANAPO JAKSPEL INTERFOLHADO 6000 F",
+    "um": "ox",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "001515",
+    "nome": "GUARDANAPO PETALAS C/ 50 20X23",
+    "um": "FD",
+    "valor": "2,49"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "001668",
+    "nome": "PAPEL HIGIENICO JAKSPEL INTERFOLHADO 24 PCT",
+    "um": "ox",
+    "valor": "0,00"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "001265",
+    "nome": "PAPEL TOALHA BROMELIA 6X200 100% CEL.",
+    "um": "FD",
+    "valor": "129,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000167",
+    "nome": "PAPEL TOALHA BROMELIA 8X100 100% CEL.",
+    "um": "FD",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000137",
+    "nome": "PAPEL TOALHA VITORIA REGIA LUXO 1.250FL",
+    "um": "FD",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000517",
+    "nome": "PAPEL TOALHA BROMELIA 8X100 BRANCO",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000877",
+    "nome": "PAPEL TOALHA ECONOCLEAN 06X200",
+    "um": "FD",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000878",
+    "nome": "PAPEL TOALHA ECONOCLEAN 08X100",
+    "um": "FD",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000853",
+    "nome": "PAPEL TOALHA ECONOCLEAN 1250 FOLHAS 100% CELULOSE",
+    "um": "UN",
+    "valor": "25,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000649",
+    "nome": "PAPEL TOALHA INT. 2000FL PETALAS 100% CELULOSE",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000879",
+    "nome": "PAPEL TOALHA INT. ECONOCLEAN 2400 FOLHAS",
+    "um": "FD",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000166",
+    "nome": "PAPEL TOALHA PETALAS C/2 ROLOS MULTIUSO",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000481",
+    "nome": "PAPEL TOALHA SCALA NEUTRO",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "DESCARTAVEIS",
+    "codigo": "000169",
+    "nome": "PAPEL TOALHA VITORIA REGIA BRANCO F.SIMPLES 1250F",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000297",
+    "nome": "—ASPIRADOR DE AGUA E PO WAP GTW 10 127V 50/60HZ",
+    "um": "UN",
+    "valor": "499,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000298",
+    "nome": "— ASPIRADOR DE AGUA E PO WAP GTW INOX 12 127V~ 60HZ",
+    "um": "UN",
+    "valor": "579,00"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001307",
+    "nome": "—ASPIRADOR DE PO BRITANIA VERMELHO BAS1290V 127V",
+    "um": "UN",
+    "valor": "249,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001351",
+    "nome": "—ASPIRADOR DE PO PRETO BRITANIA BAS1295P 127V",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001262",
+    "nome": "—ASPIRADOR ROBOT W100 WAP",
+    "um": "UN",
+    "valor": "699,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001434",
+    "nome": "CAFETEIRA BCF19A BRITANIA 127V",
+    "um": "UN",
+    "valor": "149,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001433",
+    "nome": "CAFETEIRA PCF40A PHILCO 127V",
+    "um": "UN",
+    "valor": "249,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001603",
+    "nome": "CLIMATIZADOR BRITANIA BCLOSA 127V",
+    "um": "UN",
+    "valor": "599,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001472",
+    "nome": "CLIMATIZADOR PHILCO PCL10QF 127V",
+    "um": "UN",
+    "valor": "799,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001385",
+    "nome": "— DESUMIDIFICADOR AMBIENTE FM PLAST 127 E 220V",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001437",
+    "nome": "FERRO BFV07 BRITANIA AZUL 127V",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001436",
+    "nome": "FERRO BFV2000P BRITANIA PRETO 127V",
+    "um": "UN",
+    "valor": "149,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001435",
+    "nome": "FERRO BFV201 BRITANIA ROSA 127V",
+    "um": "UN",
+    "valor": "109,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001429",
+    "nome": "FRITADEIRA AIR FRYER BAF40A BRITANIA 127V",
+    "um": "UN",
+    "valor": "299,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001425",
+    "nome": "FRITADEIRA AIR FRYER BFR2100P BRITANIA 127V",
+    "um": "UN",
+    "valor": "799,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001424",
+    "nome": "FRITADEIRA AIR FRYER BFR37 BRITANIA 127V",
+    "um": "UN",
+    "valor": "349,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001427",
+    "nome": "FRITADEIRA AIR FRYER PAF5SSA PHILCO 127V",
+    "um": "UN",
+    "valor": "499,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001428",
+    "nome": "FRITADEIRA AIR FRYER PFRO6PI PHILCO 127V",
+    "um": "UN",
+    "valor": "519,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001426",
+    "nome": "FRITADEIRA AIR FRYER PFR2200P PHILCO 127V",
+    "um": "UN",
+    "valor": "849,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001431",
+    "nome": "GRILL E SANDUICHEIRA BGR30 BRITANIA 127V",
+    "um": "UN",
+    "valor": "229,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001432",
+    "nome": "GRILL E SANDUICHEIRA PGRO2 PHILCO 127V",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000828",
+    "nome": "LAVADORA BRITANIA ALTA PRESSAO BLA4100 127V",
+    "um": "UN",
+    "valor": "649,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000947",
+    "nome": "LAVADORA DE ALTA PRESSAO PHILCO PLP2300 127V",
+    "um": "UN",
+    "valor": "549,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001354",
+    "nome": "LAVADORA DE ALTA PRESSAO PHILCO PLP2600 127V",
+    "um": "UN",
+    "valor": "749,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000341",
+    "nome": "LAVADORA DE ALTA PRESSAO WAP ATACAMA SMART 2200 (1",
+    "um": "UN",
+    "valor": "689,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000826",
+    "nome": "LAVADORA DE ALTA PRESSAO WAP OUSADA PLUS 2200 (175",
+    "um": "UN",
+    "valor": "799,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000294",
+    "nome": "LIMPADOR DE PISO 3 EM 1 WAP FLOOR CLEANER MOB 22 V",
+    "um": "UN",
+    "valor": "1.509,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001420",
+    "nome": "LIQUIDIFICADOR BRITANIA BLQ1280P 127V",
+    "um": "UN",
+    "valor": "179,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001417",
+    "nome": "LIQUIDIFICADOR PH900 PHILCO PRETO 127V",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001418",
+    "nome": "LIQUIDIFICADOR PH900 PHILCO VERMELHO 127V",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001484",
+    "nome": "PASSADEIRA A VAPOR BRITANIA BVPO2L 127V",
+    "um": "UN",
+    "valor": "249,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001438",
+    "nome": "PIPOQUEIRA B-02 BRITANIA 127V",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001469",
+    "nome": "PIPOQUEIRA BPI01VI BRITANIA 127V",
+    "um": "UN",
+    "valor": "229,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000062",
+    "nome": "PULVERIZADOR COSTA 20L PALISAD",
+    "um": "UN",
+    "valor": "206,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001430",
+    "nome": "SANDUICHEIRA BGRO2PI BRITANIA 127V",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000295",
+    "nome": "UMIDIFICADOR WAP AIR FLOW",
+    "um": "UN",
+    "valor": "259,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001260",
+    "nome": "UMIDIFICADOR WAP AIR FLOW U2",
+    "um": "UN",
+    "valor": "189,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000296",
+    "nome": "VAPORIZADOR WAP WAPORE FAST PORTATIL 127V",
+    "um": "UN",
+    "valor": "299,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "001261",
+    "nome": "VENTILADOR TORRE WAP AIR SILENCE",
+    "um": "UN",
+    "valor": "569,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000487",
+    "nome": "WAP GTW BAGLESS 127V 50/60HZ",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000842",
+    "nome": "WAP HIGH SPEED PLUS 127V",
+    "um": "UN",
+    "valor": "299,90"
+  },
+  {
+    "departamento": "ELETRO EM GERAL",
+    "codigo": "000383",
+    "nome": "WAP SPOT CLEANER 127V 60HZ",
+    "um": "UN",
+    "valor": "799,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000484",
+    "nome": "ABAFADOR DE RUIDOS KALIPSO K-40",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000937",
+    "nome": "BOTA CANO CURTO PRETO 35",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000938",
+    "nome": "BOTA CANO CURTO PRETO 36",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000939",
+    "nome": "BOTA CANO CURTO PRETO 37",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000940",
+    "nome": "— BOTA CANO CURTO PRETO 38",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000941",
+    "nome": "BOTA CANO CURTO PRETO 39",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000942",
+    "nome": "BOTA CANO CURTO PRETO 40",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000943",
+    "nome": "BOTA CANO CURTO PRETO 41",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000944",
+    "nome": "BOTA CANO CURTO PRETO 42",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000945",
+    "nome": "BOTA CANO CURTO PRETO 43",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000946",
+    "nome": "BOTA CANO CURTO PRETO 44",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000444",
+    "nome": "BOTA CANO EXT CURTO BRANCA 34",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000445",
+    "nome": "BOTA CANO EXT CURTO BRANCA 35",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000446",
+    "nome": "BOTA CANO EXT CURTO BRANCA 36",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000515",
+    "nome": "BOTA CANO EXT CURTO BRANCA 37",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000447",
+    "nome": "BOTA CANO EXT CURTO BRANCA 38",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000448",
+    "nome": "BOTA CANO EXT CURTO BRANCA 39",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000449",
+    "nome": "BOTA CANO EXT CURTO BRANCA 40",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000450",
+    "nome": "— BOTA CANO EXT CURTO BRANCA 41",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000451",
+    "nome": "BOTA CANO EXT CURTO BRANCA 42",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000452",
+    "nome": "BOTA CANO EXT CURTO BRANCA 43",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000453",
+    "nome": "BOTA CANO EXT CURTO BRANCA 44",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000014",
+    "nome": "BOTA CANO EXT CURTO PRETO 34",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000015",
+    "nome": "BOTA CANO EXT CURTO PRETO 35",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000016",
+    "nome": "BOTA CANO EXT CURTO PRETO 36",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000168",
+    "nome": "BOTA CANO EXT CURTO PRETO 37",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000017",
+    "nome": "BOTA CANO EXT CURTO PRETO 38",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000018",
+    "nome": "BOTA CANO EXT CURTO PRETO 39",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000019",
+    "nome": "—BOTA CANO EXT CURTO PRETO 40",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000020",
+    "nome": "BOTA CANO EXT CURTO PRETO 41",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000021",
+    "nome": "BOTA CANO EXT CURTO PRETO 42",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001263",
+    "nome": "BOTA CANO EXT CURTO PRETO 43",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000587",
+    "nome": "BOTA CANO EXT CURTO PRETO 44",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001586",
+    "nome": "BOTA CN CURTO SOFT BRANCO 34",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001240",
+    "nome": "BOTA CN CURTO SOFT BRANCO 35",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001242",
+    "nome": "BOTA CN CURTO SOFT BRANCO 36",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001243",
+    "nome": "BOTA CN CURTO SOFT BRANCO 37",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001244",
+    "nome": "BOTA CN CURTO SOFT BRANCO 38",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001245",
+    "nome": "BOTA CN CURTO SOFT BRANCO 39",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001246",
+    "nome": "BOTA CN CURTO SOFT BRANCO 40",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001247",
+    "nome": "BOTA CN CURTO SOFT BRANCO 41",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001248",
+    "nome": "BOTA CN CURTO SOFT BRANCO 42",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001552",
+    "nome": "BOTA CN CURTO SOFT BRANCO 43",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001587",
+    "nome": "BOTA CN CURTO SOFT BRANCO 44",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001588",
+    "nome": "BOTA CN CURTO SOFT PRETO 34",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001250",
+    "nome": "BOTA CN CURTO SOFT PRETO 35",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001251",
+    "nome": "BOTA CN CURTO SOFT PRETO 36",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001252",
+    "nome": "BOTA CN CURTO SOFT PRETO 37",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001253",
+    "nome": "BOTA CN CURTO SOFT PRETO 38",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001254",
+    "nome": "BOTA CN CURTO SOFT PRETO 39",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001255",
+    "nome": "BOTA CN CURTO SOFT PRETO 40",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001256",
+    "nome": "BOTA CN CURTO SOFT PRETO 41",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001249",
+    "nome": "BOTA CN CURTO SOFT PRETO 42",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001553",
+    "nome": "— BOTA CN CURTO SOFT PRETO 43",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001589",
+    "nome": "BOTA CN CURTO SOFT PRETO 44",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001505",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 36",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000007",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 37",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000008",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 38",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000009",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 39",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000010",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 40",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000011",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 41",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000012",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 42",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000013",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 43",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000443",
+    "nome": "BOTA PRETA C/ ELAST. S/METAL- 44",
+    "um": "UN",
+    "valor": "82,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001512",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 34",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000211",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 35",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000212",
+    "nome": "— BOTA PVC CANO CURTO BRANCA - 36",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000213",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 37",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000214",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 38",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000215",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 39",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000216",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 40",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000217",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 41",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000218",
+    "nome": "BOTA PVC CANO CURTO BRANCA - 42",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000219",
+    "nome": "— BOTA PVC CANO CURTO BRANCA - 43",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000514",
+    "nome": "— BOTA PVC CANO CURTO BRANCA - 44 -",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000284",
+    "nome": "CAPA CHUVA POLIET.ADULTO AMARELA POLICAP.",
+    "um": "UN",
+    "valor": "17,50"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000916",
+    "nome": "CAPA CHUVA PVC C/MANG.PT GG 1,30M",
+    "um": "UN",
+    "valor": "35,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000286",
+    "nome": "CAPA CHUVA PVC C/MANGA AZUL G",
+    "um": "UN",
+    "valor": "32,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000287",
+    "nome": "CAPA CHUVA PVC C/MANGA PRETO G",
+    "um": "UN",
+    "valor": "32,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000114",
+    "nome": "CAPACETE SEG. CAMPE INMETRO AMARELO",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000064",
+    "nome": "CAPACETE SEG. CAMPE INMETRO AZUL",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000065",
+    "nome": "CAPACETE SEG. PLAST. VERDE ESCURO",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001220",
+    "nome": "CINTA LOMBAR ERGONOMICO G POP",
+    "um": "UN",
+    "valor": "79,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001221",
+    "nome": "CINTA LOMBAR ERGONOMICO M POP",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001239",
+    "nome": "CINTA LOMBAR ERGONOMICO P POP",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000280",
+    "nome": "COLETE BLUSAO LARANJA/PRETO",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000159",
+    "nome": "COLETE EM X VELCRO LARANJA",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000158",
+    "nome": "COLETE TIPO X LARANJA EPI RINO",
+    "um": "UN",
+    "valor": "25,70"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000378",
+    "nome": "LUVA DE LATEX M C/ PO C/ PROT.AG.QUIMICOS C/100U",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001571",
+    "nome": "LUVA DE LATEX G C/ PO C/ PROT.AG.QUIMICOS C/100U",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001570",
+    "nome": "LUVA DE LATEX P C/ PO C/ PROT.AG.QUIMICOS C/100U",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001455",
+    "nome": "LUVA DE LATEX TOP G AMARELA NOBRE",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001235",
+    "nome": "LUVA DE LATEX TOP M AMARELA NOBRE",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001454",
+    "nome": "LUVA DE LATEX TOP P AMARELA NOBRE",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000067",
+    "nome": "LUVA LATEX KALIPSO AMAR T.07-P",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000068",
+    "nome": "LUVA LATEX KALIPSO AMAR T.08-M",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000069",
+    "nome": "LUVA LATEX KALIPSO AMAR T.09-G",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000372",
+    "nome": "LUVA LATEX LIGHT AMAR T.07 P",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000373",
+    "nome": "LUVA LATEX LIGHT AMAR T.08 M",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000569",
+    "nome": "LUVA LATEX LIGHT AMAR T.09-G",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000070",
+    "nome": "LUVA LATEX SUPER SILVER AMAR T.07-P",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000071",
+    "nome": "LUVA LATEX SUPER SILVER AMAR T.08-M",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000072",
+    "nome": "LUVA LATEX SUPER SILVER AMAR T.09-G",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000881",
+    "nome": "LUVA LATEX SUPER SILVER AZUL T. 07-P",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000441",
+    "nome": "LUVA LATEX SUPER SILVER AZUL T. 08-M",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000882",
+    "nome": "LUVA LATEX SUPER SILVER AZUL T. 09-G",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000382",
+    "nome": "LUVA MALHA LISA C/PIGM. PRETA",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001572",
+    "nome": "LUVA NITRILICA NOBRE PRETA G C/100",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001573",
+    "nome": "LUVA NITRILICA NOBRE PRETA M C/100",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001574",
+    "nome": "LUVA NITRILICA NOBRE PRETA P C/100",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000614",
+    "nome": "LUVA NITRILI-KA 10 VERDE T. 08-M",
+    "um": "UN",
+    "valor": "14,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000616",
+    "nome": "LUVA NITRILI-KA 10 VERDE T. 09-G",
+    "um": "UN",
+    "valor": "14,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000300",
+    "nome": "LUVA PLAST. DESC. NOBRE TAM.UNICO C/100UN",
+    "um": "UN",
+    "valor": "2,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000615",
+    "nome": "LUVAPVC C/F45CM T. 9,5",
+    "um": "UN",
+    "valor": "23,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000210",
+    "nome": "LUVA VAQUETA PETROLEIRA ENFORT.AME",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000423",
+    "nome": "LUVA VAQUETA PETROLEIRA TOTAL FIT",
+    "um": "UN",
+    "valor": "37,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000607",
+    "nome": "MASCARA CIRURGICA TRIPLA C/ ELASTICO C/50UN VERDE",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000883",
+    "nome": "— OCULOS JAGUAR II CINZA",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000661",
+    "nome": "OCULOS LEOPARDO CINZA",
+    "um": "PC",
+    "valor": "6,49"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000073",
+    "nome": "OCULOS LEOPARDO INC",
+    "um": "UN",
+    "valor": "6,49"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000075",
+    "nome": "PROTETOR AUDITIVO KALIPSO PLUG SILIC K10",
+    "um": "UN",
+    "valor": "2,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000474",
+    "nome": "PROTETOR FACIAL 4CM X 25CM 30CM - NOBRE",
+    "um": "UN",
+    "valor": "7,00"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000627",
+    "nome": "SAPATILHA EVA SOFT WORKS REF BB50 BRANCO 34",
+    "um": "UN",
+    "valor": "78,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000628",
+    "nome": "SAPATILHA EVA SOFT WORKS REF BB50 BRANCO 35",
+    "um": "UN",
+    "valor": "78,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000629",
+    "nome": "SAPATILHA EVA SOFT WORKS REF BB50 BRANCO 36",
+    "um": "UN",
+    "valor": "78,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000631",
+    "nome": "SAPATILHA EVA SOFT WORKS REF BB50 BRANCO 38",
+    "um": "UN",
+    "valor": "78,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000632",
+    "nome": "SAPATILHA EVA SOFT WORKS REF BB50 BRANCO 39",
+    "um": "UN",
+    "valor": "78,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001666",
+    "nome": "SAPATO FEM EVA SOFT WORKS BRANCO 34 BB95",
+    "um": "UN",
+    "valor": "0,00"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000398",
+    "nome": "SAPATO FEM EVA SOFT WORKS BRANCO 35 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000399",
+    "nome": "—SAPATO FEM EVA SOFT WORKS BRANCO 36 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000400",
+    "nome": "— SAPATO FEM EVA SOFT WORKS BRANCO 37 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000401",
+    "nome": "—SAPATO FEM EVA SOFT WORKS BRANCO 38 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000402",
+    "nome": "—SAPATO FEM EVA SOFT WORKS BRANCO 39 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000403",
+    "nome": "SAPATO FEM EVA SOFT WORKS BRANCO 40 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000404",
+    "nome": "—SAPATO FEM EVA SOFT WORKS PRETO 34 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000405",
+    "nome": "— SAPATO FEM EVA SOFT WORKS PRETO 35 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000406",
+    "nome": "SAPATO FEM EVA SOFT WORKS PRETO 36 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000407",
+    "nome": "SAPATO FEM EVA SOFT WORKS PRETO 37 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000408",
+    "nome": "SAPATO FEM EVA SOFT WORKS PRETO 38 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000409",
+    "nome": "SAPATO FEM EVA SOFT WORKS PRETO 39 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000410",
+    "nome": "—SAPATO FEM EVA SOFT WORKS PRETO 40 BB95",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001050",
+    "nome": "TENIS EVA SOFT WORKS 1 BRANCO 35 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001051",
+    "nome": "TENISEVASOFT WORKS 1 BRANCO 36 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001052",
+    "nome": "TENIS EVA SOFT WORKS 1 BRANCO 37 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001053",
+    "nome": "TENIS EVA SOFT WORKS 1 BRANCO 38 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001054",
+    "nome": "TENIS EVA SOFT WORKS 1 BRANCO 39 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "001551",
+    "nome": "TENIS EVA SOFT WORKS 1 BRANCO 40 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000915",
+    "nome": "TENIS EVA SOFT WORKS 2 BRANCO 33 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000392",
+    "nome": "TENIS EVA SOFT WORKS 2 BRANCO 34 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000393",
+    "nome": "TENIS EVA SOFT WORKS 2 BRANCO 35 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000394",
+    "nome": "TENIS EVA SOFT WORKS 2 BRANCO 36 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000395",
+    "nome": "TENIS EVA SOFT WORKS 2 BRANCO 37 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000396",
+    "nome": "TENIS EVA SOFT WORKS 2 BRANCO 38 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000397",
+    "nome": "TENIS EVA SOFT WORKS 2 BRANCO 39 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000411",
+    "nome": "TENIS EVA SOFT WORKS 2 PRETO 34 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000412",
+    "nome": "TENIS EVA SOFT WORKS 2 PRETO 35 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000413",
+    "nome": "TENIS EVA SOFT WORKS 2 PRETO 36 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000414",
+    "nome": "TENIS EVA SOFT WORKS 2 PRETO 37 BB8O",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000415",
+    "nome": "TENIS EVA SOFT WORKS 2 PRETO 38 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000416",
+    "nome": "TENIS EVA SOFT WORKS 2 PRETO 39 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000417",
+    "nome": "TENIS EVA SOFT WORKS 2 PRETO 40 BB80",
+    "um": "UN",
+    "valor": "87,90"
+  },
+  {
+    "departamento": "EPI'S",
+    "codigo": "000196",
+    "nome": "TOUCA DESCART.EM TNT SANFO.NOBRE PC C/ 100 UND",
+    "um": "PT",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "EQUIPAMENTOS",
+    "codigo": "001626",
+    "nome": "BEBEDOURO IND 100L 3 TORNEIRAS FRISBEL 127V",
+    "um": "UN",
+    "valor": "6.121,93"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000198",
+    "nome": "DISCO LUST NOBRE BRANC P/ ENCE 350MM",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000204",
+    "nome": "DISCO LUST NOBRE BRANC P/ ENCE 510MM",
+    "um": "UN",
+    "valor": "51,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000096",
+    "nome": "DISCO NOBRE PRETO REMOV P/ ENC 350MM",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "001457",
+    "nome": "DISCO NOBRE PRETO REMOV P/ ENC 410MM",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000203",
+    "nome": "DISCO NOBRE PRETO REMOV P/ ENC 510MM",
+    "um": "UN",
+    "valor": "52,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "001465",
+    "nome": "DISCO NOBRE VERDE P/ ENCERADEIRA 300MM",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000471",
+    "nome": "DISCO NOBRE VERDE P/ ENCERADEIRA 410MM",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000348",
+    "nome": "DISCO NOBRE VERMELHA REST P/ ENCE 350MM",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000303",
+    "nome": "DISCO NOBRE VERMELHO REST P/ ENCE 410MM",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000834",
+    "nome": "— ESPONJA BRILHUS MULTIUSO",
+    "um": "UN",
+    "valor": "0,99"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000600",
+    "nome": "— ESPONJA ESFREBOM GRILL DUPLA FACE",
+    "um": "UN",
+    "valor": "8,49"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000598",
+    "nome": "ESPONJA ESFREBOM PROTEJE UNHAS",
+    "um": "UN",
+    "valor": "2,79"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000779",
+    "nome": "ESPONJA JEITOSA MULTIUSO",
+    "um": "UN",
+    "valor": "0,99"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000580",
+    "nome": "— ESPONJA MULTIUSO LIMPABELA",
+    "um": "UN",
+    "valor": "0,99"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "001368",
+    "nome": "ESPONJA MULTIUSO PCT C/10 NOBRE",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000911",
+    "nome": "ESPONJA NOBRE LIMPEZA PESADA (ACO INOX) MAX",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000913",
+    "nome": "ESPONJA NOBRE MAGICA",
+    "um": "UN",
+    "valor": "2,99"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "001238",
+    "nome": "FIBRA NOBRE P/ LIMPEZA PESADA 102X260MM",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000206",
+    "nome": "FIBRA NOBRE P/ LIMPEZA USO GERAL 102X260MM",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000202",
+    "nome": "FIBRA NOBRE P/LIMPEZA BRANCO 102X260MM",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "001367",
+    "nome": "FIBRA ULTRA PESADA NOBRACO PCT C/5",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "001012",
+    "nome": "LA ACO ASSOLAN 45G",
+    "um": "UN",
+    "valor": "3,29"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "001609",
+    "nome": "LA ACO BOMBRIL 45G",
+    "um": "UN",
+    "valor": "3,29"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000710",
+    "nome": "LA ACO BOMBRIL 60G",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "ESPONJAS",
+    "codigo": "000765",
+    "nome": "LA ACO Q LUSTRO 40GR",
+    "um": "UN",
+    "valor": "2,49"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000063",
+    "nome": "ASPERSOR IRRIG.E.R 50CM",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000288",
+    "nome": "CONE EMBORRACHADO 75CM LR FAIXA TIPO II",
+    "um": "UN",
+    "valor": "127,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000279",
+    "nome": "CONE FLEXIVEL 75CM L)/BC PLASTCOR REFLETIVO",
+    "um": "UN",
+    "valor": "124,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000289",
+    "nome": "CONE RIGIDO 75CM LR FAIXA TIPO IT",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000112",
+    "nome": "CONE SINALIZADOR 75CM LAR/BCO FIT",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000275",
+    "nome": "CORRENTE PLASTICA GRANDE KATELI",
+    "um": "UN",
+    "valor": "8,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000669",
+    "nome": "ESCADA ALUM 3 DEG MOR USO DOMESTICO",
+    "um": "UN",
+    "valor": "159,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001345",
+    "nome": "ESCADA ALUM 4 DEG MOR USO DOMESTICO",
+    "um": "UN",
+    "valor": "189,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000794",
+    "nome": "ESCADA ALUM 7 DEG MOR USO DOMESTICO",
+    "um": "UN",
+    "valor": "269,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000807",
+    "nome": "ESCADA ALUM 8 DEG MOR USO DOMESTICO",
+    "um": "UN",
+    "valor": "309,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000808",
+    "nome": "ESCADA EXTENSIVA MOR 2X10",
+    "um": "UN",
+    "valor": "849,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000795",
+    "nome": "ESCADA EXTENSIVA MOR 2X15",
+    "um": "UN",
+    "valor": "1.149,00"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000809",
+    "nome": "— ESCADA MULTIFUNCIONAL MOR 4X3",
+    "um": "UN",
+    "valor": "699,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000796",
+    "nome": "ESCADA MULTIFUNCIONAL MOR 4X4",
+    "um": "UN",
+    "valor": "799,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000810",
+    "nome": "ESCADA TELESC MOR 10 DEGRAUS",
+    "um": "UN",
+    "valor": "999,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000639",
+    "nome": "ESGUICHO REGULAVEL MANGUEIRA ENGATE RAPIDO",
+    "um": "UN",
+    "valor": "6,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001382",
+    "nome": "EXTENSAO 4 TOMADAS SLIM TRIPOLAR BRANCA 3M",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001381",
+    "nome": "EXTENSAO 4 TOMADAS SLIM TRIPOLAR BRANCA 5M",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001380",
+    "nome": "EXTENSAO 4 TOMADAS SLIM TRIPOLAR PRETA 10M",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001383",
+    "nome": "EXTENSAO 4 TOMADAS SLIM TRIPOLAR PRETA 3M",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001384",
+    "nome": "EXTENSAO 4 TOMADAS SLIM TRIPOLAR PRETA 5M",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000635",
+    "nome": "MANGUEIRA JDM SLIM VD 20M ENGAT+ESGUICHO",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000636",
+    "nome": "— MANGUEIRA JDM SLIM VD 30M ENGAT+ESGUICHO",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000637",
+    "nome": "MANGUEIRA TRANCADA 1/2X1,8MM VD ROLO C/ 50M",
+    "um": "UN",
+    "valor": "159,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001300",
+    "nome": "— PLACA SINALIZACAO STAR CLEAN EM MANUTENCAO",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "000691",
+    "nome": "— PLACA SINALIZACAO STAR CLEAN PISO MOLHADO",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001483",
+    "nome": "— PLACA SINALIZADORA PISO ESCORREGADIO PERFECT",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "FERRAMENTARIA",
+    "codigo": "001482",
+    "nome": "PLACA SINALIZADORA PISO MOLHADO PERFECT",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "HIGIENE BEBE",
+    "codigo": "001226",
+    "nome": "LENCO KLEENEX BOX L60 PS50",
+    "um": "UN",
+    "valor": "5,90"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000673",
+    "nome": "P.  H.  FIORE TRAD FOLHA DUPLA",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000844",
+    "nome": "PAP HIG FD MIMMO NEUTRO 30M C/4",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000880",
+    "nome": "— PAPEL HIG. ECONOCLEAN 08X300",
+    "um": "FD",
+    "valor": "74,90"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "001207",
+    "nome": "PAPEL HIG. FLOR DE LOTUS PERF",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000377",
+    "nome": "PAPEL HIG. FLOR DE LOTUS TRADICIONAL F.SIMPLES",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "001655",
+    "nome": "PAPEL HIG. FLORENCE PCT C/12",
+    "um": "FD",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000165",
+    "nome": "PAPEL HIG.LIRIOS DO CAMPO 8X300 100% CEL.VERMELHO",
+    "um": "FD",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000418",
+    "nome": "PAPEL HIG.LIRIOS DO CAMPO 8X300 BRANCO VERDE",
+    "um": "FD",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000376",
+    "nome": "PAPEL HIG.LIRIOS DO CAMPO 8X500 100% CELULOSE",
+    "um": "UN",
+    "valor": "124,90"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000056",
+    "nome": "PAPEL HIGI. LA VIE BLANC NEUTRO C/4UN",
+    "um": "UN",
+    "valor": "8,99"
+  },
+  {
+    "departamento": "HIGIENE CORPORAL",
+    "codigo": "000138",
+    "nome": "PAPEL HIGIENICO GIRASSOL",
+    "um": "UN",
+    "valor": "4,29"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000729",
+    "nome": "CUPINICIDA INCOL. SPRAY 400ML",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000732",
+    "nome": "FORMICIDA GEL DEXTER TERMIFIN 10G",
+    "um": "ox",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000144",
+    "nome": "INSETICIDA BAYGON AERO EUCALIPITO 360ML",
+    "um": "UN",
+    "valor": "17,99"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000462",
+    "nome": "INSETICIDA BAYGON TRAD. ACAO TOTAL 360ML",
+    "um": "UN",
+    "valor": "16,99"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000738",
+    "nome": "INSETICIDA BUZZ OFF EXTREME SPRAY 400ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000744",
+    "nome": "INSETICIDA BUZZ OFF MATA BARATA SPRAY 300ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "001271",
+    "nome": "INSETICIDA BUZZ OFF SPRAY CITRONELA 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "001270",
+    "nome": "INSETICIDA BUZZ OFF SPRAY EUCALIPTO 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "001272",
+    "nome": "INSETICIDA BUZZ OFF SPRAY LIMONENO 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "001610",
+    "nome": "INSETICIDA PROINSETO AERO M.I. 250ML",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000776",
+    "nome": "INSETICIDA PROINSETO AERO M.I. 350ML",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000571",
+    "nome": "MATA BARATA DEXTER TERMIFIN GEL 10G",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000733",
+    "nome": "MATA MOSCA KAOCID GRANULADO 25G",
+    "um": "UN",
+    "valor": "5,90"
+  },
+  {
+    "departamento": "INSETICIDAS",
+    "codigo": "000735",
+    "nome": "REPELENTE ELETR. RAID LIQUIDO45 NOIT.",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001177",
+    "nome": "AGUA DE PASSAR ABRACO FLORAL 500 ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001178",
+    "nome": "—AGUA DE PASSAR DOCE ENCANTO 500ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001179",
+    "nome": "AGUA DE PASSAR SEGREDO DE ROMANCE 500ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000860",
+    "nome": "— AGUA SANITARIA BRILUX 1L",
+    "um": "UN",
+    "valor": "3,59"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001163",
+    "nome": "—AGUA SANITARIA BRILUX 5L",
+    "um": "UN",
+    "valor": "19,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000695",
+    "nome": "AGUA SANITARIA BRINORT 1L",
+    "um": "UN",
+    "valor": "3,49"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000703",
+    "nome": "AGUA SANITARIA ECONORTE 1L",
+    "um": "UN",
+    "valor": "2,70"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001257",
+    "nome": "AGUA SANITARIA ECONORTE 5L",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000322",
+    "nome": "— AGUA SANITARIA FACILITA 5L",
+    "um": "UN",
+    "valor": "19,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000045",
+    "nome": "AGUA SANITARIA FACILITA C/ CLORO ATIVO 1L",
+    "um": "UN",
+    "valor": "3,69"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001683",
+    "nome": "ALVEJANTE DE ROUPAS LIQUIDO NATURAL VINAGREEN 1L",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000437",
+    "nome": "ALVEJANTE SEM CLORO DEOLINE 1L",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000867",
+    "nome": "AMACIANTE BRINORT AMAZON GOLD 2L",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000870",
+    "nome": "AMACIANTE BRINORT TOQUE CARINHO 2L",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000955",
+    "nome": "AMACIANTE BRINORT TOQUE SUAVE 2L",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000891",
+    "nome": "AMACIANTE DEOLINE ABRACO FLORAL 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000885",
+    "nome": "AMACIANTE DEOLINE CLASSICO 5L",
+    "um": "UN",
+    "valor": "32,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000333",
+    "nome": "AMACIANTE DEOLINE CONFORTO E DELICADEZA 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000334",
+    "nome": "AMACIANTE DEOLINE DOCE CARINHO 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000884",
+    "nome": "AMACIANTE DEOLINE FLORAL 5L",
+    "um": "UN",
+    "valor": "32,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000829",
+    "nome": "— AMACIANTE MON BIJOU + CUIDADO 1,7L",
+    "um": "UN",
+    "valor": "12,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000207",
+    "nome": "DETERG. P/ ROUPAS HYDROPON RQ SIST. LIQ. 50L",
+    "um": "UN",
+    "valor": "799,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000026",
+    "nome": "HIPOCLORITO BUTTERFLY SODIO 5L",
+    "um": "UN",
+    "valor": "32,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001041",
+    "nome": "HIPOCLORITO ECONORTE 5% 5L",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001386",
+    "nome": "— LAVA ROUPA LIQ BRINORT BLUE 2L",
+    "um": "UN",
+    "valor": "12,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000871",
+    "nome": "LAVA ROUPA LIQ BRINORT GREEN 2L",
+    "um": "UN",
+    "valor": "12,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000318",
+    "nome": "LAVA ROUPAS FACILITA EM PO 5KG",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001375",
+    "nome": "LAVA ROUPAS FACILITA LIQUIDO LAVANDA 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000384",
+    "nome": "— LAVA ROUPAS FACILITA LIQUIDO TRADICIONAL 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001684",
+    "nome": "LAVA ROUPAS VINAGREEN COCO 3L",
+    "um": "UN",
+    "valor": "0,00"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001324",
+    "nome": "LAVA ROUPAS VINAGREEN TRADICIONAL 3L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001106",
+    "nome": "SABAO EM BARRA ABSOLUTO AZUL 1KG",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001104",
+    "nome": "SABAO EM BARRA ABSOLUTO NEUTRO 1KG",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001105",
+    "nome": "SABAO EM BARRA ABSOLUTO VERDE 1KG",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000254",
+    "nome": "SABAO EM BARRA FLAMENGO 1KG",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000718",
+    "nome": "SABAO EM BARRA GLORIA VERDE 1KG",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000390",
+    "nome": "SABAO EM BARRA GLORIA AZUL 1KG",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000719",
+    "nome": "SABAO EM BARRA GLORIA ROSA 1KG",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000057",
+    "nome": "SABAO EM PO ABSOLUTO 400G",
+    "um": "UN",
+    "valor": "2,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000959",
+    "nome": "SABAO EM PO ABSOLUTO COCO 400G",
+    "um": "UN",
+    "valor": "2,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001549",
+    "nome": "SABAO EM PO ALA CUIDADO DO COCO 400G",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001550",
+    "nome": "SABAO EM PO ALA LAVANDA 400G",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001548",
+    "nome": "SABAO EM PO ALA ROSAS E FLOR DE LIS 400G",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000817",
+    "nome": "SABAO EM PO BEM TE VI COCO 400G",
+    "um": "PT",
+    "valor": "4,19"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001103",
+    "nome": "—SABAO EM PO BEM TE VI ERVA DOCE 400G",
+    "um": "PT",
+    "valor": "4,19"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000818",
+    "nome": "SABAO EM PO BEM TE VI LAVANDA 400G",
+    "um": "PT",
+    "valor": "4,19"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001421",
+    "nome": "SABAO EM PO BEM TE VI TRADICIONAL 400G",
+    "um": "PT",
+    "valor": "4,19"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000756",
+    "nome": "SABAO EM PO BRILHANTE LIMPEZA TOTAL 400G",
+    "um": "ox",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000757",
+    "nome": "SABAO EM PO BRILHANTE LIMPEZA TOTAL 800G",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001352",
+    "nome": "—SABAO EM PO CX OMO LAVANDA 400G",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000606",
+    "nome": "SABAO EM PO GUARANI TRADICIONAL 400G",
+    "um": "UN",
+    "valor": "2,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "001353",
+    "nome": "SABAO EM PO OMO CX PURO CUIDADO 800G",
+    "um": "UN",
+    "valor": "21,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000142",
+    "nome": "SABAO EM PO OMO LAVAGEM PERFEITA 400G",
+    "um": "UN",
+    "valor": "9,49"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000989",
+    "nome": "SABAO EM PO TIXAN PRIMAVERA 400G",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000892",
+    "nome": "SABAO LIQUIDO P/ ROUPAS DELICADAS COCO 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LAVANDERIA",
+    "codigo": "000674",
+    "nome": "SABAO LIQUIDO PODER DE REMOCAO 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000347",
+    "nome": "GATILHO PULVERIZADOR NOBRE PRETO SPRAY",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000184",
+    "nome": "APLICADOR DE CERA S/ CABO BASE PLAST/ESPUMA",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000690",
+    "nome": "CABO ALUM. STAR CLEAN C/R AMARELO",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000689",
+    "nome": "CABO ALUM. STAR CLEAN C/R AZUL",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000711",
+    "nome": "CABO ALUM. STAR CLEAN C/R VERDE",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000688",
+    "nome": "CABO ALUM. STAR CLEAN C/R VERMELHO",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000753",
+    "nome": "CABO ALUM. STAR CLEAN S/R AMARELO",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000752",
+    "nome": "CABO ALUM. STAR CLEAN S/R AZUL",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000754",
+    "nome": "CABO ALUM. STAR CLEAN S/R VERMELHO",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000687",
+    "nome": "CABO ALUM. STAR CLEAN S/R VERDE",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000311",
+    "nome": "CABO PERFECT METALICO",
+    "um": "UN",
+    "valor": "10,00"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000675",
+    "nome": "CABO PERFECT P/ MOP MOVE",
+    "um": "UN",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000648",
+    "nome": "CISCADOR PLASTICO PALMA SUPER",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001474",
+    "nome": "CONJ. MOP CONDOR 360 VERMELHO",
+    "um": "UN",
+    "valor": "119,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000866",
+    "nome": "CONJ. MOP GIRATORIO TORNADO INOX PERFECT",
+    "um": "UN",
+    "valor": "149,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001102",
+    "nome": "CONJ. MOP NOBRE QUADRADO 10L",
+    "um": "UN",
+    "valor": "154,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000091",
+    "nome": "CONJ. SUPER MOP PO 40CM MICROF. NOBRE C/CABO",
+    "um": "UN",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000470",
+    "nome": "CONJ. SUPER MOP PO 60CM. MICROFIBRA (CABO ALUM.TEL",
+    "um": "UN",
+    "valor": "119,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000242",
+    "nome": "CONJUNTO MOP ROTAT.360 MOVE PRETO PERFECT",
+    "um": "UN",
+    "valor": "284,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000498",
+    "nome": "CONJUNTO MOP ROTAT.360 PRO AZUL PERFECT",
+    "um": "UN",
+    "valor": "239,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000589",
+    "nome": "ESCOVA MULTIUSO PERFECT PRO 1UN",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001308",
+    "nome": "ESCOVA SANITARIA C/ SUPORTE EASY BRINOX",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000575",
+    "nome": "ESCOVA SANITARIA C/SUPORTE HALLEY",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000421",
+    "nome": "ESPANADOR DE TETO ARTESANAL",
+    "um": "UN",
+    "valor": "20,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000127",
+    "nome": "ESPANADOR NOBRE SOFT DE MICROFIBRA",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000244",
+    "nome": "ESPANADOR PERFECT ELETROSTATICO C/CABO",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001133",
+    "nome": "ESPANADOR STAR CLEAN ELETROSTATICO",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001130",
+    "nome": "EXTENSOR STAR CLEAN 3M",
+    "um": "UN",
+    "valor": "105,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001131",
+    "nome": "EXTENSOR STAR CLEAN 6M",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001132",
+    "nome": "EXTENSOR STAR CLEAN 9M",
+    "um": "UN",
+    "valor": "289,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000187",
+    "nome": "EXTENSOR TELESC. 9M ALUM. C/ 3 ESTAG. NOBRE",
+    "um": "UN",
+    "valor": "299,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000766",
+    "nome": "FLANELA CAEBITEX BRANCA 28X48",
+    "um": "UN",
+    "valor": "2,50"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001475",
+    "nome": "FLANELA CAEBITEX BRANCA 38X58",
+    "um": "UN",
+    "valor": "4,49"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000681",
+    "nome": "FLANELA CAEBITEX LARANJA 28X48",
+    "um": "UN",
+    "valor": "2,50"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001476",
+    "nome": "FLANELA CAEBITEX LARANJA 38X58",
+    "um": "UN",
+    "valor": "4,49"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001128",
+    "nome": "GARRA EURO STAR CLEAN AMARELO",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001127",
+    "nome": "GARRA EURO STAR CLEAN AZUL",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001126",
+    "nome": "GARRA EURO STAR CLEAN VERDE",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001129",
+    "nome": "GARRA EURO STAR CLEAN VERMELHA",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000949",
+    "nome": "KIT MOPINHO PERFECT VERDE 15L",
+    "um": "UN",
+    "valor": "95,00"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001218",
+    "nome": "MOP SPRAY IRON PERFECT",
+    "um": "UN",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000132",
+    "nome": "MOP SPRAY NOBRE ELEGANCE C/RESERV. 350ML",
+    "um": "UN",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000865",
+    "nome": "MOP SPRAY PRO PERFECT",
+    "um": "UN",
+    "valor": "159,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000126",
+    "nome": "MOP UMIDO NOBRE DE TORCAO",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000241",
+    "nome": "PA COLETOR PERFECT ARTICULADA C/ TAMPA PRO",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001134",
+    "nome": "PA COLETORA STAR CLEAN AMARELA",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001135",
+    "nome": "— PA COLETORA STAR CLEAN AZUL",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001138",
+    "nome": "—PA COLETORA STAR CLEAN PRETA",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001137",
+    "nome": "PA COLETORA STAR CLEAN VERDE",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001136",
+    "nome": "PA COLETORA STAR CLEAN VERMELHA",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000574",
+    "nome": "PA DE LIXO PLASTILBRASIL C/ CABO LONGO CORES",
+    "um": "UN",
+    "valor": "12,99"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000590",
+    "nome": "— PANO DE CHAO CONDOR ROSA MICROFIBRA",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000908",
+    "nome": "PANO DE CHAO PERFECT AZUL MICROFIBRA",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000698",
+    "nome": "PANO DE COPA CAROL 40X65",
+    "um": "UN",
+    "valor": "3,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001691",
+    "nome": "PANO DE LIMPEZA UMEDECIDOS COPERALCOOL",
+    "um": "UN",
+    "valor": "0,00"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001369",
+    "nome": "—PANO DE MICROFIBRA AZUL SLIM 30X30CM NOBRE",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001371",
+    "nome": "PANO DE MICROFIBRA AZUL SLIM 40X60CM NOBRE",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001370",
+    "nome": "PANO DE MICROFIBRA VERMELHO SLIM 30X30CM NOBRE",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001372",
+    "nome": "PANO DE MICROFIBRA VERMELHO SLIM 40X60CM NOBRE",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001480",
+    "nome": "PANO ESCORREDOR DE LOUCAS MASTER CHEF",
+    "um": "UN",
+    "valor": "25,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001625",
+    "nome": "PANO MICROFIBRA AZUL 40X40CM",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001663",
+    "nome": "—PANO MICROFIBRA UNIV VERDE 40X40CM",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000791",
+    "nome": "PANO MULT. NOB. AZUL ROLO 28X240",
+    "um": "UN",
+    "valor": "119,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000205",
+    "nome": "PANO MULT. NOB. AZUL ROLO 28X300",
+    "um": "UN",
+    "valor": "159,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001081",
+    "nome": "PANO MULT. NOB. LARANJA SLIM 28X240",
+    "um": "UN",
+    "valor": "119,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001080",
+    "nome": "— PANO MULT. NOB. LARANJA SLIM 28X300",
+    "um": "UN",
+    "valor": "159,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000838",
+    "nome": "PANO MULT. NOB. VERDE ROLO 28X240",
+    "um": "UN",
+    "valor": "119,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000174",
+    "nome": "PANO MULT. NOB. VERDE ROLO 28X300",
+    "um": "UN",
+    "valor": "159,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000761",
+    "nome": "PANO MULT.CONDOR MICROFIBRA 35X35",
+    "um": "UN",
+    "valor": "7,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001590",
+    "nome": "— PANO MULTIUSO 30X50CM LARANJA EMBALAR MAIS PCT SUN",
+    "um": "UN",
+    "valor": "6,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001065",
+    "nome": "PANO MULTIUSO ESFREBOM AZUL",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001066",
+    "nome": "PANO MULTIUSO ESFREBOM VERDE",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000670",
+    "nome": "PANO NOBRE MULTIUSO AZUL PCT C/ SUND",
+    "um": "UN",
+    "valor": "4,49"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000671",
+    "nome": "PANO NOBRE MULTIUSO VERMELHO PCT 5UN",
+    "um": "UN",
+    "valor": "4,49"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000837",
+    "nome": "— PANO PERFECT MICROFIBRA LIMPEZA VIDRO",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001479",
+    "nome": "PANO PRATO MASTER CHEF",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001224",
+    "nome": "PANO SCOTT DURAMAX AZUL",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001223",
+    "nome": "PANO SCOTT DURAMAX BRANCO",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001662",
+    "nome": "PERFECT MOP INOX 360 GIRATORIO PRO 12L - SPEED PRO",
+    "um": "UN",
+    "valor": "0,00"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000252",
+    "nome": "PULVERIZADOR DE PRECAO DE 1,5L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000910",
+    "nome": "PULVERIZADOR NOBRE TRANSP. LUXO ROSA 500ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000909",
+    "nome": "PULVERIZADOR NOBRE TRANSP. LUXO VERDE 500ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000246",
+    "nome": "PULVERIZADOR NOBRE TRANSP. PRETO 500ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "001217",
+    "nome": "PULVERIZADOR PERFECT CORES 500ML",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000436",
+    "nome": "PULVERIZADOR PERFECT SPRAY 1L",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000737",
+    "nome": "RALO DE PIA AJUSTAVEL",
+    "um": "UN",
+    "valor": "2,99"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000734",
+    "nome": "RALO INOX.LAV/TANQ PEQUENO",
+    "um": "UN",
+    "valor": "2,49"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000094",
+    "nome": "REF.MOP UMIDO NOBRE P.DOBRADA 290G",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000271",
+    "nome": "REF.MOP UMIDO NOBRE P.DOBRADA 340G",
+    "um": "UN",
+    "valor": "27,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000247",
+    "nome": "REFIL DE MICROFIBRA P/ MOP ELEGANCE SPRAY",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA|",
+    "codigo": "000181",
+    "nome": "REFIL LUVA P/ RODO COMBINADO 40CM",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001074",
+    "nome": "REFIL MOP GIRATORIO NOBRE",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000774",
+    "nome": "REFIL MOP GIRATORIO PERFECT",
+    "um": "UN",
+    "valor": "25,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000272",
+    "nome": "REFIL MOP NOBRE UMIDO MOPINHO ROSQUEADO 190G",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000476",
+    "nome": "REFIL MOP PO PERFECT 60CM",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001209",
+    "nome": "REFIL MOP PO PERFECT 80CM",
+    "um": "UN",
+    "valor": "62,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000477",
+    "nome": "REFIL MOP PO PERFECT ACRILICO 80CM",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000751",
+    "nome": "REFIL MOP PO STAR CLEAN 60 CM",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000693",
+    "nome": "REFIL MOP PO STAR CLEAN 80CM",
+    "um": "UN",
+    "valor": "53,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001337",
+    "nome": "REFIL MOP SPRAY AZUL PERFECT",
+    "um": "UN",
+    "valor": "25,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001340",
+    "nome": "REFIL MOP SPRAY IRON PERFECT",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001305",
+    "nome": "REFIL MOP UMIDO AMARELO PTA LOOP 330G STAR CLEAN",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001303",
+    "nome": "REFIL MOP UMIDO AZUL PTA LOOP 330G STAR CLEAN",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001304",
+    "nome": "REFIL MOP UMIDO VERDE PTA LOOP 330G STAR CLEAN",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001306",
+    "nome": "REFIL MOP UMIDO VERMELHO PTA LOOP 330G STAR CLEAN",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000475",
+    "nome": "REFIL P/ MOP NOBRE FLAT",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000092",
+    "nome": "REFIL SUPER MOP PO NOBRE DE MICROF. 40CM",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001338",
+    "nome": "RESERVATORIO MOP SPRAY PERFECT",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000115",
+    "nome": "RODO 40CM C/ CABO",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000700",
+    "nome": "RODO 60CM C/ CABO",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001616",
+    "nome": "RODO ARTICULADO STAR 30CM AZUL",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001619",
+    "nome": "— RODO ARTICULADO STAR 30CM PRETO",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001617",
+    "nome": "RODO ARTICULADO STAR 30CM VERDE",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001618",
+    "nome": "RODO ARTICULADO STAR 30CM VERMELHO",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001620",
+    "nome": "— RODO ARTICULADO STAR 50CM AZUL",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001623",
+    "nome": "RODO ARTICULADO STAR 50CM PRETO",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001621",
+    "nome": "RODO ARTICULADO STAR 50CM VERDE",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001622",
+    "nome": "RODO ARTICULADO STAR 50CM VERMELHO",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001301",
+    "nome": "RODO COMBINADO 2 EM 1 25CM C/CABO STAR CLEAN",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001302",
+    "nome": "RODO COMBINADO 2 EM 1 35CM C/CABO STAR CLEAN",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000193",
+    "nome": "RODO COMBINADO 40CM C/CABO 50CM P/VIDRO",
+    "um": "UN",
+    "valor": "79,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000306",
+    "nome": "RODO COMBINADO LAVADOR 30CM PERFECT",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000128",
+    "nome": "RODO DE JANELA NOBRE C/SPRAY",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001456",
+    "nome": "RODO DUPLO ALUM. 1M S/CABO COR ALUMINIO NOBRE",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000301",
+    "nome": "RODO DUPLO ALUM. 45CM S/CABO AZUL MULTIRODO NOBRE",
+    "um": "UN",
+    "valor": "35,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000102",
+    "nome": "—RODO DUPLO ALUM. 45CM S/CABO COR ALUMINIO MULTI",
+    "um": "UN",
+    "valor": "35,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000302",
+    "nome": "RODO DUPLO ALUM.65CM S/CABO AZUL MULTIRODO NOBRE",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000493",
+    "nome": "RODO DUPLO ALUM.65CM S/CABO COR ALUMINIO MULT. NOB",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001593",
+    "nome": "RODO PERFECT 40CM AZUL",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001343",
+    "nome": "RODO PERFECT 45CM CINZA",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001594",
+    "nome": "RODO PERFECT 60CM AMARELO",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001344",
+    "nome": "RODO PERFECT 65CM CINZA",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000778",
+    "nome": "RODO PLAS. TAMBA. C/CB DUP 40CM",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000762",
+    "nome": "RODO PLAS. TAMBA. C/CB DUP 60CM",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000682",
+    "nome": "SACO ALVEJADO CAEBITEX 45X65",
+    "um": "UN",
+    "valor": "4,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000683",
+    "nome": "—SACO ALVEJADO GOLD 50X70",
+    "um": "UN",
+    "valor": "7,49"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001162",
+    "nome": "SACO ALVEJADO PRATA 45X70 CAEBITEX",
+    "um": "UN",
+    "valor": "5,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000950",
+    "nome": "SACO ALVEJADO PRATA 50X70 CAEBITEX",
+    "um": "UN",
+    "valor": "7,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001653",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL PCT 10UN 30L",
+    "um": "UN",
+    "valor": "3,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001652",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL PCT 10UN 50L",
+    "um": "UN",
+    "valor": "5,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001654",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL PCT 20UN 15L",
+    "um": "UN",
+    "valor": "4,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001651",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL PCT SUN 100L",
+    "um": "UN",
+    "valor": "7,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001650",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL ROLO PCT 100UN 15L",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001615",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL ROLO PCT 25UN 100L",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001649",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL ROLO PCT 50UN 30L",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001592",
+    "nome": "SACO D.  LIMPEZA RAVA AZUL ROLO PCT 50UN 50L",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001347",
+    "nome": "SACO P/ LIXO RAVA AZUL C/100 100L",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001348",
+    "nome": "SACO P/ LIXO RAVA AZUL C/100 200L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001349",
+    "nome": "SACO P/ LIXO RAVA AZUL C/100 40L",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001350",
+    "nome": "SACO P/ LIXO RAVA AZUL C/100 60L",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000118",
+    "nome": "SACO P/ LIXO RAVA PRETO C/100 100L",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000119",
+    "nome": "SACO P/ LIXO RAVA PRETO C/100 200L",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000121",
+    "nome": "SACO P/ LIXO RAVA PRETO C/100 40L",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000120",
+    "nome": "SACO P/ LIXO RAVA PRETO C/100 60L",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000652",
+    "nome": "SACO P/ LIXO RAVA PRETO REF 300L C/100",
+    "um": "UN",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000269",
+    "nome": "SACO P/ LIXO RAVA PRETO SUP. REF.100L C/100",
+    "um": "UN",
+    "valor": "52,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000268",
+    "nome": "SACO P/ LIXO RAVA PRETO SUP. REF.200L C/100",
+    "um": "UN",
+    "valor": "72,80"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000253",
+    "nome": "SACO P/ LIXO RAVA PRETO SUP. REF.300L C/100",
+    "um": "UN",
+    "valor": "172,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001122",
+    "nome": "SUPORTE LT STAR CLEAN AZUL",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001124",
+    "nome": "SUPORTE LT STAR CLEAN VERDE",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001125",
+    "nome": "SUPORTE LT STAR CLEAN VERMELHO",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000694",
+    "nome": "SUPORTE MOP PO STARCLEAN 60CM",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000692",
+    "nome": "SUPORTE MOP PO STARCLEAN 80CM",
+    "um": "UN",
+    "valor": "48,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000478",
+    "nome": "SUPORTE P/ MOP PO PERFECT 60CM",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000479",
+    "nome": "SUPORTE P/ MOP PO PERFECT 80CM",
+    "um": "UN",
+    "valor": "48,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000186",
+    "nome": "SUPORTE PLAST. S/CABO C/PINCA P/MOP PO 60CM. NOBRE",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000192",
+    "nome": "SUPORTE PLAST.S/CABO C/PINCA P/ FIBRA",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000558",
+    "nome": "TAPETE DE PIA COZA CINZA WGR",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000557",
+    "nome": "TAPETE DE PIA COZA PRETO",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000559",
+    "nome": "TAPETE DE PIA COZA VERMELHO VBO",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001037",
+    "nome": "VARAL SANFONADO MOR",
+    "um": "UN",
+    "valor": "94,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001038",
+    "nome": "VARAL TETO 560X1200 PRETO",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000592",
+    "nome": "VARREDORA DE PISO PERFECT",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000239",
+    "nome": "VASSOURA ESCOVAO PIACAVA PERFECT PRO S/CABO",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "001598",
+    "nome": "VASSOURA MEGA PISO",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA CASEIRA",
+    "codigo": "000154",
+    "nome": "VASSOURA PALMA REAL DALIA GRANDE",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001291",
+    "nome": "—AGUA PERFUMADA FOLHAGEM ATLANTICA 500ML",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001290",
+    "nome": "AGUA PERFUMADA PEONIA EUROPEIA 500ML",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001309",
+    "nome": "AGUA PERFUMADA SAKURA ORIENTAL 500ML",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000593",
+    "nome": "ALCOOL ECONORTE BACTERICIDA 70% 1L",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000002",
+    "nome": "ALCOOL FACILITA 70% BACTE 1L",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000004",
+    "nome": "— ALCOOL FACILITA TRADICIONAL 46% 1L",
+    "um": "UN",
+    "valor": "8,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001443",
+    "nome": "ALCOOL GEL ALVOBRAS 70% 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001658",
+    "nome": "ALCOOL GEL AUDAX 70% 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000005",
+    "nome": "ALCOOL GEL PUMP AUDAX 70% 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001514",
+    "nome": "ALCOOL GEL SAO CAETANO 70% 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001442",
+    "nome": "ALCOOL LIQ ECONORTE 70% 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000647",
+    "nome": "ALCOOL LIQUIDO AUDAX FACILITA 70 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000859",
+    "nome": "— AROMATIZANTE AIR CLEAN PREMISSE AMBIENTAL 500ML C/",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000466",
+    "nome": "— AROMATIZANTE AIR SOFT PREMISSE AMBIENTAL 500ML C/",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001403",
+    "nome": "AROMATIZANTE DEO LINE VEGANO AGUA DE COCO 250ML",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001402",
+    "nome": "AROMATIZANTE DEO LINE VEGANO BERGAMOTA 250ML",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001400",
+    "nome": "AROMATIZANTE DEO LINE VEGANO CHOCO MENTA 250ML",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001401",
+    "nome": "AROMATIZANTE DEO LINE VEGANO PIMENTA ROSA 250ML",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001659",
+    "nome": "BUTTERFLY MULTIUSO MULTIPLIC 5L",
+    "um": "UN",
+    "valor": "25,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001468",
+    "nome": "DESINF. USO GERAL SPRAY ZIP 350ML MY PLACE",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000170",
+    "nome": "DIFUSOR AROMAS SECAR ALECRIM",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000680",
+    "nome": "DIFUSOR AROMAS SECAR BAMBOO",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000952",
+    "nome": "DIFUSOR AROMAS SECAR DIAMANTE AZUL",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000953",
+    "nome": "DIFUSOR AROMAS SECAR RUBI",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000172",
+    "nome": "DIFUSOR AROMAS SECAR SENSUAL",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000368",
+    "nome": "DIFUSOR DE AROMA AFETO",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000366",
+    "nome": "DIFUSOR DE AROMA EQUILIBRIO",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000369",
+    "nome": "DIFUSOR DE AROMA PREMISSE AMAZONIA 100ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000370",
+    "nome": "DIFUSOR DE AROMA PREMISSE AMORA 100 ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000371",
+    "nome": "DIFUSOR DE AROMA PREMISSE REFRESCANTE 100ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001180",
+    "nome": "DIFUSOR DE AROMA SOSSEGO 300ML",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001000",
+    "nome": "DIFUSOR DE AROMAS COALA ALECRIM 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001678",
+    "nome": "DIFUSOR DE AROMAS COALA AMEIXA DOURADA 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000999",
+    "nome": "DIFUSOR DE AROMAS COALA BAMBU 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001010",
+    "nome": "DIFUSOR DE AROMAS COALA CEREJA C/ AVELA 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001319",
+    "nome": "DIFUSOR DE AROMAS COALA CHA BRANCO 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001680",
+    "nome": "DIFUSOR DE AROMAS COALA FLOR DE CACTO 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001001",
+    "nome": "DIFUSOR DE AROMAS COALA LAVANDA 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001320",
+    "nome": "DIFUSOR DE AROMAS COALA ORQUIDEA NEGRA 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001679",
+    "nome": "DIFUSOR DE AROMAS COALA ORQUIDEA100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001002",
+    "nome": "DIFUSOR DE AROMAS COALA ROMA 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001003",
+    "nome": "DIFUSOR DE AROMAS COALA TUTTI FRUTTI 100ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001186",
+    "nome": "DIFUSOR DE AROMAS LEVEZA 300 ML",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001181",
+    "nome": "DIFUSOR DE AROMAS PREMISSE BRISA DO MAR 350 ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001632",
+    "nome": "DIFUSOR DE AROMAS PREMISSE CHA BRANCO 350 ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001182",
+    "nome": "DIFUSOR DE AROMAS PREMISSE ERVA DOCE 350 ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001183",
+    "nome": "DIFUSOR DE AROMAS PREMISSE FRUTAS VERMELHAS 350 ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001184",
+    "nome": "DIFUSOR DE AROMAS PREMISSE GIRASSOL 350 ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001185",
+    "nome": "DIFUSOR DE AROMAS PREMISSE LAVANDA 350 ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001187",
+    "nome": "DIFUSOR DE AROMAS PREMISSE SANDALO 350 ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001674",
+    "nome": "ESSENCIA ALECRIM COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001692",
+    "nome": "ESSENCIA AMEIXA DOURADA COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001327",
+    "nome": "ESSENCIA BAMBU COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001328",
+    "nome": "ESSENCIA CHA BRANCO COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001329",
+    "nome": "ESSENCIA ERVA DOCE COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001693",
+    "nome": "ESSENCIA FLOR DE CACTO COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001325",
+    "nome": "ESSENCIA LAVANDA COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001326",
+    "nome": "ESSENCIA ORQUIDEA NEGRA COALA 10ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001636",
+    "nome": "GEL ANTISSEPTICO PREMISSE CASSIS 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001635",
+    "nome": "GEL ANTISSEPTICO PREMISSE CITRICO LEVE 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001634",
+    "nome": "GEL ANTISSEPTICO PREMISSE LICHIA SUAVE 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001289",
+    "nome": "LIMP PURIF PREM. AUTO SECANTE ACAI E HORTELA 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000336",
+    "nome": "LIMP PURIF PREMISSE AUTO SEC CEREJA E AVELA 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000360",
+    "nome": "LIMP PURIF PREMISSE AUTO SECANTE CITRICO 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001399",
+    "nome": "LIMPA BOX 500ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000227",
+    "nome": "LIMPA CARPETE GOLD 5L",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001494",
+    "nome": "LIMPA ESTOFADO SUPER DOM C/ESCOVA 300ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000745",
+    "nome": "LIMPA ESTOFADO ZIP SPRAY 300ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001493",
+    "nome": "LIMPA TENIS SUPER DOM 150ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000024",
+    "nome": "LIMPA VIDROS BUTTERFLY 5L",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000361",
+    "nome": "LIMPA VIDROS CLASSICO DEO LINE 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001043",
+    "nome": "LIMPA VIDROS ECONORTE 500ML",
+    "um": "UN",
+    "valor": "3,29"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001451",
+    "nome": "LIMPA VIDROS ECONORTE 5L",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000028",
+    "nome": "LIMPA VIDROS FACILITA 3EM1 500ML",
+    "um": "UN",
+    "valor": "4,49"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001404",
+    "nome": "LIMPA VIDROS REFRESCANTE DEO LINE 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001641",
+    "nome": "LIMPA VIDROS SUPER DOM 300ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001502",
+    "nome": "LIMPA VIDROS SUPER DOM 500ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000746",
+    "nome": "LIMPA VIDROS ZIP SPRAY 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001042",
+    "nome": "MULTIUSO ECONORTE 500ML",
+    "um": "UN",
+    "valor": "3,49"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000030",
+    "nome": "— MULTIUSO FACIL. CITRUS 500ML",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000051",
+    "nome": "MULTIUSO FACIL. FLORAL 500ML",
+    "um": "UN",
+    "valor": "3,49"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000052",
+    "nome": "MULTIUSO FACIL. LAVAND/TRAD 500ML",
+    "um": "UN",
+    "valor": "3,49"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001660",
+    "nome": "MULTIUSO FACIL. ORQUIDEAS NEGRAS 500ML",
+    "um": "UN",
+    "valor": "3,49"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000790",
+    "nome": "MULTIUSO NOBRE CITRUS UP PRO 500ML",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000789",
+    "nome": "MULTIUSO NOBRE FLORAL UP PRO 500ML",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000337",
+    "nome": "NEUTRALIZADOR DE ODORES - BAMBOO 500ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000640",
+    "nome": "NEUTRALIZADOR DE ODORES BAMBOO 5L",
+    "um": "UN",
+    "valor": "129,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001492",
+    "nome": "NEUTRALIZADOR DE ODORES PURO AR NEUTRO 250ML",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001488",
+    "nome": "ODOR. PURO AR P.  ROSAS REFIL+ APL 12ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001487",
+    "nome": "ODOR. PURO AR TALCO REFIL+ APL 12ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001274",
+    "nome": "ODOR. SECAR AERO CHARM ROSA 360ML",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000264",
+    "nome": "ODOR. SECAR AERO FLORAL 360ML",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001647",
+    "nome": "ODOR. SECAR CHA BRANCO 360ML",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001208",
+    "nome": "ODOR. SECAR CHARM LAVANDA 360ML",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001638",
+    "nome": "ODORIZADOR 360ML LADY PRIME CHA BRANCO",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000739",
+    "nome": "ODORIZADOR 360ML LADY PRIME LAVANDA",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000741",
+    "nome": "ODORIZADOR 360ML LADY PRIME SUAVE CARINHO",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000742",
+    "nome": "ODORIZADOR 360ML LADY PRIME TOQUE DE PRIMAVERA",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001689",
+    "nome": "ODORIZADOR CHA BRANCO 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001687",
+    "nome": "ODORIZADOR COALA AMEIXA DOURADA 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001685",
+    "nome": "ODORIZADOR COALA BAMBU 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001690",
+    "nome": "ODORIZADOR COALA LAVANDA 400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001688",
+    "nome": "ODORIZADOR COALA FLOR DE CACTO400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001686",
+    "nome": "ODORIZADOR COALA ORQUIDEA NEGRA400ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001639",
+    "nome": "ODORIZADOR ULTRA FRESH LAVANDA 400ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001645",
+    "nome": "ODORIZADOR ULTRA FRESH PETALAS DE ROSAS 400ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001646",
+    "nome": "ODORIZADOR ULTRA FRESH TALCO 400ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001535",
+    "nome": "ODORIZANTE COALA SPRAY ALECRIM 120ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000422",
+    "nome": "ODORIZANTE COALA SPRAY ALGODAO 120ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000257",
+    "nome": "ODORIZANTE COALA SPRAY BAMBU 120ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000995",
+    "nome": "ODORIZANTE COALA SPRAY LAVANDA 120ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000996",
+    "nome": "ODORIZANTE COALA SPRAY TOQUE DE CARINHO 120ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001538",
+    "nome": "ODORIZANTE TECIDOS COALA ALECRIM 260ML",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001004",
+    "nome": "ODORIZANTE TECIDOS COALA LAVANDA 260ML",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001005",
+    "nome": "ODORIZANTE TECIDOS COALA ROSA CHIC 260ML",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001681",
+    "nome": "ODORIZANTE TECIDOS COALA AMEIXA DOURADA 260ML",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001006",
+    "nome": "ODORIZANTE TECIDOS COALA BAMBOO 260ML",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001310",
+    "nome": "ODORIZANTE TECIDOS COALA CHA BRANCO260ML",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001682",
+    "nome": "ODORIZANTE TECIDOS COALA FLOR DE CACTO 260ML",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001311",
+    "nome": "ODORIZANTE TECIDOS COALA ORQ. NEGRA 260ML",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001297",
+    "nome": "PURIF PREMISSE ACQUA BAMBOO 400ML",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001296",
+    "nome": "PURIF PREMISSE ACQUA FRESCOR DO CAMPO 400ML",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000331",
+    "nome": "PURIF PREMISSE ACQUA LIRIO BCO E ALEC 400ML",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001497",
+    "nome": "REFIL ODOR. PURO AR LAVANDA C/3UN 12ML",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001486",
+    "nome": "REFIL ODOR. PURO AR PETALAS ROSA 12ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "001498",
+    "nome": "REFIL ODOR. PURO AR TALCO C/3UN 12ML",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA DA CASA",
+    "codigo": "000255",
+    "nome": "ROYAL CHEFF LIQ.  DRYER SECANTE ABRILHANT. 5L",
+    "um": "UN",
+    "valor": "149,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001330",
+    "nome": "BLOQUEADOR SANIT. COALA LAVANDA 15ML",
+    "um": "UN",
+    "valor": "8,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000886",
+    "nome": "BLOQUEADOR SANIT. DEOLINE TUTTI FRUTTI 60ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000099",
+    "nome": "DESENTUPIDOR NOBRE VASO SANITARIO",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001565",
+    "nome": "DESENTUPIDOR RIO PRETO VASO SANITARIO C/ CABO",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001015",
+    "nome": "DESINF BRAS TALCO 2L",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001664",
+    "nome": "DESINF BRINORT EUCALIPTO 2L",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000609",
+    "nome": "DESINF BRINORT FLORAL 2L",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000750",
+    "nome": "DESINF BRINORT JASMIM 2L",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000608",
+    "nome": "DESINF BRINORT LAVANDA 2L",
+    "um": "UN",
+    "valor": "7,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000714",
+    "nome": "DESINF BUTTERFLY FLORAL 5L",
+    "um": "UN",
+    "valor": "18,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000432",
+    "nome": "DESINF BUTTERFLY LAVANDA 5L",
+    "um": "UN",
+    "valor": "18,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001259",
+    "nome": "DESINF CONC. ECONORTE FLORAL 5L",
+    "um": "UN",
+    "valor": "43,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001332",
+    "nome": "DESINF CONC. ECONORTE TALCO 5L",
+    "um": "UN",
+    "valor": "43,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000893",
+    "nome": "DESINF DEOLINE FLORES DO CAMPO 5L",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000716",
+    "nome": "DESINF DEOLINE LAVANDA SENSACOES 5L",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000769",
+    "nome": "DESINF DEOLINE MAGIA DAS FLORES 5L",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000811",
+    "nome": "DESINF ECONORTE FLORAL 2L",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000839",
+    "nome": "DESINF ECONORTE FLORAL 5L",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000812",
+    "nome": "DESINF ECONORTE LAVANDA 2L",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000840",
+    "nome": "DESINF ECONORTE LAVANDA 5L",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000813",
+    "nome": "DESINF ECONORTE TALCO 2L",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000841",
+    "nome": "DESINF ECONORTE TALCO 5L",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000233",
+    "nome": "DESINF FACILITA FLORAL 5L",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000319",
+    "nome": "DESINF FACILITA LAVANDA 5L",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000038",
+    "nome": "DESINF GOLD FLORAL 5L",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000039",
+    "nome": "DESINF GOLD LAVANDA 5L",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000237",
+    "nome": "DESINF MAX FLORAL 5L",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000023",
+    "nome": "DESINF MAX LAVANDA 5L",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000231",
+    "nome": "DESINF MAX TALCO 5L",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000833",
+    "nome": "EVITA MOFO NOVICA LAVANDA 180G",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000831",
+    "nome": "EVITA MOFO NOVICA NATURAL 180G",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000832",
+    "nome": "EVITA MOFO NOVICA SOFT 180G",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000799",
+    "nome": "EVITA MOFO SANYMIX LAVANDA 180G",
+    "um": "UN",
+    "valor": "8,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000801",
+    "nome": "EVITA MOFO SANYMIX LAVANDA 80G+20G GRATIS",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000800",
+    "nome": "— EVITA MOFO SANYMIX SONH.INFAN.80G+20G GRATIS",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000805",
+    "nome": "EVITA MOFO SANYMIX SONHO DE INFANCIA 180G",
+    "um": "UN",
+    "valor": "8,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000823",
+    "nome": "GEL ADESIVO SANYMIX CITRUS 38G",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000708",
+    "nome": "GEL ADESIVO SANYMIX LAVANDA 38G",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000709",
+    "nome": "GEL ADESIVO SANYMIX MARINE 38G",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001473",
+    "nome": "NAFTALINA LEVE BRISA 25G",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001090",
+    "nome": "NEUTRAL. DE ODORES LADY PRIME CITRUS 100ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001091",
+    "nome": "NEUTRAL.DE ODORES LADY PRIME LAVANDA 100ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000188",
+    "nome": "PASTILHA ADESIVA LAVANDA C/3UN",
+    "um": "UN",
+    "valor": "7,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000662",
+    "nome": "PASTILHA ADESIVA SANYMIX CITRUS",
+    "um": "UN",
+    "valor": "7,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001415",
+    "nome": "PEDRA SANIT. NAFT PLUS FLORAL",
+    "um": "UN",
+    "valor": "1,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001414",
+    "nome": "PEDRA SANIT. NAFT PLUS LAVANDA",
+    "um": "UN",
+    "valor": "1,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000773",
+    "nome": "PEDRA SANIT. NOBRE FLORAL- UP PRO FRESH 25G",
+    "um": "UN",
+    "valor": "3,49"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000679",
+    "nome": "PEDRA SANIT. SANY MIX MISTA C/ XILINQUE 25G",
+    "um": "UN",
+    "valor": "1,99"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000997",
+    "nome": "TABLETE CAIXA ACOPLADA COALA FRESH 50G",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000998",
+    "nome": "TABLETE CAIXA ACOPLADA COALA LAVANDA 50G",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000793",
+    "nome": "TELA MICTORIO SCREEN CEREJA PREMISSE",
+    "um": "UN",
+    "valor": "4,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "001176",
+    "nome": "TELA MICTORIO SCREEN LIMAO PREMISSE",
+    "um": "UN",
+    "valor": "4,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000792",
+    "nome": "TELA MICTORIO SCREEN MORANGO PREMISSE",
+    "um": "UN",
+    "valor": "4,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000780",
+    "nome": "TELA PERFUMADA P/ MICTORIO MARINE (AZUL) - NOBRE",
+    "um": "UN",
+    "valor": "5,90"
+  },
+  {
+    "departamento": "LIMPEZA DE BANHEIROS",
+    "codigo": "000521",
+    "nome": "TELA PERFUMADA P/ MICTORIO MENTA VERDE",
+    "um": "UN",
+    "valor": "5,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001489",
+    "nome": "BRILHO INOX SUPER DOM 300ML",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001640",
+    "nome": "DESENG SUPER DOM 300ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001295",
+    "nome": "DESENGORD. DEOLINE PRONTO USO GATILHO 500ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000329",
+    "nome": "DESENGORDURANTE DEOLINE 5L",
+    "um": "UN",
+    "valor": "62,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000125",
+    "nome": "DESENTUPIDOR NOBRE PIA SANF. SHANGRILA",
+    "um": "UN",
+    "valor": "7,49"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000603",
+    "nome": "DESENTUPIDOR NOVICA PIA RALO PLAST",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000604",
+    "nome": "DESENTUPIDOR NOVICA TURBO PLASTICO",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000340",
+    "nome": "DESINFETANTE COALA HORTI FRUIT 300ML",
+    "um": "UN",
+    "valor": "16,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001017",
+    "nome": "DETERG BRAS MACA 5L",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001016",
+    "nome": "DETERG BRAS NEUTRO 5L",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001398",
+    "nome": "DETERG DEOLINE ALCALINO CLORADO 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000363",
+    "nome": "DETERG DEOLINE MANDARINA 1L",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000894",
+    "nome": "DETERG DEOLINE NEUTRO 5L",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001044",
+    "nome": "DETERG ECONORTE LIMAO 500ML",
+    "um": "UN",
+    "valor": "2,49"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001111",
+    "nome": "DETERG ECONORTE MACA 500ML",
+    "um": "UN",
+    "valor": "2,49"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000863",
+    "nome": "DETERG ECONORTE NEUTRO 500ML",
+    "um": "UN",
+    "valor": "2,49"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000508",
+    "nome": "DETERG FACILITA NEUTRO 5L",
+    "um": "UN",
+    "valor": "33,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000032",
+    "nome": "DETERG GOLD CLORADO 5L",
+    "um": "UN",
+    "valor": "67,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000006",
+    "nome": "DETERG GOLD NEUTRO 5L",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001040",
+    "nome": "DETERG INODORO ECONORTE NEUTRO 5L",
+    "um": "UN",
+    "valor": "33,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001470",
+    "nome": "DETERG LIMPOL JABUTICABA 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000721",
+    "nome": "DETERG LIMPOL LIMAO 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000722",
+    "nome": "DETERG LIMPOL MACA 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000720",
+    "nome": "DETERG LIMPOL NEUTRO 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000037",
+    "nome": "DETERG MAX NEUTRO 5L",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000433",
+    "nome": "DETERG MAX PINE 5L",
+    "um": "UN",
+    "valor": "86,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001446",
+    "nome": "DETERG SAO CAETANO LIMAO 5L",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001445",
+    "nome": "DETERG SAO CAETANO MACA 5L",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001444",
+    "nome": "DETERG SAO CAETANO NEUTRO 5L",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000755",
+    "nome": "DETERG YPE CLEAR CARE 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000724",
+    "nome": "DETERG YPE LIMAO 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000141",
+    "nome": "DETERG YPE MACA 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000292",
+    "nome": "DETERG YPE NEUTRO 500ML",
+    "um": "UN",
+    "valor": "3,89"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000743",
+    "nome": "ESPUMA DESENGORDURANTE ZIP SPRAY 300ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001599",
+    "nome": "LIMP. CIF CREM. BRANCO L250ML",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001499",
+    "nome": "LIMPA AIR FRYER SUPER DOM 250ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000150",
+    "nome": "LIMPA ALUMINIO ECONOMICO 500ML",
+    "um": "UN",
+    "valor": "3,49"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001447",
+    "nome": "LIMPA ALUMINIO ECONORTE 500ML",
+    "um": "UN",
+    "valor": "3,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001448",
+    "nome": "LIMPA ALUMINIO ECONORTE 5L",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000895",
+    "nome": "LIMPA ALUMINIO PROSSIONAL PREMISSE 1:10 5L",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001576",
+    "nome": "LIMPA ALUMINIO SANYMIX 500ML",
+    "um": "UN",
+    "valor": "7,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001294",
+    "nome": "LIMPA CHAPA DEOLINE PRONTO USO 5L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000223",
+    "nome": "LIMPA COIFA PROKITCHEN 5L",
+    "um": "UN",
+    "valor": "84,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000777",
+    "nome": "LIMPA FORNO MY PLACE SPRAY 300ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001490",
+    "nome": "LIMPA FORNO SUPER DOM",
+    "um": "UN",
+    "valor": "8,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001633",
+    "nome": "LIMPA GRELHA 500ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001491",
+    "nome": "LIMPA GRELHA SUPER DOM 300ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000655",
+    "nome": "LIMPA INOX CONCENTRAX AUDAX 500ML",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001665",
+    "nome": "LIMPADOR CIF 450ML",
+    "um": "UN",
+    "valor": "20,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000224",
+    "nome": "PROKITCHEN MAQ LAVA LOUCAS 5L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001648",
+    "nome": "SABAO EM PASTA COCO 500G",
+    "um": "UN",
+    "valor": "13,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000189",
+    "nome": "SAPONACEO EM PO SANY MIX LIMAO 300G",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000222",
+    "nome": "SAPONACEO FACILITA 300ML",
+    "um": "UN",
+    "valor": "6,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000821",
+    "nome": "SAPONACEO PO SANY MIX FLORAL 300G",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000822",
+    "nome": "— SAPONACEO PO SANY MIX LAVANDA 300G",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001577",
+    "nome": "SAPONACEO SANYMIX CREMOSO FLORAL 250ML",
+    "um": "UN",
+    "valor": "6,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "001578",
+    "nome": "SAPONACEO SANYMIX CREMOSO LAVANDA 250ML",
+    "um": "UN",
+    "valor": "6,90"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000798",
+    "nome": "SAPONACEO SPRAY ZIP MY PLACE 300ML",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE COZINHA",
+    "codigo": "000235",
+    "nome": "SECANTE ABRILHANTADOR AUDAX 5L",
+    "um": "UN",
+    "valor": "154,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001173",
+    "nome": "LIMP.CASA PERFUME BELA FLORE 1L",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000314",
+    "nome": "BASE SELADORA INNOVATION AUDAX 5L",
+    "um": "UN",
+    "valor": "154,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000658",
+    "nome": "BLAST AUDAX LIMPEZA PESADA CONCENTRAX 1L",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000027",
+    "nome": "CERA 2 EM 1 BUTTERFLY ECONOWAX 5L",
+    "um": "UN",
+    "valor": "65,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000653",
+    "nome": "CONCENTRAX MARMORES E GRANITOS 1L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000654",
+    "nome": "CONCENTRAX MOFO E BOLOR 1L",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000657",
+    "nome": "CONCENTRAX OXY ATIVO 1L",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000033",
+    "nome": "CONCENTRAX OXY ATIVO AUDAX 5L",
+    "um": "UN",
+    "valor": "94,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000501",
+    "nome": "CONCENTRAX PINGOS E RESPINGOS AUDAX 1L",
+    "um": "UN",
+    "valor": "41,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001481",
+    "nome": "CONCENTRAX PORCELANATOS E CERAMICAS 1L",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000676",
+    "nome": "CONCENTRAX REMOVEDOR DE CIMENTO E REJUNTES 1L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000220",
+    "nome": "DESENGRAXANTE CONCENTRAX AUDAX 5L",
+    "um": "UN",
+    "valor": "94,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001292",
+    "nome": "DESENGRAXANTE DE PISO DEOLINE 5L",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001022",
+    "nome": "DESENGRAXANTE DS-400 BB 5L",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000656",
+    "nome": "DESENGRAXAX AUDAX CONCENTRAX 1L",
+    "um": "UN",
+    "valor": "30,99"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001661",
+    "nome": "DESENGRAXAX AUDAX CONCENTRAX AX-7 1L",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001018",
+    "nome": "DESINCRUSTANTE BRAS DE USO GERAL BB C/5LTS",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001288",
+    "nome": "FLOTADOR MANDARINA 1L",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000236",
+    "nome": "GOLD LIMPADOR AMONIACAL 5L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001558",
+    "nome": "GOLD LIMPADOR GEL4  EM 1 FLORAL 5L",
+    "um": "UN",
+    "valor": "55,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001559",
+    "nome": "—GOLD LIMPADOR GEL4  EM 1 LAVANDA 5L",
+    "um": "UN",
+    "valor": "55,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001560",
+    "nome": "GOLD REMOVEDOR MAGIC 5L",
+    "um": "UN",
+    "valor": "37,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001631",
+    "nome": "GOTAS PERFUMADAS CHA BRANCO 140ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000855",
+    "nome": "GOTAS PERFUMADAS DEO LINE ALGODAO 140 ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000612",
+    "nome": "GOTAS PERFUMADAS DEO LINE BRISA DO MAR 140ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000613",
+    "nome": "GOTAS PERFUMADAS DEO LINE SENSACOES 140ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000054",
+    "nome": "IMPERMEAB. AUDAX APLIC 3EM 1 5L",
+    "um": "UN",
+    "valor": "196,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000313",
+    "nome": "IMPERMEAB. AUDAX INNOVATION FLASH 3 EM 1 5L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000046",
+    "nome": "IMPERMEAB. AUDAX FACILITA AUTOBRILHO 750ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000040",
+    "nome": "IMPERMEAB. AUDAX GOLD INCOLOR 5L",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000312",
+    "nome": "IMPERMEAB. AUDAX INNOVATION FLASH 5L",
+    "um": "UN",
+    "valor": "149,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000031",
+    "nome": "INNOVATION REMOVEDOR REMOTION 5L",
+    "um": "UN",
+    "valor": "144,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000036",
+    "nome": "LIMP PESAD MAX FLOTADOR AUDAX 5L",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001449",
+    "nome": "LIMPA AR CONDICIONADO BIOPLUS 1L",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001450",
+    "nome": "—LIMPA AR CONDICIONADO BIOPLUS 5L",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001019",
+    "nome": "LIMPA AR CONDICIONADO BRAS 1L",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001020",
+    "nome": "LIMPA AR CONDICIONADO BRAS 5L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001629",
+    "nome": "LIMPA COLA 140ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001630",
+    "nome": "LIMPA COLA 500ML",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000208",
+    "nome": "LIMPA FOSSA TAMBASA CONCENTRADO 1L",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001258",
+    "nome": "LIMPA PEDRA LIMPINHO 5L",
+    "um": "UN",
+    "valor": "32,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001568",
+    "nome": "LIMPA PEDRAS AUDAX CONCENTRAX 1L",
+    "um": "UN",
+    "valor": "34,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000221",
+    "nome": "LIMPA PEDRAS AUDAX CONCENTRAX 5L",
+    "um": "UN",
+    "valor": "99,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001206",
+    "nome": "LIMPA PISO DEO LINE LAMINADO 2L",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000330",
+    "nome": "LIMPA PISO DEO LINE LAMINADO 5L",
+    "um": "UN",
+    "valor": "56,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000463",
+    "nome": "LIMPA PORCE DEO LINE ESSENCIA DA FLORA 5L",
+    "um": "UN",
+    "valor": "73,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000339",
+    "nome": "LIMPA PORCE DEO LINE ESSENCIA DA FLORA 2L",
+    "um": "UN",
+    "valor": "35,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000897",
+    "nome": "LIMPA PORCE DEO LINE ESSENCIA DOS FRUTOS 2L",
+    "um": "UN",
+    "valor": "35,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000896",
+    "nome": "LIMPA PORCE DEO LINE ESSENCIA DOS FRUTOS 5L",
+    "um": "UN",
+    "valor": "75,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000504",
+    "nome": "LIMPA PORCE DEO LINE POS OBRA 1 L",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000439",
+    "nome": "LIMPA REJUNTE POS OBRA DEOLINE 500 ML",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001067",
+    "nome": "LIMPA REJUNTES NOVICA 1L",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001008",
+    "nome": "LIMPADOR COALA CONCEN ALECRIM 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000259",
+    "nome": "LIMPADOR COALA CONCEN ALGAS MARINH. 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000260",
+    "nome": "LIMPADOR COALA CONCEN ALGODAO 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001672",
+    "nome": "LIMPADOR COALA CONCEN AMEIXA DOURADA 120ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000107",
+    "nome": "LIMPADOR COALA CONCEN BAMBU 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000783",
+    "nome": "LIMPADOR COALA CONCEN CEREJA E AVELA 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001536",
+    "nome": "LIMPADOR COALA CONCEN CHA BRANCO 120ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001673",
+    "nome": "LIMPADOR COALA CONCEN FLOR DE CACTO 120ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000262",
+    "nome": "LIMPADOR COALA CONCEN LAVANDA 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001671",
+    "nome": "LIMPADOR COALA CONCEN ORQUIDEA 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001669",
+    "nome": "LIMPADOR COALA CONCEN ORQUIDEA NEGRA 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001670",
+    "nome": "LIMPADOR COALA CONCEN ROMA 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001537",
+    "nome": "LIMPADOR COALA CONCEN SOFT 120ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000263",
+    "nome": "LIMPADOR COALA CONCEN TALCO 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001009",
+    "nome": "LIMPADOR COALA CONCEN TUTTI FRUTTI 120ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000889",
+    "nome": "LIMPADOR DEO LINE PERFUMADO APAIXONAR 1L",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000890",
+    "nome": "LIMPADOR DEO LINE PERFUMADO DESPERTAR 1L",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000887",
+    "nome": "LIMPADOR DEO LINE PERFUMADO INSPIRAR 1L",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000888",
+    "nome": "— LIMPADOR DEO LINE PERFUMADO REFRESCAR 1L",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000316",
+    "nome": "LIMPADOR FACILITA AROMAS DO CAMPO 1L",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000044",
+    "nome": "LIMPADOR FACILITA FLORES DA PRIMAVERA 1L",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000317",
+    "nome": "LIMPADOR FACILITA GOTAS DE ORVALHO 1L",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000323",
+    "nome": "LIMPADOR FACILITA ORQUIDEAS SILVESTRES 1L",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000315",
+    "nome": "LIMPADOR FACILITA PERF JARDIM DE TULIPAS 1L",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000993",
+    "nome": "LIMPADOR PERF. SECAR JASMIM EGITO",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000992",
+    "nome": "LIMPADOR PERF. SECAR LAVANDA 120ML",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000994",
+    "nome": "LIMPADOR PERF.SECAR ORQUIDEA CARIB",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001566",
+    "nome": "LIMPADOR PEROXIDO DE HIDROGENIO 5L",
+    "um": "UN",
+    "valor": "79,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001298",
+    "nome": "LIMPADOR PLACA SOLAR 2L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001299",
+    "nome": "LIMPADOR PLACA SOLAR 5L",
+    "um": "UN",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000500",
+    "nome": "LIMPADOR POS OBRA DEOLINE 1L",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001667",
+    "nome": "LIMPADOR SECAR CONCEN CHA BRANCO 120ML",
+    "um": "UN",
+    "valor": "11,99"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000035",
+    "nome": "MAX LIMPA PORCELANATO AUDAX 5L",
+    "um": "UN",
+    "valor": "74,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000702",
+    "nome": "REMOV. DE CERAS E RESPINGOS DE TINTA DEOLINE 1L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001264",
+    "nome": "REMOVEDOR DE CERA HIGCROSS 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001293",
+    "nome": "REMOVEDOR DE CIMENTO POS OBRA DEOLINE 1L",
+    "um": "UN",
+    "valor": "25,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000502",
+    "nome": "REMOVEDOR DE SUJEIRAS PESADAS DEOLINE 1 L POS OBRA",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "001500",
+    "nome": "REMOVEDOR DE TINTAS ACRILICA SPRAY 400ML",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "LIMPEZA DE PISOS",
+    "codigo": "000258",
+    "nome": "—SODA CAUSTICA TAMBASA RODO99 1KG",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000229",
+    "nome": "CARRO BALDE C/ DIVISORIA NOBRE 20L",
+    "um": "UN",
+    "valor": "364,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000858",
+    "nome": "CARRO BALDE C/ DIVISORIA PERFECT 20L",
+    "um": "UN",
+    "valor": "349,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001477",
+    "nome": "CARRO FUNCIONAL PERFECT BASIC C/TAMPA BLACK",
+    "um": "UN",
+    "valor": "799,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000617",
+    "nome": "CARRO FUNCIONAL PERFECT BLACK",
+    "um": "UN",
+    "valor": "769,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001359",
+    "nome": "CARRO P/ LIMP. 34L BALDE DUPLO NOBRE",
+    "um": "UN",
+    "valor": "649,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001554",
+    "nome": "DETERG. ASSERT NEUTRO 5L",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001452",
+    "nome": "LENCOL HOSP DESCARTAVEL 0,50X50M S/PICOTE NOBRE",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001453",
+    "nome": "LENCOL HOSP DESCARTAVEL 0,70X50M S/PICOTE NOBRE",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001581",
+    "nome": "QUALYCLOR L BD20L LT2506/002",
+    "um": "UN",
+    "valor": "549,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001582",
+    "nome": "QUALYPASTA UMECTANTE BD20L LT2505/002",
+    "um": "UN",
+    "valor": "629,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001585",
+    "nome": "QUALYPLUS DESINF M ATLANTICA 5L",
+    "um": "UN",
+    "valor": "249,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001583",
+    "nome": "QUALYSOFT ESPECIAL BB20L LT2505/002",
+    "um": "UN",
+    "valor": "289,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "001584",
+    "nome": "— RQ CONTROL QUARTEX DESIN. HOSP 5L LT2506/001",
+    "um": "UN",
+    "valor": "264,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000420",
+    "nome": "SACO P/ LIXO RAVA HOSP. BRANCO 100L C/100",
+    "um": "UN",
+    "valor": "46,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000124",
+    "nome": "SACO P/ LIXO RAVA HOSP. BRANCO 200L C/100",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000123",
+    "nome": "SACO P/ LIXO RAVA HOSP. BRANCO 30L C/100",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000122",
+    "nome": "SACO P/ LIXO RAVA HOSP. BRANCO 50L C/100",
+    "um": "UN",
+    "valor": "21,90"
+  },
+  {
+    "departamento": "LIMPEZA HOSPITALAR",
+    "codigo": "000245",
+    "nome": "SUPORTE P/ UTENSILIOS PERFECT CARRO FUNC",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "LIMPEZA PET",
+    "codigo": "001408",
+    "nome": "EDUCADOR SANITARIO PET DEO LINE 500ML",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA PET",
+    "codigo": "001405",
+    "nome": "LIMPA XIXI DEO LINE CITRUS C/ GATILHO 500ML",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA PET",
+    "codigo": "000438",
+    "nome": "LIMPA XIXI FRESH DEO LINE C/ GATILHO 500ML",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "LIMPEZA PET",
+    "codigo": "001407",
+    "nome": "NEUT. ANIMAIS DOMESTICOS DEO LINE 2L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "LIMPEZA PET",
+    "codigo": "000440",
+    "nome": "NEUTR. ODORES AREAS ANIMAIS DOM. 500ML",
+    "um": "UN",
+    "valor": "20,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000082",
+    "nome": "BASE LIXEIRA PAPACOPO NOBRE TAMBOGRAFADA",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000581",
+    "nome": "COLETORA LAR PLASTICO AZUL 1000L",
+    "um": "UN",
+    "valor": "3.299,00"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001093",
+    "nome": "— COLETORA LAR PLASTICOS VERMELHO 1000L",
+    "um": "UN",
+    "valor": "3.299,00"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000645",
+    "nome": "COLETORA NOBRE AMARELA 120L C/ RODAS",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001085",
+    "nome": "COLETORA NOBRE AMARELA 240L C/RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000199",
+    "nome": "COLETORA NOBRE AZUL 120L C/ RODAS",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001073",
+    "nome": "COLETORA NOBRE AZUL 240L C/ RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001374",
+    "nome": "COLETORA NOBRE BRANCA 120L C/ RODAS",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001083",
+    "nome": "COLETORA NOBRE BRANCA 240L C/ RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000098",
+    "nome": "COLETORA NOBRE CINZA 120L C/ RODAS",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001086",
+    "nome": "COLETORA NOBRE CINZA 240L C/ RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000201",
+    "nome": "COLETORA NOBRE LARANJA 240L C/ RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000274",
+    "nome": "COLETORA NOBRE LARANJA 120L C/ RODAS",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001084",
+    "nome": "COLETORA NOBRE MARROM 240L C/ RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000200",
+    "nome": "COLETORA NOBRE VERDE 120L C/ RODAS",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000469",
+    "nome": "COLETORA NOBRE VERDE 240L C/ RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001575",
+    "nome": "COLETORA NOBRE VERMELHO 120L C/ RODAS",
+    "um": "UN",
+    "valor": "429,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000788",
+    "nome": "COLETORA NOBRE VERMELHO 240L C/ RODAS",
+    "um": "UN",
+    "valor": "559,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000650",
+    "nome": "COLETORA UBL VERDE 700L",
+    "um": "UN",
+    "valor": "2.999,00"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000352",
+    "nome": "ESTRUTURA BERCO 40/60/100 2 UNID",
+    "um": "UN",
+    "valor": "279,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000353",
+    "nome": "ESTRUTURA BERCO 40/60/100 3 UNID",
+    "um": "UN",
+    "valor": "329,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000355",
+    "nome": "ESTRUTURA P/ LIXEIRA PAPELEIRA 2 UNID",
+    "um": "UN",
+    "valor": "349,99"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000356",
+    "nome": "ESTRUTURA P/ LIXEIRA PAPELEIRA 3 UNID",
+    "um": "UN",
+    "valor": "379,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000357",
+    "nome": "ESTRUTURA P/ LIXEIRA PAPELEIRA 4 UNID",
+    "um": "UN",
+    "valor": "489,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000730",
+    "nome": "LIXEIRA TAMBASA BASCULANTE ARQPL 20L",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000459",
+    "nome": "LIXEIRA BRINOX INOX PEDAL E BALDE 20L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000457",
+    "nome": "LIXEIRA BRINOX INOX PEDAL E BALDE 5L",
+    "um": "UN",
+    "valor": "109,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000572",
+    "nome": "LIXEIRA BRINOX INOX PEDAL E BALDE FRAME 12L",
+    "um": "UN",
+    "valor": "269,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000573",
+    "nome": "LIXEIRA BRINOX INOX PEDAL E BALDE FRAME 6L",
+    "um": "UN",
+    "valor": "229,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000519",
+    "nome": "LIXEIRA BRINOX PEDAL E BALDE FRAME 12L",
+    "um": "UN",
+    "valor": "299,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000518",
+    "nome": "LIXEIRA BRINOX PEDAL E BALDE FRAME 6L",
+    "um": "UN",
+    "valor": "245,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000934",
+    "nome": "LIXEIRA C/PEDAL E BALDE SPIN-INOX 12L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000935",
+    "nome": "LIXEIRA C/PEDAL E BALDE SPIN-INOX 5L",
+    "um": "UN",
+    "valor": "119,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001460",
+    "nome": "LIXEIRA CESTO PLAS. C/ TAMPA 60L BRANCO JAGUAR",
+    "um": "UN",
+    "valor": "149,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001458",
+    "nome": "LIXEIRA CESTO PLAS. C/ TAMPA 60L PRETO JAGUAR",
+    "um": "UN",
+    "valor": "149,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001461",
+    "nome": "LIXEIRA CESTO PLAS. C/ TAMPA 93L BRANCO JAGUAR",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001459",
+    "nome": "LIXEIRA CESTO PLAS. C/ TAMPA 93L PRETO JAGUAR",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000059",
+    "nome": "LIXEIRA CESTO PLAST.TELADO 9L",
+    "um": "UN",
+    "valor": "6,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000960",
+    "nome": "LIXEIRA CONDOR BLACK C/ PEDAL 17L",
+    "um": "UN",
+    "valor": "84,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001096",
+    "nome": "LIXEIRA LA PLASTICO AMARELA BASCULANTE 60L",
+    "um": "UN",
+    "valor": "129,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001097",
+    "nome": "LIXEIRA LA PLASTICO AZUL BASCULANTE 60L",
+    "um": "UN",
+    "valor": "129,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001098",
+    "nome": "LIXEIRA LA PLASTICO VERDE BASCULANTE 60L",
+    "um": "UN",
+    "valor": "129,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000588",
+    "nome": "LIXEIRA LA PLASTICO VERMELHA C/ PEDAL 25L",
+    "um": "UN",
+    "valor": "169,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001100",
+    "nome": "LIXEIRA LA PLASTICO VERMELHA BASCULANTE 60L",
+    "um": "UN",
+    "valor": "129,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000358",
+    "nome": "LIXEIRA PAPELEIRA LA PLASTICO VERDE 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000359",
+    "nome": "LIXEIRA PAPELEIRA LAR PLASTICO AZUL 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001094",
+    "nome": "LIXEIRA PAPELEIRA LA PLASTICO AMARELA 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001095",
+    "nome": "LIXEIRA PAPELEIRA LA PLASTICO VERMELHA 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000309",
+    "nome": "LIXEIRA PERFECT AMARELA 2,5KG 50L",
+    "um": "UN",
+    "valor": "199,99"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001214",
+    "nome": "LIXEIRA PERFECT AMARELO 100L",
+    "um": "UN",
+    "valor": "329,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001216",
+    "nome": "LIXEIRA PERFECT AZUL 100L",
+    "um": "UN",
+    "valor": "329,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001237",
+    "nome": "LIXEIRA PERFECT BLACK 100L",
+    "um": "UN",
+    "valor": "329,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000767",
+    "nome": "LIXEIRA PERFECT BLACK 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001219",
+    "nome": "LIXEIRA PERFECT BLACK C/ RODAS PEDAL 100L",
+    "um": "UN",
+    "valor": "359,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001210",
+    "nome": "LIXEIRA PERFECT BRANCA 100L",
+    "um": "UN",
+    "valor": "329,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000591",
+    "nome": "LIXEIRA PERFECT BRANCA 17L",
+    "um": "UN",
+    "valor": "84,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000305",
+    "nome": "LIXEIRA PERFECT BRANCA 2,5KG 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001211",
+    "nome": "LIXEIRA PERFECT BRANCA C/ RODAS PEDAL 100L",
+    "um": "UN",
+    "valor": "359,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001212",
+    "nome": "LIXEIRA PERFECT CINZA C/ RODAS PEDAL 100L",
+    "um": "UN",
+    "valor": "359,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000308",
+    "nome": "LIXEIRA PERFECT MARROM 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001215",
+    "nome": "LIXEIRA PERFECT VERDE 100L",
+    "um": "UN",
+    "valor": "329,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000310",
+    "nome": "— LIXEIRA PERFECT VERMELHA 2,5KG 50L",
+    "um": "UN",
+    "valor": "199,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001213",
+    "nome": "LIXEIRA PERFECT VERMELHA 100L",
+    "um": "UN",
+    "valor": "329,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "000577",
+    "nome": "LIXEIRA SINGLE COZA VBO 2,5L",
+    "um": "UN",
+    "valor": "20,90"
+  },
+  {
+    "departamento": "LIXEIRAS E COLETORAS",
+    "codigo": "001075",
+    "nome": "— LIXEIRA TOUCH MOOD BRANCA 20L",
+    "um": "UN",
+    "valor": "89,90"
+  },
+  {
+    "departamento": "PLÁSTICOS",
+    "codigo": "001146",
+    "nome": "ADESI COLETA SELET PAPEIS",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001147",
+    "nome": "ADESI COLETA SELET PLASTICO",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001148",
+    "nome": "ADESI COLETA SELET VIDROS",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001657",
+    "nome": "BALDE CONCR. PLAST 12L C/ PEGADOR METALICO PT",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000843",
+    "nome": "BALDE PLAST 12LT C/ ALCA DE PLASTICO",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001464",
+    "nome": "BALDE PLAST C/ ALCA 20LT ARQPLAST",
+    "um": "UN",
+    "valor": "24,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001462",
+    "nome": "BALDE PLAST C/ ALCA 8LT ARQPLAST",
+    "um": "UN",
+    "valor": "9,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001355",
+    "nome": "BALDE RETRATIL MOOD RETANGULAR 9.5L BRA /CZ",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000136",
+    "nome": "BALDE RETRATIL NOBRE BRANCO/AZUL",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000135",
+    "nome": "BALDE RETRATIL NOBRE BRANCO C/ ROSA",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001339",
+    "nome": "BALDE RETRATIL PERFECT PRETO",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000578",
+    "nome": "BANDEJA COZA PT BANHEIRO",
+    "um": "UN",
+    "valor": "13,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000546",
+    "nome": "BANDEJA COZA VERMELHO BANHEIRO",
+    "um": "UN",
+    "valor": "13,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000982",
+    "nome": "BOMBONA PEAD 5 L CONV NAT COMBUSTIVEL HOMOLOGADA",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000667",
+    "nome": "CESTO ROUPA TELADO RD AGRAPLA 45L",
+    "um": "UN",
+    "valor": "64,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001358",
+    "nome": "— CONJUNTO P/ BANHEIRO C/6PCS BRANCO NATURE MOOD",
+    "um": "UN",
+    "valor": "189,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001357",
+    "nome": "— CONJUNTO P/ BANHEIRO C/6PCS CINZA NATURE MOOD",
+    "um": "UN",
+    "valor": "189,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000176",
+    "nome": "DISP NOBRE BR. P/ PAPEL HIG.CAI",
+    "um": "UN",
+    "valor": "23,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000175",
+    "nome": "DISP NOBRE PR.  P/ PAPEL HIG.CAI",
+    "um": "UN",
+    "valor": "23,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001361",
+    "nome": "DISP PAPEL HIG ROLAO 300/500M BR.NEW CLASSIC",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001360",
+    "nome": "DISP PAPEL HIG ROLAO 300/500M PR.NEW CLASSIC",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000468",
+    "nome": "DISPEN INVO P/ PAPEL HIG. ROLAO 300/500M",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000103",
+    "nome": "DISPEN NOB POUP.COPOS BRANCO 150/200ML",
+    "um": "UN",
+    "valor": "57,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000130",
+    "nome": "DISPEN NOB POUP.COPOS COFFE BRANCO 50ML",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000078",
+    "nome": "DISPEN NOB POUP.COPOS COFFE PRETO 50ML",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000133",
+    "nome": "DISPEN NOB POUP.COPOS PRETO 150/200ML",
+    "um": "UN",
+    "valor": "57,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000178",
+    "nome": "DISPEN NOBRE BRANCO PAPEL HIG ROLAO 300/500M",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001231",
+    "nome": "DISPEN.PAPEL HIG ROLAO BRANCO STREET NOBRE",
+    "um": "UN",
+    "valor": "43,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001232",
+    "nome": "DISPEN.PAPEL HIG ROLAO PRETO STREET NOBRE",
+    "um": "UN",
+    "valor": "43,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000249",
+    "nome": "DISPENS.TOTEM P/ ALCOOL GEL C/ RESERV. SEL 800ML",
+    "um": "UN",
+    "valor": "759,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000562",
+    "nome": "DISPENSER COZA VBO ABRACO BASIC 600ML",
+    "um": "UN",
+    "valor": "41,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000561",
+    "nome": "DISPENSER COZA WGR ABRACO BASIC 600ML",
+    "um": "UN",
+    "valor": "41,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000533",
+    "nome": "DISPENSER COZA SINGLE VBO 500ML",
+    "um": "UN",
+    "valor": "15,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000527",
+    "nome": "DISPENSER COZA VBO+LGR FLAT 500ML",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000528",
+    "nome": "DISPENSER COZA WGR+LGR FLAT 500ML",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000190",
+    "nome": "DISPENSER PLAST. P/ PROT.  ASSENTO SANITARIO",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000324",
+    "nome": "DISPENSER VELOX DARK P/ PAPEL HIG. ROLAO",
+    "um": "UN",
+    "valor": "45,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000524",
+    "nome": "ESCORREDOR COZA C/TAPETE DE PIA SINGLE-VBO",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000529",
+    "nome": "ESCORREDOR DE TALHERES COZA FLAT-PT",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000530",
+    "nome": "ESCORREDOR DE TALHERES COZA FLAT-VBO",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000576",
+    "nome": "ESCORREDOR DE TALHERES COZA FLAT-WGR",
+    "um": "UN",
+    "valor": "28,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001373",
+    "nome": "FLAT MOP 10L NOBRE",
+    "um": "UN",
+    "valor": "189,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000079",
+    "nome": "GUARDANAPEIRA NOBRE BRANCO INTERF.",
+    "um": "UN",
+    "valor": "10,00"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000460",
+    "nome": "HIGIENIZADOR DE MAOS C/PEDAL-ALCOOL GEL",
+    "um": "UN",
+    "valor": "177,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001637",
+    "nome": "KIT BANHO - LINHA BANHO",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001234",
+    "nome": "KIT PAPACOPO AGUA NOBRE BRANCO",
+    "um": "UN",
+    "valor": "31,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001233",
+    "nome": "KIT PAPACOPO CAFE NOBRE BRANCO",
+    "um": "UN",
+    "valor": "29,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000540",
+    "nome": "ORGANIZADOR COZA FACAS PERFECT-BC",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000537",
+    "nome": "ORGANIZADOR COZA SINGLE-VBO",
+    "um": "UN",
+    "valor": "7,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000539",
+    "nome": "ORGANIZADOR COZA TALHERES PERFECT-BC",
+    "um": "UN",
+    "valor": "30,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000243",
+    "nome": "ORGANIZADOR PERFECT P/ACESSESORIOS",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000554",
+    "nome": "PORTA ALGODAO COZA BULKY-BC",
+    "um": "UN",
+    "valor": "11,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000548",
+    "nome": "PORTA ALGODAO COZA BULKY-PT",
+    "um": "UN",
+    "valor": "11,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000568",
+    "nome": "PORTA ALGODAO COZA BULKY-WGR",
+    "um": "UN",
+    "valor": "11,50"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000619",
+    "nome": "PORTA ALCOOL GELCOZA COC",
+    "um": "UN",
+    "valor": "8,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000541",
+    "nome": "PORTA ESCOVA COZA SPLASH-PT",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000547",
+    "nome": "PORTA ESCOVA COZA BULKY PT",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000553",
+    "nome": "PORTA ESCOVA COZA BULKY-BC",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000550",
+    "nome": "PORTA ESCOVA COZA BULKY-RBL",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000567",
+    "nome": "PORTA ESCOVA COZA BULKY-WGR",
+    "um": "UN",
+    "valor": "11,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000565",
+    "nome": "PORTA ESCOVA COZA SPLASH-WGR",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000335",
+    "nome": "PORTA GUARDANAPOS PREMISSE INTER FOLHA BRANCO",
+    "um": "UN",
+    "valor": "8,99"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000643",
+    "nome": "PORTA GUARDANAPOS PREMISSE INTERF. PRETO",
+    "um": "UN",
+    "valor": "8,99"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001333",
+    "nome": "PORTA PAPEL HIGIENICO BLACK MAZZO",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000848",
+    "nome": "PORTA PAPEL HIGIENICO DROPY BLACK",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000852",
+    "nome": "PORTA PAPEL HIGIENICO WHITE MAZZO",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000847",
+    "nome": "PORTA PAPELHIGIENICO DROPY BRANCO",
+    "um": "UN",
+    "valor": "56,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000642",
+    "nome": "RESERVATORIO P/ SABONETEIRA INVOQ",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001366",
+    "nome": "SABONETEIRA ESPUMA 800ML PRETO NEW CLASSIC",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001230",
+    "nome": "SABONETEIRA LIQUIDA BRANCO STREET NOBRE 800ML",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001227",
+    "nome": "SABONETEIRA LIQUIDA PRETO STREET NOBRE 800ML",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001365",
+    "nome": "SABONETEIRA NEW CLASSIC BRANCA LIQ/ALCOO GEL 800ML",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001364",
+    "nome": "SABONETEIRA NEW CLASSIC PRETA LIQ/ALCOOL GEL 800ML",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001334",
+    "nome": "SABONETEIRA SAB. LIQUIDO BLACK MAZZO",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001335",
+    "nome": "SABONETEIRA SAB. LIQUIDO WHITE MAZZO",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000850",
+    "nome": "SABONETEIRA SAB. LIQUIDO/GEL BLACK DROPY",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000849",
+    "nome": "SABONETEIRA SAB. LIQUIDO/GEL WHITE DROPY",
+    "um": "UN",
+    "valor": "56,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000326",
+    "nome": "SABONETEIRA URBAN COMPACTA BRANCA 400ML",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001175",
+    "nome": "SABONETEIRA URBAN COMPACTA DARK 400ML",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000644",
+    "nome": "SABONETEIRA URBAN COMPACTA GLASS AZUL 400ML",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001390",
+    "nome": "SABONETEIRA URBAN COMPACTA GLASS FUME 400ML",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000467",
+    "nome": "TOALHEIRO 2/3 DOBRAS PREMISSE BRANCO INVOQ",
+    "um": "UN",
+    "valor": "69,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000641",
+    "nome": "TOALHEIRO COMPACTO GLASS AZUL URBAN",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001389",
+    "nome": "TOALHEIRO COMPACTO GLASS FUME URBAN",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000328",
+    "nome": "TOALHEIRO COMPACTO PREMISSE DARK URBAN",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000327",
+    "nome": "TOALHEIRO COMPACTO PREMISSE BRANCO URBAN",
+    "um": "UN",
+    "valor": "38,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001228",
+    "nome": "TOALHEIRO INTEF. BRANCO STREET NOBRE",
+    "um": "UN",
+    "valor": "43,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001229",
+    "nome": "TOALHEIRO INTEF. PRETO STREET NOBRE",
+    "um": "UN",
+    "valor": "43,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000845",
+    "nome": "TOALHEIRO INTERF DROPY BRANCO",
+    "um": "UN",
+    "valor": "56,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000846",
+    "nome": "TOALHEIRO INTERF. DROPY BLACK",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001336",
+    "nome": "TOALHEIRO INTERF. MAZZO BLACK",
+    "um": "UN",
+    "valor": "49,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000851",
+    "nome": "TOALHEIRO INTERF. MAZZO WHITE",
+    "um": "UN",
+    "valor": "45,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000104",
+    "nome": "TOALHEIRO INTERF. NOBRE PRETO",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001363",
+    "nome": "TOALHEIRO NEW CLASSIC BRANCO NOBRE",
+    "um": "UN",
+    "valor": "43,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "001362",
+    "nome": "TOALHEIRO NEW CLASSIC PRETO NOBRE",
+    "um": "UN",
+    "valor": "42,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000100",
+    "nome": "TOALHEIRO NOBRE BRANCO C/ALAVANCA BOBINA",
+    "um": "UN",
+    "valor": "309,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000080",
+    "nome": "TUBO PAPACOPO AGUA NOBRE BRANCO",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "PLASTICOS",
+    "codigo": "000081",
+    "nome": "TUBO PAPACOPO CAFE NOBRE BRANCO",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "000042",
+    "nome": "LUSTRA MOVEIS BUTTERFLY 200ML",
+    "um": "UN",
+    "valor": "4,99"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "000025",
+    "nome": "LUSTRA MOVEIS BUTTERFLY 500ML",
+    "um": "UN",
+    "valor": "9,99"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "000029",
+    "nome": "LUSTRA MOVEIS FACILITA LAVANDA 200ML",
+    "um": "UN",
+    "valor": "6,99"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "001439",
+    "nome": "LUSTRA MOVEIS PEROBA FLORES CAMPO 100ML",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "001440",
+    "nome": "LUSTRA MOVEIS PEROBA JASMIM 100ML",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "001441",
+    "nome": "LUSTRA MOVEIS PEROBA LAVANDA 100ML",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "000797",
+    "nome": "LUSTRA MOVEIS SPRAY ZIP MY PLACE 300ML",
+    "um": "UN",
+    "valor": "13,90"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "001331",
+    "nome": "OLEO PEROBA LAVANDA 100ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "POLIDORES",
+    "codigo": "000486",
+    "nome": "— OLEO PEROBA TRADICIONAL 100ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001286",
+    "nome": "AROMATIZANTE AUTO CITY LIGHTS SPRAY 40ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001285",
+    "nome": "AROMATIZANTE AUTO DARK NIGHT SPRAY 40ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001284",
+    "nome": "AROMATIZANTE AUTO FRESH DAY SPRAY 40ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001283",
+    "nome": "AROMATIZANTE AUTO MYSTIC ROAD SPRAY 40ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001287",
+    "nome": "AROMATIZANTE AUTO NEW CAR SPRAY 40ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001282",
+    "nome": "DETER.  AUTOMOTIVO CONCENTRADO 1L",
+    "um": "UN",
+    "valor": "19,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001503",
+    "nome": "LAVA AUTO TECBRIL 500ML",
+    "um": "UN",
+    "valor": "12,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001644",
+    "nome": "LAVA AUTO TECBRIL C/ CERA 500ML",
+    "um": "UN",
+    "valor": "22,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "000760",
+    "nome": "LIMPA ALUMINIO AUTO BB C/ 20L",
+    "um": "UN",
+    "valor": "139,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "000759",
+    "nome": "LIMPA ALUMINIO AUTO BB C/ 5L",
+    "um": "UN",
+    "valor": "39,99"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001643",
+    "nome": "LIMPA AR CONDICIONADO CARRO NOVO 250ML",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001642",
+    "nome": "LIMPA AR CONDICIONADO LAVANDA 250ML",
+    "um": "UN",
+    "valor": "18,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001007",
+    "nome": "ODORIZANTE AUTO SPRAY CARRO NOVO 60ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001281",
+    "nome": "SHAMPOO AUTOMOTIVO CONCENTRADO 5L",
+    "um": "UN",
+    "valor": "44,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001501",
+    "nome": "SILICONE CHEMICOLOR LAVANDA 250ML",
+    "um": "UN",
+    "valor": "10,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "001485",
+    "nome": "SILICONE LAVANDA GT PREMIUM 250ML",
+    "um": "UN",
+    "valor": "14,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "000129",
+    "nome": "SUPER LUVA NOBRE DE MICROFIBRA",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "PRODUTOS AUTOMOTIVOS",
+    "codigo": "000506",
+    "nome": "TELA AROMATIZANTE LEAF SCREEN VANILA",
+    "um": "UN",
+    "valor": "5,99"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001388",
+    "nome": "SAB CRISTAL MARACUJA 5L",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001387",
+    "nome": "SAB CRISTAL PITANGA 5L",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001045",
+    "nome": "SAB ECONORTE ERVA DOCE 5L",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001046",
+    "nome": "SAB ECONORTE FLORAL 5L",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000226",
+    "nome": "SABONETE ALL CLEAN ANTISSEPTICO 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000232",
+    "nome": "SABONETE ALL CLEAN DESENGRAXANTE 5L",
+    "um": "UN",
+    "valor": "54,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000723",
+    "nome": "SABONETE ALL CLEAN ESPUMA ERVA DOCE 5L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000055",
+    "nome": "SABONETE ALL CLEAN ESPUMA FLORAL 5L",
+    "um": "UN",
+    "valor": "39,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000684",
+    "nome": "SABONETE ALL CLEAN FLOR DE BAUNILHA 5L",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000685",
+    "nome": "SABONETE ALL CLEAN FLORES E FRUTAS 5L",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000041",
+    "nome": "SABONETE ALL CLEAN FRESCOR DA MANHA 5L",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000043",
+    "nome": "SABONETE ALL CLEAN KLYNE AZUL 5L",
+    "um": "UN",
+    "valor": "26,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000686",
+    "nome": "SABONETE ALL CLEAN ORQUIDEAS BRANCAS 5L",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000715",
+    "nome": "SABONETE ALL CLEAN POR DO SOL 5L",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001397",
+    "nome": "SABONETE DESENGRAXANTE LIMPEZA INT PREMISSE 5L",
+    "um": "UN",
+    "valor": "59,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001675",
+    "nome": "SABONETE LIQUIDO ALECRIM 500ML",
+    "um": "UN",
+    "valor": "0,00"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001676",
+    "nome": "SABONETE LIQUIDO AMEIXA DOURADA COALA 500ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001312",
+    "nome": "SABONETE LIQUIDO BAMBOO COALA 500ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001313",
+    "nome": "SABONETE LIQUIDO CHA BRANCO COALA 500ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001318",
+    "nome": "SABONETE LIQUIDO ERVA DOCE COALA 500ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001677",
+    "nome": "SABONETE LIQUIDO FLOR DE CACTO COALA 500ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001316",
+    "nome": "SABONETE LIQUIDO FRUTAS VERMELHAS COALA 500ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001314",
+    "nome": "SABONETE LIQUIDO LAVANDA COALA 500ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001315",
+    "nome": "SABONETE LIQUIDO ORQUIDEA NEGRA COALA 500ML",
+    "um": "UN",
+    "valor": "17,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001317",
+    "nome": "SABONETE LIQUIDO ROSA CHIC COALA 500ML",
+    "um": "UN",
+    "valor": "16,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "000464",
+    "nome": "SABONETE PREMISSE MORANGO C/CHAMP 5L",
+    "um": "UN",
+    "valor": "36,90"
+  },
+  {
+    "departamento": "SABONETES",
+    "codigo": "001395",
+    "nome": "—SABONETE PREMISSE SEGREDOS DE ROMANCE 5L",
+    "um": "UN",
+    "valor": "49,90"
+  }
+]

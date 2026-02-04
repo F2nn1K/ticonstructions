@@ -10,11 +10,16 @@
       <strong>Solicitações Aprovadas</strong>
       <a href="{{ route('pedidos.acompanhar') }}" class="btn btn-outline-light btn-sm text-white"><i class="fas fa-arrow-left mr-1"></i>Voltar</a>
     </div>
-    <div class="table-responsive">
+    <!-- Desktop/Tablet -->
+    <div class="d-none d-md-block table-responsive">
       <table class="table table-striped table-hover mb-0" id="tabela">
-        <thead><tr><th>Nº Pedido</th><th>Data</th><th>Centro Custo</th><th>Itens</th><th>Qtd Total</th><th>Prioridade</th><th>Ações</th></tr></thead>
+        <thead><tr><th>Nº Pedido</th><th>Data</th><th>Centro Custo</th><th>Rota</th><th>Roteirização</th><th>Itens</th><th>Qtd Total</th><th>Prioridade</th><th>Ações</th></tr></thead>
         <tbody></tbody>
       </table>
+    </div>
+    <!-- Mobile: lista de cartões -->
+    <div class="d-block d-md-none p-2">
+      <div id="listaAprovadasMobile" class="list-group"></div>
     </div>
   </div>
 </div>
@@ -42,9 +47,37 @@ $(function(){ carregar(); });
 function carregar(){
   $.get('/api/pedidos/acompanhar/lista', function(resp){
     const tbody = $('#tabela tbody'); tbody.empty();
+    const lista = $('#listaAprovadasMobile'); lista.empty();
     const dados = (resp.data||[]).filter(d => (d.status||'pendente')==='aprovado');
-    if(dados.length===0){ tbody.append('<tr><td colspan="7" class="text-center text-muted">Nenhum registro</td></tr>'); return; }
-    dados.forEach(p => tbody.append(row(p)));
+    if(dados.length===0){
+      tbody.append('<tr><td colspan="9" class="text-center text-muted">Nenhum registro</td></tr>');
+      lista.html('<div class="list-group-item text-center text-muted">Nenhum registro</div>');
+      return;
+    }
+    dados.forEach(p => {
+      tbody.append(row(p));
+      const card = `
+        <div class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="font-weight-bold">${p.num_pedido}</div>
+              <small class="text-muted">${formatarDataBR(p.data_solicitacao)}</small>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="abrir('${p.grupo_hash}')"><i class="fas fa-search mr-1"></i> Ver</button>
+          </div>
+          <div class="mt-2">
+            <div class="d-flex justify-content-between">
+              <div><small>Centro Custo</small><br><strong>${p.centro_custo_nome||'—'}</strong></div>
+              <div class="text-right"><small>Itens</small><br><strong>${p.itens} / ${p.quantidade_total||0}</strong></div>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+              <div><small>Rota</small><br>${p.rota_nome||'—'}</div>
+              <div class="text-right"><small>Prioridade</small><br><span class="badge badge-${p.prioridade}">${(p.prioridade||'').toUpperCase()}</span></div>
+            </div>
+          </div>
+        </div>`;
+      lista.append(card);
+    });
   });
 }
 function row(p){
@@ -52,6 +85,8 @@ function row(p){
     <td><span class="badge badge-dark">${p.num_pedido}</span></td>
     <td>${formatarDataBR(p.data_solicitacao)}</td>
     <td>${p.centro_custo_nome||'—'}</td>
+    <td>${p.rota_nome||'—'}</td>
+    <td>${p.roteirizacao_nome||'—'}</td>
     <td>${p.itens} itens</td>
     <td>${p.quantidade_total||0}</td>
     <td><span class="badge badge-${p.prioridade}">${(p.prioridade||'').toUpperCase()}</span></td>

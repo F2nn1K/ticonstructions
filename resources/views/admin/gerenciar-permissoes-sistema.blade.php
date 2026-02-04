@@ -217,6 +217,139 @@
 .btn-group-sm > .btn {
     padding: 0.25rem 0.4rem;
 }
+
+/* ===============================================
+   DARK MODE - Modo Escuro
+   =============================================== */
+
+/* Header e Content */
+html[data-theme="dark"] .content-header {
+    background: linear-gradient(180deg, #1e293b 0%, rgba(30, 41, 59, 0) 100%) !important;
+}
+
+html[data-theme="dark"] .content-header h1,
+html[data-theme="dark"] .content-header .text-dark {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .content-header p,
+html[data-theme="dark"] .content-header .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Modern Card no dark mode */
+html[data-theme="dark"] .modern-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+html[data-theme="dark"] .card-header-modern {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    border-bottom-color: #475569 !important;
+}
+
+html[data-theme="dark"] .card-title-modern,
+html[data-theme="dark"] .card-header-modern h5 {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .card-body-modern {
+    background: #1e293b !important;
+}
+
+/* Tabela moderna no dark mode */
+html[data-theme="dark"] .modern-table {
+    background: #1e293b !important;
+}
+
+html[data-theme="dark"] .modern-table thead tr,
+html[data-theme="dark"] .modern-table thead th {
+    background-color: #0f172a !important;
+    color: #94a3b8 !important;
+    border-bottom-color: #334155 !important;
+}
+
+html[data-theme="dark"] .modern-table tbody tr {
+    background-color: #1e293b !important;
+    border-bottom-color: #334155 !important;
+}
+
+html[data-theme="dark"] .modern-table tbody tr:hover {
+    background-color: #334155 !important;
+}
+
+html[data-theme="dark"] .modern-table tbody td {
+    color: #cbd5e1 !important;
+    border-bottom-color: #334155 !important;
+}
+
+html[data-theme="dark"] .modern-table tbody td strong {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .modern-table tbody td code {
+    background-color: #334155 !important;
+    color: #f472b6 !important;
+}
+
+/* Nav Tabs no dark mode */
+html[data-theme="dark"] .nav-tabs {
+    border-bottom-color: #334155 !important;
+}
+
+html[data-theme="dark"] .nav-tabs .nav-link {
+    color: #94a3b8 !important;
+    border-color: transparent !important;
+}
+
+html[data-theme="dark"] .nav-tabs .nav-link:hover {
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+}
+
+html[data-theme="dark"] .nav-tabs .nav-link.active {
+    color: #f1f5f9 !important;
+    background-color: #1e293b !important;
+    border-color: #334155 #334155 #1e293b !important;
+}
+
+/* Botões no dark mode */
+html[data-theme="dark"] .btn-primary {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+html[data-theme="dark"] .btn-info {
+    background-color: #0ea5e9 !important;
+    border-color: #0ea5e9 !important;
+}
+
+html[data-theme="dark"] .btn-danger {
+    background-color: #ef4444 !important;
+    border-color: #ef4444 !important;
+}
+
+/* Modal no dark mode */
+html[data-theme="dark"] .modal-content {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+html[data-theme="dark"] .modal-header {
+    border-bottom-color: #334155 !important;
+}
+
+html[data-theme="dark"] .modal-footer {
+    border-top-color: #334155 !important;
+}
+
+html[data-theme="dark"] .modal-body label {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .close {
+    color: #f1f5f9 !important;
+}
 </style>
 @endpush
 

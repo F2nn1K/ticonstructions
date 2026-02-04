@@ -20,6 +20,7 @@ class FuncionarioDocumento extends Model
         'arquivo_tamanho',
         'arquivo_hash',
         'arquivo_conteudo',
+        'arquivo_path', // NOVO: caminho no storage
         'usuario_cadastro',
         'status',
     ];

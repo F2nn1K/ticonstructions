@@ -48,8 +48,7 @@ class GerenciarPermissoes extends Component
         'empresa' => ''
     ];
 
-    public $permissoesIndividuais = [];
-    public $mostrarPermissoesIndividuais = false;
+    // Removido: permissões individuais não utilizadas pelo sistema
     public $showNovoUsuario = false;
 
     public $showModalPerfis = false;
@@ -127,7 +126,6 @@ class GerenciarPermissoes extends Component
 
     public function mount()
     {
-        \Log::info('Componente GerenciarPermissoes montado');
         $this->carregarPerfis();
         $this->carregarTodasPermissoes();
         $this->carregarDados();
@@ -137,22 +135,6 @@ class GerenciarPermissoes extends Component
             session()->flash('error', 'Você não tem permissão para acessar esta página.');
             return redirect()->route('dashboard');
         }
-    }
-
-    public function hydrate()
-    {
-        \Log::info('Componente GerenciarPermissoes hidratado');
-    }
-
-    public function dehydrate()
-    {
-        \Log::info('Componente GerenciarPermissoes desidratado');
-    }
-
-    // Método para debug
-    private function logDebug($mensagem, $dados = [])
-    {
-        \Log::info("GerenciarPermissoes: {$mensagem}", $dados);
     }
 
     public function updated($field)
@@ -692,39 +674,10 @@ class GerenciarPermissoes extends Component
         }
     }
 
-    public function togglePermissaoIndividual($permissionId)
-    {
-        if (!$this->usuarioSelecionado) return;
+    // Método removido: permissões individuais não são utilizadas pelo sistema
+    // Use apenas perfis (profile_permissions) para controle de acesso
 
-        if (in_array($permissionId, $this->permissoesIndividuais)) {
-            // Remove a permissão individual
-            DB::table('user_permissions')
-                ->where('user_id', $this->usuarioSelecionado)
-                ->where('permission_id', $permissionId)
-                ->delete();
-            
-            $this->permissoesIndividuais = array_diff($this->permissoesIndividuais, [$permissionId]);
-        } else {
-            // Adiciona a permissão individual
-            DB::table('user_permissions')->insert([
-                'user_id' => $this->usuarioSelecionado,
-                'permission_id' => $permissionId,
-                'created_at' => now()
-            ]);
-            
-            $this->permissoesIndividuais[] = $permissionId;
-        }
-
-        $this->dispatch('mostrarMensagem', dados: [
-            'tipo' => 'success',
-            'mensagem' => 'Permissões individuais atualizadas com sucesso!'
-        ]);
-    }
-
-    public function toggleMostrarPermissoesIndividuais()
-    {
-        $this->mostrarPermissoesIndividuais = !$this->mostrarPermissoesIndividuais;
-    }
+    // Método removido: funcionalidade de permissões individuais não utilizada
 
     public function abrirModalPerfis()
     {

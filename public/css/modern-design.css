@@ -1,5 +1,5 @@
 /* 
- * Design System Moderno - Sistema BRS
+ * Design System Moderno - SIGO
  * Arquivo CSS centralizado para manter consistência visual
  */
 
@@ -548,4 +548,220 @@
 
 .bg-gradient-danger {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+}
+
+/* ===============================================
+   FIX: Logo escondida quando menu lateral minimizado
+   =============================================== */
+body.sidebar-collapse .brand-link .brand-image,
+body.sidebar-mini.sidebar-collapse .brand-link .brand-image,
+body.sidebar-collapse .main-sidebar .brand-link .brand-image,
+body.layout-fixed.sidebar-collapse .brand-image,
+body.layout-fixed.sidebar-mini.sidebar-collapse .brand-image,
+html body.sidebar-collapse .brand-image,
+html body.sidebar-mini.sidebar-collapse .brand-image {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+}
+
+body.sidebar-collapse .brand-link .brand-text,
+body.sidebar-mini.sidebar-collapse .brand-link .brand-text,
+html body.sidebar-collapse .brand-text {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+body.sidebar-collapse .brand-link,
+body.sidebar-mini.sidebar-collapse .brand-link {
+    min-height: 57px !important;
+    padding: 14px 0 !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+body.sidebar-mini .main-sidebar:hover .brand-link .brand-image,
+body.layout-fixed.sidebar-mini .main-sidebar:hover .brand-link .brand-image {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 60px !important;
+    max-height: 33px !important;
+    overflow: visible !important;
+}
+
+body.sidebar-mini .main-sidebar:hover .brand-link .brand-text,
+body.layout-fixed.sidebar-mini .main-sidebar:hover .brand-link .brand-text {
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.sidebar-mini .main-sidebar:hover .brand-link,
+body.layout-fixed.sidebar-mini .main-sidebar:hover .brand-link {
+    padding: 16px 20px !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+}
+
+/* ===============================================
+   FIX: Texto cortado em campos select/dropdown
+   =============================================== */
+select,
+select.form-control,
+.form-select,
+html body select,
+html body select.form-control,
+.tab-content select,
+.tab-pane select,
+form select,
+form select.form-control,
+.card select,
+.card-body select {
+    height: auto !important;
+    min-height: 44px !important;
+    padding: 10px 40px 10px 12px !important;
+    line-height: 1.5 !important;
+    font-size: 0.95rem !important;
+    overflow: visible !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+/* ===============================================
+   DARK MODE - Modo Escuro para Componentes Modernos
+   =============================================== */
+
+/* Modern Cards no modo escuro */
+html[data-theme="dark"] .modern-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+}
+
+html[data-theme="dark"] .modern-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
+}
+
+/* Header de Cards Modernos */
+html[data-theme="dark"] .card-header-modern {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    border-bottom-color: #475569 !important;
+}
+
+html[data-theme="dark"] .card-title-modern {
+    color: #f1f5f9 !important;
+}
+
+/* Body de Cards Modernos */
+html[data-theme="dark"] .card-body-modern {
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+}
+
+/* Labels e textos */
+html[data-theme="dark"] .modern-card label,
+html[data-theme="dark"] .modern-card .font-weight-bold,
+html[data-theme="dark"] .card-body-modern label,
+html[data-theme="dark"] .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Modern Search Container */
+html[data-theme="dark"] .modern-search-container {
+    background: transparent !important;
+}
+
+html[data-theme="dark"] .modern-search-input {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .modern-search-input::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* Stat Cards no modo escuro */
+html[data-theme="dark"] .stat-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+html[data-theme="dark"] .stat-number {
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .stat-label {
+    color: #94a3b8 !important;
+}
+
+/* Nav Tabs no modo escuro */
+html[data-theme="dark"] .nav-tabs {
+    border-bottom-color: #334155 !important;
+}
+
+html[data-theme="dark"] .nav-tabs .nav-link {
+    color: #94a3b8 !important;
+    border-color: transparent !important;
+}
+
+html[data-theme="dark"] .nav-tabs .nav-link:hover {
+    border-color: #475569 !important;
+    color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] .nav-tabs .nav-link.active {
+    background: #1e293b !important;
+    border-color: #334155 #334155 #1e293b !important;
+    color: #f1f5f9 !important;
+}
+
+/* Modern Card Anexo */
+html[data-theme="dark"] .modern-card-anexo {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+/* Upload Area */
+html[data-theme="dark"] .upload-area {
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+/* File Display */
+html[data-theme="dark"] .file-display {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #cbd5e1 !important;
+}
+
+/* Tab Content e Panes */
+html[data-theme="dark"] .tab-content,
+html[data-theme="dark"] .tab-pane {
+    background: transparent !important;
+    color: #cbd5e1 !important;
+}
+
+/* Texto genérico no modo escuro */
+html[data-theme="dark"] .content-wrapper p,
+html[data-theme="dark"] .content-wrapper span,
+html[data-theme="dark"] .card-body p,
+html[data-theme="dark"] .card-body span {
+    color: #cbd5e1 !important;
+}
+
+/* Garantir texto visível em inputs */
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+    color: #f1f5f9 !important;
 }

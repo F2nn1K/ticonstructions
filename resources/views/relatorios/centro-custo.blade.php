@@ -264,6 +264,14 @@
         font-weight: bold;
         border-radius: 20px;
     }
+
+    /* Descrição abaixo do nome do produto (tabela on-screen) */
+    .produto-desc {
+        display: block;
+        color: #6c757d;
+        font-size: 12px;
+        margin-top: 2px;
+    }
 </style>
 @stop
 
@@ -408,7 +416,11 @@ function preencherTabela(dados) {
         let produtosHtml = '';
         item.produtos.forEach(function(produto, index) {
             if (index > 0) produtosHtml += '<br>';
-            produtosHtml += `<span class="badge badge-secondary mr-1">${escapeHtml(produto.nome)} (${produto.quantidade})</span>`;
+            produtosHtml += `
+                <div>
+                    <span class="badge badge-secondary mr-1">${escapeHtml(produto.nome)} (${produto.quantidade})</span>
+                    ${produto.descricao ? `<small class="produto-desc">${escapeHtml(produto.descricao)}</small>` : ''}
+                </div>`;
         });
         
         html += `
@@ -480,42 +492,87 @@ function imprimirRelatorio() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Relatório de Centro de Custo</title>
         <style>
-            @page {
-                size: A4;
-                margin: 2cm 1.5cm;
+            @page { 
+                size: A4 landscape; 
+                margin: 15mm 20mm 15mm 20mm; 
             }
-            
-            * {
+            body { 
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                font-size: 11px; 
+                color: #2c3e50; 
+                line-height: 1.4;
                 margin: 0;
                 padding: 0;
-                box-sizing: border-box;
             }
-            
-            body {
-                font-family: 'Arial', sans-serif;
-                font-size: 12px;
-                color: #333;
-                line-height: 1.4;
-            }
-            
-            .header {
-                text-align: center;
-                margin-bottom: 25px;
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 20px;
                 padding-bottom: 15px;
-                border-bottom: 2px solid #333;
+                border-bottom: 3px solid #3498db;
             }
-            
-            .header h1 {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 5px;
-                color: #000;
+            .logo-section {
+                display: flex;
+                align-items: center;
+                gap: 15px;
             }
-            
-            .header h2 {
+            .logo {
+                width: 60px;
+                height: 60px;
+                object-fit: contain;
+            }
+            .company-info h1 {
+                font-size: 22px;
+                font-weight: 700;
+                color: #2c3e50;
+                margin: 0 0 5px 0;
+                letter-spacing: 0.5px;
+            }
+            .company-info .subtitle {
                 font-size: 14px;
-                font-weight: normal;
-                color: #666;
+                color: #7f8c8d;
+                margin: 0;
+                font-weight: 500;
+            }
+            .report-info {
+                text-align: right;
+                font-size: 11px;
+                color: #5a6c7d;
+            }
+            .report-info .date {
+                font-weight: 600;
+                color: #34495e;
+                margin-bottom: 8px;
+            }
+            .filters-section {
+                background: #f0f8ff;
+                padding: 12px 15px;
+                border-radius: 6px;
+                margin-bottom: 20px;
+                border-left: 4px solid #3498db;
+            }
+            .filters-title {
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 8px;
+                font-size: 12px;
+            }
+            .filters-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            .filter-item {
+                font-size: 11px;
+            }
+            .filter-label {
+                font-weight: 600;
+                color: #34495e;
+            }
+            .filter-value {
+                color: #5a6c7d;
+                margin-left: 5px;
             }
             
 
@@ -524,34 +581,39 @@ function imprimirRelatorio() {
                 margin-bottom: 20px;
             }
             
-            table {
-                width: 100%;
-                border-collapse: collapse;
+            table { 
+                width: 100%; 
+                border-collapse: collapse; 
                 font-size: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border-radius: 6px;
+                overflow: hidden;
+                margin: 15px 0;
             }
-            
             thead {
-                background: #333;
+                background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
                 color: white;
             }
-            
-            th {
-                padding: 8px 6px;
+            th { 
+                padding: 12px 8px;
+                font-weight: 600;
                 text-align: left;
-                font-weight: bold;
-                border: 1px solid #333;
-                font-size: 10px;
+                font-size: 11px;
+                letter-spacing: 0.3px;
+                border: none;
             }
-            
-            td {
-                padding: 6px 6px;
-                border: 1px solid #ddd;
-                font-size: 10px;
+            tbody tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+            tbody tr:hover {
+                background-color: #e3f2fd;
+            }
+            td { 
+                padding: 10px 8px;
+                border-bottom: 1px solid #e0e6ed;
                 vertical-align: top;
-            }
-            
-            tr:nth-child(even) {
-                background: #f9f9f9;
+                border-left: none;
+                border-right: none;
             }
             
             .funcionario {
@@ -641,17 +703,58 @@ function imprimirRelatorio() {
                 color: #666;
             }
             
-
+            .produto-desc-print {
+                color: #666;
+                font-size: 8px;
+                margin-top: 2px;
+            }
+            .footer {
+                margin-top: 25px;
+                padding-top: 15px;
+                border-top: 2px solid #bdc3c7;
+                text-align: center;
+                font-size: 10px;
+                color: #7f8c8d;
+            }
+            @media print { 
+                .no-print { display: none !important; }
+                body { -webkit-print-color-adjust: exact; }
+            }
         </style>
     </head>
     <body>
-        <div class="header">
-            <h1>RELATÓRIO POR CENTRO DE CUSTO</h1>
-            <h2>Sistema de Controle Interno</h2>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="/img/brs-logo.png" alt="BRS Logo" class="logo" />
+                <div class="company-info">
+                    <h1>RELATÓRIO CENTRO DE CUSTO</h1>
+                    <p class="subtitle">Movimentações por Centro de Custo</p>
+                </div>
+            </div>
+            <div class="report-info">
+                <div class="date">Emitido em: ${new Date().toLocaleString('pt-BR')}</div>
+                <div>Total de registros: ${dadosRelatorio.length}</div>
+            </div>
         </div>
         
+        <div class="filters-section">
+            <div class="filters-title">FILTROS APLICADOS</div>
+            <div class="filters-grid">
+                <div class="filter-item">
+                    <span class="filter-label">Período:</span>
+                    <span class="filter-value">${dataInicio} até ${dataFim}</span>
+                </div>
+                <div class="filter-item">
+                    <span class="filter-label">Centro de Custo:</span>
+                    <span class="filter-value">${centroSelecionado}</span>
+                </div>
+                <div class="filter-item">
+                    <span class="filter-label">Tipo:</span>
+                    <span class="filter-value">Movimentações de Estoque</span>
+                </div>
+            </div>
+        </div>
 
-        
         <div class="table-container">
             <table>
                 <thead>
@@ -707,7 +810,8 @@ function imprimirRelatorio() {
         grupo.itens.forEach(function(item) {
             let produtosHtml = '';
             item.produtos.forEach(function(produto) {
-                produtosHtml += `<div class="produto-item">${produto.nome} (${produto.quantidade})</div>`;
+                const desc = produto.descricao ? `<div class=\"produto-desc-print\">${produto.descricao}</div>` : '';
+                produtosHtml += `<div class="produto-item">${produto.nome} (${produto.quantidade})${desc}</div>`;
             });
             
             htmlImpressao += `
@@ -753,19 +857,36 @@ function imprimirRelatorio() {
             </table>
         </div>
         
-
+        <div class="footer">
+            <p>Sistema Integrado de Gestão Operacional (SIGO) - BRS Transportes</p>
+        </div>
     </body>
     </html>`;
     
-    // Abrir nova janela e imprimir
-    const janelaImpressao = window.open('', '_blank');
-    janelaImpressao.document.write(htmlImpressao);
-    janelaImpressao.document.close();
-    
-    // Aguardar carregar e imprimir
-    janelaImpressao.onload = function() {
-        janelaImpressao.print();
-        janelaImpressao.close();
+    // Imprimir usando iframe oculto
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    doc.open();
+    doc.write(htmlImpressao);
+    doc.close();
+
+    iframe.onload = function(){
+        try {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+        } finally {
+            setTimeout(function(){ 
+                try { document.body.removeChild(iframe); } catch(e) {}
+            }, 1000);
+        }
     };
 }
 

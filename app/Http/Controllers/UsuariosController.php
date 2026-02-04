@@ -56,12 +56,8 @@ class UsuariosController extends Controller
     public function obter($id)
     {
         try {
-            // Log para depuração
-            \Log::info('Recebendo solicitação para obter usuário', ['id' => $id]);
-            
             // Verificar se o ID é válido
             if (!is_numeric($id)) {
-                \Log::warning('ID de usuário inválido', ['id' => $id]);
                 return response()->json([
                     'success' => false,
                     'message' => 'ID de usuário inválido'
@@ -71,13 +67,7 @@ class UsuariosController extends Controller
             // Buscar o usuário com o perfil
             $usuario = User::with('profile')->findOrFail($id);
             
-            // Registrar o resultado da busca
-            \Log::info('Usuário encontrado com sucesso', [
-                'id' => $usuario->id,
-                'name' => $usuario->name
-            ]);
-            
-            // Verificar se está retornando os dados corretos
+            // Dados de retorno
             $dadosRetorno = [
                 'success' => true,
                 'id' => $usuario->id,
@@ -88,25 +78,19 @@ class UsuariosController extends Controller
                 'active' => $usuario->active
             ];
             
-            \Log::info('Retornando dados do usuário', $dadosRetorno);
-            
             return response()->json($dadosRetorno);
             
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            \Log::warning('Usuário não encontrado', ['id' => $id]);
             return response()->json([
                 'success' => false,
                 'message' => 'Usuário não encontrado',
                 'error_code' => 'user_not_found'
             ], 404);
         } catch (\Exception $e) {
-            // Log detalhado do erro
+            // Log apenas erros críticos
             \Log::error('Erro ao obter usuário', [
                 'id' => $id,
-                'error' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString()
+                'error' => $e->getMessage()
             ]);
             
             return response()->json([
@@ -123,8 +107,6 @@ class UsuariosController extends Controller
     public function criar(Request $request)
     {
         try {
-            // Debug para verificar os dados recebidos
-            Log::info('Dados recebidos em criar:', $request->all());
             
             // Validar dados (empresa agora é opcional para compatibilizar com o formulário)
             $validator = Validator::make($request->all(), [
@@ -136,7 +118,6 @@ class UsuariosController extends Controller
             ]);
             
             if ($validator->fails()) {
-                Log::warning('Validação falhou em criar:', ['errors' => $validator->errors()->toArray()]);
                 return response()->json([
                     'success' => false,
                     'message' => 'Dados inválidos',
@@ -480,17 +461,19 @@ class UsuariosController extends Controller
     public function show($id)
     {
         try {
-            $usuario = User::findOrFail($id);
-            
+            $usuario = User::with('profile')->findOrFail($id);
+
             return response()->json([
-                'id' => $usuario->id,
-                'name' => $usuario->name,
-                'login' => $usuario->login,
-                'empresa' => $usuario->empresa,
-                'perfil_id' => $usuario->profile_id, // Retornar como perfil_id para compatibilidade
-                'profile_id' => $usuario->profile_id, // Manter para retrocompatibilidade
-                'active' => $usuario->active,
-                'success' => true
+                'success' => true,
+                'data' => [
+                    'id' => $usuario->id,
+                    'name' => $usuario->name,
+                    'login' => $usuario->login,
+                    'empresa' => $usuario->empresa,
+                    'perfil_id' => $usuario->profile_id,
+                    'profile_id' => $usuario->profile_id,
+                    'active' => $usuario->active,
+                ]
             ]);
         } catch (\Exception $e) {
             \Log::error('Erro no método show: ' . $e->getMessage());

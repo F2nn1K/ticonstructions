@@ -58,7 +58,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach($perfis as $perfil)
                         <li class="list-group-item">
-                            <a href="{{ url('/perfis/' . $perfil->id) }}" class="d-flex justify-content-between align-items-center">
+                            <a href="{{ route('perfis.show', ['id' => $perfil->id]) }}" class="d-flex justify-content-between align-items-center">
                                 <span>{{ $perfil->name }}</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>

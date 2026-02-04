@@ -1,0 +1,68 @@
+/**
+ * Fix: Logo escondida quando menu lateral minimizado
+ * Versão: 2.0
+ */
+
+/* Esconder logo quando sidebar está minimizada - Alta especificidade */
+body.sidebar-collapse .brand-link .brand-image,
+body.sidebar-mini.sidebar-collapse .brand-link .brand-image,
+body.sidebar-collapse .main-sidebar .brand-link .brand-image,
+body.layout-fixed.sidebar-collapse .brand-image,
+body.layout-fixed.sidebar-mini.sidebar-collapse .brand-image,
+html body.sidebar-collapse .brand-image,
+html body.sidebar-mini.sidebar-collapse .brand-image {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Esconder texto SIGO quando minimizado */
+body.sidebar-collapse .brand-link .brand-text,
+body.sidebar-mini.sidebar-collapse .brand-link .brand-text,
+html body.sidebar-collapse .brand-text {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Brand link quando minimizado */
+body.sidebar-collapse .brand-link,
+body.sidebar-mini.sidebar-collapse .brand-link {
+    min-height: 57px !important;
+    padding: 14px 0 !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+/* Mostrar logo e texto ao passar o mouse na sidebar minimizada */
+body.sidebar-mini .main-sidebar:hover .brand-link .brand-image,
+body.layout-fixed.sidebar-mini .main-sidebar:hover .brand-link .brand-image {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 60px !important;
+    max-height: 33px !important;
+    overflow: visible !important;
+}
+
+body.sidebar-mini .main-sidebar:hover .brand-link .brand-text,
+body.layout-fixed.sidebar-mini .main-sidebar:hover .brand-link .brand-text {
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.sidebar-mini .main-sidebar:hover .brand-link,
+body.layout-fixed.sidebar-mini .main-sidebar:hover .brand-link {
+    padding: 16px 20px !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+}
+

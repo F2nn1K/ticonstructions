@@ -18,42 +18,30 @@ class RelatorioEstoqueController extends Controller
 
     public function gerarRelatorio(Request $request)
     {
+        // Novo comportamento: listar produtos da tabela de estoque (nome, descricao, quantidade)
         $request->validate([
-            'data_inicio' => 'required|date',
-            'data_fim' => 'required|date|after_or_equal:data_inicio',
             'produto_id' => 'nullable|exists:estoque,id',
-            'centro_custo_id' => 'nullable|exists:centro_custo,id'
         ]);
 
-        $query = Baixa::with(['funcionario', 'produto', 'centroCusto', 'usuario'])
-            ->whereBetween('data_baixa', [
-                $request->data_inicio . ' 00:00:00',
-                $request->data_fim . ' 23:59:59'
-            ]);
+        $query = Estoque::query()->select('id', 'nome', 'descricao', 'quantidade');
 
-        // Filtro por produto
-        if ($request->produto_id) {
-            $query->where('produto_id', $request->produto_id);
+        if ($request->filled('produto_id')) {
+            $query->where('id', $request->produto_id);
         }
 
-        // Filtro por centro de custo
-        if ($request->centro_custo_id) {
-            $query->where('centro_custo_id', $request->centro_custo_id);
-        }
-
-        $baixas = $query->orderBy('data_baixa', 'desc')->get();
-
-        // Agrupar por funcionário e centro de custo
-        $dadosAgrupados = $this->agruparBaixas($baixas);
-
-        // Calcular resumo
-        $resumo = $this->calcularResumo($baixas, $request);
+        $produtos = $query->orderBy('nome')->get()->map(function ($p) {
+            return [
+                'id' => (int) $p->id,
+                'nome' => (string) ($p->nome ?? ''),
+                'descricao' => (string) ($p->descricao ?? ''),
+                'quantidade' => (int) ($p->quantidade ?? 0),
+            ];
+        })->toArray();
 
         return response()->json([
             'success' => true,
-            'dados' => $dadosAgrupados,
-            'resumo' => $resumo,
-            'total_registros' => count($dadosAgrupados)
+            'dados' => $produtos,
+            'total_registros' => count($produtos)
         ]);
     }
 
@@ -95,6 +83,80 @@ class RelatorioEstoqueController extends Controller
         }
 
         return array_values($agrupados);
+    }
+
+    private function agruparPorCentroCustoProduto($baixas)
+    {
+        $agrupados = [];
+
+        foreach ($baixas as $baixa) {
+            $centroCustoId = $baixa->centro_custo_id ?? 0;
+            $centroCustoNome = $baixa->centroCusto->nome ?? 'Centro de Custo não informado';
+            $produtoId = $baixa->produto_id;
+                        $produtoNome = $baixa->produto->nome ?? 'Produto não identificado';
+            
+            // Chave do centro de custo
+            if (!isset($agrupados[$centroCustoId])) {
+                $agrupados[$centroCustoId] = [
+                    'centro_custo' => [
+                        'id' => $centroCustoId,
+                        'nome' => $centroCustoNome
+                    ],
+                    'produtos' => [],
+                    'total_centro_custo' => 0,
+                    'total_produtos_tipos' => 0
+                ];
+            }
+            
+            // Chave do produto dentro do centro de custo (forçar como integer para evitar duplicatas)
+            $produtoKey = (int)$produtoId;
+            
+            if (!isset($agrupados[$centroCustoId]['produtos'][$produtoKey])) {
+                $agrupados[$centroCustoId]['produtos'][$produtoKey] = [
+                    'produto' => [
+                        'id' => $produtoId,
+                        'nome' => $produtoNome,
+                        'descricao' => $baixa->produto->descricao ?? ''
+                    ],
+                    'quantidade_total' => 0,
+                    'movimentacoes_count' => 0,
+                    'periodo_primeira' => null,
+                    'periodo_ultima' => null
+                ];
+            }
+            
+            // Acumular totais
+            $agrupados[$centroCustoId]['produtos'][$produtoKey]['quantidade_total'] += $baixa->quantidade;
+            $agrupados[$centroCustoId]['produtos'][$produtoKey]['movimentacoes_count']++;
+            $agrupados[$centroCustoId]['total_centro_custo'] += $baixa->quantidade;
+            
+            // Controlar período das movimentações
+            $dataAtual = $baixa->data_baixa->format('d/m/Y');
+            if (!$agrupados[$centroCustoId]['produtos'][$produtoKey]['periodo_primeira']) {
+                $agrupados[$centroCustoId]['produtos'][$produtoKey]['periodo_primeira'] = $dataAtual;
+            }
+            $agrupados[$centroCustoId]['produtos'][$produtoKey]['periodo_ultima'] = $dataAtual;
+        }
+        
+        // Processar dados finais
+        foreach ($agrupados as &$centro) {
+            $centro['total_produtos_tipos'] = count($centro['produtos']);
+            
+            // Converter produtos de array associativo para array indexado e ordenar por quantidade
+            $produtosArray = array_values($centro['produtos']);
+            usort($produtosArray, function($a, $b) {
+                return $b['quantidade_total'] - $a['quantidade_total'];
+            });
+            $centro['produtos'] = $produtosArray;
+        }
+
+        // Ordenar centros de custo por total de saídas (maior primeiro)
+        $centrosArray = array_values($agrupados);
+        usort($centrosArray, function($a, $b) {
+            return $b['total_centro_custo'] - $a['total_centro_custo'];
+        });
+
+        return $centrosArray;
     }
 
     private function calcularResumo($baixas, $request)

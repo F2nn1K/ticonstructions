@@ -16,7 +16,7 @@ Sistema completo de gestão empresarial em Laravel com AdminLTE, incluindo Contr
 - Interface de aprovação com mensagens e prioridades
 - Layout de impressão otimizado
 
-### 📦 **Controle de Estoque (BRS)**
+### 📦 **Controle de Estoque (SIGO)**
 - Catálogo completo de produtos
 - Controle de baixas e saídas de materiais
 - Integração com centros de custo

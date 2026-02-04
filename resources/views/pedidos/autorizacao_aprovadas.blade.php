@@ -22,10 +22,14 @@
             <th>Nº Pedido</th>
             <th>Data Solicitação</th>
             <th>Solicitante</th>
+            <th>Aprovado por</th>
+            <th>Rota</th>
+            <th>Roteirização</th>
             <th>Itens</th>
             <th>Qtd Total</th>
             <th>Prioridade</th>
             <th>Centro Custo</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -61,11 +65,15 @@ function formatarDataBR(dataISO) {
 
 $(function(){ carregarAprovados(); });
 function carregarAprovados(){
-  $.get('/api/pedidos-aprovados-agrupados', function(resp){
+  const params = new URLSearchParams(window.location.search);
+  const data_ini = params.get('data_ini');
+  const data_fim = params.get('data_fim');
+  const qs = (data_ini && data_fim) ? (`?data_ini=${encodeURIComponent(data_ini)}&data_fim=${encodeURIComponent(data_fim)}`) : '';
+  $.get('/api/pedidos-aprovados-agrupados'+qs, function(resp){
     if(!resp.success) return; const grupos = resp.data || [];
     $('#badge-aprovadas').text(`${grupos.length} aprovadas`);
     const tbody = $('#tabela-aprovadas tbody'); tbody.empty();
-      if(grupos.length===0){ tbody.append(`<tr><td colspan="7" class="text-center text-muted" id="empty-row">Nenhum registro encontrado</td></tr>`); return; }
+      if(grupos.length===0){ tbody.append(`<tr><td colspan="10" class="text-center text-muted" id="empty-row">Nenhum registro encontrado</td></tr>`); return; }
     const esc = s=>String(s||'').replace(/[&<>\"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     grupos.forEach(function(g){
       const tr = `
@@ -73,13 +81,49 @@ function carregarAprovados(){
             <td><span class="badge badge-dark">${g.num_pedido||'—'}</span></td>
           <td>${formatarDataBR(g.data_solicitacao)}</td>
           <td>${esc(g.solicitante||'—')}</td>
+          <td>${esc(g.aprovador_nome||'—')}</td>
+          <td>${esc(g.rota_nome||'—')}</td>
+          <td>${esc(g.roteirizacao_nome||'—')}</td>
           <td>${g.itens} itens</td>
           <td>${g.quantidade_total||0}</td>
           <td><span class="badge badge-${g.prioridade}">${(g.prioridade||'').toUpperCase()}</span></td>
           <td>${esc(g.centro_custo_nome||'—')}</td>
+          <td class="text-nowrap">
+            <button class="btn btn-outline-secondary btn-sm" onclick="imprimirAprovado('${g.grupo_hash}')" title="Imprimir"><i class="fas fa-print"></i></button>
+          </td>
         </tr>`; tbody.append(tr);
     });
   });
+}
+
+// Imprimir na mesma aba (sem abrir nova tab)
+function imprimirAprovado(hash){
+  const url = `/relatorio-pc/imprimir/${hash}`;
+  try {
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    iframe.src = url;
+    iframe.onload = function(){
+      try {
+        setTimeout(function(){
+          iframe.contentWindow.focus();
+          iframe.contentWindow.print();
+          setTimeout(function(){ document.body.removeChild(iframe); }, 1500);
+        }, 300);
+      } catch(e) {
+        document.body.removeChild(iframe);
+        window.location.href = url;
+      }
+    };
+    document.body.appendChild(iframe);
+  } catch(e) {
+    window.location.href = url;
+  }
 }
 </script>
 @stop

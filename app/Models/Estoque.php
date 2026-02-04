@@ -14,12 +14,21 @@ class Estoque extends Model
     protected $fillable = [
         'nome',
         'descricao',
-        'quantidade'
+        'quantidade',
+        'ncm',
+        'codigo_barras',
+        'unidade',
+        'preco_custo'
     ];
     
     // Relacionamentos
     public function baixas()
     {
         return $this->hasMany(Baixa::class, 'produto_id');
+    }
+    
+    public function minMax()
+    {
+        return $this->hasOne(EstoqueMinMax::class, 'produto_id');
     }
 }

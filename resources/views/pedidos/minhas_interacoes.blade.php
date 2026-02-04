@@ -15,13 +15,16 @@
     <span class="text-muted small">Apenas pedidos feitos por você</span>
   </div>
   <div class="card-body p-0">
-    <div class="table-responsive">
+    <!-- Desktop/Tablet -->
+    <div class="d-none d-md-block table-responsive">
       <table class="table table-striped table-hover mb-0" id="tabela-meus-pedidos">
         <thead>
           <tr>
             <th>Nº Pedido</th>
             <th>Data</th>
             <th>Centro de Custo</th>
+            <th>Rota</th>
+            <th>Roteirização</th>
             <th>Prioridade</th>
             <th>Status</th>
             <th>Itens</th>
@@ -30,12 +33,17 @@
         </thead>
         <tbody>
           <tr>
-            <td colspan="7" class="text-center text-muted" id="empty-row">
+            <td colspan="9" class="text-center text-muted" id="empty-row">
               <i class="fas fa-info-circle fa-2x mb-2"></i><br>Nenhum pedido encontrado
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Mobile: lista de cartões com ação para ver interações -->
+    <div class="d-block d-md-none p-2">
+      <div id="listaPedidosMobile" class="list-group"></div>
     </div>
   </div>
 </div>
@@ -53,10 +61,12 @@
           <div class="col-md-6">
             <p class="mb-1"><strong>Data:</strong> <span id="md-data"></span></p>
             <p class="mb-1"><strong>Centro de Custo:</strong> <span id="md-cc"></span></p>
+            <p class="mb-1"><strong>Rota:</strong> <span id="md-rota"></span></p>
           </div>
           <div class="col-md-6">
             <p class="mb-1"><strong>Prioridade:</strong> <span id="md-prioridade"></span></p>
             <p class="mb-1"><strong>Status:</strong> <span id="md-status"></span></p>
+            <p class="mb-1"><strong>Roteirização:</strong> <span id="md-roteirizacao"></span></p>
           </div>
         </div>
         <hr/>
@@ -103,8 +113,10 @@ $(function(){ carregarPedidos(); });
 function carregarPedidos(){
   $.get('/api/pedidos/minhas-interacoes', function(resp){
     const tbody = $('#tabela-meus-pedidos tbody'); tbody.empty();
+    const lista = $('#listaPedidosMobile'); lista.empty();
     if(!resp.success || !resp.data || resp.data.length === 0){
-      tbody.append('<tr><td colspan="7" class="text-center text-muted">Nenhum pedido encontrado</td></tr>');
+      tbody.append('<tr><td colspan="9" class="text-center text-muted">Nenhum pedido encontrado</td></tr>');
+      lista.html('<div class="list-group-item text-center text-muted">Nenhum pedido encontrado</div>');
       return;
     }
 
@@ -115,6 +127,8 @@ function carregarPedidos(){
           <td><span class="badge badge-dark">${p.num_pedido}</span></td>
           <td>${formatarDataBR(p.data_solicitacao)}</td>
           <td>${p.centro_custo_nome||'—'}</td>
+          <td>${p.rota_nome||'—'}</td>
+          <td>${p.roteirizacao_nome||'—'}</td>
           <td><span class="badge badge-${p.prioridade}">${(p.prioridade||'').toUpperCase()}</span></td>
           <td>${(p.aprovacao||'pendente').toUpperCase()}</td>
           <td>${itensResumo}</td>
@@ -125,6 +139,30 @@ function carregarPedidos(){
           </td>
         </tr>`;
       tbody.append(tr);
+
+      // card mobile
+      const card = `
+        <div class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="font-weight-bold">${p.num_pedido}</div>
+              <small class="text-muted">${formatarDataBR(p.data_solicitacao)}</small>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick='abrirInteracoes(${JSON.stringify(p)})'><i class="fas fa-comments mr-1"></i> Ver</button>
+          </div>
+          <div class="mt-2">
+            <div class="d-flex justify-content-between">
+              <div><small>Centro de Custo</small><br><strong>${p.centro_custo_nome||'—'}</strong></div>
+              <div class="text-right"><small>Status</small><br><strong>${(p.aprovacao||'pendente').toUpperCase()}</strong></div>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+              <div><small>Rota</small><br>${p.rota_nome||'—'}</div>
+              <div class="text-right"><small>Prioridade</small><br><span class="badge badge-${p.prioridade}">${(p.prioridade||'').toUpperCase()}</span></div>
+            </div>
+            <div class="mt-1"><small>Itens</small><br>${itensResumo}</div>
+          </div>
+        </div>`;
+      lista.append(card);
     });
   });
 }
@@ -133,8 +171,10 @@ function abrirInteracoes(p){
   $('#md-numero').text(p.num_pedido);
   $('#md-data').text(formatarDataBR(p.data_solicitacao));
   $('#md-cc').text(p.centro_custo_nome||'—');
+  $('#md-rota').text(p.rota_nome||'—');
   $('#md-prioridade').text((p.prioridade||'').toUpperCase());
   $('#md-status').text((p.aprovacao||'pendente').toUpperCase());
+  $('#md-roteirizacao').text(p.roteirizacao_nome||'—');
   $('#md-itens').html(p.itens.map(i=>`<li class="list-group-item d-flex justify-content-between"><span>${i.produto_nome}</span><span class="badge badge-secondary">${i.quantidade}</span></li>`).join(''));
 
   // Carregar interações do primeiro item (representativo) — pode ser refinado para somar todas

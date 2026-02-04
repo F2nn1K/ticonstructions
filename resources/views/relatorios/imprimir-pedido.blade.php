@@ -20,24 +20,52 @@
             margin: 20px;
         }
 
-        .header {
-            text-align: center;
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 20px;
-            border-bottom: 2px solid #2c3e50;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
         }
 
-        .header h1 {
-            font-size: 24px;
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .company-info h1 {
+            font-size: 22px;
+            font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 5px;
+            margin: 0 0 5px 0;
+            letter-spacing: 0.5px;
         }
 
-        .header .subtitle {
+        .company-info .subtitle {
             font-size: 14px;
             color: #7f8c8d;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .report-info {
+            text-align: right;
+            font-size: 11px;
+            color: #5a6c7d;
+        }
+
+        .report-info .date {
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 8px;
         }
 
         .info-section {
@@ -162,12 +190,12 @@
 
 
         .footer {
-            margin-top: 30px;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px solid #bdc3c7;
             text-align: center;
             font-size: 10px;
-            color: #95a5a6;
-            border-top: 1px solid #bdc3c7;
-            padding-top: 10px;
+            color: #7f8c8d;
         }
 
         .data-impressao {
@@ -183,7 +211,7 @@
                 font-size: 11px;
             }
             
-            .header {
+            .header-container {
                 margin-bottom: 15px;
                 padding-bottom: 8px;
             }
@@ -205,13 +233,18 @@
     </style>
 </head>
 <body>
-    <div class="data-impressao">
-        Impresso em: {{ now()->format('d/m/Y H:i:s') }}
-    </div>
-
-    <div class="header">
-        <h1>Detalhes do Pedido</h1>
-        <div class="subtitle">Sistema de Pedidos de Compras</div>
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="/img/brs-logo.png" alt="BRS Logo" class="logo" />
+            <div class="company-info">
+                <h1>DETALHES DO PEDIDO</h1>
+                <p class="subtitle">Sistema de Pedidos de Compras</p>
+            </div>
+        </div>
+        <div class="report-info">
+            <div class="date">Emitido em: {{ now()->format('d/m/Y H:i:s') }}</div>
+            <div>Sistema SIGO - BRS Transportes</div>
+        </div>
     </div>
 
     <div class="info-section">
@@ -236,6 +269,14 @@
                     </span>
                 </div>
             </div>
+            <div class="info-item">
+                <div class="info-label">Rota</div>
+                <div class="info-value">{{ $cabecalho->rota_nome ?? '—' }}</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Roteirização</div>
+                <div class="info-value">{{ $cabecalho->roteirizacao_nome ?? '—' }}</div>
+            </div>
         </div>
         
         @if($cabecalho->observacao)
@@ -252,6 +293,7 @@
             <tr>
                 <th class="numero">#</th>
                 <th>Produto</th>
+                <th class="quantidade">Código</th>
                 <th class="quantidade">Quantidade</th>
             </tr>
         </thead>
@@ -260,6 +302,7 @@
             <tr>
                 <td class="numero">{{ $index + 1 }}</td>
                 <td>{{ $item->produto_nome }}</td>
+                <td class="quantidade">{{ $item->codigo ?? '—' }}</td>
                 <td class="quantidade">{{ $item->quantidade }}</td>
             </tr>
             @endforeach
@@ -269,8 +312,7 @@
 
 
     <div class="footer">
-        <div>Sistema Interno - Relatório de Pedidos de Compras</div>
-        <div>Este documento foi gerado automaticamente em {{ now()->format('d/m/Y \à\s H:i:s') }}</div>
+        <p>Sistema Integrado de Gestão Operacional (SIGO) - BRS Transportes</p>
     </div>
 
     <script>

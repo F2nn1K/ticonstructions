@@ -19,7 +19,12 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [
+        'https://ascsistemas.com.br',
+        'https://www.ascsistemas.com.br',
+        'http://localhost',
+        'http://127.0.0.1',
+    ],
 
     'allowed_origins_patterns' => [],
 
