@@ -94,6 +94,9 @@ Route::middleware(['auth'])->group(function () {
     // CONTROLE DE GASTOS — lançamentos consolidados
     // =============================================
     Route::prefix('gastos')->name('gastos.')->group(function () {
+        Route::get('/hint-descricao', [GastosController::class, 'hintDescricao'])->name('hint-descricao');
+        Route::get('/catalogo-itens/buscar', [GastosController::class, 'catalogoBuscar'])->name('catalogo.buscar');
+        Route::post('/catalogo-itens', [GastosController::class, 'catalogoUpsert'])->name('catalogo.upsert');
         Route::get('/',           [GastosController::class, 'index'])->name('index');
         Route::get('/criar',      [GastosController::class, 'create'])->name('create');
         Route::post('/',          [GastosController::class, 'store'])->name('store');

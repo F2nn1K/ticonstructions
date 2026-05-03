@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Obra;
 use App\Models\LancamentoObra;
+use App\Models\CatalogoItemGasto;
 use App\Models\CategoriaMaterial;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
@@ -83,6 +84,173 @@ class GastosController extends Controller
         return view('gastos.create', compact('obras', 'categorias', 'fornecedores', 'obraSel'));
     }
 
+    /** Catálogo da obra primeiro; senão último lançamento com texto igual ao hint. */
+    public function hintDescricao(Request $request)
+    {
+        $desc = trim((string) $request->query('descricao', ''));
+        if (mb_strlen($desc) < 2) {
+            return response()->json(null);
+        }
+
+        $normCatalogo = CatalogoItemGasto::normalizeDescricao($desc);
+        $obraId       = $request->filled('obra_id') ? (int) $request->query('obra_id') : null;
+
+        if ($obraId) {
+            $catalogo = CatalogoItemGasto::where('obra_id', $obraId)
+                ->where('descricao_normalizada', $normCatalogo)
+                ->first();
+
+            if ($catalogo) {
+                return response()->json([
+                    'source'               => 'catalogo',
+                    'categoria_id'         => $catalogo->categoria_id,
+                    'subcategoria_id'      => $catalogo->subcategoria_id,
+                    'tipo'                 => $catalogo->tipo,
+                    'unidade'              => $catalogo->unidade,
+                    'quantidade_padrao'    => $catalogo->quantidade_padrao,
+                ]);
+            }
+        }
+
+        $normLanc = mb_strtolower($desc);
+        $query    = LancamentoObra::query()
+            ->whereNull('deleted_at')
+            ->whereRaw('LOWER(TRIM(descricao)) = ?', [$normLanc]);
+
+        if ($obraId) {
+            $query->where('obra_id', $obraId);
+        }
+
+        $last = $query->orderByDesc('created_at')->first([
+            'categoria_id', 'subcategoria_id', 'tipo', 'unidade',
+        ]);
+
+        return $last ? response()->json(array_merge($last->toArray(), ['source' => 'lancamento'])) : response()->json(null);
+    }
+
+    /** Autocomplete JSON: lista itens salvos por obra para a descrição digitada. */
+    public function catalogoBuscar(Request $request)
+    {
+        $obraId = (int) $request->query('obra_id', 0);
+        $term   = CatalogoItemGasto::normalizeDescricao((string) $request->query('q', ''));
+        if ($obraId < 1 || mb_strlen($term) < 2) {
+            return response()->json([]);
+        }
+
+        // norm já em $term; LIKE seguro contra % e _
+        $likeWildcard = '%' . str_replace(['%', '_'], ['\\%', '\\_'], $term) . '%';
+        $likePrefix   = $term . '%';
+
+        $lista = CatalogoItemGasto::where('obra_id', $obraId)
+            ->where(function ($q) use ($likePrefix, $likeWildcard) {
+                $q->where('descricao_normalizada', 'LIKE', $likePrefix)
+                    ->orWhere('descricao_normalizada', 'LIKE', $likeWildcard);
+            })
+            ->orderByRaw(
+                '(CASE WHEN descricao_normalizada = ? THEN 0 WHEN descricao_normalizada LIKE ? THEN 1 ELSE 2 END), CHAR_LENGTH(descricao_normalizada), descricao ASC',
+                [$term, $term.'%']
+            )
+            ->limit(20)
+            ->get([
+                'id',
+                'descricao',
+                'categoria_id',
+                'subcategoria_id',
+                'tipo',
+                'unidade',
+                'quantidade_padrao',
+            ]);
+
+        return response()->json($lista);
+    }
+
+    /** Cria ou atualiza registro fixo por obra + descrição normalizada (insumo/memória). */
+    public function catalogoUpsert(Request $request)
+    {
+        $validated = $request->validate([
+            'obra_id'               => 'required|exists:obras,id',
+            'descricao'             => 'required|string|min:2|max:255',
+            'categoria_id'          => 'required|exists:categorias_material,id',
+            'subcategoria_id'       => 'nullable|exists:subcategorias_material,id',
+            'tipo'                  => 'required|in:material,servico,mao_de_obra,equipamento,terceiro',
+            'unidade'               => 'nullable|string|max:32',
+            'quantidade_padrao'     => 'nullable|numeric|min:0',
+        ]);
+
+        $item = $this->persistCatalogoItem(
+            (int) $validated['obra_id'],
+            $validated['descricao'],
+            [
+                'categoria_id'         => (int) $validated['categoria_id'],
+                'subcategoria_id'      => isset($validated['subcategoria_id']) && $validated['subcategoria_id'] !== ''
+                    ? (int) $validated['subcategoria_id'] : null,
+                'tipo'                 => $validated['tipo'],
+                'unidade'              => $validated['unidade'] ?? null,
+                'quantidade_padrao'    => isset($validated['quantidade_padrao']) ? $validated['quantidade_padrao'] : null,
+            ]
+        );
+
+        return response()->json($item->only([
+            'id',
+            'descricao',
+            'categoria_id',
+            'subcategoria_id',
+            'tipo',
+            'unidade',
+            'quantidade_padrao',
+        ]));
+    }
+
+    /** Usado pelo store() após criar o lançamento. */
+    protected function persistCatalogoFromGastoRequest(
+        int $obraId,
+        Request $request,
+        bool $modoValorDireto,
+        mixed $quantidade,
+        ?string $unidade,
+    ): ?CatalogoItemGasto {
+        if (mb_strlen(CatalogoItemGasto::normalizeDescricao((string) $request->descricao)) < 2 || !$request->categoria_id) {
+            return null;
+        }
+
+        $qPadrao = (!$modoValorDireto && $quantidade !== null && $quantidade !== '')
+            ? round((float) $quantidade, 3)
+            : null;
+
+        return $this->persistCatalogoItem((int) $obraId, (string) $request->descricao, [
+            'categoria_id'         => (int) $request->categoria_id,
+            'subcategoria_id'      => $request->filled('subcategoria_id') ? (int) $request->subcategoria_id : null,
+            'tipo'                 => (string) $request->tipo,
+            'unidade'              => $unidade ?: null,
+            'quantidade_padrao'    => $qPadrao,
+        ]);
+    }
+
+    protected function persistCatalogoItem(int $obraId, string $descricao, array $payload): CatalogoItemGasto
+    {
+        $norm = CatalogoItemGasto::normalizeDescricao($descricao);
+        /** @var CatalogoItemGasto $row */
+        $row = CatalogoItemGasto::firstOrNew([
+            'obra_id'                 => $obraId,
+            'descricao_normalizada'    => $norm,
+        ]);
+
+        if (!$row->exists) {
+            $row->created_by = Auth::id();
+        }
+        $row->updated_by           = Auth::id();
+        $row->descricao             = mb_substr(trim(preg_replace('/\s+/u', ' ', $descricao)), 0, 255);
+        $row->categoria_id          = $payload['categoria_id'];
+        $row->subcategoria_id       = $payload['subcategoria_id'] ?? null;
+        $row->tipo                  = $payload['tipo'];
+        $row->unidade               = $payload['unidade'] ?? null;
+        $row->quantidade_padrao = $payload['quantidade_padrao'] ?? null;
+
+        $row->save();
+
+        return $row->fresh();
+    }
+
     public function store(Request $request)
     {
         $modo = $request->input('modo_lancamento', 'por_unidade');
@@ -119,12 +287,12 @@ class GastosController extends Controller
         } elseif ($modo === 'por_hora') {
             $quantidade         = $request->quantidade;
             $unidade            = 'h';
-            $custoUnitOrcado    = $request->custo_unitario_orcado ?: null;
+            $custoUnitOrcado    = null;
             $custoUnitReal      = $request->custo_unitario_real;
         } else {
             $quantidade         = $request->quantidade;
             $unidade            = $request->unidade;
-            $custoUnitOrcado    = $request->custo_unitario_orcado ?: null;
+            $custoUnitOrcado    = null;
             $custoUnitReal      = $request->custo_unitario_real;
         }
 
@@ -143,7 +311,7 @@ class GastosController extends Controller
             'tipo'                     => $request->tipo,
             'modo_lancamento'          => $modo,
             'descricao'                => $request->descricao,
-            'produto_codigo'           => $request->produto_codigo,
+            'produto_codigo'           => null,
             'fornecedor'               => $nomeFornecedor,
             'nota_fiscal'              => $request->nota_fiscal,
             'quantidade'               => $quantidade,
@@ -157,6 +325,8 @@ class GastosController extends Controller
             'observacoes'              => $request->observacoes,
             'created_by'               => Auth::id(),
         ]);
+
+        $this->persistCatalogoFromGastoRequest((int) $obra->id, $request, $modoValorDireto, $quantidade, $unidade);
 
         $msg = __('Custo registrado na fase ":fase" da obra ":obra".', ['fase' => $faseAtiva->nome, 'obra' => $obra->nome]);
 

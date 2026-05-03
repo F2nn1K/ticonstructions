@@ -140,17 +140,10 @@
             </div>
 
             {{-- Data do Lançamento --}}
-            <div class="col-md-3 form-group">
+            <div class="col-md-5 form-group">
                 <label class="font-weight-bold">{{ __('Data do Lançamento') }} <span class="text-danger">*</span></label>
                 <input type="date" name="data_lancamento" class="form-control"
                        value="{{ old('data_lancamento', now()->toDateString()) }}" required>
-            </div>
-
-            {{-- Prev. Pagamento --}}
-            <div class="col-md-2 form-group">
-                <label class="font-weight-bold">{{ __('Prev. Pagamento') }}</label>
-                <input type="date" name="data_prevista_pagamento" class="form-control"
-                       value="{{ old('data_prevista_pagamento') }}">
             </div>
         </div>
 
