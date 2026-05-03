@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\OrdensCompraAuditoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -706,15 +707,17 @@ class SuprimentosController extends Controller
             return response()->json([]);
         }
         
+        $like = '%'.$termo.'%';
+
         $fornecedores = DB::table('fornecedores')
             ->where('ativo', 1)
-            ->where(function($q) use ($termo) {
-                $q->where('razao_social', 'like', $termo . '%')
-                  ->orWhere('nome_fantasia', 'like', $termo . '%')
-                  ->orWhere('cnpj', 'like', $termo . '%');
+            ->where(function ($q) use ($like) {
+                $q->where('razao_social', 'like', $like)
+                    ->orWhere('nome_fantasia', 'like', $like)
+                    ->orWhere('cnpj', 'like', $like);
             })
             ->orderBy('razao_social')
-            ->limit(10)
+            ->limit(30)
             ->get(['id', 'razao_social', 'nome_fantasia', 'cnpj']);
         
         return response()->json($fornecedores);
@@ -998,6 +1001,11 @@ class SuprimentosController extends Controller
             if (!$solicitacao) {
                 return response()->json(['success' => false, 'message' => 'Solicitação não encontrada!'], 404);
             }
+
+            // Justificativa = observações da cotação (visível para todos que acessam o detalhe)
+            $observacoes = DB::table('cotacoes')->where('id', $id)->value('observacoes');
+            $solicitacao->justificativa = $observacoes;
+            $solicitacao->observacoes = $observacoes;
             
             // Buscar itens na tabela cotacao_itens
             $itens = DB::table('cotacao_itens')
@@ -1327,6 +1335,27 @@ class SuprimentosController extends Controller
                 return response()->json(['error' => 'Cotação não encontrada'], 404);
             }
             
+            // Buscar nome do solicitante
+            if ($cotacao->solicitante_id) {
+                $solicitante = DB::table('users')->where('id', $cotacao->solicitante_id)->first();
+                $cotacao->solicitante_nome = $solicitante ? $solicitante->name : null;
+            } else {
+                $cotacao->solicitante_nome = null;
+            }
+            
+            // Buscar nome da obra (centro de custo) e descrição do serviço via ordem de serviço
+            $cotacao->obra_nome = null;
+            $cotacao->descricao_servico = null;
+            if ($cotacao->ordem_servico_id) {
+                $ordemServico = DB::table('ordens_servico as os')
+                    ->leftJoin('centros_custo as cc', 'os.centro_custo_id', '=', 'cc.id')
+                    ->where('os.id', $cotacao->ordem_servico_id)
+                    ->select('cc.nome as centro_custo_nome', 'os.descricao as descricao_servico')
+                    ->first();
+                $cotacao->obra_nome = $ordemServico ? $ordemServico->centro_custo_nome : null;
+                $cotacao->descricao_servico = $ordemServico ? $ordemServico->descricao_servico : null;
+            }
+            
             $itens = collect([]);
             try {
                 $itens = DB::table('cotacao_itens')->where('cotacao_id', $id)->get();
@@ -1412,6 +1441,46 @@ class SuprimentosController extends Controller
                 return $item;
             });
             
+            // Buscar também fornecedores das OCs vinculadas (que podem não estar em cotacao_fornecedores)
+            $fornecedoresOCs = DB::table('ordens_compra as oc')
+                ->leftJoin('fornecedores as f', 'oc.fornecedor_id', '=', 'f.id')
+                ->where('oc.cotacao_id', $id)
+                ->select(
+                    'oc.id as oc_id',
+                    'oc.numero as oc_numero',
+                    'oc.fornecedor_id',
+                    'oc.valor_total',
+                    'oc.status as oc_status',
+                    'f.razao_social',
+                    'f.nome_fantasia'
+                )
+                ->get();
+            
+            // IDs de fornecedores já na lista
+            $fornecedoresIdsExistentes = $fornecedores->pluck('fornecedor_id')->toArray();
+            
+            // Adicionar fornecedores das OCs que não estão na lista
+            foreach ($fornecedoresOCs as $f) {
+                if (!in_array($f->fornecedor_id, $fornecedoresIdsExistentes)) {
+                    $fornecedores->push((object)[
+                        'id' => $f->oc_id,
+                        'fornecedor_id' => $f->fornecedor_id,
+                        'razao_social' => $f->nome_fantasia ?: $f->razao_social,
+                        'valor_total' => $f->valor_total,
+                        'prazo_entrega' => null,
+                        'condicao_pagamento' => null,
+                        'observacao' => 'OC: ' . $f->oc_numero,
+                        'arquivo_orcamento' => null,
+                        'status' => $f->oc_status == 'recebida' ? 'recebido' : ($f->valor_total ? 'cotado' : 'pendente'),
+                        'selecionado' => 0,
+                        'itens' => [],
+                        'origem_oc' => true,
+                        'oc_numero' => $f->oc_numero
+                    ]);
+                    $fornecedoresIdsExistentes[] = $f->fornecedor_id;
+                }
+            }
+            
             return response()->json([
                 'cotacao' => $cotacao,
                 'itens' => $itens,
@@ -1475,6 +1544,15 @@ class SuprimentosController extends Controller
             // Buscar número da cotação para nome do arquivo
             $cotacao = DB::table('cotacoes')->where('id', $id)->first();
             $numeroCotacao = $cotacao ? $cotacao->numero : 'COT-' . $id;
+            
+            // Buscar centro de custo da cotação (via O.S.)
+            $centroCustoId = null;
+            if ($cotacao && $cotacao->ordem_servico_id) {
+                $os = DB::table('ordens_servico')->where('id', $cotacao->ordem_servico_id)->first();
+                if ($os && $os->centro_custo_id) {
+                    $centroCustoId = $os->centro_custo_id;
+                }
+            }
             
             foreach ($valores as $index => $item) {
                 // Verificar se já existe o registro
@@ -1736,7 +1814,7 @@ class SuprimentosController extends Controller
                         
                         // Criar Ordem de Compra
                         $prazoEntrega = $fc->prazo_entrega ?? 7;
-                        $ocId = DB::table('ordens_compra')->insertGetId([
+                        $dadosOC = [
                             'numero' => $numeroOC,
                             'cotacao_id' => $id,
                             'fornecedor_id' => $fc->fornecedor_id,
@@ -1745,7 +1823,12 @@ class SuprimentosController extends Controller
                             'data_emissao' => now()->format('Y-m-d'),
                             'data_previsao' => now()->addDays($prazoEntrega)->format('Y-m-d'),
                             'created_at' => now(),
-                        ]);
+                        ];
+                        if ($centroCustoId) {
+                            $dadosOC['centro_custo_id'] = $centroCustoId;
+                        }
+                        OrdensCompraAuditoria::mergeCriadorUsuario($dadosOC);
+                        $ocId = DB::table('ordens_compra')->insertGetId($dadosOC);
                         
                         // Copiar itens para a O.C.
                         foreach ($itensFornecedor as $item) {
@@ -1848,7 +1931,7 @@ class SuprimentosController extends Controller
                     
                     // Criar Ordem de Compra com status "pendente" para aprovação
                     $prazoEntrega = $vencedor->prazo_entrega ?? 7;
-                    $ocId = DB::table('ordens_compra')->insertGetId([
+                    $dadosOC = [
                         'numero' => $numeroOC,
                         'cotacao_id' => $id,
                         'fornecedor_id' => $vencedor->fornecedor_id,
@@ -1857,7 +1940,11 @@ class SuprimentosController extends Controller
                         'data_emissao' => now()->format('Y-m-d'),
                         'data_previsao' => now()->addDays($prazoEntrega)->format('Y-m-d'),
                         'created_at' => now(),
-                    ]);
+                    ];
+                    if ($centroCustoId) {
+                        $dadosOC['centro_custo_id'] = $centroCustoId;
+                    }
+                    $ocId = DB::table('ordens_compra')->insertGetId($dadosOC);
                     
                     // Copiar itens da cotação para a O.C.
                     $itensCotacao = DB::table('cotacao_itens')->where('cotacao_id', $id)->get();
@@ -1918,6 +2005,15 @@ class SuprimentosController extends Controller
                 return response()->json(['success' => false, 'message' => 'Cotação não encontrada!'], 404);
             }
             
+            // Buscar centro de custo da cotação (via O.S.)
+            $centroCustoId = null;
+            if ($cotacao->ordem_servico_id) {
+                $os = DB::table('ordens_servico')->where('id', $cotacao->ordem_servico_id)->first();
+                if ($os && $os->centro_custo_id) {
+                    $centroCustoId = $os->centro_custo_id;
+                }
+            }
+            
             // Buscar fornecedores com valor cadastrado
             $fornecedoresCotados = DB::table('cotacao_fornecedores')
                 ->where('cotacao_id', $id)
@@ -1962,6 +2058,23 @@ class SuprimentosController extends Controller
             });
             
             if ($fornecedoresPendentes->count() == 0) {
+                // Verificar quantas OCs já foram geradas
+                $totalOCs = count($ocsExistentes);
+                
+                // Se há OCs geradas, a cotação pode ser finalizada
+                if ($totalOCs > 0) {
+                    // Atualizar status da cotação para finalizada
+                    DB::table('cotacoes')->where('id', $id)->update([
+                        'status' => 'finalizada',
+                        'updated_at' => now()
+                    ]);
+                    
+                    return response()->json([
+                        'success' => true, 
+                        'message' => 'Cotação finalizada! ' . $totalOCs . ' O.C.(s) já foram geradas anteriormente.'
+                    ]);
+                }
+                
                 return response()->json([
                     'success' => false, 
                     'message' => 'Todas as O.C.s já foram geradas para esta cotação! Verifique a lista de Ordens de Compra.'
@@ -2010,7 +2123,7 @@ class SuprimentosController extends Controller
                 
                 // Criar Ordem de Compra
                 $prazoEntrega = $fc->prazo_entrega ?? 7;
-                $ocId = DB::table('ordens_compra')->insertGetId([
+                $dadosOC = [
                     'numero' => $numeroOC,
                     'cotacao_id' => $id,
                     'fornecedor_id' => $fc->fornecedor_id,
@@ -2019,7 +2132,12 @@ class SuprimentosController extends Controller
                     'data_emissao' => now()->format('Y-m-d'),
                     'data_previsao' => now()->addDays($prazoEntrega)->format('Y-m-d'),
                     'created_at' => now(),
-                ]);
+                ];
+                if ($centroCustoId) {
+                    $dadosOC['centro_custo_id'] = $centroCustoId;
+                }
+                OrdensCompraAuditoria::mergeCriadorUsuario($dadosOC);
+                $ocId = DB::table('ordens_compra')->insertGetId($dadosOC);
                 
                 // Copiar itens para a O.C.
                 foreach ($itensFornecedor as $item) {
@@ -2233,9 +2351,29 @@ class SuprimentosController extends Controller
             $dataVencimento = $oc->data_previsao ?? now()->addDays(7)->format('Y-m-d');
             $dataEmissao = now()->format('Y-m-d');
             
+            // Buscar itens da OC para descrição resumida
+            $itensOC = DB::table('ordem_compra_itens')->where('ordem_compra_id', $id)->get();
+            
+            // Se não tem itens na OC, buscar da cotação
+            if ($itensOC->isEmpty() && $oc->cotacao_id) {
+                $itensOC = DB::table('cotacao_itens')->where('cotacao_id', $oc->cotacao_id)->get();
+            }
+            
+            // Montar descrição com itens resumidos
+            $descricaoItens = '';
+            if ($itensOC->count() > 0) {
+                $nomesProdutos = $itensOC->take(3)->pluck('produto')->toArray();
+                $descricaoItens = implode(', ', $nomesProdutos);
+                if ($itensOC->count() > 3) {
+                    $descricaoItens .= ' (+' . ($itensOC->count() - 3) . ')';
+                }
+            } else {
+                $descricaoItens = $cotacao->descricao ?? 'Compra de materiais';
+            }
+            
             // Montar dados dinamicamente verificando colunas existentes
             $contaPagarData = [
-                'descricao' => 'OC ' . $oc->numero . ' - ' . ($cotacao->descricao ?? 'Compra de materiais'),
+                'descricao' => $descricaoItens,
                 'status' => 'pendente',
                 'ordem_compra_id' => $id,
                 'created_at' => now(),
@@ -2280,6 +2418,11 @@ class SuprimentosController extends Controller
                 $contaPagarData['observacoes'] = $observacaoCotacao;
             }
             
+            // Adicionar centro de custo da OC
+            if (in_array('centro_custo_id', $columns) && $oc->centro_custo_id) {
+                $contaPagarData['centro_custo_id'] = $oc->centro_custo_id;
+            }
+            
             // Verificar se há parcelas definidas para este fornecedor (via cotacao_fornecedores)
             $numeroParcelas = 1;
             if ($oc->cotacao_id) {
@@ -2305,7 +2448,7 @@ class SuprimentosController extends Controller
                     $contaPagarDataParcela = $contaPagarData;
                     
                     // Ajustar descrição para incluir número da parcela
-                    $contaPagarDataParcela['descricao'] = 'OC ' . $oc->numero . ' - Parcela ' . ($i + 1) . '/' . $numeroParcelas . ' - ' . ($cotacao->descricao ?? 'Compra de materiais');
+                    $contaPagarDataParcela['descricao'] = 'Parcela ' . ($i + 1) . '/' . $numeroParcelas . ' - ' . $descricaoItens;
                     
                     // Ajustar valores
                     if (in_array('valor', $columns)) {
@@ -2595,7 +2738,7 @@ class SuprimentosController extends Controller
                 }
             }
             
-            $id = DB::table('ordens_compra')->insertGetId([
+            $dadosOC = [
                 'numero' => $numero,
                 'fornecedor_id' => $request->fornecedor_id,
                 'data_emissao' => $request->data_oc ?? now()->format('Y-m-d'),
@@ -2604,7 +2747,12 @@ class SuprimentosController extends Controller
                 'status' => 'pendente',
                 'observacoes' => $request->observacoes,
                 'created_at' => now(),
-            ]);
+            ];
+            if ($request->centro_custo_id) {
+                $dadosOC['centro_custo_id'] = $request->centro_custo_id;
+            }
+            OrdensCompraAuditoria::mergeCriadorUsuario($dadosOC);
+            $id = DB::table('ordens_compra')->insertGetId($dadosOC);
             
             // Inserir itens
             if ($request->itens) {
@@ -2648,17 +2796,30 @@ class SuprimentosController extends Controller
                 ->leftJoin('fornecedores as f', 'oc.fornecedor_id', '=', 'f.id')
                 ->leftJoin('cotacoes as c', 'oc.cotacao_id', '=', 'c.id')
                 ->leftJoin('ordens_servico as os', 'c.ordem_servico_id', '=', 'os.id')
-                ->leftJoin('centros_custo as cc', 'os.centro_custo_id', '=', 'cc.id')
-                ->select(
-                    'oc.*', 
-                    'f.razao_social as fornecedor', 
-                    'c.numero as cotacao_numero',
-                    'c.descricao as descricao',
-                    'cc.nome as centro_custo',
-                    'cc.endereco as cc_endereco',
-                    'os.cidade as os_cidade',
-                    'os.estado as os_estado'
-                );
+                ->leftJoin('centros_custo as cc_os', 'os.centro_custo_id', '=', 'cc_os.id')
+                ->leftJoin('centros_custo as cc_oc', 'oc.centro_custo_id', '=', 'cc_oc.id');
+
+            if (\Schema::hasColumn('ordens_compra', 'created_by_user_id')) {
+                $query->leftJoin('users as uc', 'oc.created_by_user_id', '=', 'uc.id');
+            }
+
+            $selectOc = [
+                'oc.*',
+                'f.razao_social as fornecedor',
+                'c.numero as cotacao_numero',
+                'c.descricao as descricao',
+                DB::raw('COALESCE(cc_oc.nome, cc_os.nome) as centro_custo'),
+                DB::raw('COALESCE(cc_oc.endereco, cc_os.endereco) as cc_endereco'),
+                'os.cidade as os_cidade',
+                'os.estado as os_estado',
+            ];
+            if (\Schema::hasColumn('ordens_compra', 'created_by_user_id')) {
+                $selectOc[] = 'uc.name as criador_nome';
+            } else {
+                $selectOc[] = DB::raw('NULL as criador_nome');
+            }
+
+            $query->select($selectOc);
             
             // Filtro por data inicial
             if ($request->filled('data_inicio')) {
@@ -2680,9 +2841,13 @@ class SuprimentosController extends Controller
                 $query->where('oc.fornecedor_id', $request->fornecedor_id);
             }
             
-            // Filtro por centro de custo (obra)
+            // Filtro por centro de custo (obra) - considera tanto o CC direto da OC quanto o da O.S.
             if ($request->filled('centro_custo_id')) {
-                $query->where('cc.id', $request->centro_custo_id);
+                $ccId = $request->centro_custo_id;
+                $query->where(function($q) use ($ccId) {
+                    $q->where('oc.centro_custo_id', $ccId)
+                      ->orWhere('cc_os.id', $ccId);
+                });
             }
             
             // Filtro por valor máximo
@@ -2695,8 +2860,24 @@ class SuprimentosController extends Controller
             
             $ordens = $query->orderBy('oc.data_emissao', 'desc')->get();
             
+            // Buscar IDs de OCs que vieram de prestadores (terceiros)
+            $ocsPrestadores = DB::table('ordens_servico_prestadores')
+                ->whereNotNull('ordem_compra_id')
+                ->pluck('ordem_compra_id')
+                ->toArray();
+            
             // Extrair município/UF do endereço do centro de custo e buscar produtos
             foreach ($ordens as $oc) {
+                // Verificar se é OC de terceiro (prestador de serviço)
+                $oc->tipo_origem = null;
+                if ($oc->cotacao_id) {
+                    $oc->tipo_origem = 'cotacao';
+                } elseif (in_array($oc->id, $ocsPrestadores)) {
+                    $oc->tipo_origem = 'terceiro';
+                } else {
+                    $oc->tipo_origem = 'manual';
+                }
+                
                 $oc->municipio_uf = null;
                 if (!empty($oc->cc_endereco)) {
                     // Tentar extrair "CIDADE/UF" do final do endereço (formato: "RUA..., CIDADE/UF")
@@ -2843,6 +3024,35 @@ class SuprimentosController extends Controller
     // APIs - RECEBIMENTOS
     // ============================================
     
+    /**
+     * Quantidade no recebimento (aceita vírgula decimal estilo BR).
+     */
+    protected function parseQuantidadeRecebimentoItem($value): float
+    {
+        if ($value === null || $value === '') {
+            return 0.0;
+        }
+        if (is_numeric($value)) {
+            return (float) $value;
+        }
+        $s = str_replace([' ', ','], ['', '.'], (string) $value);
+
+        return (float) $s;
+    }
+
+    /**
+     * Unidade normalizada para o cadastro de estoque.
+     */
+    protected function normalizarUnidadeRecebimento(?string $u, string $fallback = 'UN'): string
+    {
+        $u = trim((string) $u);
+        if ($u === '') {
+            return $fallback;
+        }
+
+        return strtoupper(mb_substr($u, 0, 20));
+    }
+    
     public function storeRecebimento(Request $request)
     {
         try {
@@ -2900,13 +3110,14 @@ class SuprimentosController extends Controller
             
             foreach ($itens as $item) {
                 $produtoId = $item['produto_id'] ?? null;
-                $quantidade = intval($item['quantidade'] ?? 1);
+                $quantidade = $this->parseQuantidadeRecebimentoItem($item['quantidade'] ?? 0);
                 $descricao = $item['descricao'] ?? 'Item';
-                $unidade = $item['unidade'] ?? 'UN';
+                $unidade = $this->normalizarUnidadeRecebimento($item['unidade'] ?? null);
                 
-                // Se marcou para criar novo produto
-                if ($produtoId === 'NOVO') {
-                    // Criar produto no estoque
+                // Se marcou para criar novo produto OU não vinculou a nenhum produto
+                // Criar automaticamente no estoque para garantir entrada
+                if ($produtoId === 'NOVO' || empty($produtoId) || !is_numeric($produtoId)) {
+                    // Criar produto no estoque automaticamente
                     $produtoId = DB::table('estoque')->insertGetId([
                         'nome' => $descricao,
                         'descricao' => 'Criado automaticamente via recebimento OC',
@@ -2931,44 +3142,68 @@ class SuprimentosController extends Controller
                     ]);
                     
                     $produtosCriados++;
-                } elseif ($produtoId && is_numeric($produtoId)) {
-                    // Vincular a produto existente - dar entrada no estoque
+                } else {
+                    // Vincular a produto existente
                     $produto = DB::table('estoque')->where('id', $produtoId)->first();
                     if ($produto) {
-                        $qtdAnterior = $produto->quantidade;
-                        $qtdNova = $qtdAnterior + $quantidade;
+                        // Verificar se usuário marcou "já cadastrei" (não somar quantidade)
+                        $jaCadastrado = isset($item['ja_cadastrado']) && $item['ja_cadastrado'] == '1';
+
+                        $updateEstoque = ['updated_at' => now()];
+                        if (\Schema::hasColumn('estoque', 'unidade')) {
+                            $updateEstoque['unidade'] = $unidade;
+                        }
                         
-                        DB::table('estoque')->where('id', $produtoId)->update([
-                            'quantidade' => $qtdNova,
-                            'updated_at' => now(),
-                        ]);
-                        
-                        // Registrar log de entrada
-                        DB::table('logs_estoque')->insert([
-                            'produto_id' => $produtoId,
-                            'user_id' => auth()->id(),
-                            'tipo' => 'entrada',
-                            'quantidade_anterior' => $qtdAnterior,
-                            'quantidade_alterada' => $quantidade,
-                            'quantidade_nova' => $qtdNova,
-                            'origem' => 'recebimento',
-                            'observacao' => 'Entrada via recebimento de OC #' . $request->ordem_compra_id,
-                            'created_at' => now(),
-                        ]);
+                        if ($jaCadastrado) {
+                            DB::table('estoque')->where('id', $produtoId)->update($updateEstoque);
+                            // Apenas vincular, sem somar quantidade (produto já foi cadastrado manualmente)
+                            // Usar tipo 'ajuste' com quantidade 0 para registrar a vinculação
+                            DB::table('logs_estoque')->insert([
+                                'produto_id' => $produtoId,
+                                'user_id' => auth()->id(),
+                                'tipo' => 'ajuste',
+                                'quantidade_anterior' => $produto->quantidade,
+                                'quantidade_alterada' => 0,
+                                'quantidade_nova' => $produto->quantidade,
+                                'origem' => 'recebimento',
+                                'observacao' => 'Vinculado via recebimento OC #' . $request->ordem_compra_id . ' (sem entrada - produto já cadastrado); unidade padronizada: ' . $unidade,
+                                'created_at' => now(),
+                            ]);
+                        } else {
+                            // Comportamento normal: dar entrada no estoque (somar quantidade) e padronizar unidade
+                            $qtdAnterior = (float) $produto->quantidade;
+                            $qtdNova = $qtdAnterior + $quantidade;
+                            $updateEstoque['quantidade'] = $qtdNova;
+                            
+                            DB::table('estoque')->where('id', $produtoId)->update($updateEstoque);
+                            
+                            // Registrar log de entrada
+                            DB::table('logs_estoque')->insert([
+                                'produto_id' => $produtoId,
+                                'user_id' => auth()->id(),
+                                'tipo' => 'entrada',
+                                'quantidade_anterior' => $qtdAnterior,
+                                'quantidade_alterada' => $quantidade,
+                                'quantidade_nova' => $qtdNova,
+                                'origem' => 'recebimento',
+                                'observacao' => 'Entrada via recebimento de OC #' . $request->ordem_compra_id . '; unidade: ' . $unidade,
+                                'created_at' => now(),
+                            ]);
+                        }
                         
                         $produtosVinculados++;
                     }
                 }
                 
-                // Salvar item do recebimento
+                // Salvar item do recebimento (sempre vinculado agora)
                 DB::table('recebimento_itens')->insert([
                     'recebimento_id' => $recebimentoId,
                     'cotacao_item_id' => $item['cotacao_item_id'] ?? null,
-                    'produto_id' => is_numeric($produtoId) ? $produtoId : null,
+                    'produto_id' => $produtoId,
                     'descricao' => $descricao,
                     'quantidade' => $quantidade,
                     'unidade' => $unidade,
-                    'vinculado_estoque' => ($produtoId && is_numeric($produtoId)) ? 1 : 0,
+                    'vinculado_estoque' => 1,
                     'created_at' => now(),
                 ]);
             }
@@ -2994,6 +3229,80 @@ class SuprimentosController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => 'Erro ao registrar: ' . $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Validar itens do recebimento antes de confirmar - detecta possíveis duplicações
+     */
+    public function validarRecebimento(Request $request)
+    {
+        try {
+            $itens = $request->itens ?? [];
+            $alertas = [];
+            
+            foreach ($itens as $index => $item) {
+                $produtoId = $item['produto_id'] ?? null;
+                $quantidade = $this->parseQuantidadeRecebimentoItem($item['quantidade'] ?? 0);
+                $descricao = $item['descricao'] ?? 'Item';
+                
+                // Se está vinculando a um produto existente
+                if (!empty($produtoId) && is_numeric($produtoId) && $produtoId !== 'NOVO') {
+                    $produto = DB::table('estoque')->where('id', $produtoId)->first();
+                    
+                    if ($produto) {
+                        // Verificar se o produto foi criado nos últimos 30 minutos
+                        $criadoRecentemente = false;
+                        if ($produto->created_at) {
+                            $minutosDesde = now()->diffInMinutes(\Carbon\Carbon::parse($produto->created_at));
+                            $criadoRecentemente = $minutosDesde <= 30;
+                        }
+                        
+                        // Verificar se a quantidade atual é igual à quantidade que está sendo recebida
+                        $mesmaQuantidade = abs((float) $produto->quantidade - $quantidade) < 0.0000001;
+                        
+                        // Se foi criado recentemente E tem a mesma quantidade = possível duplicação
+                        if ($criadoRecentemente && $mesmaQuantidade) {
+                            $alertas[] = [
+                                'tipo' => 'duplicacao',
+                                'item_index' => $index,
+                                'produto_id' => $produtoId,
+                                'produto_nome' => $produto->nome,
+                                'quantidade_atual' => (int)$produto->quantidade,
+                                'quantidade_receber' => $quantidade,
+                                'criado_ha' => $minutosDesde . ' minutos',
+                                'mensagem' => "O produto \"{$produto->nome}\" foi criado há {$minutosDesde} minutos com {$produto->quantidade} unidades. " .
+                                             "Você está tentando dar entrada de mais {$quantidade} unidades. " .
+                                             "Isso pode ser uma DUPLICAÇÃO. Deseja continuar?"
+                            ];
+                        }
+                        // Se a quantidade atual é igual e produto foi criado hoje (mesmo que há mais de 30 min)
+                        else if ($mesmaQuantidade && $produto->created_at) {
+                            $criadoHoje = \Carbon\Carbon::parse($produto->created_at)->isToday();
+                            if ($criadoHoje) {
+                                $alertas[] = [
+                                    'tipo' => 'aviso',
+                                    'item_index' => $index,
+                                    'produto_id' => $produtoId,
+                                    'produto_nome' => $produto->nome,
+                                    'quantidade_atual' => (int)$produto->quantidade,
+                                    'quantidade_receber' => $quantidade,
+                                    'mensagem' => "O produto \"{$produto->nome}\" foi criado HOJE com {$produto->quantidade} unidades. " .
+                                                 "Verifique se não é duplicação antes de continuar."
+                                ];
+                            }
+                        }
+                    }
+                }
+            }
+            
+            return response()->json([
+                'success' => true,
+                'tem_alertas' => count($alertas) > 0,
+                'alertas' => $alertas
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Erro na validação: ' . $e->getMessage()], 500);
         }
     }
     
@@ -3369,58 +3678,16 @@ class SuprimentosController extends Controller
      */
     private function registrarLogOrdemCompraAcao($acao, $ocId, $numero, $fornecedorId, $fornecedorNome, $valorTotal, $cotacaoId = null)
     {
-        try {
-            $user = auth()->user();
-            if (!$user) return;
-            
-            // Buscar cotação se existir
-            $cotacaoNumero = null;
-            if ($cotacaoId) {
-                $cotacao = DB::table('cotacoes')->where('id', $cotacaoId)->first();
-                $cotacaoNumero = $cotacao->numero ?? null;
-            }
-            
-            if (\Schema::hasTable('logs_ordens_compra')) {
-                DB::table('logs_ordens_compra')->insert([
-                    'ordem_compra_id' => $ocId,
-                    'numero' => $numero,
-                    'user_id' => $user->id,
-                    'user_name' => $user->name,
-                    'acao' => $acao,
-                    'dados_oc' => json_encode([
-                        'fornecedor' => $fornecedorNome,
-                        'fornecedor_id' => $fornecedorId,
-                        'cotacao_id' => $cotacaoId,
-                        'cotacao_numero' => $cotacaoNumero,
-                        'data_emissao' => now()->format('Y-m-d'),
-                        'valor_total' => $valorTotal,
-                        'status' => 'pendente',
-                        'itens' => []
-                    ], JSON_UNESCAPED_UNICODE),
-                    'ip' => request()->ip(),
-                    'user_agent' => substr((string) request()->userAgent(), 0, 500),
-                    'created_at' => now(),
-                ]);
-            }
-            
-            \Log::info("Ordem de Compra {$numero} - Ação: {$acao}", [
-                'ordem_compra_id' => $ocId,
-                'numero' => $numero,
-                'user_id' => $user->id,
-                'user_name' => $user->name,
-                'acao' => $acao,
-                'fornecedor' => $fornecedorNome,
-                'valor_total' => $valorTotal,
-                'cotacao_id' => $cotacaoId,
-                'ip' => request()->ip(),
-            ]);
-            
-        } catch (\Throwable $e) {
-            \Log::warning('Falha ao registrar log de criação de O.C.', [
-                'ordem_compra_id' => $ocId ?? null,
-                'erro' => $e->getMessage(),
-            ]);
-        }
+        OrdensCompraAuditoria::registrarLogCriacao(
+            (int) $ocId,
+            (string) $numero,
+            (string) $acao,
+            $fornecedorId,
+            $fornecedorNome,
+            $valorTotal,
+            $cotacaoId,
+            null
+        );
     }
     
     /**

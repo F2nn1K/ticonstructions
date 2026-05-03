@@ -21,7 +21,7 @@ class RelatorioCentroCustoController extends Controller
         $request->validate([
             'data_inicio' => 'required|date',
             'data_fim' => 'required|date|after_or_equal:data_inicio',
-            'centro_custo_id' => 'nullable|exists:centro_custo,id',
+            'centro_custo_id' => 'nullable|exists:centros_custo,id',
             'funcionario_id' => 'nullable|exists:funcionarios,id'
         ]);
 
@@ -139,7 +139,7 @@ class RelatorioCentroCustoController extends Controller
         $request->validate([
             'data_inicio' => 'required|date',
             'data_fim' => 'required|date|after_or_equal:data_inicio',
-            'centro_custo_id' => 'nullable|exists:centro_custo,id',
+            'centro_custo_id' => 'nullable|exists:centros_custo,id',
             'funcionario_id' => 'nullable|exists:funcionarios,id'
         ]);
 

@@ -948,7 +948,7 @@
                 <!-- Conteúdo preenchido via JS -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
                 <button type="button" class="btn btn-warning" onclick="editarOS()">
                     <i class="fas fa-edit mr-1"></i> Editar
                 </button>
@@ -1274,8 +1274,15 @@ function setTiposAtendimento(tiposString) {
 }
 
 // Salvar O.S.
+let salvandoOS = false;
 $('#formNovaOS').on('submit', function(e) {
     e.preventDefault();
+    
+    if (salvandoOS) return;
+    salvandoOS = true;
+    
+    const $btnSalvar = $(this).find('.btn-salvar');
+    $btnSalvar.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-2"></i> Salvando...');
     
     const osId = $('#osId').val();
     const dados = {
@@ -1284,6 +1291,7 @@ $('#formNovaOS').on('submit', function(e) {
         funcionario_id: $('#funcionarioId').val() || null,
         centro_custo_id: $('#centroCusto').val() || null,
         tipo_atendimento: getTiposAtendimento(),
+        urgencia: $('#urgenciaOS').val(),
         descricao: $('#descricaoServico').val(),
         endereco: $('#endereco').val(),
         cidade: $('#cidade').val(),
@@ -1315,11 +1323,13 @@ $('#formNovaOS').on('submit', function(e) {
             timer: 2000,
             showConfirmButton: false
         }).then(function() {
-            // Redirecionar para Gestão de O.S.
             window.location.href = '/area-tecnica/gestao-os';
         });
     })
     .fail(function(xhr) {
+        salvandoOS = false;
+        $btnSalvar.prop('disabled', false).html('<i class="fas fa-save mr-2"></i> Salvar');
+        
         if (xhr.responseJSON && xhr.responseJSON.errors) {
             let erros = Object.values(xhr.responseJSON.errors).flat().join('\n');
             Swal.fire({
@@ -1868,7 +1878,7 @@ $('#buscaMaterial').on('input', function() {
         return;
     }
     
-    $.get('/api/estoque/produtos/buscar', { nome: nome })
+    $.get('/area-tecnica/api/materiais/buscar', { nome: nome })
         .done(function(produtos) {
             if (produtos.length > 0) {
                 materiaisCache = {};
@@ -1943,24 +1953,39 @@ function adicionarMaterial() {
         return;
     }
     
-    // Verificar se já está na lista
-    const jaExiste = materiaisOS.find(m => m.id == id);
-    if (jaExiste) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Atenção',
-            text: 'Este material já foi adicionado'
-        });
-        return;
-    }
+    // Verificar se já está na lista e somar quantidade se existir
+    const jaExisteNovos = materiaisOS.find(m => m.id == id);
+    const jaExisteSalvos = materiaisSalvos.find(m => m.id == id);
     
-    // Adicionar à lista
-    materiaisOS.push({
-        id: id,
-        nome: nome,
-        estoque: estoqueAtual,
-        quantidade: quantidade
-    });
+    if (jaExisteNovos) {
+        // Já existe nos novos - somar quantidade
+        const novaQtd = jaExisteNovos.quantidade + quantidade;
+        if (novaQtd > estoqueAtual) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Atenção',
+                text: `Quantidade total (${novaQtd}) maior que o estoque disponível (${estoqueAtual})`
+            });
+            return;
+        }
+        jaExisteNovos.quantidade = novaQtd;
+    } else if (jaExisteSalvos) {
+        // Já existe nos salvos - adicionar como novo para somar
+        materiaisOS.push({
+            id: id,
+            nome: nome,
+            estoque: estoqueAtual,
+            quantidade: quantidade
+        });
+    } else {
+        // Novo material - adicionar à lista
+        materiaisOS.push({
+            id: id,
+            nome: nome,
+            estoque: estoqueAtual,
+            quantidade: quantidade
+        });
+    }
     
     renderizarMateriais();
     

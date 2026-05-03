@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Funcionários - Documentos DP')
+@section('title', __('Funcionários - Documentos DP'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -9,9 +9,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-users text-primary mr-3"></i>
-            Funcionários
+            {{ __('Funcionários') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Consulte e gerencie documentos de funcionários</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Consulte e gerencie documentos de funcionários') }}</p>
     </div>
 </div>
 @stop

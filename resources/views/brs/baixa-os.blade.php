@@ -260,11 +260,72 @@
     .funcionario-result-item:hover {
         background: #f0f0f0;
     }
+    
+    .btn-excluir-os {
+        background: #dc3545;
+        border: none;
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    .btn-excluir-os:hover {
+        background: #c82333;
+    }
+    
+    .btn-logs {
+        background: #6c757d;
+        border: none;
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    .btn-logs:hover {
+        background: #5a6268;
+    }
+    
+    .log-item {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 10px;
+        transition: all 0.2s;
+    }
+    
+    .log-item:hover {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .log-liberacao {
+        border-left: 4px solid #28a745;
+    }
+    
+    .log-exclusao {
+        border-left: 4px solid #dc3545;
+    }
+    
+    .log-badge-liberacao {
+        background: #28a745;
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 11px;
+    }
+    
+    .log-badge-exclusao {
+        background: #dc3545;
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 11px;
+    }
 </style>
 
 <div class="card card-baixa">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="mb-0"><i class="fas fa-clipboard-check mr-2"></i>Materiais Solicitados nas O.S.</h3>
+        <button class="btn btn-sm btn-outline-light" onclick="abrirLogs()">
+            <i class="fas fa-history mr-1"></i> Histórico / Logs
+        </button>
     </div>
     <div class="card-body">
         <!-- Estatísticas -->
@@ -297,7 +358,7 @@
                     <select id="filtroStatus" class="form-control">
                         <option value="pendente">Pendentes</option>
                         <option value="liberado">Liberados</option>
-                        <option value="todos">Todos</option>
+                        <option value="todos">{{ __('Todos') }}</option>
                     </select>
                 </div>
                 <div class="col-md-3">
@@ -374,10 +435,65 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-success" onclick="confirmarLiberacao()">
                     <i class="fas fa-check mr-1"></i> Liberar e Imprimir
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Logs -->
+<div class="modal fade" id="modalLogs" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h5 class="modal-title"><i class="fas fa-history mr-2"></i>Histórico de Liberações e Exclusões</h5>
+                <button type="button" class="close text-white" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Filtros dos logs -->
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold small">Ação</label>
+                        <select id="filtroLogAcao" class="form-control form-control-sm">
+                            <option value="">{{ __('Todas') }}</option>
+                            <option value="liberacao">Liberações</option>
+                            <option value="exclusao">Exclusões</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold small">Nº O.S.</label>
+                        <input type="text" id="filtroLogOS" class="form-control form-control-sm" placeholder="Buscar...">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="font-weight-bold small">Data Início</label>
+                        <input type="date" id="filtroLogDataInicio" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="font-weight-bold small">Data Fim</label>
+                        <input type="date" id="filtroLogDataFim" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-primary btn-sm btn-block" onclick="carregarLogs()">
+                            <i class="fas fa-search mr-1"></i> Filtrar
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="listaLogs">
+                    <div class="text-center text-muted py-4">
+                        <i class="fas fa-spinner fa-spin fa-2x mb-2"></i>
+                        <p>Carregando logs...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="totalLogs" class="text-muted mr-auto"></span>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
             </div>
         </div>
     </div>
@@ -560,14 +676,17 @@ function renderizarOS(ordens) {
                     </div>
                     <div>
                         ${!todosLiberados ? `
-                            <button class="btn btn-liberar btn-sm text-white" onclick="abrirLiberacao('${os.id}', '${os.numero_os}', '${os.data_os}', '${os.funcionario_nome || ''}', '${os.centro_custo_nome || ''}')">
+                            <button class="btn btn-liberar btn-sm text-white mr-1" onclick="abrirLiberacao('${os.id}', '${os.numero_os}', '${os.data_os}', '${os.funcionario_nome || ''}', '${os.centro_custo_nome || ''}')">
                                 <i class="fas fa-hand-holding mr-1"></i> Liberar
                             </button>
                         ` : `
-                            <button class="btn btn-info btn-sm text-white" onclick="reimprimirComprovante('${os.id}')">
+                            <button class="btn btn-info btn-sm text-white mr-1" onclick="reimprimirComprovante('${os.id}')">
                                 <i class="fas fa-print mr-1"></i> Reimprimir
                             </button>
                         `}
+                        <button class="btn btn-excluir-os btn-sm text-white" onclick="confirmarExclusao('${os.id}', '${os.numero_os}', ${todosLiberados})">
+                            <i class="fas fa-trash-alt mr-1"></i> Excluir
+                        </button>
                     </div>
                 </div>
                 <div class="os-card-body">
@@ -610,7 +729,7 @@ function renderizarMateriais(materiais) {
                             <strong>${m.produto_nome || 'Produto não encontrado'}</strong>
                             ${liberadoIcon}
                         </div>
-                        <span class="badge badge-primary">${m.quantidade} un</span>
+                        <span class="badge badge-primary">${m.quantidade} ${m.produto_unidade || 'UN'}</span>
                     </div>
                     ${m.liberado && m.retirado_por ? `<small class="text-success">Retirado por: ${m.retirado_por}</small>` : ''}
                 </div>
@@ -659,7 +778,7 @@ function abrirLiberacao(osId, numeroOS, dataOS, funcionarioNome, centroCusto) {
                             <div class="item-material">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <strong>${m.produto_nome || 'Produto'}</strong>
-                                    <span class="badge badge-primary">${m.quantidade} un</span>
+                                    <span class="badge badge-primary">${m.quantidade} ${m.produto_unidade || 'UN'}</span>
                                 </div>
                             </div>
                         `;
@@ -763,7 +882,7 @@ function prepararImpressao(response) {
                     <td style="text-align: center; border: 1px solid #000; padding: 8px;">${index + 1}</td>
                     <td style="border: 1px solid #000; padding: 8px;">${item.produto_nome || 'Material'}</td>
                     <td style="text-align: center; border: 1px solid #000; padding: 8px;">${item.quantidade}</td>
-                    <td style="text-align: center; border: 1px solid #000; padding: 8px;">UN</td>
+                    <td style="text-align: center; border: 1px solid #000; padding: 8px;">${item.produto_unidade || 'UN'}</td>
                 </tr>
             `;
         });
@@ -774,7 +893,7 @@ function prepararImpressao(response) {
                     <td style="text-align: center; border: 1px solid #000; padding: 8px;">${index + 1}</td>
                     <td style="border: 1px solid #000; padding: 8px;">${item.produto_nome || 'Material'}</td>
                     <td style="text-align: center; border: 1px solid #000; padding: 8px;">${item.quantidade}</td>
-                    <td style="text-align: center; border: 1px solid #000; padding: 8px;">UN</td>
+                    <td style="text-align: center; border: 1px solid #000; padding: 8px;">${item.produto_unidade || 'UN'}</td>
                 </tr>
             `;
         });
@@ -901,6 +1020,201 @@ function limparFiltros() {
     $('#filtroOS').val('');
     
     carregarOS();
+}
+
+// ========================================
+// EXCLUSÃO DE LIBERAÇÃO
+// ========================================
+function confirmarExclusao(osId, numeroOS, jaLiberado) {
+    const titulo = jaLiberado ? 'Excluir Liberação' : 'Excluir Baixa';
+    const descricao = jaLiberado 
+        ? `<p>Tem certeza que deseja <strong>excluir a liberação</strong> da <strong>O.S. ${numeroOS}</strong>?</p>
+           <p class="text-danger"><small>Os materiais voltarão para o status <strong>Pendente</strong>.</small></p>`
+        : `<p>Tem certeza que deseja <strong>excluir a baixa de materiais</strong> da <strong>O.S. ${numeroOS}</strong>?</p>
+           <p class="text-danger"><small>Os materiais serão <strong>removidos da baixa</strong> e o estoque será <strong>devolvido</strong>.</small></p>`;
+    
+    Swal.fire({
+        title: titulo,
+        html: `
+            ${descricao}
+            <div class="text-left mt-3">
+                <label class="font-weight-bold">Motivo da exclusão: <span class="text-danger">*</span></label>
+                <textarea id="swalMotivo" class="swal2-textarea" placeholder="Informe o motivo da exclusão..." style="width: 100%; min-height: 80px;"></textarea>
+            </div>
+        `,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '<i class="fas fa-trash-alt mr-1"></i> Sim, excluir',
+        cancelButtonText: 'Cancelar',
+        preConfirm: () => {
+            const motivo = document.getElementById('swalMotivo').value.trim();
+            if (!motivo) {
+                Swal.showValidationMessage('Informe o motivo da exclusão');
+                return false;
+            }
+            return motivo;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/api/baixa-os/${osId}/excluir`,
+                method: 'POST',
+                data: {
+                    motivo: result.value
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            .done(function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Exclusão realizada!',
+                        text: response.message,
+                        timer: 2500,
+                        showConfirmButton: false
+                    }).then(function() {
+                        carregarOS();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro',
+                        text: response.message || 'Erro ao excluir liberação'
+                    });
+                }
+            })
+            .fail(function(xhr) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Não foi possível excluir a liberação'
+                });
+            });
+        }
+    });
+}
+
+// ========================================
+// LOGS / HISTÓRICO
+// ========================================
+function abrirLogs() {
+    const hoje = new Date();
+    const mesPassado = new Date();
+    mesPassado.setMonth(mesPassado.getMonth() - 1);
+    
+    $('#filtroLogDataInicio').val(mesPassado.toISOString().split('T')[0]);
+    $('#filtroLogDataFim').val(hoje.toISOString().split('T')[0]);
+    $('#filtroLogAcao').val('');
+    $('#filtroLogOS').val('');
+    
+    $('#modalLogs').modal('show');
+    carregarLogs();
+}
+
+function carregarLogs() {
+    $('#listaLogs').html(`
+        <div class="text-center text-muted py-4">
+            <i class="fas fa-spinner fa-spin fa-2x mb-2"></i>
+            <p>Carregando logs...</p>
+        </div>
+    `);
+    
+    $.get('/api/baixa-os/logs', {
+        acao: $('#filtroLogAcao').val(),
+        numero_os: $('#filtroLogOS').val(),
+        data_inicio: $('#filtroLogDataInicio').val(),
+        data_fim: $('#filtroLogDataFim').val()
+    })
+    .done(function(response) {
+        renderizarLogs(response.logs || []);
+        $('#totalLogs').text(`${response.total || 0} registro(s) encontrado(s)`);
+    })
+    .fail(function() {
+        $('#listaLogs').html(`
+            <div class="text-center text-danger py-4">
+                <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                <p>Erro ao carregar logs</p>
+            </div>
+        `);
+    });
+}
+
+function renderizarLogs(logs) {
+    if (logs.length === 0) {
+        $('#listaLogs').html(`
+            <div class="text-center text-muted py-4">
+                <i class="fas fa-inbox fa-3x mb-2"></i>
+                <p>Nenhum registro encontrado</p>
+            </div>
+        `);
+        return;
+    }
+    
+    let html = '';
+    logs.forEach(function(log) {
+        const isExclusao = log.acao === 'exclusao';
+        const classeLog = isExclusao ? 'log-exclusao' : 'log-liberacao';
+        const badgeLog = isExclusao 
+            ? '<span class="log-badge-exclusao"><i class="fas fa-trash-alt mr-1"></i>Exclusão</span>'
+            : '<span class="log-badge-liberacao"><i class="fas fa-check mr-1"></i>Liberação</span>';
+        const icone = isExclusao ? 'fa-trash-alt text-danger' : 'fa-check-circle text-success';
+        
+        const dataHora = new Date(log.created_at);
+        const dataFormatada = dataHora.toLocaleDateString('pt-BR');
+        const horaFormatada = dataHora.toLocaleTimeString('pt-BR');
+        
+        let materiaisHtml = '';
+        if (log.materiais && log.materiais.length > 0) {
+            materiaisHtml = '<div class="mt-2"><small class="text-muted font-weight-bold">Materiais:</small><ul class="mb-0 pl-3" style="font-size: 12px;">';
+            log.materiais.forEach(function(m) {
+                materiaisHtml += `<li>${m.produto_nome} - <strong>${m.quantidade} ${m.produto_unidade || 'UN'}</strong>`;
+                if (m.retirado_por) materiaisHtml += ` <span class="text-muted">(Retirado por: ${m.retirado_por})</span>`;
+                materiaisHtml += `</li>`;
+            });
+            materiaisHtml += '</ul></div>';
+        }
+        
+        html += `
+            <div class="log-item ${classeLog}">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <i class="fas ${icone} mr-2"></i>
+                        <strong>${log.numero_os}</strong>
+                        ${badgeLog}
+                    </div>
+                    <div class="text-right">
+                        <small class="text-muted d-block">${dataFormatada} às ${horaFormatada}</small>
+                        <small class="text-muted">IP: ${log.ip || '-'}</small>
+                    </div>
+                </div>
+                <div class="row mt-2" style="font-size: 13px;">
+                    <div class="col-md-3">
+                        <small class="text-muted">Usuário:</small><br>
+                        <strong>${log.user_name}</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <small class="text-muted">Solicitante:</small><br>
+                        ${log.solicitante || '-'}
+                    </div>
+                    <div class="col-md-3">
+                        <small class="text-muted">Centro de Custo:</small><br>
+                        ${log.centro_custo || '-'}
+                    </div>
+                    <div class="col-md-3">
+                        <small class="text-muted">${isExclusao ? 'Motivo:' : 'Retirado por:'}</small><br>
+                        <span class="${isExclusao ? 'text-danger' : ''}">${isExclusao ? (log.motivo || '-') : (log.retirado_por || '-')}</span>
+                    </div>
+                </div>
+                ${materiaisHtml}
+            </div>
+        `;
+    });
+    
+    $('#listaLogs').html(html);
 }
 </script>
 @stop

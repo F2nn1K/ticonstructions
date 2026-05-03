@@ -125,6 +125,64 @@ class FinanceiroController extends Controller
     }
     
     // Baixar conta a pagar (marcar como pago)
+    public function baixarContasPagarLote(Request $request)
+    {
+        try {
+            $ids           = $request->input('ids', []);
+            $dataPagamento = $request->input('data_pagamento', now()->format('Y-m-d'));
+            $formaPagamento = $request->input('forma_pagamento');
+
+            if (empty($ids) || !is_array($ids)) {
+                return response()->json(['success' => false, 'message' => 'Nenhuma conta selecionada.'], 422);
+            }
+
+            $columns = $this->getTableColumns('contas_pagar');
+
+            $contas = DB::table('contas_pagar')->whereIn('id', $ids)->get();
+            $baixadas = 0;
+            $erros    = 0;
+
+            foreach ($contas as $conta) {
+                if (in_array($conta->status, ['pago', 'cancelado'])) {
+                    continue;
+                }
+
+                $valorTotal = floatval($conta->valor_liquido ?? $conta->valor ?? 0);
+
+                $updateData = [
+                    'status'          => 'pago',
+                    'data_pagamento'  => $dataPagamento,
+                    'valor_pago'      => $valorTotal,
+                    'forma_pagamento' => $formaPagamento,
+                    'updated_at'      => now(),
+                ];
+
+                if (in_array('baixa_user_id', $columns)) {
+                    $updateData['baixa_user_id'] = auth()->id();
+                }
+                if (in_array('baixa_em', $columns)) {
+                    $updateData['baixa_em'] = now();
+                }
+
+                try {
+                    DB::table('contas_pagar')->where('id', $conta->id)->update($updateData);
+                    $baixadas++;
+                } catch (\Exception $e) {
+                    $erros++;
+                }
+            }
+
+            $msg = "{$baixadas} conta(s) baixada(s) com sucesso.";
+            if ($erros > 0) {
+                $msg .= " {$erros} conta(s) com erro.";
+            }
+
+            return response()->json(['success' => true, 'message' => $msg, 'baixadas' => $baixadas]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Erro: ' . $e->getMessage()], 500);
+        }
+    }
+
     public function baixarContaPagar(Request $request, $id)
     {
         try {
@@ -137,15 +195,21 @@ class FinanceiroController extends Controller
                 return response()->json(['success' => false, 'message' => 'Conta não encontrada!'], 404);
             }
             
-            // Converter valor_pago (pode vir formatado como "250,00")
-            $valorPago = $request->valor_pago ?? $conta->valor ?? $conta->valor_liquido ?? 0;
-            if (is_string($valorPago)) {
-                // Remove pontos de milhar e troca vírgula por ponto
-                $valorPago = str_replace('.', '', $valorPago);
-                $valorPago = str_replace(',', '.', $valorPago);
+            // Converter valor_pago (pode vir formatado como "250,00" ou "0,00")
+            // Usar null para detectar se foi enviado ou não
+            $valorPagoRaw = $request->valor_pago;
+            if ($valorPagoRaw === null || $valorPagoRaw === '') {
+                // Não enviado: usar valor da conta como padrão
+                $valorPago = floatval($conta->valor_liquido ?? $conta->valor ?? 0);
+            } else {
+                if (is_string($valorPagoRaw)) {
+                    $valorPagoRaw = str_replace('.', '', $valorPagoRaw);
+                    $valorPagoRaw = str_replace(',', '.', $valorPagoRaw);
+                }
+                $valorPago = floatval($valorPagoRaw);
+                // Permite 0 (crédito / sem desembolso) — não forçar valor mínimo
             }
-            $valorPago = floatval($valorPago);
-            
+
             // Calcular valor total da conta
             $valorTotal = floatval($conta->valor_liquido ?? $conta->valor ?? 0);
             
@@ -155,9 +219,10 @@ class FinanceiroController extends Controller
             // Total pago (anterior + atual)
             $totalPago = $valorPagoAnterior + $valorPago;
             
-            // Determinar status: pago total ou pendente (parcial)
-            // Nota: se a coluna status não tiver 'parcial', usar 'pendente' para pagamentos parciais
-            $isPagamentoTotal = $totalPago >= ($valorTotal - 0.01); // tolerância de 1 centavo
+            // Determinar status: pago total, crédito (valor 0) ou pendente (parcial)
+            // Valor 0,00 informado explicitamente = crédito / sem desembolso = baixa total
+            $isCreditoZero = ($request->valor_pago !== null) && (floatval(str_replace(['.', ','], ['', '.'], (string) $request->valor_pago)) == 0);
+            $isPagamentoTotal = $isCreditoZero || ($valorTotal <= 0.001) || ($totalPago >= ($valorTotal - 0.01));
             $status = $isPagamentoTotal ? 'pago' : 'pendente';
             
             // Preparar dados para atualização
@@ -168,6 +233,14 @@ class FinanceiroController extends Controller
                 'forma_pagamento' => $request->forma_pagamento ?? null,
                 'updated_at' => now(),
             ];
+            
+            // Registrar quem fez a baixa e quando (se colunas existirem)
+            if (\Schema::hasColumn('contas_pagar', 'baixa_user_id')) {
+                $updateData['baixa_user_id'] = auth()->id();
+            }
+            if (\Schema::hasColumn('contas_pagar', 'baixa_em')) {
+                $updateData['baixa_em'] = now();
+            }
             
             // Processar upload do comprovante (PDF ou imagem) - SUPORTA MÚLTIPLOS COMPROVANTES
             if ($request->hasFile('comprovante')) {
@@ -487,8 +560,35 @@ class FinanceiroController extends Controller
             if (in_array('observacoes', $columns)) {
                 $insertData['observacoes'] = $request->observacoes;
             }
+
+            // Se o status já vem como "pago", registrar os dados de baixa imediatamente
+            if (($request->status ?? 'pendente') === 'pago') {
+                $valorPagoBaixa = $request->baixa_valor_pago ?? $valorLiquido ?? $valorBruto ?? 0;
+                if (is_string($valorPagoBaixa)) {
+                    $valorPagoBaixa = str_replace('.', '', $valorPagoBaixa);
+                    $valorPagoBaixa = str_replace(',', '.', $valorPagoBaixa);
+                }
+                $valorPagoBaixa = floatval($valorPagoBaixa);
+                if ($valorPagoBaixa > 0 && in_array('valor_pago', $columns)) {
+                    $insertData['valor_pago'] = $valorPagoBaixa;
+                }
+                if ($request->filled('baixa_data_pagamento') && in_array('data_pagamento', $columns)) {
+                    $insertData['data_pagamento'] = $request->baixa_data_pagamento;
+                } elseif (in_array('data_pagamento', $columns)) {
+                    $insertData['data_pagamento'] = now()->format('Y-m-d');
+                }
+                if ($request->filled('baixa_forma_pagamento') && in_array('forma_pagamento', $columns)) {
+                    $insertData['forma_pagamento'] = $request->baixa_forma_pagamento;
+                }
+                if (in_array('baixa_user_id', $columns)) {
+                    $insertData['baixa_user_id'] = auth()->id();
+                }
+                if (in_array('baixa_em', $columns)) {
+                    $insertData['baixa_em'] = now();
+                }
+            }
             
-            // Upload de anexo
+            // Upload de anexo (PDF apenas — campo "anexo")
             if ($request->hasFile('anexo') && in_array('anexo_path', $columns)) {
                 $file = $request->file('anexo');
                 $extension = strtolower($file->getClientOriginalExtension());
@@ -506,6 +606,26 @@ class FinanceiroController extends Controller
                 if (!is_dir($uploadDir)) { @mkdir($uploadDir, 0755, true); }
                 $file->move($uploadDir, $fileName);
                 $insertData['anexo_path'] = 'anexos_pagar/' . $fileName;
+            }
+
+            // Upload de comprovante de pagamento (PDF/JPG/PNG — campo "comprovante", usado na baixa imediata)
+            if ($request->hasFile('comprovante') && in_array('comprovante_path', $columns)) {
+                $file = $request->file('comprovante');
+                $extension = strtolower($file->getClientOriginalExtension());
+                $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return response()->json(['success' => false, 'message' => 'Tipo de arquivo não permitido. Envie PDF, JPG ou PNG.'], 400);
+                }
+                if ($file->getSize() > 5 * 1024 * 1024) {
+                    return response()->json(['success' => false, 'message' => 'Arquivo muito grande. Máximo: 5MB.'], 400);
+                }
+
+                $fileName = 'comprovante_conta_' . uniqid() . '.' . $extension;
+                $uploadDir = storage_path('app/public/comprovantes');
+                if (!is_dir($uploadDir)) { @mkdir($uploadDir, 0755, true); }
+                $file->move($uploadDir, $fileName);
+                $insertData['comprovante_path'] = 'comprovantes/' . $fileName;
             }
             
             // Verificar se é para repetir a conta
@@ -610,6 +730,33 @@ class FinanceiroController extends Controller
             if (in_array('observacoes', $columns)) {
                 $updateData['observacoes'] = $request->observacoes;
             }
+
+            // Se o status está sendo alterado para "pago", registrar dados de baixa
+            if ($request->status === 'pago') {
+                $valorPagoBaixa = $request->baixa_valor_pago ?? $valorLiquido ?? $valorBruto ?? 0;
+                if (is_string($valorPagoBaixa)) {
+                    $valorPagoBaixa = str_replace('.', '', $valorPagoBaixa);
+                    $valorPagoBaixa = str_replace(',', '.', $valorPagoBaixa);
+                }
+                $valorPagoBaixa = floatval($valorPagoBaixa);
+                if ($valorPagoBaixa > 0 && in_array('valor_pago', $columns)) {
+                    $updateData['valor_pago'] = $valorPagoBaixa;
+                }
+                if ($request->filled('baixa_data_pagamento') && in_array('data_pagamento', $columns)) {
+                    $updateData['data_pagamento'] = $request->baixa_data_pagamento;
+                } elseif (in_array('data_pagamento', $columns) && empty($conta->data_pagamento)) {
+                    $updateData['data_pagamento'] = now()->format('Y-m-d');
+                }
+                if ($request->filled('baixa_forma_pagamento') && in_array('forma_pagamento', $columns)) {
+                    $updateData['forma_pagamento'] = $request->baixa_forma_pagamento;
+                }
+                if (in_array('baixa_user_id', $columns) && empty($conta->baixa_user_id)) {
+                    $updateData['baixa_user_id'] = auth()->id();
+                }
+                if (in_array('baixa_em', $columns) && empty($conta->baixa_em)) {
+                    $updateData['baixa_em'] = now();
+                }
+            }
             
             // Upload de anexo
             if ($request->hasFile('anexo') && in_array('anexo_path', $columns)) {
@@ -635,6 +782,32 @@ class FinanceiroController extends Controller
                 if (!is_dir($uploadDir)) { @mkdir($uploadDir, 0755, true); }
                 $file->move($uploadDir, $fileName);
                 $updateData['anexo_path'] = 'anexos_pagar/' . $fileName;
+            }
+
+            // Upload de comprovante de pagamento (campo "comprovante", usado na baixa imediata)
+            if ($request->hasFile('comprovante') && in_array('comprovante_path', $columns)) {
+                $file = $request->file('comprovante');
+                $extension = strtolower($file->getClientOriginalExtension());
+                $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return response()->json(['success' => false, 'message' => 'Tipo de arquivo não permitido. Envie PDF, JPG ou PNG.'], 400);
+                }
+                if ($file->getSize() > 5 * 1024 * 1024) {
+                    return response()->json(['success' => false, 'message' => 'Arquivo muito grande. Máximo: 5MB.'], 400);
+                }
+
+                // Remover comprovante antigo se existir
+                if (!empty($conta->comprovante_path)) {
+                    $oldPath = storage_path('app/public/' . $conta->comprovante_path);
+                    if (file_exists($oldPath)) { @unlink($oldPath); }
+                }
+
+                $fileName = 'comprovante_conta_' . uniqid() . '.' . $extension;
+                $uploadDir = storage_path('app/public/comprovantes');
+                if (!is_dir($uploadDir)) { @mkdir($uploadDir, 0755, true); }
+                $file->move($uploadDir, $fileName);
+                $updateData['comprovante_path'] = 'comprovantes/' . $fileName;
             }
             
             DB::table('contas_pagar')->where('id', $id)->update($updateData);
@@ -681,6 +854,130 @@ class FinanceiroController extends Controller
             return response()->json(['success' => true, 'message' => 'Conta excluída com sucesso!']);
         } catch (\Exception $e) {
             \Log::error('Erro ao excluir Conta a Pagar #' . $id . ': ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Erro: ' . $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Listar datas de importação via JSON disponíveis para exclusão em lote
+     */
+    public function listarDatasImportacaoJson()
+    {
+        $user = Auth::user();
+        
+        // Apenas admin pode acessar
+        if (!$this->isAdmin($user)) {
+            return response()->json(['success' => false, 'message' => 'Acesso negado.'], 403);
+        }
+        
+        try {
+            // Buscar datas únicas de importação JSON baseado no padrão da observação
+            // Exemplo: "Importado via JSON em 06/02/2026 16:14"
+            $datas = DB::table('contas_pagar')
+                ->select(DB::raw("
+                    SUBSTRING(observacoes, LOCATE('Importado via JSON em ', observacoes) + 21, 16) as data_importacao,
+                    COUNT(*) as quantidade,
+                    SUM(COALESCE(valor_liquido, valor, 0)) as valor_total
+                "))
+                ->where('observacoes', 'LIKE', '%Importado via JSON em %')
+                ->groupBy('data_importacao')
+                ->orderBy('data_importacao', 'desc')
+                ->get();
+            
+            $resultado = [];
+            foreach ($datas as $item) {
+                if (!empty($item->data_importacao)) {
+                    $resultado[] = [
+                        'data' => trim($item->data_importacao),
+                        'data_formatada' => trim($item->data_importacao),
+                        'quantidade' => (int) $item->quantidade,
+                        'valor_total' => (float) $item->valor_total,
+                        'valor_formatado' => number_format($item->valor_total, 2, ',', '.')
+                    ];
+                }
+            }
+            
+            return response()->json(['success' => true, 'datas' => $resultado]);
+        } catch (\Exception $e) {
+            \Log::error('Erro ao listar datas de importação JSON: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Erro: ' . $e->getMessage()], 500);
+        }
+    }
+    
+    /**
+     * Excluir em lote todas as contas importadas via JSON em uma determinada data
+     */
+    public function excluirLoteImportacaoJson(Request $request)
+    {
+        $user = Auth::user();
+        
+        // Apenas admin pode excluir
+        if (!$this->isAdmin($user)) {
+            return response()->json(['success' => false, 'message' => 'Apenas administradores podem executar esta ação.'], 403);
+        }
+        
+        $dataImportacao = $request->input('data_importacao');
+        
+        if (empty($dataImportacao)) {
+            return response()->json(['success' => false, 'message' => 'Data de importação não informada.'], 400);
+        }
+        
+        try {
+            // Buscar todas as contas com essa data de importação
+            $contas = DB::table('contas_pagar')
+                ->where('observacoes', 'LIKE', '%Importado via JSON em ' . $dataImportacao . '%')
+                ->get();
+            
+            if ($contas->isEmpty()) {
+                return response()->json(['success' => false, 'message' => 'Nenhum registro encontrado para esta data de importação.'], 404);
+            }
+            
+            $quantidade = $contas->count();
+            $valorTotal = $contas->sum(function($c) {
+                return $c->valor_liquido ?? $c->valor ?? 0;
+            });
+            
+            // Registrar log antes de excluir
+            \Log::info("EXCLUSAO_LOTE_JSON: Iniciando exclusão de {$quantidade} registros importados em {$dataImportacao}", [
+                'user_id' => $user->id,
+                'user_name' => $user->name,
+                'data_importacao' => $dataImportacao,
+                'quantidade' => $quantidade,
+                'valor_total' => $valorTotal,
+                'ids' => $contas->pluck('id')->toArray(),
+                'ip' => request()->ip(),
+            ]);
+            
+            // Excluir anexos e comprovantes
+            foreach ($contas as $conta) {
+                if (!empty($conta->anexo_path)) {
+                    $path = storage_path('app/public/' . $conta->anexo_path);
+                    if (file_exists($path)) { @unlink($path); }
+                }
+                if (!empty($conta->comprovante_path)) {
+                    $path = storage_path('app/public/' . $conta->comprovante_path);
+                    if (file_exists($path)) { @unlink($path); }
+                }
+            }
+            
+            // Excluir registros
+            $deletados = DB::table('contas_pagar')
+                ->where('observacoes', 'LIKE', '%Importado via JSON em ' . $dataImportacao . '%')
+                ->delete();
+            
+            \Log::info("EXCLUSAO_LOTE_JSON: Concluída exclusão de {$deletados} registros", [
+                'user_id' => $user->id,
+                'data_importacao' => $dataImportacao,
+            ]);
+            
+            return response()->json([
+                'success' => true, 
+                'message' => 'Registros excluídos com sucesso!',
+                'quantidade' => $deletados,
+                'valor_total' => $valorTotal
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Erro ao excluir lote de importação JSON: ' . $e->getMessage());
             return response()->json(['success' => false, 'message' => 'Erro: ' . $e->getMessage()], 500);
         }
     }
@@ -762,8 +1059,19 @@ class FinanceiroController extends Controller
             if ($request->filled('categoria_id')) {
                 $query->where('cp.categoria_id', $request->categoria_id);
             }
+            if ($request->filled('fornecedor_id')) {
+                $query->where('cp.fornecedor_id', $request->fornecedor_id);
+            }
             if ($request->filled('centro_custo_id')) {
                 $query->where('cp.centro_custo_id', $request->centro_custo_id);
+            }
+            
+            // Suporte a múltiplos centros de custo
+            if ($request->filled('centro_custo_ids')) {
+                $ids = array_filter(explode(',', $request->centro_custo_ids));
+                if (!empty($ids)) {
+                    $query->whereIn('cp.centro_custo_id', $ids);
+                }
             }
             if ($request->filled('data_inicio')) {
                 $query->where(function($q) use ($request) {
@@ -1110,6 +1418,14 @@ class FinanceiroController extends Controller
                 'valor_recebido' => $totalRecebido,
                 'updated_at' => now(),
             ];
+            
+            // Registrar quem fez a baixa e quando (se colunas existirem)
+            if (\Schema::hasColumn('contas_receber', 'baixa_user_id')) {
+                $updateData['baixa_user_id'] = auth()->id();
+            }
+            if (\Schema::hasColumn('contas_receber', 'baixa_em')) {
+                $updateData['baixa_em'] = now();
+            }
             
             // Processar upload do comprovante
             if ($request->hasFile('comprovante')) {

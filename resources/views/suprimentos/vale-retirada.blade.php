@@ -140,7 +140,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Observações</label>
+                                <label>{{ __('Observações') }}</label>
                                 <textarea class="form-control" name="observacoes" rows="2" placeholder="Observações adicionais..."></textarea>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-primary" id="btnSalvarVale">
                     <i class="fas fa-save"></i> Salvar Vale
                 </button>

@@ -60,13 +60,13 @@
                         <div class="col-md-3 mb-2">
                             <label class="font-weight-bold">Veículo</label>
                             <select id="veiculo_id" class="form-control">
-                                <option value="">Todos</option>
+                                <option value="">{{ __('Todos') }}</option>
                             </select>
                         </div>
                         <div class="col-md-3 mb-2">
                             <label class="font-weight-bold">Funcionário</label>
                             <select id="user_id" class="form-control">
-                                <option value="">Todos</option>
+                                <option value="">{{ __('Todos') }}</option>
                             </select>
                         </div>
                     </div>
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function preencherSelect(id, itens, labelKey) {
         const sel = document.getElementById(id);
-        const opts = ['<option value="">Todos</option>'].concat(
+        const opts = ['<option value="">{{ __('Todos') }}</option>'].concat(
             itens.map(x => `<option value="${x.id}">${normalizar(x[labelKey])}</option>`)
         );
         sel.innerHTML = opts.join('');

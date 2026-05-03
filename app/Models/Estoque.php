@@ -18,7 +18,8 @@ class Estoque extends Model
         'ncm',
         'codigo_barras',
         'unidade',
-        'preco_custo'
+        'preco_custo',
+        'ativo'
     ];
     
     // Relacionamentos

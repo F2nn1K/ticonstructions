@@ -253,7 +253,7 @@
             <div class="section-title">Detalhes da Ocorrência</div>
             <div class="info-grid">
                 <div class="info-item">
-                    <label>Data</label>
+                    <label>{{ __('Data') }}</label>
                     <div class="value">{{ $ocorrencia->data ? $ocorrencia->data->format('d/m/Y') : '-' }}</div>
                 </div>
                 <div class="info-item">
@@ -261,7 +261,7 @@
                     <div class="value">{{ $ocorrencia->hora ?? '-' }}</div>
                 </div>
                 <div class="info-item">
-                    <label>Status</label>
+                    <label>{{ __('Status') }}</label>
                     <div class="value">
                         @php
                             $status = strtolower($ocorrencia->status ?? 'novo');

@@ -326,19 +326,35 @@
                         <div class="form-group">
                             <label><i class="fas fa-tags mr-1"></i> Tipo</label>
                             <select class="form-control" id="filtroTipo">
-                                <option value="">Todos</option>
+                                <option value="">{{ __('Todos') }}</option>
                                 <option value="material">Materiais</option>
                                 <option value="terceirizado">Serviços</option>
                             </select>
                         </div>
                     </div>
                     
+                    <!-- Status -->
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label><i class="fas fa-flag mr-1"></i> Status</label>
+                            <select class="form-control" id="filtroStatus">
+                                <option value="">{{ __('Todos') }}</option>
+                                <option value="aberta">Aberta</option>
+                                <option value="finalizada">Finalizada</option>
+                                <option value="rejeitada">Rejeitada</option>
+                                <option value="aguardando_autorizacao">Aguard. Autorização</option>
+                                <option value="aguardando_pagamento">Aguard. Pagamento</option>
+                                <option value="pago">Pago</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                     <!-- Solicitante -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label><i class="fas fa-user mr-1"></i> Solicitante</label>
                             <select class="form-control" id="filtroSolicitante">
-                                <option value="">Todos</option>
+                                <option value="">{{ __('Todos') }}</option>
                                 @foreach($usuarios as $u)
                                     <option value="{{ $u->id }}">{{ $u->name }}</option>
                                 @endforeach
@@ -363,7 +379,7 @@
                     </div>
                     
                     <!-- Botão Gerar -->
-                    <div class="col-md-3 d-flex align-items-end">
+                    <div class="col-md-2 d-flex align-items-end">
                         <div class="form-group w-100">
                             <button type="submit" class="btn btn-primary btn-block">
                                 <i class="fas fa-search mr-1"></i> Gerar Relatório
@@ -412,7 +428,7 @@
         <div class="row mb-3">
             <div class="col-md-3 col-6 mb-2">
                 <div class="resumo-card total">
-                    <h6><i class="fas fa-clipboard-list"></i> Total</h6>
+                    <h6><i class="fas fa-clipboard-list"></i> Total Orçamentos</h6>
                     <div class="valor text-primary" id="totalSolicitacoes">0</div>
                 </div>
             </div>
@@ -468,7 +484,7 @@
                         <th>Data</th>
                         <th>Solicitante</th>
                         <th>Centro de Custo</th>
-                        <th>Descrição</th>
+                        <th>Fornecedor</th>
                         <th>O.S.</th>
                         <th class="text-center">Itens</th>
                         <th class="text-center">Status</th>
@@ -570,6 +586,11 @@ $(document).ready(function() {
             filtrosTexto.push('Tipo: ' + tipo);
         }
         
+        var status = $('#filtroStatus option:selected').text();
+        if ($('#filtroStatus').val()) {
+            filtrosTexto.push('Status: ' + status);
+        }
+        
         var solicitante = $('#filtroSolicitante option:selected').text();
         if ($('#filtroSolicitante').val()) {
             filtrosTexto.push('Solicitante: ' + solicitante);
@@ -605,6 +626,7 @@ $(document).ready(function() {
         var centrosCusto = $('#filtroCentroCusto').val();
         var params = {
             tipo: $('#filtroTipo').val(),
+            status: $('#filtroStatus').val(),
             centro_custo_ids: centrosCusto && centrosCusto.length > 0 ? centrosCusto.join(',') : '',
             solicitante_id: $('#filtroSolicitante').val(),
             data_inicio: $('#filtroDataInicio').val(),
@@ -661,6 +683,7 @@ $(document).ready(function() {
                 var statusBadge = getStatusBadge(sol.status, sol.tipo);
                 var tipoBadge = getTipoBadge(sol.tipo);
                 var dataFormatada = sol.created_at ? new Date(sol.created_at).toLocaleDateString('pt-BR') : '-';
+                var fornecedor = sol.fornecedor || (sol.tipo === 'terceirizado' ? sol.descricao.split(' - ')[0] : '-');
                 
                 tbody.append(`
                     <tr>
@@ -668,8 +691,8 @@ $(document).ready(function() {
                         <td class="text-center">${tipoBadge}</td>
                         <td>${dataFormatada}</td>
                         <td>${sol.solicitante || '-'}</td>
-                        <td title="${sol.centro_custo || ''}">${truncar(sol.centro_custo, 22)}</td>
-                        <td title="${sol.descricao || ''}">${truncar(sol.descricao, 25)}</td>
+                        <td title="${sol.centro_custo || ''}">${truncar(sol.centro_custo, 18)}</td>
+                        <td title="${fornecedor}">${truncar(fornecedor, 20)}</td>
                         <td>${sol.ordem_servico || '-'}</td>
                         <td class="text-center"><span class="badge badge-secondary">${sol.qtd_itens}</span></td>
                         <td class="text-center">${statusBadge}</td>
@@ -706,11 +729,13 @@ $(document).ready(function() {
             'rejeitada': '<span class="badge badge-dark badge-status">Rejeitada</span>'
         };
         
-        // Status para terceirizados
+        // Status para terceirizados - com labels mais claros
         var badgesTerceirizado = {
-            'aguard_autorizacao': '<span class="badge badge-warning badge-status">Aguard. Autoriz.</span>',
-            'aguard_pagamento': '<span class="badge badge-info badge-status">Aguard. Pagto</span>',
-            'pendente': '<span class="badge badge-secondary badge-status">Pendente</span>',
+            'aguard_autorizacao': '<span class="badge badge-warning badge-status">Pend. Aprovação</span>',
+            'aguardando_autorizacao': '<span class="badge badge-warning badge-status">Pend. Aprovação</span>',
+            'aguard_pagamento': '<span class="badge badge-info badge-status">Pend. Pagamento</span>',
+            'aguardando_pagamento': '<span class="badge badge-info badge-status">Pend. Pagamento</span>',
+            'pendente': '<span class="badge badge-secondary badge-status">Pend. Pagamento</span>',
             'pago': '<span class="badge badge-success badge-status">Pago</span>'
         };
         

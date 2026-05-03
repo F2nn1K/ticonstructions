@@ -43,11 +43,31 @@ class RelatorioSolicitacaoController extends Controller
             ];
             
             $tipoFiltro = $request->input('tipo'); // 'material', 'terceirizado' ou vazio (todos)
+            $statusFiltro = $request->input('status'); // Status específico a filtrar
+            
+            // Mapear status genéricos para status específicos por tipo
+            $statusMateriais = ['aberta', 'finalizada', 'parcial', 'rejeitada', 'cancelada'];
+            $statusTerceirizados = ['aguardando_autorizacao', 'aguardando_pagamento', 'pendente', 'pago'];
+            
+            // Se tem filtro de status, determinar se deve buscar materiais e/ou terceirizados
+            $buscarMateriais = true;
+            $buscarTerceirizados = true;
+            
+            if ($statusFiltro) {
+                // Se o status é específico de materiais, não buscar terceirizados
+                if (in_array($statusFiltro, $statusMateriais)) {
+                    $buscarTerceirizados = false;
+                }
+                // Se o status é específico de terceirizados, não buscar materiais
+                if (in_array($statusFiltro, $statusTerceirizados)) {
+                    $buscarMateriais = false;
+                }
+            }
             
             // ========================================
             // 1. BUSCAR COTAÇÕES (MATERIAIS)
             // ========================================
-            if (!$tipoFiltro || $tipoFiltro === 'material') {
+            if ((!$tipoFiltro || $tipoFiltro === 'material') && $buscarMateriais) {
             $queryCotacoes = DB::table('cotacoes as c')
                 ->leftJoin('ordens_servico as os', 'c.ordem_servico_id', '=', 'os.id')
                 ->leftJoin('centros_custo as cc', 'os.centro_custo_id', '=', 'cc.id')
@@ -82,53 +102,89 @@ class RelatorioSolicitacaoController extends Controller
             if ($request->filled('data_fim')) {
                 $queryCotacoes->whereDate('c.created_at', '<=', $request->data_fim);
             }
+            
+            // Filtro de status para materiais
+            if ($statusFiltro && in_array($statusFiltro, $statusMateriais)) {
+                $queryCotacoes->where('c.status', $statusFiltro);
+            }
 
             $cotacoes = $queryCotacoes->orderBy('c.created_at', 'desc')->get();
 
             foreach ($cotacoes as $cot) {
-                $qtdItens = DB::table('cotacao_itens')
+                $qtdItensCotacao = DB::table('cotacao_itens')
                     ->where('cotacao_id', $cot->id)
                     ->count();
                 
-                // Buscar valor cotado
-                $valorCotado = DB::table('cotacao_fornecedores')
-                    ->where('cotacao_id', $cot->id)
-                    ->where('selecionado', 1)
-                    ->value('valor_total');
+                // Buscar TODOS os fornecedores cotados para esta cotação
+                $fornecedoresCotados = DB::table('cotacao_fornecedores as cf')
+                    ->leftJoin('fornecedores as f', 'cf.fornecedor_id', '=', 'f.id')
+                    ->where('cf.cotacao_id', $cot->id)
+                    ->select('cf.*', 'f.razao_social as fornecedor_nome')
+                    ->get();
                 
-                if (!$valorCotado) {
-                    $valorCotado = DB::table('cotacao_fornecedores')
-                        ->where('cotacao_id', $cot->id)
-                        ->min('valor_total');
+                if ($fornecedoresCotados->isEmpty()) {
+                    // Se não tem fornecedor cotado, mostra a cotação com valor 0
+                    $totais['qtd_itens'] += $qtdItensCotacao;
+                    $totais['total']++;
+                    $totais['materiais']++;
+                    
+                    $resultado[] = [
+                        'id' => $cot->id,
+                        'numero' => $cot->numero,
+                        'tipo' => 'material',
+                        'descricao' => $cot->descricao,
+                        'status' => $cot->status,
+                        'created_at' => $cot->created_at,
+                        'centro_custo' => $cot->centro_custo,
+                        'solicitante' => $cot->solicitante,
+                        'ordem_servico' => $cot->numero_os,
+                        'qtd_itens' => $qtdItensCotacao,
+                        'valor_cotado' => 0,
+                        'fornecedor' => '-',
+                    ];
+                } else {
+                    // Criar uma linha para CADA fornecedor cotado
+                    foreach ($fornecedoresCotados as $fc) {
+                        $valorCotado = floatval($fc->valor_total ?? 0);
+                        
+                        // Contar itens deste fornecedor específico
+                        $qtdItensFornecedor = DB::table('cotacao_fornecedor_itens')
+                            ->where('cotacao_fornecedor_id', $fc->id)
+                            ->count();
+                        
+                        // Se não tem itens específicos, usar os itens da cotação
+                        if ($qtdItensFornecedor == 0) {
+                            $qtdItensFornecedor = $qtdItensCotacao;
+                        }
+                        
+                        $totais['qtd_itens'] += $qtdItensFornecedor;
+                        $totais['valor_total'] += $valorCotado;
+                        $totais['total']++;
+                        $totais['materiais']++;
+                        
+                        $resultado[] = [
+                            'id' => $cot->id,
+                            'numero' => $cot->numero,
+                            'tipo' => 'material',
+                            'descricao' => $cot->descricao,
+                            'status' => $cot->status,
+                            'created_at' => $cot->created_at,
+                            'centro_custo' => $cot->centro_custo,
+                            'solicitante' => $cot->solicitante,
+                            'ordem_servico' => $cot->numero_os,
+                            'qtd_itens' => $qtdItensFornecedor,
+                            'valor_cotado' => $valorCotado,
+                            'fornecedor' => $fc->fornecedor_nome ?? 'Fornecedor #' . $fc->fornecedor_id,
+                        ];
+                    }
                 }
-                
-                $valorCotado = floatval($valorCotado ?? 0);
-                
-                $totais['qtd_itens'] += $qtdItens;
-                $totais['valor_total'] += $valorCotado;
-                $totais['total']++;
-                $totais['materiais']++;
-                
-                $resultado[] = [
-                    'id' => $cot->id,
-                    'numero' => $cot->numero,
-                    'tipo' => 'material',
-                    'descricao' => $cot->descricao,
-                    'status' => $cot->status,
-                    'created_at' => $cot->created_at,
-                    'centro_custo' => $cot->centro_custo,
-                    'solicitante' => $cot->solicitante,
-                    'ordem_servico' => $cot->numero_os,
-                    'qtd_itens' => $qtdItens,
-                    'valor_cotado' => $valorCotado,
-                ];
             }
             } // Fim do if para materiais
             
             // ========================================
             // 2. BUSCAR TERCEIRIZADOS/PRESTADORES
             // ========================================
-            if (!$tipoFiltro || $tipoFiltro === 'terceirizado') {
+            if ((!$tipoFiltro || $tipoFiltro === 'terceirizado') && $buscarTerceirizados) {
             $queryTerceirizados = DB::table('ordens_servico_prestadores as p')
                 ->join('ordens_servico as os', 'p.ordem_servico_id', '=', 'os.id')
                 ->leftJoin('centros_custo as cc', 'os.centro_custo_id', '=', 'cc.id')
@@ -163,6 +219,11 @@ class RelatorioSolicitacaoController extends Controller
             
             if ($request->filled('data_fim')) {
                 $queryTerceirizados->whereDate('p.created_at', '<=', $request->data_fim);
+            }
+            
+            // Filtro de status para terceirizados
+            if ($statusFiltro && in_array($statusFiltro, $statusTerceirizados)) {
+                $queryTerceirizados->where('p.status_pagamento', $statusFiltro);
             }
 
             $terceirizados = $queryTerceirizados->orderBy('p.created_at', 'desc')->get();

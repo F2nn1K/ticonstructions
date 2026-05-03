@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-check mr-1"></i> Criar Perfil
                     </button>
@@ -204,7 +204,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <form id="form-excluir-perfil" action="" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')

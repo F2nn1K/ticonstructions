@@ -53,7 +53,7 @@
           <div class="col-md-4 mb-3">
             <label for="status" class="font-weight-bold">Status de Aprovação</label>
             <select class="form-control" id="status" name="status">
-              <option value="">Todos</option>
+              <option value="">{{ __('Todos') }}</option>
               <option value="aprovado">Aprovados</option>
               <option value="rejeitado">Recusados</option>
               <option value="pendente">Pendentes</option>

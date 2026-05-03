@@ -2,7 +2,7 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Controle de Estoque')
+@section('title', __('Controle de Estoque'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -11,9 +11,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-boxes text-primary mr-3"></i>
-            Controle de Estoque
+            {{ __('Controle de Estoque') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Gerencie seu inventário de forma inteligente</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Gerencie seu inventário de forma inteligente') }}</p>
     </div>
     <div>
 
@@ -2217,6 +2217,10 @@
             estoque_maximo: parseInt($('#produtoEstoqueMaximo').val()) || null
         };
         
+        // Debug: mostrar dados que serão enviados
+        console.log('Dados a enviar:', data);
+        console.log('Unidade selecionada:', $('#produtoUnidade').val());
+        
         const submitBtn = $('#formEditarProduto button[type="submit"]');
         const originalText = submitBtn.html();
         submitBtn.html('<i class="fas fa-spinner fa-spin mr-1"></i> Salvando...').prop('disabled', true);
@@ -2230,12 +2234,14 @@
             },
             data: JSON.stringify(data),
             success: function(response) {
+                console.log('Resposta do servidor:', response);
                 showModernNotification(response.message, 'success');
                 
                 // Atualizar dados do produto selecionado
                 produtoSelecionado.nome = data.nome;
                 produtoSelecionado.descricao = data.descricao;
                 produtoSelecionado.quantidade = data.quantidade;
+                produtoSelecionado.unidade = data.unidade;
                 produtoSelecionado.updated_at = new Date().toISOString();
                 
                 $('#infoProdutoAtualizado').text(new Date().toLocaleDateString('pt-BR'));
@@ -2246,6 +2252,7 @@
                 }, 1000);
             },
             error: function(xhr) {
+                console.log('Erro:', xhr.responseJSON);
                 const response = xhr.responseJSON;
                 showModernNotification(response?.message || 'Erro ao atualizar produto', 'error');
             },

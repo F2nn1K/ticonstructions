@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Acompanhar Pedido')
+@section('title', __('Acompanhar Pedido'))
 
 @section('content_header')
-<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-eye text-primary mr-2"></i>Acompanhar Pedido</h1>
+<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-eye text-primary mr-2"></i>{{ __('Acompanhar Pedido') }}</h1>
 @stop
 
 @section('content')
@@ -12,30 +12,30 @@
     <div class="small-box bg-warning shadow-sm box-hover">
       <div class="inner">
         <h3 id="count-pendentes" class="mb-0">0</h3>
-        <p class="mb-0">Pendentes</p>
+        <p class="mb-0">{{ __('Pendentes') }}</p>
       </div>
       <div class="icon"><i class="fas fa-clock"></i></div>
-      <a href="{{ route('pedidos.acompanhar.pendentes') }}" class="small-box-footer">Ver pendentes <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="{{ route('pedidos.acompanhar.pendentes') }}" class="small-box-footer">{{ __('Ver pendentes') }} <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-4 col-md-6">
     <div class="small-box bg-success shadow-sm box-hover">
       <div class="inner">
         <h3 id="count-aprovadas" class="mb-0">0</h3>
-        <p class="mb-0">Aprovadas</p>
+        <p class="mb-0">{{ __('Aprovadas') }}</p>
       </div>
       <div class="icon"><i class="fas fa-check"></i></div>
-      <a href="{{ route('pedidos.acompanhar.aprovadas') }}" class="small-box-footer">Ver aprovadas <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="{{ route('pedidos.acompanhar.aprovadas') }}" class="small-box-footer">{{ __('Ver aprovadas') }} <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-4 col-md-6">
     <div class="small-box bg-danger shadow-sm box-hover">
       <div class="inner">
         <h3 id="count-rejeitadas" class="mb-0">0</h3>
-        <p class="mb-0">Rejeitadas</p>
+        <p class="mb-0">{{ __('Rejeitadas') }}</p>
       </div>
       <div class="icon"><i class="fas fa-times"></i></div>
-      <a href="{{ route('pedidos.acompanhar.rejeitadas') }}" class="small-box-footer">Ver rejeitadas <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="{{ route('pedidos.acompanhar.rejeitadas') }}" class="small-box-footer">{{ __('Ver rejeitadas') }} <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 </div>

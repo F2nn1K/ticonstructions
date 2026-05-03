@@ -13,7 +13,7 @@
   <div class="card-body p-0">
     <div class="px-3 py-2 bg-success text-white d-flex justify-content-between align-items-center">
       <strong>Solicitações Aprovadas</strong>
-      <a href="{{ route('pedidos.autorizacao') }}" class="btn btn-outline-light btn-sm text-white"><i class="fas fa-arrow-left mr-1"></i>Voltar</a>
+      <a href="{{ route('pedidos.autorizacao') }}" class="btn btn-outline-light btn-sm text-white"><i class="fas fa-arrow-left mr-1"></i>{{ __('Voltar') }}</a>
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-hover mb-0 align-middle" id="tabela-aprovadas">

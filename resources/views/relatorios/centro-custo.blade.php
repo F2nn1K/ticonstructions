@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Relatório Centro Custo')
+@section('title', __('{{ __('Relatório Centro Custo') }}'))
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
     <div>
         <h1 class="font-weight-bold">
             <i class="fas fa-building text-primary mr-3"></i>
-            Relatório Centro Custo
+            {{ __('Relatório Centro Custo') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Relatórios completos por centro de custo</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Relatórios completos por centro de custo') }}</p>
     </div>
 </div>
 @stop
@@ -725,7 +725,7 @@ function imprimirRelatorio() {
     <body>
         <div class="header-container">
             <div class="logo-section">
-                <img src="/img/brs-logo.png" alt="BRS Logo" class="logo" />
+                <img src="/img/logo.png" alt="Logo" class="logo" />
                 <div class="company-info">
                     <h1>RELATÓRIO CENTRO DE CUSTO</h1>
                     <p class="subtitle">Movimentações por Centro de Custo</p>
@@ -858,7 +858,7 @@ function imprimirRelatorio() {
         </div>
         
         <div class="footer">
-            <p>Sistema Integrado de Gestão Operacional (SIGO) - BRS Transportes</p>
+            <p>Sistema Integrado de Gestão Operacional (SIGO)</p>
         </div>
     </body>
     </html>`;

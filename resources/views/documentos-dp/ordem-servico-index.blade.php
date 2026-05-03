@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title','Ordem de Serviço')
+@section('title', __('Ordem de Serviço'))
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-bolt text-warning mr-2"></i>
-            Ações Rápidas - O.S.
+            {{ __('Ações Rápidas - O.S.') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Escolha entre criar nova ou visualizar as O.S.</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Escolha entre criar nova ou visualizar as O.S.') }}</p>
     </div>
 </div>
 @stop

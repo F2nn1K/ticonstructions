@@ -26,7 +26,7 @@
                         <th>Produto</th>
                         <th>Unidade</th>
                         <th style="width: 160px;" class="text-right">Valor</th>
-                        <th style="width: 120px;">Ativo</th>
+                        <th style="width: 120px;">{{ __('Ativo') }}</th>
                         <th style="width: 120px;">Ações</th>
                     </tr>
                 </thead>
@@ -67,8 +67,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" id="btnSalvarNovo" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
+        <button type="button" id="btnSalvarNovo" class="btn btn-primary">{{ __('Salvar') }}</button>
       </div>
     </div>
   </div>
@@ -103,8 +103,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" id="btnSalvarEdicao" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
+        <button type="button" id="btnSalvarEdicao" class="btn btn-primary">{{ __('Salvar') }}</button>
       </div>
     </div>
   </div>

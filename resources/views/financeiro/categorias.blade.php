@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', __('app.financial.categories'))
 
 @push('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -41,7 +41,7 @@
 @endpush
 
 @section('content_header')
-<h1><i class="fas fa-tags mr-2"></i>Categorias</h1>
+<h1><i class="fas fa-tags mr-2"></i>{{ __('app.financial.categories') }}</h1>
 @stop
 
 @section('content')
@@ -152,9 +152,9 @@ ALTER TABLE `contas_receber` ADD COLUMN IF NOT EXISTS `categoria_id` int(11) DEF
                                 </td>
                                 <td class="text-center">
                                     @if($cat->ativo)
-                                        <span class="badge badge-ativo">Ativa</span>
+                                        <span class="badge badge-ativo">{{ __('Ativa') }}</span>
                                     @else
-                                        <span class="badge badge-inativo">Inativa</span>
+                                        <span class="badge badge-inativo">{{ __('Inativa') }}</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -220,9 +220,9 @@ ALTER TABLE `contas_receber` ADD COLUMN IF NOT EXISTS `categoria_id` int(11) DEF
                                 </td>
                                 <td class="text-center">
                                     @if($cat->ativo)
-                                        <span class="badge badge-ativo">Ativa</span>
+                                        <span class="badge badge-ativo">{{ __('Ativa') }}</span>
                                     @else
-                                        <span class="badge badge-inativo">Inativa</span>
+                                        <span class="badge badge-inativo">{{ __('Inativa') }}</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -293,8 +293,8 @@ ALTER TABLE `contas_receber` ADD COLUMN IF NOT EXISTS `categoria_id` int(11) DEF
                             <div class="form-group">
                                 <label for="ativo">Status</label>
                                 <select class="form-control" id="ativo" name="ativo">
-                                    <option value="1">Ativa</option>
-                                    <option value="0">Inativa</option>
+                                    <option value="1">{{ __('Ativa') }}</option>
+                                    <option value="0">{{ __('Inativa') }}</option>
                                 </select>
                             </div>
                         </div>

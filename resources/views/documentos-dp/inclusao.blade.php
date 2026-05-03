@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inclusão de Documentos DP')
+@section('title', __('Inclusão de Documentos DP'))
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
@@ -9,7 +9,7 @@
             <i class="fas fa-file-alt text-primary mr-3"></i>
             Inclusão de Documentos DP
         </h1>
-        <p class="text-muted mt-1 mb-0">Cadastre os documentos necessários para admissão</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Cadastre os documentos necessários para admissão') }}</p>
     </div>
 </div>
 @stop

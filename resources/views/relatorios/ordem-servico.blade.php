@@ -521,7 +521,7 @@
                     <div class="col-md-2">
                         <label class="font-weight-bold"><i class="fas fa-user text-muted mr-1"></i> Responsável</label>
                         <select class="form-control" id="filtroResponsavel" name="responsavel_id">
-                            <option value="">Todos</option>
+                            <option value="">{{ __('Todos') }}</option>
                             @foreach($usuarios as $u)
                                 <option value="{{ $u->id }}">{{ $u->name }}</option>
                             @endforeach
@@ -530,7 +530,7 @@
                     <div class="col-md-2">
                         <label class="font-weight-bold"><i class="fas fa-tasks text-muted mr-1"></i> Status</label>
                         <select class="form-control" id="filtroStatus" name="status">
-                            <option value="">Todos</option>
+                            <option value="">{{ __('Todos') }}</option>
                             <option value="aberta">Aberta</option>
                             <option value="em_andamento">Em Andamento</option>
                             <option value="finalizada">Finalizada</option>
@@ -711,7 +711,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
             </div>
         </div>
     </div>

@@ -86,7 +86,7 @@
                 <div class="form-group">
                     <label><i class="fas fa-tag mr-1"></i> Status</label>
                     <select class="form-control form-control-sm" id="filtro_status" name="status">
-                        <option value="">Todos</option>
+                        <option value="">{{ __('Todos') }}</option>
                         <option value="aguardando_cotacao">Aguardando Cotação</option>
                         <option value="em_cotacao">Em Cotação</option>
                         <option value="cotado">Cotado</option>
@@ -186,7 +186,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-paper-plane mr-1"></i> Solicitar Frete
                     </button>
@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-check mr-1"></i> Adicionar Cotação
                     </button>
@@ -694,7 +694,7 @@ function renderizarDetalhes(f, cotacoes) {
         acoesHtml += `<button class="btn btn-success mr-2" onclick="confirmarEntrega(${f.id})"><i class="fas fa-truck mr-1"></i> Confirmar Entrega</button>`;
     }
     if (!['pago', 'liberado', 'entregue', 'cancelado'].includes(f.status)) {
-        acoesHtml += `<button class="btn btn-danger" onclick="abrirModalCancelar(${f.id})"><i class="fas fa-times mr-1"></i> Cancelar</button>`;
+        acoesHtml += `<button class="btn btn-danger" onclick="abrirModalCancelar(${f.id})"><i class="fas fa-times mr-1"></i>{{ __('Cancelar') }}</button>`;
     }
 
     $('#conteudoDetalhesFrete').html(`
@@ -723,7 +723,7 @@ function renderizarDetalhes(f, cotacoes) {
         <hr>
         <div class="text-right">
             ${acoesHtml}
-            <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
         </div>
     `);
 }

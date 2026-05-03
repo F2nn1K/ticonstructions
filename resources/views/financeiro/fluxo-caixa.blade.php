@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Fluxo de Caixa')
+@section('title', __('app.menu.cash_flow'))
 
 @section('content_header')
-<h1><i class="fas fa-chart-line mr-2"></i>Fluxo de Caixa</h1>
+<h1><i class="fas fa-chart-line mr-2"></i>{{ __('app.menu.cash_flow') }}</h1>
 @stop
 
 @section('content')
@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="conta_bancaria">Conta Bancária</label>
                                 <select class="form-control" id="conta_bancaria" name="conta_bancaria">
-                                    <option value="">Todas</option>
+                                    <option value="">{{ __('Todas') }}</option>
                                 </select>
                             </div>
                         </div>

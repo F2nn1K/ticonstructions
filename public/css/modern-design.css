@@ -1,6 +1,6 @@
 /* 
- * Design System Moderno - SIGO
- * Arquivo CSS centralizado para manter consistência visual
+ * Design System Moderno - SIGO / TI Construções
+ * Paleta: Bege areia, Creme, Taupe, Dourado, Preto suave
  */
 
 /* ===============================================
@@ -11,8 +11,8 @@
 .modern-card {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 20px rgba(28,28,28,0.07);
+    border: 1px solid #EDE3D8;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -21,13 +21,13 @@
 
 .modern-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 30px rgba(28,28,28,0.10);
 }
 
 /* Headers de Cards */
 .card-header-modern {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    border-bottom: 1px solid #e2e8f0;
+    background: linear-gradient(135deg, #F7F7F5 0%, #EDE3D8 100%);
+    border-bottom: 1px solid #EDE3D8;
     padding: 20px 24px;
     border-radius: 16px 16px 0 0;
 }
@@ -35,10 +35,11 @@
 .card-title-modern {
     font-size: 18px;
     font-weight: 600;
-    color: #1e293b;
+    color: #1C1C1C;
     margin: 0;
     display: flex;
     align-items: center;
+    font-family: 'Playfair Display', Georgia, serif;
 }
 
 .card-body-modern {
@@ -46,13 +47,13 @@
     border-radius: 0 0 16px 16px;
 }
 
-/* Stat Cards (como no controle de estoque) */
+/* Stat Cards */
 .stat-card {
     background: #fff;
     border-radius: 16px;
     padding: 24px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 20px rgba(28,28,28,0.07);
+    border: 1px solid #EDE3D8;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -61,7 +62,7 @@
 
 .stat-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 40px rgba(28,28,28,0.12);
 }
 
 .stat-card::before {
@@ -71,7 +72,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    background: linear-gradient(90deg, #8A7763, #D4B48C);
 }
 
 .stat-icon {
@@ -86,10 +87,11 @@
     margin-bottom: 16px;
 }
 
-.stat-card-primary .stat-icon { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+/* Tons terrosos para stat cards */
+.stat-card-primary .stat-icon { background: linear-gradient(135deg, #8A7763 0%, #C2A88C 100%); }
 .stat-card-success .stat-icon { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-.stat-card-warning .stat-icon { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
-.stat-card-danger .stat-icon { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+.stat-card-warning .stat-icon { background: linear-gradient(135deg, #D4B48C 0%, #B8966F 100%); }
+.stat-card-danger .stat-icon  { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
 
 .stat-content {
     flex-grow: 1;
@@ -98,14 +100,14 @@
 .stat-number {
     font-size: 32px;
     font-weight: 700;
-    color: #1e293b;
+    color: #1C1C1C;
     line-height: 1;
     margin-bottom: 4px;
 }
 
 .stat-label {
     font-size: 14px;
-    color: #64748b;
+    color: #6E6E6E;
     font-weight: 500;
 }
 
@@ -124,8 +126,8 @@
 }
 
 .modern-table thead th {
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    color: #475569;
+    background: linear-gradient(135deg, #8A7763 0%, #C2A88C 100%);
+    color: #ffffff;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 12px;
@@ -139,8 +141,8 @@
 
 .modern-table tbody td {
     padding: 16px 20px;
-    border-bottom: 1px solid #f1f5f9;
-    color: #334155;
+    border-bottom: 1px solid #EDE3D8;
+    color: #2A2A2A;
     transition: all 0.2s ease;
 }
 
@@ -149,7 +151,7 @@
 }
 
 .modern-table tbody tr:hover {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(147, 197, 253, 0.02) 100%);
+    background: linear-gradient(135deg, rgba(212, 180, 140, 0.05) 0%, rgba(237, 227, 216, 0.05) 100%);
     transform: translateY(-1px);
 }
 
@@ -160,16 +162,16 @@
 
 .modern-search-input {
     border-radius: 25px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid #EDE3D8;
     padding: 8px 20px;
     font-size: 14px;
     transition: all 0.3s ease;
-    background: #f8fafc;
+    background: #F7F7F5;
 }
 
 .modern-search-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #D4B48C;
+    box-shadow: 0 0 0 3px rgba(212, 180, 140, 0.18);
     background: #fff;
     outline: none;
 }
@@ -177,17 +179,17 @@
 .modern-search-icon {
     background: transparent;
     border: none;
-    color: #64748b;
+    color: #6E6E6E;
 }
 
-/* Action Buttons (como no controle de estoque) */
+/* Action Buttons */
 .action-btn {
     background: #fff;
-    border: 2px solid #e2e8f0;
+    border: 2px solid #EDE3D8;
     border-radius: 12px;
     padding: 20px;
     text-decoration: none;
-    color: #334155;
+    color: #2A2A2A;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -197,14 +199,14 @@
 
 .action-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    color: #334155;
+    box-shadow: 0 8px 25px rgba(28,28,28,0.08);
+    color: #2A2A2A;
     text-decoration: none;
 }
 
 .action-btn-primary:hover {
-    border-color: #3b82f6;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 197, 253, 0.05) 100%);
+    border-color: #D4B48C;
+    background: linear-gradient(135deg, rgba(212, 180, 140, 0.06) 0%, rgba(237, 227, 216, 0.06) 100%);
 }
 
 .action-btn-success:hover {
@@ -213,8 +215,8 @@
 }
 
 .action-btn-warning:hover {
-    border-color: #f59e0b;
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(217, 119, 6, 0.05) 100%);
+    border-color: #8A7763;
+    background: linear-gradient(135deg, rgba(138, 119, 99, 0.05) 0%, rgba(107, 93, 79, 0.05) 100%);
 }
 
 .action-btn-danger:hover {
@@ -234,10 +236,10 @@
     color: white;
 }
 
-.action-btn-primary .action-icon { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+.action-btn-primary .action-icon { background: linear-gradient(135deg, #8A7763 0%, #C2A88C 100%); }
 .action-btn-success .action-icon { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-.action-btn-warning .action-icon { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
-.action-btn-danger .action-icon { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+.action-btn-warning .action-icon { background: linear-gradient(135deg, #D4B48C 0%, #B8966F 100%); }
+.action-btn-danger .action-icon  { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
 
 .action-content {
     flex-grow: 1;
@@ -246,26 +248,26 @@
 .action-title {
     font-size: 16px;
     font-weight: 600;
-    color: #1e293b;
+    color: #1C1C1C;
     margin-bottom: 4px;
 }
 
 .action-desc {
     font-size: 14px;
-    color: #64748b;
+    color: #6E6E6E;
     line-height: 1.4;
 }
 
 /* Navigation Tabs Modernas */
 .nav-tabs {
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid #EDE3D8;
     margin-bottom: 24px;
 }
 
 .nav-tabs .nav-link {
     border: none;
     border-bottom: 3px solid transparent;
-    color: #64748b;
+    color: #6E6E6E;
     font-weight: 500;
     padding: 12px 20px;
     transition: all 0.3s ease;
@@ -274,15 +276,15 @@
 }
 
 .nav-tabs .nav-link:hover {
-    color: #3b82f6;
-    border-bottom-color: rgba(59, 130, 246, 0.3);
-    background: rgba(59, 130, 246, 0.02);
+    color: #8A7763;
+    border-bottom-color: rgba(138, 119, 99, 0.35);
+    background: rgba(212, 180, 140, 0.04);
 }
 
 .nav-tabs .nav-link.active {
-    color: #3b82f6;
-    border-bottom-color: #3b82f6;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 197, 253, 0.05) 100%);
+    color: #B8966F;
+    border-bottom-color: #D4B48C;
+    background: linear-gradient(135deg, rgba(212, 180, 140, 0.06) 0%, rgba(237, 227, 216, 0.06) 100%);
 }
 
 /* Badges Modernos */
@@ -328,14 +330,14 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Welcome Cards (como no dashboard) */
+/* Welcome Cards */
 .welcome-card, .reports-card {
     background: #fff;
     border-radius: 16px;
     padding: 60px 40px;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 20px rgba(28,28,28,0.07);
+    border: 1px solid #EDE3D8;
     margin-top: 40px;
     animation: fadeInUp 0.6s ease-out;
 }
@@ -343,32 +345,33 @@
 .welcome-icon, .reports-icon {
     width: 80px;
     height: 80px;
-    background: #007bff;
+    background: linear-gradient(135deg, #B8966F 0%, #D4B48C 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 30px;
     font-size: 36px;
-    color: white;
+    color: #1C1C1C;
 }
 
 .welcome-title, .reports-title {
     font-size: 32px;
     font-weight: 700;
-    color: #1e293b;
+    color: #1C1C1C;
     margin-bottom: 20px;
+    font-family: 'Playfair Display', Georgia, serif;
 }
 
 .welcome-subtitle {
     font-size: 18px;
-    color: #64748b;
+    color: #8A7763;
     margin-bottom: 16px;
 }
 
 .welcome-message, .reports-message {
     font-size: 16px;
-    color: #64748b;
+    color: #6E6E6E;
     line-height: 1.6;
     margin-bottom: 0;
 }
@@ -512,22 +515,22 @@
    =============================================== */
 
 .text-gradient-primary {
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #8A7763 0%, #D4B48C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .shadow-modern {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+    box-shadow: 0 4px 20px rgba(28,28,28,0.07) !important;
 }
 
 .shadow-modern-hover:hover {
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12) !important;
+    box-shadow: 0 8px 30px rgba(28,28,28,0.10) !important;
 }
 
 .border-modern {
-    border: 1px solid #f1f5f9 !important;
+    border: 1px solid #EDE3D8 !important;
 }
 
 .rounded-modern {
@@ -535,7 +538,7 @@
 }
 
 .bg-gradient-primary {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    background: linear-gradient(135deg, #8A7763 0%, #C2A88C 100%) !important;
 }
 
 .bg-gradient-success {
@@ -543,7 +546,7 @@
 }
 
 .bg-gradient-warning {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    background: linear-gradient(135deg, #D4B48C 0%, #B8966F 100%) !important;
 }
 
 .bg-gradient-danger {

@@ -4,6 +4,9 @@
 
 @push('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
 <style>
     /* Estilos normais */
     .table-responsive { max-height: 70vh; overflow-y: auto; }
@@ -213,6 +216,33 @@
     }
     
     .print-summary, .print-footer { display: none; }
+    
+    /* Select2 customização */
+    .select2-container--bootstrap-5 .select2-selection {
+        min-height: 38px;
+    }
+    
+    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__choice {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+        font-size: 12px;
+    }
+    
+    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__choice__remove {
+        color: white;
+    }
+    
+    .centro-custo-container {
+        position: relative;
+    }
+    
+    .centro-custo-container .badge-contador {
+        position: absolute;
+        top: -8px;
+        right: 0;
+        font-size: 11px;
+    }
 </style>
 @endpush
 
@@ -247,23 +277,30 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2">
-                    <label>Status</label>
+                    <label>{{ __('Status') }}</label>
                     <select class="form-control" id="filtroStatus">
-                        <option value="">Todos</option>
+                        <option value="">{{ __('Todos') }}</option>
                         <option value="pago">Pagos</option>
                         <option value="pendente">A Pagar</option>
                         <option value="vencido">Vencido</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label>Centro de Custo</label>
-                    <select class="form-control" id="filtroCentroCusto">
-                        <option value="">Todos</option>
-                    </select>
+                    <div class="centro-custo-container">
+                        <label>Centro de Custo <span class="badge badge-info badge-contador" id="contadorCentros">{{ __('Todos') }}</span></label>
+                        <select class="form-control" id="filtroCentroCusto" multiple="multiple">
+                        </select>
+                        <small class="text-muted">Selecione até 7 centros</small>
+                    </div>
                 </div>
                 <div class="col-md-2">
-                    <label>Fornecedor</label>
-                    <input type="text" class="form-control" id="filtroFornecedor" placeholder="Nome">
+                    <label>{{ __('Categoria') }}</label>
+                    <select class="form-control" id="filtroCategoria">
+                        <option value="">{{ __('Todas') }}</option>
+                        @foreach(\DB::table('categorias_contas')->where('ativo', 1)->orderBy('nome')->get() as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->nome }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-2">
                     <label>Data Início</label>
@@ -353,6 +390,9 @@
 @stop
 
 @section('js')
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/pt-BR.js"></script>
 <script>
 $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -376,17 +416,40 @@ $(document).ready(function() {
 function carregarCentrosCusto() {
     $.get('/api/centros-custo', function(data) {
         var select = $('#filtroCentroCusto');
+        select.empty();
         data.forEach(function(cc) {
             select.append('<option value="' + cc.id + '">' + cc.nome + '</option>');
+        });
+        
+        // Inicializar Select2 após carregar os dados
+        select.select2({
+            placeholder: 'Digite para buscar...',
+            allowClear: true,
+            language: 'pt-BR',
+            minimumInputLength: 0,
+            maximumSelectionLength: 7,
+            closeOnSelect: false,
+            width: '100%'
+        });
+        
+        // Atualizar contador quando mudar
+        select.on('change', function() {
+            var count = $(this).val() ? $(this).val().length : 0;
+            if (count === 0) {
+                $('#contadorCentros').text('Todos').removeClass('badge-primary').addClass('badge-info');
+            } else {
+                $('#contadorCentros').text(count + ' selecionado' + (count > 1 ? 's' : '')).removeClass('badge-info').addClass('badge-primary');
+            }
         });
     });
 }
 
 function filtrarContas() {
+    var centrosCusto = $('#filtroCentroCusto').val();
     var params = {
         status: $('#filtroStatus').val(),
-        centro_custo_id: $('#filtroCentroCusto').val(),
-        fornecedor: $('#filtroFornecedor').val(),
+        centro_custo_ids: centrosCusto && centrosCusto.length > 0 ? centrosCusto.join(',') : '',
+        categoria_id: $('#filtroCategoria').val(),
         data_inicio: $('#filtroDataInicio').val(),
         data_fim: $('#filtroDataFim').val()
     };
@@ -481,8 +544,8 @@ function formatarData(data) {
 
 function limparFiltros() {
     $('#filtroStatus').val('');
-    $('#filtroCentroCusto').val('');
-    $('#filtroFornecedor').val('');
+    $('#filtroCentroCusto').val(null).trigger('change');
+    $('#filtroCategoria').val('');
     
     var hoje = new Date();
     var primeiroDia = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
@@ -499,10 +562,11 @@ function imprimirRelatorio() {
 }
 
 function exportarExcel() {
+    var centrosCusto = $('#filtroCentroCusto').val();
     var params = new URLSearchParams({
         status: $('#filtroStatus').val(),
-        centro_custo_id: $('#filtroCentroCusto').val(),
-        fornecedor: $('#filtroFornecedor').val(),
+        centro_custo_ids: centrosCusto && centrosCusto.length > 0 ? centrosCusto.join(',') : '',
+        categoria_id: $('#filtroCategoria').val(),
         data_inicio: $('#filtroDataInicio').val(),
         data_fim: $('#filtroDataFim').val(),
         export: 'excel'

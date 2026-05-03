@@ -226,7 +226,8 @@ class OrdemServicoController extends Controller
                             $request->centro_custo_id,
                             $request->data_os,
                             $vencimento,
-                            $id // ordem_servico_id
+                            $id, // ordem_servico_id
+                            Auth::id()
                         );
                         
                         // Vincular OC ao prestador
@@ -244,9 +245,17 @@ class OrdemServicoController extends Controller
         if (Schema::hasTable('ordens_servico_itens') && $request->has('materiais')) {
             $materiais = $request->materiais;
             if (is_array($materiais)) {
+                $produtosJaAdicionados = [];
                 foreach ($materiais as $material) {
                     $produtoId = $material['produto_id'];
                     $quantidade = (int) $material['quantidade'];
+                    
+                    // Evitar duplicatas no mesmo envio
+                    if (in_array($produtoId, $produtosJaAdicionados)) {
+                        \Log::warning("Produto ID {$produtoId} duplicado no envio - ignorando");
+                        continue;
+                    }
+                    $produtosJaAdicionados[] = $produtoId;
                     
                     // Verificar estoque atual
                     $produto = DB::table('estoque')->where('id', $produtoId)->first();
@@ -264,7 +273,7 @@ class OrdemServicoController extends Controller
                     
                     // Baixar do estoque
                     $estoqueAtual = (int) $produto->quantidade;
-                    $novoEstoque = max(0, $estoqueAtual - $quantidade); // Não deixa ficar negativo
+                    $novoEstoque = max(0, $estoqueAtual - $quantidade);
                     
                     DB::table('estoque')
                         ->where('id', $produtoId)
@@ -382,7 +391,7 @@ class OrdemServicoController extends Controller
      * NOVO: Criar Ordem de Compra para prestador de serviço terceirizado
      * O prestador segue o mesmo fluxo de aprovação das compras de material
      */
-    private function criarOCPrestador($prestadorId, $nomePrestador, $descricaoServico, $valor, $numeroOS, $centroCustoId, $dataServico, $dataVencimento = null, $ordemServicoId = null)
+    private function criarOCPrestador($prestadorId, $nomePrestador, $descricaoServico, $valor, $numeroOS, $centroCustoId, $dataServico, $dataVencimento = null, $ordemServicoId = null, $criadorUserId = null)
     {
         try {
             // Verificar se a tabela ordens_compra existe
@@ -444,6 +453,9 @@ class OrdemServicoController extends Controller
             if (in_array('ordem_servico_id', $columns)) {
                 $insertData['ordem_servico_id'] = $ordemServicoId;
             }
+            if (in_array('centro_custo_id', $columns) && $centroCustoId) {
+                $insertData['centro_custo_id'] = $centroCustoId;
+            }
             
             // Buscar ou criar fornecedor para o prestador
             $fornecedor = DB::table('fornecedores')
@@ -469,6 +481,8 @@ class OrdemServicoController extends Controller
                 $fornecedorId = DB::table('fornecedores')->insertGetId($dadosFornecedor);
                 $insertData['fornecedor_id'] = $fornecedorId;
             }
+
+            \App\Support\OrdensCompraAuditoria::mergeCriadorUsuario($insertData, $criadorUserId ?? Auth::id());
             
             $ocId = DB::table('ordens_compra')->insertGetId($insertData);
             
@@ -486,6 +500,18 @@ class OrdemServicoController extends Controller
             }
             
             \Log::info("OC #{$numeroOC} criada para prestador {$nomePrestador} - O.S. #{$numeroOS} - Valor: R$ {$valor}");
+
+            $fornecedorLog = DB::table('fornecedores')->where('id', $insertData['fornecedor_id'])->first();
+            \App\Support\OrdensCompraAuditoria::registrarLogCriacao(
+                (int) $ocId,
+                $numeroOC,
+                'criacao_prestador_os',
+                $insertData['fornecedor_id'],
+                $fornecedorLog->razao_social ?? $nomePrestador,
+                $valor,
+                null,
+                $criadorUserId ?? Auth::id()
+            );
             
             return $ocId;
             
@@ -640,10 +666,12 @@ class OrdemServicoController extends Controller
     {
         $ordem = DB::table('ordens_servico')
             ->leftJoin('funcionarios', 'ordens_servico.funcionario_id', '=', 'funcionarios.id')
+            ->leftJoin('users', 'ordens_servico.user_id', '=', 'users.id')
             ->where('ordens_servico.id', $id)
             ->select(
                 'ordens_servico.*',
-                'funcionarios.nome as funcionario_nome'
+                'funcionarios.nome as funcionario_nome',
+                'users.name as criado_por_nome'
             )
             ->first();
 
@@ -786,9 +814,20 @@ class OrdemServicoController extends Controller
             'descricao' => 'required|string',
         ]);
 
+        // Tratar funcionario_id - se vazio ou não existir na tabela funcionarios, definir como null
+        $funcionarioId = $request->funcionario_id;
+        if (empty($funcionarioId) || $funcionarioId == 0 || $funcionarioId == '0') {
+            $funcionarioId = null;
+        } else {
+            $funcionarioExiste = DB::table('funcionarios')->where('id', $funcionarioId)->exists();
+            if (!$funcionarioExiste) {
+                $funcionarioId = null;
+            }
+        }
+
         $dados = [
             'data_os' => $request->data_os,
-            'funcionario_id' => $request->funcionario_id,
+            'funcionario_id' => $funcionarioId,
             'descricao' => $request->descricao,
             'endereco' => $request->endereco,
             'cidade' => $request->cidade,
@@ -818,6 +857,10 @@ class OrdemServicoController extends Controller
             ->where('id', $id)
             ->update($dados);
 
+        // Buscar número da O.S. para uso em logs e referências
+        $ordem = DB::table('ordens_servico')->where('id', $id)->first();
+        $numeroOS = $ordem->numero_os ?? '';
+
         // Atualizar prestadores de serviço se a tabela existir
         if (Schema::hasTable('ordens_servico_prestadores') && $request->has('prestadores')) {
             // Verificar quais colunas existem
@@ -843,10 +886,6 @@ class OrdemServicoController extends Controller
             
             // Remover prestadores antigos
             DB::table('ordens_servico_prestadores')->where('ordem_servico_id', $id)->delete();
-            
-            // Buscar número da O.S.
-            $ordem = DB::table('ordens_servico')->where('id', $id)->first();
-            $numeroOS = $ordem->numero_os ?? '';
             
             // Inserir novos prestadores
             $prestadores = $request->prestadores;
@@ -883,7 +922,8 @@ class OrdemServicoController extends Controller
                             $request->centro_custo_id,
                             $request->data_os,
                             $vencimento,
-                            $id // ordem_servico_id
+                            $id, // ordem_servico_id
+                            Auth::id()
                         );
                         
                         if ($ocId) {
@@ -903,6 +943,17 @@ class OrdemServicoController extends Controller
                 foreach ($materiais as $material) {
                     $produtoId = $material['produto_id'];
                     $quantidade = (int) $material['quantidade'];
+                    
+                    // Verificar se este produto já existe nesta O.S. (evitar duplicatas)
+                    $jaExiste = DB::table('ordens_servico_itens')
+                        ->where('ordem_servico_id', $id)
+                        ->where('produto_id', $produtoId)
+                        ->exists();
+                    
+                    if ($jaExiste) {
+                        \Log::warning("Produto ID {$produtoId} já existe na O.S. #{$id} - ignorando duplicata");
+                        continue;
+                    }
                     
                     // Verificar estoque atual
                     $produto = DB::table('estoque')->where('id', $produtoId)->first();
@@ -933,11 +984,6 @@ class OrdemServicoController extends Controller
 
         // Adicionar NOVAS solicitações de compra (cotação)
         if ($request->has('solicitacoes') && is_array($request->solicitacoes) && count($request->solicitacoes) > 0) {
-            // Buscar número da O.S.
-            $ordem = DB::table('ordens_servico')->where('id', $id)->first();
-            $numeroOS = $ordem->numero_os ?? '';
-            
-            // Parâmetros: $itens, $numeroOS, $centroCustoId, $ordemServicoId
             $this->criarSolicitacaoCompra($request->solicitacoes, $numeroOS, $request->centro_custo_id, $id);
         }
 
@@ -1360,6 +1406,28 @@ class OrdemServicoController extends Controller
             'success' => true,
             'message' => 'O.S. reaberta com sucesso!'
         ]);
+    }
+    
+    /**
+     * Buscar materiais do estoque para uso na O.S.
+     * Acessível a todos que têm permissão de O.S.
+     */
+    public function buscarMateriais(Request $request)
+    {
+        $nome = $request->input('nome', '');
+        
+        if (strlen($nome) < 3) {
+            return response()->json([]);
+        }
+        
+        $produtos = DB::table('estoque')
+            ->where('nome', 'LIKE', '%' . $nome . '%')
+            ->where('quantidade', '>', 0)
+            ->orderBy('nome')
+            ->limit(20)
+            ->get(['id', 'nome', 'quantidade', 'unidade']);
+        
+        return response()->json($produtos);
     }
     
     /**

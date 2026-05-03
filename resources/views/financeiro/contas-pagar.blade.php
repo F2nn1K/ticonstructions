@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Contas a Pagar')
+@section('title', __('app.financial.accounts_payable'))
 
 @push('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
 @section('content_header')
-<h1><i class="fas fa-file-invoice-dollar mr-2"></i>Contas a Pagar</h1>
+<h1><i class="fas fa-file-invoice-dollar mr-2"></i>{{ __('app.financial.accounts_payable') }}</h1>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
             <div class="small-box bg-primary">
                 <div class="inner">
                     <h3 id="totalBruto">R$ 0,00</h3>
-                    <p>Valor Bruto</p>
+                    <p>{{ __('Valor Bruto') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-file-invoice-dollar"></i></div>
             </div>
@@ -27,7 +27,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3 id="totalGeral">R$ 0,00</h3>
-                    <p>Valor Líquido</p>
+                    <p>{{ __('Valor Líquido') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-dollar-sign"></i></div>
             </div>
@@ -36,7 +36,7 @@
             <div class="small-box bg-success">
                 <div class="inner">
                     <h3 id="totalPago">R$ 0,00</h3>
-                    <p>Pago</p>
+                    <p>{{ __('Pago') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-check-circle"></i></div>
             </div>
@@ -45,7 +45,7 @@
             <div class="small-box bg-warning">
                 <div class="inner">
                     <h3 id="totalPendente">R$ 0,00</h3>
-                    <p>Pendente</p>
+                    <p>{{ __('Pendente') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-clock"></i></div>
             </div>
@@ -54,7 +54,7 @@
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3 id="totalVencido">R$ 0,00</h3>
-                    <p>Vencido</p>
+                    <p>{{ __('Vencido') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
             </div>
@@ -64,20 +64,20 @@
     <!-- Filtros -->
     <div class="row mb-3">
         <div class="col-md-2">
-            <label>Status</label>
+            <label>{{ __('Status') }}</label>
             <select class="form-control" id="filtroStatus">
-                <option value="">Todos</option>
-                <option value="a_pagar" selected>A Pagar</option>
-                <option value="pendente">Pendente</option>
-                <option value="pago">Pago</option>
-                <option value="vencido">Vencido</option>
-                <option value="cancelado">Cancelado</option>
+                <option value="">{{ __('Todos') }}</option>
+                <option value="a_pagar" selected>{{ __('A Pagar') }}</option>
+                <option value="pendente">{{ __('Pendente') }}</option>
+                <option value="pago">{{ __('Pago') }}</option>
+                <option value="vencido">{{ __('Vencido') }}</option>
+                <option value="cancelado">{{ __('Cancelado') }}</option>
             </select>
         </div>
         <div class="col-md-2">
-            <label>Categoria</label>
+            <label>{{ __('Categoria') }}</label>
             <select class="form-control" id="filtroCategoria">
-                <option value="">Todas</option>
+                <option value="">{{ __('Todas') }}</option>
                 @if(isset($categorias))
                     @foreach($categorias as $cat)
                     <option value="{{ $cat->id }}">{{ $cat->nome }}</option>
@@ -85,8 +85,14 @@
                 @endif
             </select>
         </div>
+        <div class="col-md-2" style="position:relative;">
+            <label>{{ __('Fornecedor') }}</label>
+            <input type="text" class="form-control" id="filtroFornecedorTexto" placeholder="Digite 3 letras..." autocomplete="off">
+            <input type="hidden" id="filtroFornecedorId">
+            <div id="listaFiltroFornecedorCP" style="display:none; position:absolute; z-index:999; background:#fff; border:1px solid #ccc; border-radius:4px; width:100%; max-height:200px; overflow-y:auto; box-shadow:0 4px 8px rgba(0,0,0,.15);"></div>
+        </div>
         <div class="col-md-2">
-            <label>Centro de Custo</label>
+            <label>{{ __('Centro de Custo') }}</label>
             <input type="text" class="form-control" id="filtroCentroCusto" placeholder="Digite para buscar..." autocomplete="off">
             <input type="hidden" id="filtroCentroCustoId">
         </div>
@@ -94,18 +100,18 @@
             <label>Data Início</label>
             <input type="date" class="form-control" id="filtroDataInicio">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <label>Data Fim</label>
             <input type="date" class="form-control" id="filtroDataFim">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <label>&nbsp;</label>
             <div class="btn-group btn-block">
                 <button type="button" class="btn btn-success" onclick="filtrarContas()">
-                    <i class="fas fa-search mr-1"></i> Filtrar
+                    <i class="fas fa-search mr-1"></i> {{ __('Filtrar') }}
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="limparFiltros()">
-                    <i class="fas fa-times mr-1"></i> Limpar
+                    <i class="fas fa-times mr-1"></i> {{ __('Limpar') }}
                 </button>
             </div>
         </div>
@@ -114,10 +120,13 @@
     <!-- Tabela de Contas -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Gerenciamento de Contas a Pagar</h3>
+            <h3 class="card-title">{{ __('app.financial.accounts_payable') }}</h3>
             <div class="card-tools">
+                <button type="button" class="btn btn-warning btn-sm text-white mr-1" id="btnBaixarLote" onclick="abrirBaixaLote()" style="display:none;">
+                    <i class="fas fa-check-double mr-1"></i> Baixar Selecionados (<span id="qtdSelecionados">0</span>)
+                </button>
                 <button type="button" class="btn btn-success btn-sm" onclick="abrirModalNova()">
-                    <i class="fas fa-plus mr-1"></i> Nova Conta
+                    <i class="fas fa-plus mr-1"></i> {{ __('Nova') }} {{ __('Conta') }}
                 </button>
             </div>
         </div>
@@ -125,6 +134,7 @@
             <table class="table table-hover table-striped" id="tabelaContas">
                     <thead>
                     <tr>
+                        <th style="width:36px;"><input type="checkbox" id="checkTodos" title="Selecionar todos"></th>
                         <th>ID</th>
                         <th>Nº Doc</th>
                         <th>Descrição</th>
@@ -135,6 +145,7 @@
                         <th class="text-right">V. Líquido</th>
                         <th class="text-center">Emissão</th>
                         <th class="text-center">Vencim.</th>
+                        <th class="text-center">Dt. Baixa</th>
                         <th class="text-center">Status</th>
                         <th>Obs.</th>
                         <th class="text-center">Anx.</th>
@@ -155,6 +166,7 @@
                         }
                     @endphp
                     <tr data-id="{{ $conta->id }}" data-valor-liquido="{{ $conta->valor_liquido ?? $conta->valor ?? 0 }}" data-anexo="{{ $conta->anexo_path ?? '' }}">
+                        <td><input type="checkbox" class="check-conta" data-id="{{ $conta->id }}" data-status="{{ $status }}" {{ in_array($status, ['pago','cancelado']) ? 'disabled' : '' }}></td>
                         <td>{{ $conta->id }}</td>
                         <td>{{ $conta->documento ?? $conta->oc_numero ?? '-' }}</td>
                         <td>{{ $conta->descricao }}</td>
@@ -165,6 +177,15 @@
                         <td class="text-right">R$ {{ number_format($conta->valor_liquido ?? $conta->valor ?? 0, 2, ',', '.') }}</td>
                         <td class="text-center">{{ isset($conta->data_emissao) ? \Carbon\Carbon::parse($conta->data_emissao)->format('d/m/Y') : '-' }}</td>
                         <td class="text-center">{{ $vencimento ? $vencimento->format('d/m/Y') : '-' }}</td>
+                        <td class="text-center">
+                            @if($conta->baixa_em)
+                                {{ \Carbon\Carbon::parse($conta->baixa_em)->format('d/m/Y') }}
+                            @elseif($conta->data_pagamento && $status == 'pago')
+                                {{ \Carbon\Carbon::parse($conta->data_pagamento)->format('d/m/Y') }}
+                            @else
+                                <span class="text-muted">-</span>
+                            @endif
+                        </td>
                         <td class="text-center">
                             @switch($status)
                                 @case('pendente')
@@ -342,6 +363,70 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Seção de baixa imediata: aparece quando status = Pago -->
+                    <div class="row" id="secaoBaixaImediata" style="display:none;">
+                        <div class="col-12">
+                            <div class="card card-outline card-success mb-2">
+                                <div class="card-header py-2 bg-success">
+                                    <h6 class="card-title text-white mb-0"><i class="fas fa-check-circle mr-1"></i> Dados do Pagamento</h6>
+                                </div>
+                                <div class="card-body py-2">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-2">
+                                                <label for="baixa_data_pagamento">Data do Pagamento <span class="text-danger">*</span></label>
+                                                <input type="date" class="form-control form-control-sm" id="baixa_data_pagamento" name="baixa_data_pagamento">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-2">
+                                                <label for="baixa_valor_pago">Valor Pago <span class="text-danger">*</span></label>
+                                                <div class="input-group input-group-sm">
+                                                    <div class="input-group-prepend"><span class="input-group-text">R$</span></div>
+                                                    <input type="text" class="form-control money" id="baixa_valor_pago" name="baixa_valor_pago" placeholder="0,00">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-2">
+                                                <label for="baixa_forma_pagamento">Forma de Pagamento <span class="text-danger">*</span></label>
+                                                <select class="form-control form-control-sm" id="baixa_forma_pagamento" name="baixa_forma_pagamento">
+                                                    <option value="">Selecione...</option>
+                                                    <option value="pix">PIX</option>
+                                                    <option value="transferencia">Transferência</option>
+                                                    <option value="boleto">Boleto</option>
+                                                    <option value="cartao_credito">Cartão de Crédito</option>
+                                                    <option value="cartao_debito">Cartão de Débito</option>
+                                                    <option value="dinheiro">Dinheiro</option>
+                                                    <option value="cheque">Cheque</option>
+                                                    <option value="deposito">Depósito</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group mb-0">
+                                                <label for="baixa_comprovante">Comprovante (opcional)</label>
+                                                <input type="file" class="form-control-file form-control-sm" id="baixa_comprovante" name="comprovante" accept=".pdf,.jpg,.jpeg,.png">
+                                                <small class="text-muted">PDF, JPG ou PNG (máx. 5MB)</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" id="baixaComprovanteAtualWrapper" style="display:none;">
+                                            <div class="form-group mb-0">
+                                                <label>&nbsp;</label><br>
+                                                <a id="baixaComprovanteAtualLink" href="#" target="_blank" class="btn btn-sm btn-outline-success">
+                                                    <i class="fas fa-paperclip mr-1"></i> Ver comprovante atual
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -412,6 +497,55 @@
     </div>
 </div>
 
+<!-- Modal Baixa em Lote -->
+<div class="modal fade" id="modalBaixaLote" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title text-white">
+                    <i class="fas fa-check-double mr-2"></i>Baixar Contas Selecionadas
+                </h5>
+                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <form id="formBaixaLote">
+                <div class="modal-body">
+                    <div class="alert alert-info py-2">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Serão baixadas <strong><span id="loteQtd">0</span> conta(s)</strong> totalizando
+                        <strong>R$ <span id="loteTotalValor">0,00</span></strong>.
+                    </div>
+                    <div class="form-group">
+                        <label for="loteDataPagamento">Data do Pagamento <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="loteDataPagamento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loteFormaPagamento">Forma de Pagamento <span class="text-danger">*</span></label>
+                        <select class="form-control" id="loteFormaPagamento" required>
+                            <option value="">Selecione...</option>
+                            <option value="pix">PIX</option>
+                            <option value="transferencia">Transferência</option>
+                            <option value="boleto">Boleto</option>
+                            <option value="cartao_credito">Cartão de Crédito</option>
+                            <option value="cartao_debito">Cartão de Débito</option>
+                            <option value="dinheiro">Dinheiro</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="deposito">Depósito</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-1"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-warning text-white">
+                        <i class="fas fa-check-double mr-1"></i> Confirmar Baixa em Lote
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Baixar Conta -->
 <div class="modal fade" id="modalBaixar" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -436,12 +570,12 @@
                         <input type="date" class="form-control" id="dataPagamento" name="data_pagamento" required>
                     </div>
                     <div class="form-group">
-                        <label for="valorPago">Valor Pago <span class="text-danger">*</span></label>
+                        <label for="valorPago">Valor Pago <small class="text-muted">(pode ser 0 para crédito)</small></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">R$</span>
                             </div>
-                            <input type="text" class="form-control money" id="valorPago" name="valor_pago" required>
+                            <input type="text" class="form-control money" id="valorPago" name="valor_pago">
                         </div>
                     </div>
                     <div class="form-group">
@@ -623,17 +757,18 @@
     #tabelaContas th:nth-child(8), #tabelaContas td:nth-child(8) { width: 85px; } /* Valor Líquido */
     #tabelaContas th:nth-child(9), #tabelaContas td:nth-child(9) { width: 80px; } /* Emissão */
     #tabelaContas th:nth-child(10), #tabelaContas td:nth-child(10) { width: 80px; } /* Vencimento */
-    #tabelaContas th:nth-child(11), #tabelaContas td:nth-child(11) { width: 70px; } /* Status */
-    #tabelaContas th:nth-child(12), #tabelaContas td:nth-child(12) { max-width: 120px; } /* Observações */
-    #tabelaContas th:nth-child(13), #tabelaContas td:nth-child(13) { width: 50px; } /* Anexo */
-    #tabelaContas th:nth-child(14), #tabelaContas td:nth-child(14) { width: 110px; } /* Ações */
+    #tabelaContas th:nth-child(11), #tabelaContas td:nth-child(11) { width: 80px; } /* Data Baixa */
+    #tabelaContas th:nth-child(12), #tabelaContas td:nth-child(12) { width: 70px; } /* Status */
+    #tabelaContas th:nth-child(13), #tabelaContas td:nth-child(13) { max-width: 120px; } /* Observações */
+    #tabelaContas th:nth-child(14), #tabelaContas td:nth-child(14) { width: 50px; } /* Anexo */
+    #tabelaContas th:nth-child(15), #tabelaContas td:nth-child(15) { width: 110px; } /* Ações */
     
     /* Truncar textos longos */
     #tabelaContas td:nth-child(3),
     #tabelaContas td:nth-child(4),
     #tabelaContas td:nth-child(5),
     #tabelaContas td:nth-child(6),
-    #tabelaContas td:nth-child(12) {
+    #tabelaContas td:nth-child(13) {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -787,8 +922,50 @@ function abrirModalNova() {
     $('#opcoesRepeticao').hide();
     $('#secaoRepeticao').show();
     $('#modalContaLabel').html('<i class="fas fa-plus-circle mr-2"></i>Nova Conta a Pagar');
+    // Resetar seção baixa imediata
+    $('#secaoBaixaImediata').hide();
+    $('#baixa_data_pagamento').val('');
+    $('#baixa_valor_pago').val('');
+    $('#baixa_forma_pagamento').val('');
+    $('#baixa_comprovante').val('');
+    $('#baixaComprovanteAtualWrapper').hide();
+    $('#secaoRepeticao').show();
     $('#modalConta').modal('show');
 }
+
+// Mostrar/ocultar seção de baixa imediata ao alterar status
+function toggleBaixaImediata() {
+    var status = $('#status').val();
+    if (status === 'pago') {
+        $('#secaoBaixaImediata').slideDown(150);
+        // Preencher data de hoje se vazio
+        if (!$('#baixa_data_pagamento').val()) {
+            var hoje = new Date().toISOString().split('T')[0];
+            $('#baixa_data_pagamento').val(hoje);
+        }
+        // Preencher valor pago com valor líquido se vazio
+        if (!$('#baixa_valor_pago').val()) {
+            var vl = $('#valor_liquido').val();
+            if (vl) $('#baixa_valor_pago').val(vl);
+        }
+        // Esconder repetição quando pago
+        $('#secaoRepeticao').slideUp(100);
+        $('#repetir_conta').prop('checked', false);
+        $('#opcoesRepeticao').hide();
+    } else {
+        $('#secaoBaixaImediata').slideUp(150);
+        $('#secaoRepeticao').slideDown(100);
+    }
+}
+
+$('#status').on('change', toggleBaixaImediata);
+
+// Copiar valor líquido para valor pago quando alterar
+$('#valor_liquido').on('change blur', function() {
+    if ($('#status').val() === 'pago' && !$('#baixa_valor_pago').val()) {
+        $('#baixa_valor_pago').val($(this).val());
+    }
+});
 
 // Controle da seção de repetição
 $('#repetir_conta').on('change', function() {
@@ -852,6 +1029,20 @@ function editarConta(id) {
             }
             
             $('#modalContaLabel').html('<i class="fas fa-edit mr-2"></i>Editar Conta a Pagar');
+            // Restaurar campos de baixa se já pago
+            $('#baixa_data_pagamento').val(conta.data_pagamento || '');
+            $('#baixa_valor_pago').val(conta.valor_pago ? formatarValorInput(conta.valor_pago) : '');
+            $('#baixa_forma_pagamento').val(conta.forma_pagamento || '');
+            $('#baixa_comprovante').val('');
+            // Mostrar link do comprovante atual se já existir
+            var compPath = conta.comprovante_path || conta.anexo_path || null;
+            if (compPath && conta.status === 'pago') {
+                $('#baixaComprovanteAtualLink').attr('href', '/financeiro/api/contas-pagar/' + conta.id + '/comprovante/0');
+                $('#baixaComprovanteAtualWrapper').show();
+            } else {
+                $('#baixaComprovanteAtualWrapper').hide();
+            }
+            toggleBaixaImediata();
             $('#modalConta').modal('show');
         } else {
             Swal.fire('Erro', response.message, 'error');
@@ -1008,7 +1199,7 @@ function verAnexo(id) {
                 window.open('/financeiro/api/contas-pagar/' + id + '/comprovante/0', '_blank');
             } else {
                 // Múltiplos comprovantes - mostrar modal para escolher
-                let html = '<div class="list-group">';
+                let html = '<div style="max-height:60vh; overflow-y:auto;" class="list-group">';
                 response.comprovantes.forEach(function(comp, index) {
                     html += '<a href="/financeiro/api/contas-pagar/' + id + '/comprovante/' + comp.index + '" target="_blank" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">';
                     html += '<span><i class="fas fa-file-pdf text-danger mr-2"></i> Comprovante ' + (index + 1) + '</span>';
@@ -1016,6 +1207,7 @@ function verAnexo(id) {
                     html += '</a>';
                 });
                 html += '</div>';
+                html += '<p class="text-muted small mt-2 mb-0">' + response.comprovantes.length + ' comprovante(s) no total</p>';
                 
                 Swal.fire({
                     title: 'Comprovantes de Pagamento',
@@ -1023,7 +1215,7 @@ function verAnexo(id) {
                     icon: 'info',
                     showCloseButton: true,
                     showConfirmButton: false,
-                    width: '500px'
+                    width: '550px'
                 });
             }
         } else {
@@ -1152,6 +1344,7 @@ function filtrarContas() {
     const params = {
         status: $('#filtroStatus').val(),
         categoria_id: $('#filtroCategoria').val(),
+        fornecedor_id: $('#filtroFornecedorId').val(),
         centro_custo_id: $('#filtroCentroCustoId').val(),
         data_inicio: $('#filtroDataInicio').val(),
         data_fim: $('#filtroDataFim').val()
@@ -1168,6 +1361,9 @@ function filtrarContas() {
 function limparFiltros() {
     $('#filtroStatus').val('a_pagar'); // Volta para "A Pagar" como padrão
     $('#filtroCategoria').val('');
+    $('#filtroFornecedorTexto').val('');
+    $('#filtroFornecedorId').val('');
+    $('#listaFiltroFornecedorCP').hide().empty();
     $('#filtroCentroCusto').val('');
     $('#filtroCentroCustoId').val('');
     $('#filtroDataInicio').val('');
@@ -1227,6 +1423,15 @@ function renderizarTabela(contas) {
         
         const vencimento = conta.data_vencimento ? new Date(conta.data_vencimento + 'T00:00:00').toLocaleDateString('pt-BR') : '-';
         const emissao = conta.data_emissao ? new Date(conta.data_emissao + 'T00:00:00').toLocaleDateString('pt-BR') : '-';
+        
+        // Data de baixa
+        let dataBaixa = '-';
+        if (conta.baixa_em) {
+            dataBaixa = new Date(conta.baixa_em).toLocaleDateString('pt-BR');
+        } else if (conta.data_pagamento && status === 'pago') {
+            dataBaixa = new Date(conta.data_pagamento + 'T00:00:00').toLocaleDateString('pt-BR');
+        }
+        
         const valorBruto = parseFloat(conta.valor_bruto || conta.valor || 0).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         const valorLiquido = parseFloat(conta.valor_liquido || conta.valor || 0).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         
@@ -1236,8 +1441,10 @@ function renderizarTabela(contas) {
             anexoHtml = `<button type="button" class="btn btn-sm btn-primary" onclick="verAnexo(${conta.id})" title="Ver Anexo PDF"><i class="fas fa-file-pdf"></i></button>`;
         }
         
+        const chkDisabled = (status === 'pago' || status === 'cancelado') ? 'disabled' : '';
         tbody.append(`
             <tr data-id="${conta.id}" data-valor-liquido="${conta.valor_liquido || conta.valor || 0}" data-anexo="${conta.anexo_path || ''}">
+                <td><input type="checkbox" class="check-conta" data-id="${conta.id}" data-status="${status}" ${chkDisabled}></td>
                 <td>${conta.id}</td>
                 <td>${conta.documento || conta.oc_numero || '-'}</td>
                 <td>${conta.descricao}</td>
@@ -1248,6 +1455,7 @@ function renderizarTabela(contas) {
                 <td class="text-right">R$ ${valorLiquido}</td>
                 <td class="text-center">${emissao}</td>
                 <td class="text-center">${vencimento}</td>
+                <td class="text-center">${dataBaixa}</td>
                 <td class="text-center">${statusBadgeHtml}</td>
                 <td style="max-width: 150px; font-size: 0.85em;" title="${conta.observacoes || ''}">${conta.observacoes ? (conta.observacoes.length > 50 ? conta.observacoes.substring(0, 50) + '...' : conta.observacoes) : '<span class="text-muted">-</span>'}</td>
                 <td class="text-center">${anexoHtml}</td>
@@ -1329,6 +1537,133 @@ $(document).ready(function() {
                 $('#filtroCentroCustoId').val('');
             }
         }, 200);
+    });
+
+    // Autocomplete de Fornecedor no filtro de Contas a Pagar
+    var cpFornecedorTimer = null;
+    $('#filtroFornecedorTexto').on('input', function() {
+        var termo = $(this).val().trim();
+        var $lista = $('#listaFiltroFornecedorCP');
+        $('#filtroFornecedorId').val('');
+        clearTimeout(cpFornecedorTimer);
+        if (termo.length < 3) {
+            $lista.hide().empty();
+            return;
+        }
+        cpFornecedorTimer = setTimeout(function() {
+            $.get('/api/suprimentos/fornecedores/buscar', { termo: termo }, function(res) {
+                $lista.empty();
+                // A rota retorna array direto ou { success, fornecedores }
+                var lista = Array.isArray(res) ? res : (res.fornecedores || []);
+                if (lista.length) {
+                    lista.forEach(function(f) {
+                        var nome = f.razao_social || f.nome_fantasia || '';
+                        var $item = $('<div>')
+                            .text(nome)
+                            .css({ padding: '6px 10px', cursor: 'pointer', fontSize: '0.9em' })
+                            .on('mousedown', function() {
+                                $('#filtroFornecedorTexto').val(nome);
+                                $('#filtroFornecedorId').val(f.id);
+                                $lista.hide().empty();
+                            })
+                            .on('mouseenter', function() { $(this).css('background', '#f0f7ff'); })
+                            .on('mouseleave', function() { $(this).css('background', ''); });
+                        $lista.append($item);
+                    });
+                    $lista.show();
+                } else {
+                    $lista.hide().empty();
+                }
+            });
+        }, 300);
+    });
+
+    $('#filtroFornecedorTexto').on('blur', function() {
+        setTimeout(function() { $('#listaFiltroFornecedorCP').hide(); }, 200);
+    });
+
+    // =============================================
+    // SELEÇÃO MÚLTIPLA E BAIXA EM LOTE
+    // =============================================
+    function atualizarBotaoLote() {
+        var selecionados = $('.check-conta:checked').length;
+        $('#qtdSelecionados').text(selecionados);
+        if (selecionados > 0) {
+            $('#btnBaixarLote').show();
+        } else {
+            $('#btnBaixarLote').hide();
+        }
+        // Atualizar estado do "selecionar todos"
+        var disponiveis = $('.check-conta:not(:disabled)').length;
+        $('#checkTodos').prop('indeterminate', selecionados > 0 && selecionados < disponiveis);
+        $('#checkTodos').prop('checked', disponiveis > 0 && selecionados === disponiveis);
+    }
+
+    $(document).on('change', '.check-conta', function() {
+        atualizarBotaoLote();
+    });
+
+    $(document).on('change', '#checkTodos', function() {
+        var marcado = $(this).is(':checked');
+        $('.check-conta:not(:disabled)').prop('checked', marcado);
+        atualizarBotaoLote();
+    });
+});
+
+function abrirBaixaLote() {
+    var ids = [];
+    var total = 0;
+    $('.check-conta:checked').each(function() {
+        ids.push($(this).data('id'));
+        var vl = parseFloat($(this).closest('tr').data('valor-liquido')) || 0;
+        total += vl;
+    });
+    if (ids.length === 0) return;
+
+    $('#loteQtd').text(ids.length);
+    $('#loteTotalValor').text(total.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
+    $('#loteDataPagamento').val(new Date().toISOString().split('T')[0]);
+    $('#loteFormaPagamento').val('');
+    $('#modalBaixaLote').modal('show');
+}
+
+$('#formBaixaLote').on('submit', function(e) {
+    e.preventDefault();
+    var ids = [];
+    $('.check-conta:checked').each(function() { ids.push($(this).data('id')); });
+
+    if (!$('#loteFormaPagamento').val()) {
+        Swal.fire('Atenção', 'Selecione a forma de pagamento.', 'warning');
+        return;
+    }
+
+    var btn = $(this).find('[type=submit]');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> Processando...');
+
+    $.ajax({
+        url: '/financeiro/api/contas-pagar/baixar-lote',
+        method: 'POST',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        contentType: 'application/json',
+        data: JSON.stringify({
+            ids: ids,
+            data_pagamento: $('#loteDataPagamento').val(),
+            forma_pagamento: $('#loteFormaPagamento').val()
+        }),
+        success: function(res) {
+            $('#modalBaixaLote').modal('hide');
+            if (res.success) {
+                Swal.fire('Sucesso', res.message, 'success').then(() => { location.reload(); });
+            } else {
+                Swal.fire('Erro', res.message, 'error');
+            }
+        },
+        error: function(xhr) {
+            Swal.fire('Erro', xhr.responseJSON?.message || 'Erro ao processar baixa.', 'error');
+        },
+        complete: function() {
+            btn.prop('disabled', false).html('<i class="fas fa-check-double mr-1"></i> Confirmar Baixa em Lote');
+        }
     });
 });
 </script>

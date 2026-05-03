@@ -8,7 +8,7 @@
       <p class="mb-1"><strong>Interações</strong></p>
       <ul class="list-group" id="ints"></ul>
     </div>
-    <div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">Fechar</button></div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button></div>
   </div></div>
 </div>
 

@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Recebimento')
+@section('title', __('Recebimento'))
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
-    <h1 class="m-0"><i class="fas fa-truck-loading text-success"></i> Recebimento de Material</h1>
-    <small class="text-muted">Controle de entrada de materiais</small>
+    <h1 class="m-0"><i class="fas fa-truck-loading text-success"></i> __('Recebimento de Material')</h1>
+    <small class="text-muted">__('Controle de entrada de materiais')</small>
 </div>
 @stop
 
@@ -319,6 +319,21 @@
         font-size: 11px;
         padding: 3px 8px;
         margin-left: 5px;
+    }
+    
+    /* Checkbox "Já cadastrei" */
+    .check-ja-cadastrado {
+        background: #e7f3ff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px dashed #17a2b8;
+    }
+    .check-ja-cadastrado label {
+        font-size: 11px;
+        color: #17a2b8;
+    }
+    .check-ja-cadastrado input[type="checkbox"] {
+        transform: scale(1.1);
     }
 </style>
 @stop
@@ -687,7 +702,7 @@
 
 <!-- Modal Registrar Recebimento -->
 <div class="modal fade" id="modalRecebimento" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content" style="border-radius: 12px; overflow: hidden;">
             <div class="modal-header bg-gradient-success text-white">
                 <h5 class="modal-title"><i class="fas fa-truck-loading mr-2"></i> Registrar Recebimento</h5>
@@ -763,7 +778,8 @@
                             <thead>
                                 <tr>
                                     <th>Item Solicitado</th>
-                                    <th width="80" class="text-center">Qtd</th>
+                                    <th width="100" class="text-center" title="Quantidade e unidade conforme a OC">Qtd (OC)</th>
+                                    <th width="72" class="text-center" title="Unidade no estoque após o recebimento">Und.</th>
                                     <th width="100" class="text-center">Recebido</th>
                                     <th>Vincular ao Estoque</th>
                                     <th width="80" class="text-center">Status</th>
@@ -777,7 +793,7 @@
                     
                     <div class="alert alert-light border py-2 px-3 mt-3">
                         <i class="fas fa-lightbulb text-warning mr-1"></i>
-                        <small><strong>Dica:</strong> Selecione um produto do estoque para dar entrada automática, ou crie um novo.</small>
+                        <small><strong>Dica:</strong> Em <strong>Und.</strong> escolha a unidade (lista do sistema + unidades já usadas no estoque). Ajuste <strong>Recebido</strong> conforme a NF. Ao vincular um produto existente, a unidade escolhida substitui a do cadastro. Selecione um produto do estoque para dar entrada automática, ou crie um novo.</small>
                     </div>
 
                     <div class="form-group mt-3">
@@ -802,11 +818,78 @@
 @section('js')
 <script>
 var produtosEstoque = [];
+var unidadesMedida = [];
+
+function unidadesMedidaFallback() {
+    return [
+        { codigo: 'UN', label: 'UN — Unidade' },
+        { codigo: 'PC', label: 'PC — Peça' },
+        { codigo: 'PCT', label: 'PCT — Pacote' },
+        { codigo: 'CX', label: 'CX — Caixa' },
+        { codigo: 'KG', label: 'KG — Quilograma' },
+        { codigo: 'LT', label: 'LT — Litro' },
+        { codigo: 'MT', label: 'MT — Metro' },
+        { codigo: 'M2', label: 'M² — Metro quadrado' },
+        { codigo: 'M3', label: 'M³ — Metro cúbico' },
+        { codigo: 'PAR', label: 'PAR — Par' },
+        { codigo: 'JG', label: 'JG — Jogo' },
+        { codigo: 'KIT', label: 'KIT — Kit' },
+        { codigo: 'RL', label: 'RL — Rolo' },
+        { codigo: 'SC', label: 'SC — Saco' },
+        { codigo: 'FD', label: 'FD — Fardo' },
+        { codigo: 'BD', label: 'BD — Balde' }
+    ];
+}
+
+function htmlSelectUnidadeRecebimento(idx, unPadrao) {
+    var uNorm = String(unPadrao != null && unPadrao !== '' ? unPadrao : 'UN').trim().toUpperCase();
+    var lista = (unidadesMedida && unidadesMedida.length) ? unidadesMedida : unidadesMedidaFallback();
+    var seen = {};
+    var html = '<select class="form-control form-control-sm select-unidade-recebimento text-center" name="itens[' + idx + '][unidade]" style="max-width: 130px; margin: 0 auto;" title="Unidade no estoque">';
+    lista.forEach(function(u) {
+        var cod = String(u.codigo || '').trim().toUpperCase();
+        if (!cod) {
+            return;
+        }
+        seen[cod] = true;
+        var lab = u.label || cod;
+        var sel = (cod === uNorm) ? ' selected' : '';
+        html += '<option value="' + escAttrRecebimento(cod) + '"' + sel + '>' + escTextRecebimento(lab) + '</option>';
+    });
+    if (!seen[uNorm]) {
+        html += '<option value="' + escAttrRecebimento(uNorm) + '" selected>' + escTextRecebimento(uNorm) + '</option>';
+    }
+    html += '</select>';
+    return html;
+}
+
+function escAttrRecebimento(s) {
+    return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;');
+}
+
+function escTextRecebimento(s) {
+    return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
 
 $(document).ready(function() {
-    // Carregar produtos do estoque para select
-    $.get('/api/estoque/produtos', function(data) {
-        produtosEstoque = data.produtos || data || [];
+    // Produtos e unidades (lista padrão + distintas do cadastro de estoque)
+    $.when(
+        $.get('/api/estoque/produtos'),
+        $.get('/api/estoque/unidades-medida')
+    ).done(function(r1, r2) {
+        var d1 = r1[0];
+        var d2 = r2[0];
+        produtosEstoque = (d1 && d1.produtos) ? d1.produtos : (d1 || []);
+        unidadesMedida = (d2 && d2.unidades) ? d2.unidades : [];
+    }).fail(function() {
+        produtosEstoque = produtosEstoque || [];
+        unidadesMedida = unidadesMedidaFallback();
     });
     
     // ========================================
@@ -867,34 +950,48 @@ $(document).ready(function() {
         $.get('/api/suprimentos/ordens-compra/' + id, function(data) {
             var html = '';
             (data.itens || []).forEach(function(item, idx) {
+                var unPadrao = (item.unidade != null && item.unidade !== '') ? String(item.unidade) : 'UN';
+                var qtdOc = item.quantidade != null ? String(item.quantidade) : '0';
                 html += '<tr data-item-idx="' + idx + '">';
                 html += '<td>';
-                html += '<strong>' + item.produto + '</strong>';
-                html += '<input type="hidden" name="itens[' + idx + '][descricao]" value="' + item.produto + '">';
+                html += '<strong>' + escTextRecebimento(item.produto) + '</strong>';
+                html += '<input type="hidden" name="itens[' + idx + '][descricao]" value="' + escAttrRecebimento(item.produto) + '">';
                 html += '<input type="hidden" name="itens[' + idx + '][cotacao_item_id]" value="' + (item.id || '') + '">';
                 html += '</td>';
                 html += '<td class="text-center">';
-                html += '<span class="badge badge-secondary">' + item.quantidade + ' ' + item.unidade + '</span>';
-                html += '<input type="hidden" name="itens[' + idx + '][unidade]" value="' + item.unidade + '">';
+                html += '<small class="text-muted d-block">' + escTextRecebimento(qtdOc) + '</small>';
+                html += '<span class="badge badge-light border">' + escTextRecebimento(unPadrao) + '</span>';
                 html += '</td>';
                 html += '<td class="text-center">';
-                html += '<input type="number" class="form-control form-control-sm text-center qtd-recebida" name="itens[' + idx + '][quantidade]" value="' + item.quantidade + '" min="0" max="' + item.quantidade + '" style="width: 70px; margin: 0 auto;">';
+                html += htmlSelectUnidadeRecebimento(idx, unPadrao);
+                html += '</td>';
+                html += '<td class="text-center">';
+                html += '<input type="text" class="form-control form-control-sm text-center qtd-recebida" name="itens[' + idx + '][quantidade]" value="' + escAttrRecebimento(qtdOc) + '" style="width: 78px; margin: 0 auto;" inputmode="decimal" title="Quantidade recebida nesta unidade">';
                 html += '</td>';
                 html += '<td>';
-                html += '<select class="form-control form-control-sm select-produto" name="itens[' + idx + '][produto_id]">';
+                html += '<div class="d-flex align-items-center">';
+                html += '<select class="form-control form-control-sm select-produto" name="itens[' + idx + '][produto_id]" style="flex: 1;">';
                 html += '<option value="">-- Não vincular --</option>';
                 html += '<option value="NOVO">+ Criar novo produto</option>';
                 produtosEstoque.forEach(function(prod) {
-                    html += '<option value="' + prod.id + '">' + prod.nome + ' (' + prod.quantidade + ' un)</option>';
+                    var u = prod.unidade ? String(prod.unidade) : 'UN';
+                    html += '<option value="' + prod.id + '" data-unidade="' + escAttrRecebimento(u) + '">' + escTextRecebimento(prod.nome) + ' (' + escTextRecebimento(prod.quantidade) + ' ' + escTextRecebimento(u) + ')</option>';
                 });
                 html += '</select>';
+                html += '</div>';
+                html += '<div class="mt-1 check-ja-cadastrado" style="display: none;">';
+                html += '<label class="mb-0 small" style="cursor: pointer;">';
+                html += '<input type="checkbox" class="mr-1 checkbox-ja-cadastrado" name="itens[' + idx + '][ja_cadastrado]" value="1">';
+                html += '<span class="text-info">Já cadastrei este produto (não somar qtd)</span>';
+                html += '</label>';
+                html += '</div>';
                 html += '</td>';
                 html += '<td class="text-center"><span class="badge badge-secondary"><i class="fas fa-minus"></i></span></td>';
                 html += '</tr>';
             });
             
             if (html === '') {
-                html = '<tr><td colspan="5" class="text-center text-muted py-3"><i class="fas fa-info-circle mr-1"></i> Nenhum item encontrado</td></tr>';
+                html = '<tr><td colspan="6" class="text-center text-muted py-3"><i class="fas fa-info-circle mr-1"></i> Nenhum item encontrado</td></tr>';
             }
             
             $('#itensConferencia').html(html);
@@ -908,13 +1005,49 @@ $(document).ready(function() {
         var row = $(this).closest('tr');
         var val = $(this).val();
         var badge = row.find('td:last .badge');
+        var checkDiv = row.find('.check-ja-cadastrado');
+        var checkbox = row.find('.checkbox-ja-cadastrado');
+        var opt = $(this).find('option:selected');
+        var unEstoque = opt.data('unidade');
         
         if (val === 'NOVO') {
-            badge.removeClass('badge-secondary badge-success').addClass('badge-warning').html('<i class="fas fa-plus"></i> Novo');
-        } else if (val) {
-            badge.removeClass('badge-secondary badge-warning').addClass('badge-success').html('<i class="fas fa-link"></i> OK');
+            badge.removeClass('badge-secondary badge-success badge-info').addClass('badge-warning').html('<i class="fas fa-plus"></i> Novo');
+            checkDiv.hide();
+            checkbox.prop('checked', false);
+        } else if (val && val !== '') {
+            if (unEstoque) {
+                var u = String(unEstoque).trim().toUpperCase();
+                var $su = row.find('.select-unidade-recebimento');
+                if ($su.length && !$su.find('option[value="' + escAttrRecebimento(u) + '"]').length) {
+                    $su.append('<option value="' + escAttrRecebimento(u) + '">' + escTextRecebimento(u) + '</option>');
+                }
+                if ($su.length) {
+                    $su.val(u);
+                }
+            }
+            // Produto existente selecionado - mostrar opção "já cadastrei"
+            checkDiv.show();
+            if (checkbox.is(':checked')) {
+                badge.removeClass('badge-secondary badge-warning badge-success').addClass('badge-info').html('<i class="fas fa-check"></i> Vinc.');
+            } else {
+                badge.removeClass('badge-secondary badge-warning badge-info').addClass('badge-success').html('<i class="fas fa-plus-circle"></i> +Qtd');
+            }
         } else {
-            badge.removeClass('badge-success badge-warning').addClass('badge-secondary').html('<i class="fas fa-minus"></i>');
+            badge.removeClass('badge-success badge-warning badge-info').addClass('badge-secondary').html('<i class="fas fa-minus"></i>');
+            checkDiv.hide();
+            checkbox.prop('checked', false);
+        }
+    });
+    
+    // Atualizar badge quando marca/desmarca "já cadastrei"
+    $(document).on('change', '.checkbox-ja-cadastrado', function() {
+        var row = $(this).closest('tr');
+        var badge = row.find('td:last .badge');
+        
+        if ($(this).is(':checked')) {
+            badge.removeClass('badge-success').addClass('badge-info').html('<i class="fas fa-check"></i> Vinc.');
+        } else {
+            badge.removeClass('badge-info').addClass('badge-success').html('<i class="fas fa-plus-circle"></i> +Qtd');
         }
     });
     
@@ -1024,12 +1157,73 @@ $(document).ready(function() {
         }
     });
     
-    // Confirmar recebimento
+    // Confirmar recebimento (com validação prévia para evitar duplicações)
     $('#btnConfirmarRecebimento').click(function() {
         var btn = $(this);
-        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> Salvando...');
+        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> Validando...');
         
         var formData = new FormData($('#formRecebimento')[0]);
+        
+        // Primeiro: validar para detectar possíveis duplicações
+        $.ajax({
+            url: '/api/suprimentos/recebimentos/validar',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+            success: function(validacao) {
+                if (validacao.success && validacao.tem_alertas) {
+                    // Há alertas de possível duplicação - mostrar confirmação
+                    var alertasHtml = '<div class="text-left">';
+                    alertasHtml += '<p class="text-danger"><i class="fas fa-exclamation-triangle mr-1"></i> <strong>Atenção!</strong> Foram detectados possíveis problemas:</p>';
+                    alertasHtml += '<ul class="mb-3">';
+                    validacao.alertas.forEach(function(alerta) {
+                        var corBadge = alerta.tipo === 'duplicacao' ? 'danger' : 'warning';
+                        alertasHtml += '<li class="mb-2">';
+                        alertasHtml += '<span class="badge badge-' + corBadge + ' mr-1">' + (alerta.tipo === 'duplicacao' ? 'DUPLICAÇÃO?' : 'AVISO') + '</span>';
+                        alertasHtml += '<strong>' + alerta.produto_nome + '</strong><br>';
+                        alertasHtml += '<small class="text-muted">' + alerta.mensagem + '</small>';
+                        alertasHtml += '</li>';
+                    });
+                    alertasHtml += '</ul>';
+                    alertasHtml += '<p>Deseja continuar mesmo assim?</p>';
+                    alertasHtml += '</div>';
+                    
+                    Swal.fire({
+                        title: 'Possível Duplicação Detectada',
+                        html: alertasHtml,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#dc3545',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: '<i class="fas fa-check"></i> Sim, continuar mesmo assim',
+                        cancelButtonText: 'Cancelar e revisar',
+                        width: '600px'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Usuário confirmou - prosseguir com o recebimento
+                            executarRecebimento(btn, formData);
+                        } else {
+                            btn.prop('disabled', false).html('<i class="fas fa-check mr-1"></i> Confirmar Recebimento');
+                        }
+                    });
+                } else {
+                    // Sem alertas - prosseguir diretamente
+                    executarRecebimento(btn, formData);
+                }
+            },
+            error: function(xhr) {
+                // Erro na validação - prosseguir com o recebimento normal
+                console.warn('Erro na validação prévia, prosseguindo...', xhr);
+                executarRecebimento(btn, formData);
+            }
+        });
+    });
+    
+    // Função auxiliar para executar o recebimento
+    function executarRecebimento(btn, formData) {
+        btn.html('<i class="fas fa-spinner fa-spin mr-1"></i> Salvando...');
         
         $.ajax({
             url: '/api/suprimentos/recebimentos',
@@ -1073,7 +1267,7 @@ $(document).ready(function() {
                 btn.prop('disabled', false).html('<i class="fas fa-check mr-1"></i> Confirmar Recebimento');
             }
         });
-    });
+    }
     
     // Excluir recebimento (apenas admin)
     $('.btn-excluir-recebimento').click(function() {

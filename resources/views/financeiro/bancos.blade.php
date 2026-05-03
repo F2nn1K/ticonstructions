@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Bancos')
+@section('title', __('app.financial.banks'))
 
 @section('content_header')
-<h1><i class="fas fa-university mr-2"></i>Bancos</h1>
+<h1><i class="fas fa-university mr-2"></i>{{ __('app.financial.banks') }}</h1>
 @stop
 
 @section('content')
@@ -135,8 +135,8 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form-control" id="status" name="status">
-                                    <option value="ativo">Ativo</option>
-                                    <option value="inativo">Inativo</option>
+                                    <option value="ativo">{{ __('Ativo') }}</option>
+                                    <option value="inativo">{{ __('Inativo') }}</option>
                                 </select>
                             </div>
                         </div>

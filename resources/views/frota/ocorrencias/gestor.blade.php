@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestor de Ocorrências - Frota')
+@section('title', __('Gestor de Ocorrências - Frota'))
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
-<h1>Gestor de Ocorrências</h1>
+<h1>{{ __('Gestor de Ocorrências') }}</h1>
 @stop
 
 @section('content')

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Frota - Relatório de Consumo')
+@section('title', __('Frota - {{ __('Relatório de Consumo') }}'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -9,9 +9,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-chart-line text-primary mr-3"></i>
-            Relatório de Consumo
+            {{ __('Relatório de Consumo') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Análise de consumo da frota por período</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Análise de consumo da frota por período') }}</p>
     </div>
     <div>
         <!-- Botão removido - usar apenas o da área de filtros -->
@@ -177,7 +177,7 @@
         <div class="col-12">
             <div class="text-center py-5">
                 <i class="fas fa-chart-line fa-4x text-muted mb-3"></i>
-                <h4 class="text-muted">Relatório de Consumo da Frota</h4>
+                <h4 class="text-muted">{{ __('Relatório de Consumo') }} da Frota</h4>
                 <p class="text-muted">Configure os filtros acima e clique em "Gerar Relatório" para visualizar o consumo por período</p>
             </div>
         </div>
@@ -458,7 +458,7 @@ function imprimirRelatorio() {
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Relatório de Consumo - Frota</title>
+            <title>{{ __('Relatório de Consumo') }} - Frota</title>
             <style>
                 @page {
                     size: A4 landscape;
@@ -593,7 +593,7 @@ function imprimirRelatorio() {
         </head>
         <body>
             <div class="header">
-                <h1>📊 Relatório de Consumo da Frota</h1>
+                <h1>📊 {{ __('Relatório de Consumo') }} da Frota</h1>
                 <p>Análise detalhada de consumo por período - Gerado em ${new Date().toLocaleString('pt-BR')}</p>
             </div>
             

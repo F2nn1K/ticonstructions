@@ -52,7 +52,7 @@
                 @endif
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
                 @if($perfilSelecionado)
                     <button type="button" class="btn btn-primary" wire:click="salvarPermissoes">
                         Salvar Permissões

@@ -208,8 +208,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="salvarUsuarioSimples()">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                    <button type="button" class="btn btn-primary" onclick="salvarUsuarioSimples()">{{ __('Salvar') }}</button>
                 </div>
             </div>
         </div>
@@ -255,7 +255,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="button" class="btn btn-primary" id="btnCriarUsuario">
                         <i class="fas fa-save mr-1"></i> Criar Usuário
                     </button>

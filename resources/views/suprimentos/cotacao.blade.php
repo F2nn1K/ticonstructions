@@ -4,6 +4,161 @@
 
 @section('css')
 <style>
+    /* ============== RESPONSIVIDADE DO MODAL DE COTAÇÃO ============== */
+    /* Modal responsivo - altura máxima e scroll */
+    #modalVerCotacao .modal-content {
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #modalVerCotacao .modal-body {
+        overflow-y: auto;
+        flex: 1 1 auto;
+    }
+    
+    #modalVerCotacao .modal-footer {
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    /* Tablets e dispositivos menores */
+    @media (max-width: 991px) {
+        #modalVerCotacao .modal-dialog {
+            max-width: 98% !important;
+            margin: 1.75rem auto;
+        }
+        
+        #modalVerCotacao .modal-content {
+            max-height: 85vh;
+        }
+        
+        #modalVerCotacao .modal-body {
+            padding: 10px;
+        }
+        
+        #modalVerCotacao .row > [class*="col-"] {
+            margin-bottom: 10px;
+        }
+        
+        #modalVerCotacao .table-responsive {
+            font-size: 12px;
+        }
+        
+        #modalVerCotacao .modal-footer .btn {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+        
+        /* Cards de fornecedor responsivos */
+        #modalVerCotacao .fornecedor-card .card-header .row {
+            flex-direction: column;
+        }
+        
+        #modalVerCotacao .fornecedor-card .card-header .row > div {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        
+        #modalVerCotacao .fornecedor-card .card-body .row > div {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+    }
+    
+    /* Celulares */
+    @media (max-width: 576px) {
+        #modalVerCotacao .modal-dialog {
+            margin: 10px;
+            max-width: calc(100% - 20px) !important;
+        }
+        
+        #modalVerCotacao .modal-content {
+            max-height: calc(100vh - 20px);
+        }
+        
+        #modalVerCotacao .modal-header {
+            padding: 10px 15px;
+        }
+        
+        #modalVerCotacao .modal-header h5 {
+            font-size: 14px;
+        }
+        
+        #modalVerCotacao .modal-body {
+            padding: 10px;
+        }
+        
+        #modalVerCotacao .modal-body h4 {
+            font-size: 16px;
+        }
+        
+        #modalVerCotacao .modal-body h6 {
+            font-size: 13px;
+        }
+        
+        #modalVerCotacao .modal-body label {
+            font-size: 11px;
+        }
+        
+        #modalVerCotacao .modal-body p {
+            font-size: 13px;
+        }
+        
+        #modalVerCotacao .table {
+            font-size: 11px;
+        }
+        
+        #modalVerCotacao .table th,
+        #modalVerCotacao .table td {
+            padding: 5px 8px;
+        }
+        
+        #modalVerCotacao .modal-footer {
+            padding: 8px;
+            justify-content: center;
+        }
+        
+        #modalVerCotacao .modal-footer .btn {
+            font-size: 11px;
+            padding: 5px 8px;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        
+        #modalVerCotacao .modal-footer .btn i {
+            display: none;
+        }
+        
+        /* Input fields menores */
+        #modalVerCotacao .form-control-sm {
+            font-size: 12px;
+            padding: 4px 8px;
+        }
+        
+        /* Cards de fornecedor em mobile */
+        #modalVerCotacao .fornecedor-card {
+            margin-bottom: 10px;
+        }
+        
+        #modalVerCotacao .fornecedor-card .card-header {
+            padding: 8px;
+        }
+        
+        #modalVerCotacao .fornecedor-card .card-body {
+            padding: 8px;
+        }
+        
+        /* Badges menores */
+        #modalVerCotacao .badge {
+            font-size: 10px;
+            padding: 3px 6px;
+        }
+    }
+    
+    /* ============== FIM RESPONSIVIDADE ============== */
+
     /* Forçar tamanho adequado dos campos na tabela de itens */
     #tabelaItens td input[type="number"],
     #tabelaItens td select {
@@ -260,9 +415,9 @@
                                    value="{{ request('busca_cotacao') }}" placeholder="COT-2026-...">
                         </div>
                         <div class="filtro-col" style="min-width: 150px; flex: 1;">
-                            <label>Status</label>
+                            <label>{{ __('Status') }}</label>
                             <select class="form-control" name="status">
-                                <option value="">Todos</option>
+                                <option value="">{{ __('Todos') }}</option>
                                 <option value="aberta" {{ request('status') == 'aberta' ? 'selected' : '' }}>Aguardando</option>
                                 <option value="em_cotacao" {{ request('status') == 'em_cotacao' ? 'selected' : '' }}>Em Cotação</option>
                                 <option value="parcial" {{ request('status') == 'parcial' ? 'selected' : '' }}>Parcial</option>
@@ -273,7 +428,7 @@
                         <div class="filtro-col" style="min-width: 130px; flex: 1;">
                             <label>Urgência</label>
                             <select class="form-control" name="urgencia">
-                                <option value="">Todas</option>
+                                <option value="">{{ __('Todas') }}</option>
                                 <option value="alta" {{ request('urgencia') == 'alta' ? 'selected' : '' }}>Alta</option>
                                 <option value="media" {{ request('urgencia') == 'media' ? 'selected' : '' }}>Média</option>
                                 <option value="normal" {{ request('urgencia') == 'normal' ? 'selected' : '' }}>Normal</option>
@@ -282,7 +437,7 @@
                         <div class="filtro-col" style="min-width: 180px; flex: 1.5;">
                             <label>Solicitante</label>
                             <select class="form-control" name="solicitante_id">
-                                <option value="">Todos</option>
+                                <option value="">{{ __('Todos') }}</option>
                                 @foreach($solicitantes ?? [] as $sol)
                                     <option value="{{ $sol->id }}" {{ request('solicitante_id') == $sol->id ? 'selected' : '' }}>
                                         {{ Str::limit($sol->name, 25) }}
@@ -921,7 +1076,7 @@
 
 <!-- Modal Ver Detalhes da Cotação -->
 <div class="modal fade" id="modalVerCotacao" tabindex="-1">
-    <div class="modal-dialog modal-xl" style="max-width: 95%;">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" style="max-width: 95%;">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h5 class="modal-title text-white"><i class="fas fa-eye"></i> Detalhes da Cotação</h5>
@@ -943,13 +1098,29 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="text-muted small mb-0">Data da Solicitação</label>
                         <p id="ver-data" class="mb-0"></p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="text-muted small mb-0">Data Limite</label>
                         <p id="ver-data-limite" class="mb-0"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="text-muted small mb-0"><i class="fas fa-user text-primary"></i> Solicitante</label>
+                        <p id="ver-solicitante" class="mb-0 font-weight-bold"></p>
+                    </div>
+                </div>
+                <div class="row mb-3" id="row-obra" style="display: none;">
+                    <div class="col-12">
+                        <label class="text-muted small mb-0"><i class="fas fa-building text-warning"></i> Obra (Centro de Custo)</label>
+                        <p id="ver-obra" class="mb-0 font-weight-bold text-warning"></p>
+                    </div>
+                </div>
+                <div class="row mb-3" id="row-descricao-servico" style="display: none;">
+                    <div class="col-12">
+                        <label class="text-muted small mb-0"><i class="fas fa-clipboard-list text-info"></i> Descrição do Serviço (O.S.)</label>
+                        <div id="ver-descricao-servico" class="border rounded p-2 bg-light" style="white-space: pre-wrap; max-height: 150px; overflow-y: auto;"></div>
                     </div>
                 </div>
 
@@ -1296,7 +1467,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Observações</label>
+                        <label>{{ __('Observações') }}</label>
                         <textarea class="form-control" name="observacoes" id="novo_observacoes" rows="2"></textarea>
                     </div>
                 </form>
@@ -1347,7 +1518,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-info" id="btnSalvarQtd">
                     <i class="fas fa-save"></i> Salvar Quantidades
                 </button>
@@ -1434,6 +1605,25 @@ $(document).ready(function() {
                 // Status
                 var statusBadge = getStatusBadge(data.cotacao.status);
                 $('#ver-status').html(statusBadge);
+                
+                // Solicitante
+                $('#ver-solicitante').text(data.cotacao.solicitante_nome || '-');
+                
+                // Obra (Centro de Custo)
+                if (data.cotacao.obra_nome) {
+                    $('#ver-obra').text(data.cotacao.obra_nome);
+                    $('#row-obra').show();
+                } else {
+                    $('#row-obra').hide();
+                }
+                
+                // Descrição do Serviço (O.S.)
+                if (data.cotacao.descricao_servico) {
+                    $('#ver-descricao-servico').text(data.cotacao.descricao_servico);
+                    $('#row-descricao-servico').show();
+                } else {
+                    $('#row-descricao-servico').hide();
+                }
                 
                 // Itens
                 var itensHtml = '';
@@ -2142,6 +2332,25 @@ $(document).ready(function() {
             if (data.cotacao.data_limite) {
                 var dataLim = new Date(data.cotacao.data_limite);
                 $('#ver-data-limite').text(dataLim.toLocaleDateString('pt-BR'));
+            }
+            
+            // Solicitante
+            $('#ver-solicitante').text(data.cotacao.solicitante_nome || '-');
+            
+            // Obra (Centro de Custo)
+            if (data.cotacao.obra_nome) {
+                $('#ver-obra').text(data.cotacao.obra_nome);
+                $('#row-obra').show();
+            } else {
+                $('#row-obra').hide();
+            }
+            
+            // Descrição do Serviço (O.S.)
+            if (data.cotacao.descricao_servico) {
+                $('#ver-descricao-servico').text(data.cotacao.descricao_servico);
+                $('#row-descricao-servico').show();
+            } else {
+                $('#row-descricao-servico').hide();
             }
             
             // Itens - Armazenar globalmente para uso nos checkboxes
@@ -2947,7 +3156,13 @@ $(document).ready(function() {
             return;
         }
         
-        var texto = '📋 *SOLICITAÇÃO DE COTAÇÃO*\n\n';
+        var texto = '📋 *SOLICITAÇÃO DE COTAÇÃO*\n';
+        
+        // Nome da Obra (Centro de Custo)
+        if (dadosCotacaoAtual.cotacao.obra_nome) {
+            texto += '🏗️ *' + dadosCotacaoAtual.cotacao.obra_nome + '*\n';
+        }
+        
         texto += '━━━━━━━━━━━━━━━━━━━━━\n';
         texto += '📌 *Nº:* ' + dadosCotacaoAtual.cotacao.numero + '\n';
         texto += '📝 *Descrição:* ' + dadosCotacaoAtual.cotacao.descricao + '\n';
@@ -2957,12 +3172,17 @@ $(document).ready(function() {
             texto += '📅 *Data Limite:* ' + dataLim.toLocaleDateString('pt-BR') + '\n';
         }
         
+        // Nome do Solicitante
+        if (dadosCotacaoAtual.cotacao.solicitante_nome) {
+            texto += '👤 *Solicitante:* ' + dadosCotacaoAtual.cotacao.solicitante_nome + '\n';
+        }
+        
         texto += '━━━━━━━━━━━━━━━━━━━━━\n\n';
         texto += '📦 *ITENS PARA COTAÇÃO:*\n\n';
         
         if (dadosCotacaoAtual.itens && dadosCotacaoAtual.itens.length > 0) {
-            dadosCotacaoAtual.itens.forEach(function(item, index) {
-                texto += (index + 1) + '. ' + item.produto + '\n';
+            dadosCotacaoAtual.itens.forEach(function(item) {
+                texto += '• ' + item.produto + '\n';
                 texto += '   ↳ Qtd: *' + item.quantidade + ' ' + (item.unidade || 'UN') + '*\n';
             });
         }

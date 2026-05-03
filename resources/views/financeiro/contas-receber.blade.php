@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Contas a Receber')
+@section('title', __('app.financial.accounts_receivable'))
 
 @push('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
 @section('content_header')
-<h1><i class="fas fa-hand-holding-usd mr-2"></i>Contas a Receber</h1>
+<h1><i class="fas fa-hand-holding-usd mr-2"></i>{{ __('app.financial.accounts_receivable') }}</h1>
 @stop
 
 @section('content')
@@ -64,9 +64,9 @@
     <!-- Filtros -->
     <div class="row mb-3">
         <div class="col-md-2">
-            <label>Status</label>
+            <label>{{ __('Status') }}</label>
             <select class="form-control" id="filtroStatus">
-                <option value="">Todos</option>
+                <option value="">{{ __('Todos') }}</option>
                 <option value="pendente">Pendente</option>
                 <option value="recebido">Recebido</option>
                 <option value="vencido">Vencido</option>
@@ -74,9 +74,9 @@
             </select>
         </div>
         <div class="col-md-2">
-            <label>Categoria</label>
+            <label>{{ __('Categoria') }}</label>
             <select class="form-control" id="filtroCategoria">
-                <option value="">Todas</option>
+                <option value="">{{ __('Todas') }}</option>
                 @if(isset($categorias))
                     @foreach($categorias as $cat)
                     <option value="{{ $cat->id }}">{{ $cat->nome }}</option>

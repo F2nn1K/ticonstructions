@@ -189,13 +189,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Observações</label>
+                        <label>{{ __('Observações') }}</label>
                         <textarea class="form-control" name="observacoes" rows="2"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-info" id="btnSalvarNF">
                     <i class="fas fa-save"></i> Salvar NF
                 </button>

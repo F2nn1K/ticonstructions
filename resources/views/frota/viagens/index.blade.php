@@ -223,7 +223,7 @@
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Observações</label>
+                                <label>{{ __('Observações') }}</label>
                                 <textarea id="observacoes" class="form-control" rows="3" placeholder="Observações sobre a viagem..."></textarea>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="viagem_id">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save mr-1"></i>
                         Salvar

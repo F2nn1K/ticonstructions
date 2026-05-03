@@ -65,9 +65,9 @@
                 <button type="button" class="btn btn-secondary btn-sm mr-2" id="btnImprimirOC" title="Imprimir listagem">
                     <i class="fas fa-print"></i> Imprimir
                 </button>
-                <button type="button" class="btn btn-primary btn-sm" id="btnNovaOC">
+                {{-- <button type="button" class="btn btn-primary btn-sm" id="btnNovaOC">
                     <i class="fas fa-plus"></i> Nova OC Manual
-                </button>
+                </button> --}}
             </div>
         </div>
         <div class="card-body">
@@ -75,17 +75,16 @@
             <div class="row mb-3">
                 <div class="col-md-2">
                     <label class="mb-1 small">Centro de Custo (Obra)</label>
-                    <select class="form-control form-control-sm" id="filtroCentroCusto">
-                        <option value="">Todos</option>
-                        @foreach($centrosCusto as $cc)
-                        <option value="{{ $cc->id }}">{{ $cc->nome }}</option>
-                        @endforeach
-                    </select>
+                    <div class="oc-filtro-autocomplete-wrapper">
+                        <input type="hidden" id="filtroCentroCusto" value="">
+                        <input type="text" class="form-control form-control-sm" id="filtroCentroCustoBusca" placeholder="Digite 3 letras…" autocomplete="off">
+                        <div class="oc-filtro-autocomplete-list" id="listaFiltroCentroCusto"></div>
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <label class="mb-1 small">Status</label>
                     <select class="form-control form-control-sm" id="filtroStatus">
-                        <option value="">Todos</option>
+                        <option value="">{{ __('Todos') }}</option>
                         <option value="pendente" selected>Pendente</option>
                         <option value="aprovada">Aprovada</option>
                         <option value="enviada">Enviada</option>
@@ -96,12 +95,11 @@
                 </div>
                 <div class="col-md-2">
                     <label class="mb-1 small">Fornecedor</label>
-                    <select class="form-control form-control-sm" id="filtroFornecedor">
-                        <option value="">Todos</option>
-                        @foreach($fornecedores as $f)
-                        <option value="{{ $f->id }}">{{ $f->razao_social }}</option>
-                        @endforeach
-                    </select>
+                    <div class="oc-filtro-autocomplete-wrapper">
+                        <input type="hidden" id="filtroFornecedor" value="">
+                        <input type="text" class="form-control form-control-sm" id="filtroFornecedorBusca" placeholder="Digite 3 letras…" autocomplete="off">
+                        <div class="oc-filtro-autocomplete-list" id="listaFiltroFornecedor"></div>
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <label class="mb-1 small">Valor Máximo (R$)</label>
@@ -137,6 +135,7 @@
                         <tr>
                             <th>Nº OC</th>
                             <th>Cotação Origem</th>
+                            <th>Criado por</th>
                             <th>Centro de Custo</th>
                             <th>Produtos</th>
                             <th>Município/UF</th>
@@ -198,12 +197,12 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Observações</label>
+                    <label>{{ __('Observações') }}</label>
                     <textarea class="form-control" id="obs_oc" rows="2" placeholder="Observações opcionais..."></textarea>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-success" id="btnConfirmarTransformar">
                     <i class="fas fa-check"></i> Gerar Ordem de Compra
                 </button>
@@ -296,7 +295,7 @@
                 </form>
             </div>
             <div class="modal-footer py-2">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-primary btn-sm" id="btnSalvarOC">
                     <i class="fas fa-save"></i> Salvar OC
                 </button>
@@ -420,6 +419,7 @@
             <tr>
                 <th>Nº OC</th>
                 <th>Cotação</th>
+                <th>Criado por</th>
                 <th>Centro de Custo</th>
                 <th>Produtos</th>
                 <th>Município/UF</th>
@@ -441,6 +441,40 @@
 
 @section('css')
 <style>
+/* Autocomplete filtros OC (centro de custo / fornecedor) */
+.oc-filtro-autocomplete-wrapper { position: relative; }
+.oc-filtro-autocomplete-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ced4da;
+    border-top: none;
+    border-radius: 0 0 .2rem .2rem;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 1050;
+    box-shadow: 0 4px 6px rgba(0,0,0,.12);
+}
+.oc-filtro-autocomplete-list .oc-filtro-item {
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: .8125rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+.oc-filtro-autocomplete-list .oc-filtro-item:hover {
+    background: #007bff;
+    color: #fff;
+}
+.oc-filtro-autocomplete-list .oc-filtro-item small {
+    display: block;
+    opacity: .85;
+    font-size: .7rem;
+}
+.oc-filtro-autocomplete-list .oc-filtro-item:hover small { color: #fff; }
+
 /* Área de impressão - oculta na tela */
 .print-area { display: none; }
 
@@ -599,6 +633,98 @@
 $(document).ready(function() {
     var itemIndex = 1;
     var isAdmin = {{ $isAdmin ? 'true' : 'false' }};
+
+    // Autocomplete filtros: Centro de Custo e Fornecedor (mín. 3 letras)
+    (function initOcFiltrosAutocomplete() {
+        var debounceMs = 300;
+        var ccTimer = null;
+        var fornTimer = null;
+
+        function hideList($list) {
+            $list.hide().empty();
+        }
+
+        $('#filtroCentroCustoBusca').on('input', function() {
+            var $input = $(this);
+            var $list = $('#listaFiltroCentroCusto');
+            var q = $input.val().trim();
+            clearTimeout(ccTimer);
+            $('#filtroCentroCusto').val('');
+            if (q.length < 3) {
+                hideList($list);
+                return;
+            }
+            ccTimer = setTimeout(function() {
+                $.get('/api/centros-custo/buscar-inicio', { termo: q })
+                    .done(function(rows) {
+                        $list.empty();
+                        if (!rows || !rows.length) {
+                            $list.append($('<div class="oc-filtro-item text-muted" style="cursor:default"></div>').text('Nenhum centro encontrado'));
+                            $list.show();
+                            return;
+                        }
+                        rows.forEach(function(r) {
+                            var $it = $('<div class="oc-filtro-item"></div>').text(r.nome || '');
+                            $it.on('mousedown', function(e) { e.preventDefault(); });
+                            $it.on('click', function() {
+                                $('#filtroCentroCusto').val(r.id);
+                                $input.val(r.nome || '');
+                                hideList($list);
+                            });
+                            $list.append($it);
+                        });
+                        $list.show();
+                    });
+            }, debounceMs);
+        });
+
+        $('#filtroFornecedorBusca').on('input', function() {
+            var $input = $(this);
+            var $list = $('#listaFiltroFornecedor');
+            var q = $input.val().trim();
+            clearTimeout(fornTimer);
+            $('#filtroFornecedor').val('');
+            if (q.length < 3) {
+                hideList($list);
+                return;
+            }
+            fornTimer = setTimeout(function() {
+                $.get('/api/suprimentos/fornecedores/buscar', { termo: q })
+                    .done(function(rows) {
+                        $list.empty();
+                        if (!rows || !rows.length) {
+                            $list.append($('<div class="oc-filtro-item text-muted" style="cursor:default"></div>').text('Nenhum fornecedor encontrado'));
+                            $list.show();
+                            return;
+                        }
+                        rows.forEach(function(r) {
+                            var label = r.razao_social || '';
+                            var sub = (r.nome_fantasia && r.nome_fantasia !== label) ? r.nome_fantasia : '';
+                            var $it = $('<div class="oc-filtro-item"></div>');
+                            $it.append($('<span></span>').text(label));
+                            if (sub) {
+                                $it.append($('<small></small>').text(sub));
+                            }
+                            $it.on('mousedown', function(e) { e.preventDefault(); });
+                            $it.on('click', function() {
+                                $('#filtroFornecedor').val(r.id);
+                                $input.val(label);
+                                hideList($list);
+                            });
+                            $list.append($it);
+                        });
+                        $list.show();
+                    });
+            }, debounceMs);
+        });
+
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.oc-filtro-autocomplete-wrapper').length) {
+                hideList($('#listaFiltroCentroCusto'));
+                hideList($('#listaFiltroFornecedor'));
+            }
+        });
+    })();
     
     // =============================================
     // CARREGAR ORDENS DE COMPRA COM FILTROS
@@ -658,10 +784,13 @@ $(document).ready(function() {
                         html += '<td>';
                         if (oc.cotacao_numero) {
                             html += '<span class="badge badge-info">' + oc.cotacao_numero + '</span>';
+                        } else if (oc.tipo_origem == 'terceiro') {
+                            html += '<span class="badge badge-warning">TER</span>';
                         } else {
                             html += '<span class="text-muted">Manual</span>';
                         }
                         html += '</td>';
+                        html += '<td><small class="text-muted">' + (oc.criador_nome || '—') + '</small></td>';
                         html += '<td>' + (oc.centro_custo || '-') + '</td>';
                         html += '<td title="' + (oc.produtos_resumo || '-') + '">';
                         if (oc.produtos_resumo) {
@@ -699,7 +828,7 @@ $(document).ready(function() {
                     });
                     $('#tbodyOC').html(html);
                 } else {
-                    $('#tbodyOC').html('<tr><td colspan="10" class="text-center text-muted"><i class="fas fa-info-circle"></i> Nenhuma ordem de compra encontrada.</td></tr>');
+                    $('#tbodyOC').html('<tr><td colspan="11" class="text-center text-muted"><i class="fas fa-info-circle"></i> Nenhuma ordem de compra encontrada.</td></tr>');
                 }
                 
                 // Atualizar cards de resumo
@@ -710,7 +839,7 @@ $(document).ready(function() {
             },
             error: function() {
                 $('#loadingOC').hide();
-                $('#tbodyOC').html('<tr><td colspan="10" class="text-center text-danger"><i class="fas fa-exclamation-triangle"></i> Erro ao carregar dados.</td></tr>');
+                $('#tbodyOC').html('<tr><td colspan="11" class="text-center text-danger"><i class="fas fa-exclamation-triangle"></i> Erro ao carregar dados.</td></tr>');
                 
                 // Zerar cards em caso de erro
                 $('#valorPendente').text('R$ 0,00');
@@ -754,7 +883,11 @@ $(document).ready(function() {
         $('#filtroDataFim').val('');
         $('#filtroStatus').val('pendente');
         $('#filtroFornecedor').val('');
+        $('#filtroFornecedorBusca').val('');
         $('#filtroCentroCusto').val('');
+        $('#filtroCentroCustoBusca').val('');
+        $('#listaFiltroCentroCusto').hide().empty();
+        $('#listaFiltroFornecedor').hide().empty();
         $('#filtroValorMaximo').val('');
         carregarOrdensCompra();
     });
@@ -787,12 +920,12 @@ $(document).ready(function() {
             filtros.push('Status: ' + statusText);
         }
         if ($('#filtroCentroCusto').val()) {
-            var ccText = $('#filtroCentroCusto option:selected').text();
-            filtros.push('Centro de Custo: ' + ccText.substring(0, 30) + (ccText.length > 30 ? '...' : ''));
+            var ccText = ($('#filtroCentroCustoBusca').val() || '').trim();
+            filtros.push('Centro de Custo: ' + ccText.substring(0, 40) + (ccText.length > 40 ? '...' : ''));
         }
         if ($('#filtroFornecedor').val()) {
-            var fornText = $('#filtroFornecedor option:selected').text();
-            filtros.push('Fornecedor: ' + fornText.substring(0, 25) + (fornText.length > 25 ? '...' : ''));
+            var fornText = ($('#filtroFornecedorBusca').val() || '').trim();
+            filtros.push('Fornecedor: ' + fornText.substring(0, 35) + (fornText.length > 35 ? '...' : ''));
         }
         if ($('#filtroValorMaximo').val()) {
             filtros.push('Valor até: R$ ' + $('#filtroValorMaximo').val());
@@ -823,7 +956,7 @@ $(document).ready(function() {
         rows.each(function() {
             var cells = $(this).find('td');
             if (cells.length > 1) { // Ignorar linha de "nenhum registro"
-                var status = $(cells[8]).text().trim();
+                var status = $(cells[9]).text().trim();
                 var statusClass = '';
                 if (status.toLowerCase().indexOf('pendente') !== -1) statusClass = 'status-pendente';
                 else if (status.toLowerCase().indexOf('aprovada') !== -1) statusClass = 'status-aprovada';
@@ -833,12 +966,13 @@ $(document).ready(function() {
                 printHtml += '<tr>';
                 printHtml += '<td>' + $(cells[0]).text() + '</td>'; // Nº OC
                 printHtml += '<td>' + $(cells[1]).text() + '</td>'; // Cotação
-                printHtml += '<td>' + $(cells[2]).text() + '</td>'; // Centro de Custo
-                printHtml += '<td>' + $(cells[3]).text() + '</td>'; // Produtos
-                printHtml += '<td>' + $(cells[4]).text() + '</td>'; // Município/UF
-                printHtml += '<td>' + $(cells[5]).text() + '</td>'; // Data
-                printHtml += '<td>' + $(cells[6]).text() + '</td>'; // Fornecedor
-                printHtml += '<td class="text-right">' + $(cells[7]).text() + '</td>'; // Valor
+                printHtml += '<td>' + $(cells[2]).text() + '</td>'; // Criado por
+                printHtml += '<td>' + $(cells[3]).text() + '</td>'; // Centro de Custo
+                printHtml += '<td>' + $(cells[4]).text() + '</td>'; // Produtos
+                printHtml += '<td>' + $(cells[5]).text() + '</td>'; // Município/UF
+                printHtml += '<td>' + $(cells[6]).text() + '</td>'; // Data
+                printHtml += '<td>' + $(cells[7]).text() + '</td>'; // Fornecedor
+                printHtml += '<td class="text-right">' + $(cells[8]).text() + '</td>'; // Valor
                 printHtml += '<td class="' + statusClass + '">' + status + '</td>'; // Status
                 printHtml += '</tr>';
             }

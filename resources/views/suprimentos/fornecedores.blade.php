@@ -48,9 +48,9 @@
                             <td>{{ $f->cidade ?? '' }}{{ $f->uf ? '/'.$f->uf : '' }}</td>
                             <td>
                                 @if($f->ativo)
-                                    <span class="badge badge-success">Ativo</span>
+                                    <span class="badge badge-success">{{ __('Ativo') }}</span>
                                 @else
-                                    <span class="badge badge-secondary">Inativo</span>
+                                    <span class="badge badge-secondary">{{ __('Inativo') }}</span>
                                 @endif
                             </td>
                             <td>
@@ -138,13 +138,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Observações</label>
+                        <label>{{ __('Observações') }}</label>
                         <textarea class="form-control" name="observacoes" rows="2"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-primary" id="btnSalvarFornecedor">
                     <i class="fas fa-save"></i> Salvar
                 </button>

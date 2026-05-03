@@ -183,7 +183,7 @@ ADD COLUMN data_fechamento DATETIME NULL AFTER status;</pre>
                     <select id="filtroStatus" class="form-control">
                         <option value="aberta">Abertas</option>
                         <option value="fechada">Fechadas</option>
-                        <option value="todas">Todas</option>
+                        <option value="todas">{{ __('Todas') }}</option>
                     </select>
                 </div>
                 <div class="col-md-2">
@@ -269,7 +269,7 @@ ADD COLUMN data_fechamento DATETIME NULL AFTER status;</pre>
                 <!-- Conteúdo carregado via JS -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
             </div>
         </div>
     </div>
@@ -512,7 +512,7 @@ function visualizarOS(id) {
                     <div class="col-md-6">
                         <p><strong>Nº O.S.:</strong> ${os.numero_os || '-'}</p>
                         <p><strong>Data:</strong> ${formatarData(os.data_os)}</p>
-                        <p><strong>Funcionário:</strong> ${os.funcionario_nome || '-'}</p>
+                        <p><strong>Criado por:</strong> ${os.criado_por_nome || '-'}</p>
                         <p><strong>Centro de Custo:</strong> ${os.centro_custo_nome || '-'}</p>
                         <p><strong>Status:</strong> ${statusBadge}</p>
                     </div>

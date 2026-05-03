@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Relatório de Estoque')
+@section('title', __('{{ __('Relatório de Estoque') }}'))
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
     <div>
         <h1 class="font-weight-bold">
             <i class="fas fa-boxes text-primary mr-3"></i>
-            Relatório de Estoque
+            {{ __('Relatório de Estoque') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Relatórios completos do controle de estoque</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Relatórios completos do controle de estoque') }}</p>
     </div>
 </div>
 @stop
@@ -128,7 +128,7 @@
         <div class="col-12">
             <div class="text-center py-5">
                 <i class="fas fa-chart-bar fa-4x text-muted mb-3"></i>
-                <h4 class="text-muted">Relatório de Estoque</h4>
+                <h4 class="text-muted">{{ __('Relatório de Estoque') }}</h4>
                 <p class="text-muted">Configure os filtros acima e clique em "Gerar Relatório" para visualizar os dados</p>
             </div>
         </div>
@@ -374,7 +374,7 @@ function imprimirRelatorio() {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Relatório de Estoque Atual</title>
+        <title>{{ __('Relatório de Estoque') }} Atual</title>
         <style>
             @page { 
                 size: A4 landscape; 
@@ -528,7 +528,7 @@ function imprimirRelatorio() {
     <body>
         <div class="header-container">
             <div class="logo-section">
-                <img src="/img/brs-logo.png" alt="BRS Logo" class="logo" />
+                <img src="/img/logo.png" alt="Logo" class="logo" />
                 <div class="company-info">
                     <h1>RELATÓRIO DE ESTOQUE</h1>
                     <p class="subtitle">Controle de Inventário e Produtos</p>
@@ -594,7 +594,7 @@ function imprimirRelatorio() {
         </div>
         
         <div class="footer">
-            <p>Sistema Integrado de Gestão Operacional (SIGO) - BRS Transportes</p>
+            <p>Sistema Integrado de Gestão Operacional (SIGO)</p>
         </div>
     </body>
     </html>`;

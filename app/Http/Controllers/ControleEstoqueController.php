@@ -203,6 +203,12 @@ class ControleEstoqueController extends Controller
                 'e.nome',
                 'e.descricao',
                 'e.quantidade',
+                'e.unidade',
+                'e.ncm',
+                'e.codigo_barras',
+                'e.preco_custo',
+                'e.created_at',
+                'e.updated_at',
                 DB::raw('COALESCE(mm.minimo, 0) as minimo'),
                 'mm.maximo'
             )
@@ -232,6 +238,60 @@ class ControleEstoqueController extends Controller
         
         return response()->json(['produtos' => $produtos]);
     }
+
+    /**
+     * Unidades para selects: catálogo padrão + valores distintos já usados no estoque.
+     */
+    public function listarUnidadesMedida()
+    {
+        $rotulos = [
+            'UN' => 'UN — Unidade',
+            'PC' => 'PC — Peça',
+            'PCT' => 'PCT — Pacote',
+            'CX' => 'CX — Caixa',
+            'KG' => 'KG — Quilograma',
+            'LT' => 'LT — Litro',
+            'MT' => 'MT — Metro',
+            'M2' => 'M² — Metro quadrado',
+            'M3' => 'M³ — Metro cúbico',
+            'PAR' => 'PAR — Par',
+            'JG' => 'JG — Jogo',
+            'KIT' => 'KIT — Kit',
+            'RL' => 'RL — Rolo',
+            'SC' => 'SC — Saco',
+            'FD' => 'FD — Fardo',
+            'BD' => 'BD — Balde',
+        ];
+
+        try {
+            $linhas = DB::table('estoque')
+                ->whereNotNull('unidade')
+                ->where('unidade', '!=', '')
+                ->select('unidade')
+                ->get();
+
+            foreach ($linhas as $row) {
+                $c = strtoupper(trim((string) $row->unidade));
+                if ($c === '') {
+                    continue;
+                }
+                if (! isset($rotulos[$c])) {
+                    $rotulos[$c] = $c.' — (já usada no estoque)';
+                }
+            }
+        } catch (\Exception $e) {
+            // Mantém só o catálogo padrão
+        }
+
+        ksort($rotulos);
+
+        $unidades = [];
+        foreach ($rotulos as $codigo => $label) {
+            $unidades[] = ['codigo' => $codigo, 'label' => $label];
+        }
+
+        return response()->json(['unidades' => $unidades]);
+    }
     
     public function buscarProdutosPorNome(Request $request)
     {
@@ -253,6 +313,12 @@ class ControleEstoqueController extends Controller
                 'e.nome',
                 'e.descricao',
                 'e.quantidade',
+                'e.unidade',
+                'e.ncm',
+                'e.codigo_barras',
+                'e.preco_custo',
+                'e.created_at',
+                'e.updated_at',
                 DB::raw('COALESCE(mm.minimo, 0) as minimo'),
                 'mm.maximo'
             )

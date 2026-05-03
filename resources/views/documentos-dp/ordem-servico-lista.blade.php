@@ -40,7 +40,7 @@
                         <input type="text" name="numero_os" value="{{ $numero_os ?? '' }}" placeholder="Ex.: OS-20250809-0001" class="form-control modern-input"/>
                     </div>
                     <div class="col-sm-12 col-md-2 mb-2 d-flex">
-                        <button class="btn btn-secondary mr-2 flex-fill"><i class="fas fa-search mr-1"></i> Filtrar</button>
+                        <button class="btn btn-secondary mr-2 flex-fill"><i class="fas fa-search mr-1"></i>{{ __('Filtrar') }}</button>
                         <a href="{{ route('documentos-dp.ordem-servico.lista') }}" class="btn btn-outline-secondary flex-fill">Limpar</a>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
             <div class="text-center text-muted py-4">Carregando...</div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary" onclick="imprimirOS(window._osIdAtual)"><i class="fas fa-print mr-1"></i> Imprimir</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
+            <button type="button" class="btn btn-primary" onclick="imprimirOS(window._osIdAtual)"><i class="fas fa-print mr-1"></i>{{ __('Imprimir') }}</button>
           </div>
         </div>
       </div>

@@ -84,9 +84,9 @@
                                 <td>{{ $usuario->profile_name ?? 'Sem perfil' }}</td>
                                 <td>
                                     @if($usuario->active)
-                                        <span class="badge badge-success">Ativo</span>
+                                        <span class="badge badge-success">{{ __('Ativo') }}</span>
                                     @else
-                                        <span class="badge badge-danger">Inativo</span>
+                                        <span class="badge badge-danger">{{ __('Inativo') }}</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save mr-1"></i> Criar Usuário
                     </button>
@@ -201,7 +201,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save mr-1"></i> Salvar Alterações
                     </button>
@@ -231,7 +231,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                 <button type="button" class="btn btn-danger" id="btn-confirmar-exclusao">
                     <i class="fas fa-trash mr-1"></i> Excluir Definitivamente
                 </button>

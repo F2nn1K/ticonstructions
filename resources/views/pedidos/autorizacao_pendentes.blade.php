@@ -14,7 +14,7 @@
   <div class="card-body p-0">
     <div class="px-3 py-2 bg-primary text-white d-flex justify-content-between align-items-center">
       <strong>Solicitações Pendentes de Autorização</strong>
-      <a href="{{ route('pedidos.autorizacao') }}" class="btn btn-outline-light btn-sm text-white"><i class="fas fa-arrow-left mr-1"></i>Voltar</a>
+      <a href="{{ route('pedidos.autorizacao') }}" class="btn btn-outline-light btn-sm text-white"><i class="fas fa-arrow-left mr-1"></i>{{ __('Voltar') }}</a>
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-hover mb-0 align-middle" id="tabela-pendentes">
@@ -263,10 +263,10 @@ function abrirGrupo(hash){
             <div class="d-flex justify-content-between align-items-center">
               <p class="mb-1"><strong>Observações</strong></p>
               <div id="header-edit-actions-view" class="d-none">
-                <button class="btn btn-link btn-sm p-0" id="btn-edit-header"><i class="fas fa-edit mr-1"></i>Editar</button>
+                <button class="btn btn-link btn-sm p-0" id="btn-edit-header"><i class="fas fa-edit mr-1"></i>{{ __('Editar') }}</button>
                 <div class="d-inline-block d-none" id="btns-header-save">
-                  <button class="btn btn-outline-secondary btn-sm mr-1" id="btn-cancel-header">Cancelar</button>
-                  <button class="btn btn-primary btn-sm" id="btn-salvar-header">Salvar</button>
+                  <button class="btn btn-outline-secondary btn-sm mr-1" id="btn-cancel-header">{{ __('Cancelar') }}</button>
+                  <button class="btn btn-primary btn-sm" id="btn-salvar-header">{{ __('Salvar') }}</button>
                 </div>
               </div>
             </div>
@@ -306,8 +306,8 @@ function abrirGrupo(hash){
               <div class="d-flex justify-content-between align-items-center mt-2"> 
                 <div></div>
                 <div id="acoes-autorizacao" class="d-none"> 
-                  <button class="btn btn-success btn-sm mr-1" onclick="aprovarGrupo('${hash}')"><i class="fas fa-check mr-1"></i>Aprovar</button> 
-                  <button class="btn btn-danger btn-sm mr-1" onclick="rejeitarGrupo('${hash}')"><i class="fas fa-times mr-1"></i>Rejeitar</button> 
+                  <button class="btn btn-success btn-sm mr-1" onclick="aprovarGrupo('${hash}')"><i class="fas fa-check mr-1"></i>{{ __('Aprovar') }}</button> 
+                  <button class="btn btn-danger btn-sm mr-1" onclick="rejeitarGrupo('${hash}')"><i class="fas fa-times mr-1"></i>{{ __('Rejeitar') }}</button> 
                 </div>
                 <div>
                   <button class="btn btn-outline-primary btn-sm" onclick="enviarMensagemGrupo('${hash}')"><i class="fas fa-paper-plane mr-1"></i>Enviar mensagem</button> 
@@ -324,7 +324,7 @@ function abrirGrupo(hash){
             `).join('') || '<li class=\'list-group-item text-muted\'>Sem interações</li>'}</ul>
           </div>
           <div class="modal-footer"> 
-            <button class="btn btn-secondary" data-dismiss="modal">Fechar</button> 
+            <button class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button> 
           </div>
         </div></div>
       </div>`;

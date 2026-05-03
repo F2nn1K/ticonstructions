@@ -8,7 +8,7 @@
   <div class="card-body p-0">
     <div class="px-3 py-2 bg-primary text-white d-flex justify-content-between align-items-center">
       <strong>Solicitações Pendentes</strong>
-      <a href="{{ route('pedidos.acompanhar') }}" class="btn btn-outline-light btn-sm text-white"><i class="fas fa-arrow-left mr-1"></i>Voltar</a>
+      <a href="{{ route('pedidos.acompanhar') }}" class="btn btn-outline-light btn-sm text-white"><i class="fas fa-arrow-left mr-1"></i>{{ __('Voltar') }}</a>
     </div>
     <!-- Desktop/Tablet -->
     <div class="d-none d-md-block table-responsive">
@@ -34,7 +34,7 @@
       <p class="mb-1"><strong>Interações</strong></p>
       <ul class="list-group" id="ints"></ul>
     </div>
-    <div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">Fechar</button></div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button></div>
   </div></div>
 </div>
 @stop

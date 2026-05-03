@@ -3,6 +3,26 @@
  * Fix: Logo escondida quando menu lateral minimizado
  */
 
+/* ── Logo maior no menu lateral ───────────────────────── */
+.main-sidebar .brand-link {
+    padding: 8px 12px !important;
+    min-height: 68px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.main-sidebar .brand-link .brand-image {
+    height: auto !important;
+    max-height: 52px !important;
+    width: auto !important;
+    margin-top: 0 !important;
+    margin-right: 10px !important;
+    margin-left: 0 !important;
+    float: none !important;
+    flex-shrink: 0 !important;
+}
+/* ─────────────────────────────────────────────────────── */
+
 /* Esconder logo quando sidebar está minimizada */
 body.sidebar-collapse .brand-link .brand-image,
 body.sidebar-mini.sidebar-collapse .brand-link .brand-image,
@@ -47,8 +67,8 @@ body.layout-fixed.sidebar-mini .main-sidebar:hover .brand-link .brand-image {
     visibility: visible !important;
     width: auto !important;
     height: auto !important;
-    max-width: 60px !important;
-    max-height: 33px !important;
+    max-width: 120px !important;
+    max-height: 52px !important;
     overflow: visible !important;
 }
 

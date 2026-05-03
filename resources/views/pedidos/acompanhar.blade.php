@@ -67,7 +67,7 @@
         <ul class="list-group" id="ac-interacoes"></ul>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
       </div>
     </div>
   </div>

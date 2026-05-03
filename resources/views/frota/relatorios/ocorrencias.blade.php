@@ -42,13 +42,13 @@
                             <div class="col-md-3 mb-3">
                                 <label class="font-weight-bold">Veículo</label>
                                 <select id="veiculo_id" class="form-control">
-                                    <option value="">Todos</option>
+                                    <option value="">{{ __('Todos') }}</option>
                                 </select>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label class="font-weight-bold">Status</label>
                                 <select id="status" class="form-control">
-                                    <option value="">Todos</option>
+                                    <option value="">{{ __('Todos') }}</option>
                                     <option value="pendentes">Pendentes (Sem solução)</option>
                                     <option value="em_andamento">Em Andamento</option>
                                     <option value="resolvido">Resolvido</option>

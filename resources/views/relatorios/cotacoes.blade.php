@@ -28,7 +28,7 @@
                 <div class="col-md-3">
                     <label class="font-weight-bold"><i class="fas fa-tasks text-muted mr-1"></i> Status</label>
                     <select class="form-control" id="status" name="status">
-                        <option value="todas">Todas</option>
+                        <option value="todas">{{ __('Todas') }}</option>
                         <option value="aberta">Em Aberto (Não Cotadas)</option>
                         <option value="finalizada">Finalizadas (Cotadas)</option>
                         <option value="aguardando_aprovacao">Aguardando Aprovação</option>

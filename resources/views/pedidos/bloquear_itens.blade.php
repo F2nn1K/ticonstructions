@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Bloquear Itens')
+@section('title', __('Bloquear Itens'))
 
 @section('content_header')
-<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-ban text-danger mr-2"></i>Bloquear Itens</h1>
+<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-ban text-danger mr-2"></i>{{ __('Bloquear Itens') }}</h1>
 @stop
 
 @section('content')
 <!-- Card Seleção de Usuário -->
 <div class="card card-primary shadow-sm">
   <div class="card-header">
-    <h3 class="card-title"><i class="fas fa-user mr-2"></i>Selecionar Usuário</h3>
+    <h3 class="card-title"><i class="fas fa-user mr-2"></i>{{ __('Selecionar Usuário') }}</h3>
   </div>
   <div class="card-body">
     <div class="row">

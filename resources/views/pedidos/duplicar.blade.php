@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Duplicar Pedido de Compras')
+@section('title', __('Duplicar Pedido de Compras'))
 
 @section('plugins.Sweetalert2', true)
  
 
 @section('content_header')
-<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-copy text-info mr-2"></i>Duplicar Pedido de Compras</h1>
+<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-copy text-info mr-2"></i>{{ __('Duplicar Pedido de Compras') }}</h1>
 @stop
 
 @section('content')
@@ -53,8 +53,8 @@
 </style>
 <div class="card shadow-sm">
   <div class="card-header d-flex justify-content-between align-items-center">
-    <h3 class="card-title mb-0"><i class="fas fa-list mr-2"></i>Meus Pedidos Anteriores</h3>
-    <span class="text-muted small">Selecione um pedido para duplicar</span>
+    <h3 class="card-title mb-0"><i class="fas fa-list mr-2"></i>{{ __('Meus Pedidos Anteriores') }}</h3>
+    <span class="text-muted small">{{ __('Selecione um pedido para duplicar') }}</span>
   </div>
   <div class="card-body p-0">
     <div class="alert alert-info mx-3 mt-3 mb-0">

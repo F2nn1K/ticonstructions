@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', 'Frota - Veículos')
+@section('title', __('app.fleet.title') . ' - ' . __('app.fleet.vehicles'))
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-car text-primary mr-3"></i>
-            Veículos
+            {{ __('app.fleet.vehicles') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Gerencie os veículos da frota</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Gerencie os veículos da frota') }}</p>
     </div>
     <div>
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalCadastrarVeiculo">
             <i class="fas fa-plus mr-1"></i>
-            Novo Veículo
+            {{ __('Nova') }} {{ __('Veículo') }}
         </button>
     </div>
 </div>
@@ -33,7 +33,7 @@
                 <div class="card-body text-center">
                     <i class="fas fa-car fa-2x mb-2"></i>
                     <h3 id="totalVeiculos">0</h3>
-                    <p class="mb-0">Total de Veículos</p>
+                    <p class="mb-0">{{ __('Total de Veículos') }}</p>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <div class="card-body text-center">
                     <i class="fas fa-check-circle fa-2x mb-2"></i>
                     <h3 id="veiculosAtivos">0</h3>
-                    <p class="mb-0">Ativos</p>
+                    <p class="mb-0">{{ __('Ativo') }}</p>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                 <div class="card-body text-center">
                     <i class="fas fa-tools fa-2x mb-2"></i>
                     <h3 id="veiculosManutencao">0</h3>
-                    <p class="mb-0">Em Manutenção</p>
+                    <p class="mb-0">{{ __('app.fleet.maintenance') }}</p>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                 <div class="card-body text-center">
                     <i class="fas fa-ban fa-2x mb-2"></i>
                     <h3 id="veiculosInativos">0</h3>
-                    <p class="mb-0">Inativos</p>
+                    <p class="mb-0">{{ __('Inativo') }}</p>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                 <div class="card-header">
                     <h5 class="mb-0">
                         <i class="fas fa-filter mr-2"></i>
-                        Filtros
+                        {{ __('Filtros') }}
                     </h5>
                 </div>
                 <div class="card-body">
@@ -81,16 +81,16 @@
                         <div class="col-md-3">
                             <label for="filtroStatus">Status</label>
                             <select class="form-control" id="filtroStatus">
-                                <option value="">Todos</option>
-                                <option value="ativo">Ativo</option>
-                                <option value="inativo">Inativo</option>
+                                <option value="">{{ __('Todos') }}</option>
+                                <option value="ativo">{{ __('Ativo') }}</option>
+                                <option value="inativo">{{ __('Inativo') }}</option>
                                 <option value="manutencao">Em Manutenção</option>
                             </select>
                         </div>
                         <div class="col-md-3">
                             <label for="filtroTipo">Tipo</label>
                             <select class="form-control" id="filtroTipo">
-                                <option value="">Todos</option>
+                                <option value="">{{ __('Todos') }}</option>
                                 <option value="carro">Carro</option>
                                 <option value="moto">Moto</option>
                                 <option value="caminhao">Caminhão</option>
@@ -215,8 +215,8 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form-control" id="status" name="status">
-                                    <option value="ativo">Ativo</option>
-                                    <option value="inativo">Inativo</option>
+                                    <option value="ativo">{{ __('Ativo') }}</option>
+                                    <option value="inativo">{{ __('Inativo') }}</option>
                                     <option value="manutencao">Em Manutenção</option>
                                 </select>
                             </div>
@@ -234,7 +234,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="veiculo_id" name="id">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save mr-1"></i>
                         Salvar
@@ -355,7 +355,7 @@ function carregarVeiculos() {
 function getStatusUsoExibicao(v) {
     // Se o veículo estiver inativo no banco, mostrar INATIVO em vermelho
     if (String(v.status) === 'inativo') {
-        return '<span class="badge badge-danger">Inativo</span>';
+        return '<span class="badge badge-danger">{{ __('Inativo') }}</span>';
     }
     // Caso contrário, usa o status_uso
     switch(v.status_uso) {
@@ -370,8 +370,8 @@ function getStatusUsoExibicao(v) {
 
 function getStatusBadge(status) {
     const badges = {
-        'ativo': '<span class="badge badge-success badge-status">Ativo</span>',
-        'inativo': '<span class="badge badge-danger badge-status">Inativo</span>',
+        'ativo': '<span class="badge badge-success badge-status">{{ __('Ativo') }}</span>',
+        'inativo': '<span class="badge badge-danger badge-status">{{ __('Inativo') }}</span>',
         'manutencao': '<span class="badge badge-warning badge-status">Em Manutenção</span>'
     };
     return badges[status] || '<span class="badge badge-secondary badge-status">-</span>';
@@ -470,7 +470,7 @@ function verVeiculo(id) {
                         </div>\n
                       </div>\n
                       <div class=\"modal-footer\">\n
-                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>\n
+                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">{{ __('Fechar') }}</button>\n
                       </div>\n
                     </div>\n
                   </div>\n

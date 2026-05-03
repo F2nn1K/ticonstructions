@@ -4,6 +4,15 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PermissoesController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ObraController;
+use App\Http\Controllers\ObraFaseController;
+use App\Http\Controllers\LancamentoObraController;
+use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\TaxaAdministracaoController;
+use App\Http\Controllers\CronogramaController;
+use App\Http\Controllers\GastosController;
+use App\Http\Controllers\DiarioObraController;
+use App\Http\Controllers\DashboardController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +23,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Controllers\LicenseController;
+// use App\Http\Controllers\LicenseController;
 use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\AbastecimentoController;
 use App\Http\Controllers\ManutencaoController;
@@ -39,11 +48,168 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// Troca de idioma
+Route::get('/lang/{locale}', function (string $locale) {
+    $supported = ['pt_BR', 'en'];
+    if (in_array($locale, $supported)) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard - acessível para todos os usuários autenticados
     Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    // =============================================
+    // CRONOGRAMA — visão geral de todas as obras
+    // =============================================
+    Route::prefix('cronograma')->name('cronograma.')->group(function () {
+        Route::get('/',            [CronogramaController::class, 'index'])->name('index');
+        Route::get('/ocorrencias', [CronogramaController::class, 'ocorrencias'])->name('ocorrencias');
+        Route::get('/criar', fn() => redirect()->route('obras.create'))->name('criar');
+
+        // Detalhes de fase com checklist de sub-fases
+        Route::get('/obra/{obra}/fase/{fase}', [CronogramaController::class, 'faseDetalhe'])->name('fase-detalhe');
+
+        // Marcar/desmarcar tarefa (AJAX)
+        Route::post('/tarefa/{tarefa}/marcar', [CronogramaController::class, 'marcarTarefa'])->name('tarefa-marcar');
+
+        // Adicionar fase à obra pelo cronograma
+        Route::post('/obra/{obra}/adicionar-fase', [CronogramaController::class, 'adicionarFase'])->name('adicionar-fase');
+
+        // Adicionar tarefa avulsa a uma fase
+        Route::post('/fase/{fase}/adicionar-tarefa', [CronogramaController::class, 'adicionarTarefa'])->name('tarefa-adicionar');
+
+        // Excluir tarefa
+        Route::delete('/tarefa/{tarefa}', [CronogramaController::class, 'excluirTarefa'])->name('tarefa-excluir');
+
+        // API: tarefas do catálogo por fase
+        Route::get('/api/tarefas-catalogo/{faseCatalogoId}', [CronogramaController::class, 'tarefasCatalogo'])->name('api.tarefas-catalogo');
+    });
+
+    // =============================================
+    // CONTROLE DE GASTOS — lançamentos consolidados
+    // =============================================
+    Route::prefix('gastos')->name('gastos.')->group(function () {
+        Route::get('/',           [GastosController::class, 'index'])->name('index');
+        Route::get('/criar',      [GastosController::class, 'create'])->name('create');
+        Route::post('/',          [GastosController::class, 'store'])->name('store');
+        Route::get('/fluxo-caixa',[GastosController::class, 'fluxoCaixa'])->name('fluxo-caixa');
+    });
+
+    // =============================================
+    // FORNECEDORES — gestão e cotação
+    // =============================================
+    Route::prefix('fornecedores')->name('fornecedores.')->group(function () {
+        Route::get('/',                          [App\Http\Controllers\FornecedorController::class, 'index'])->name('index');
+        Route::get('/novo',                      [App\Http\Controllers\FornecedorController::class, 'create'])->name('create');
+        Route::post('/',                         [App\Http\Controllers\FornecedorController::class, 'store'])->name('store');
+        Route::get('/relatorio-comparacao',      [App\Http\Controllers\FornecedorController::class, 'relatorioComparacao'])->name('relatorio-comparacao');
+        Route::get('/{fornecedor}',              [App\Http\Controllers\FornecedorController::class, 'show'])->name('show');
+        Route::get('/{fornecedor}/editar',       [App\Http\Controllers\FornecedorController::class, 'edit'])->name('edit');
+        Route::put('/{fornecedor}',              [App\Http\Controllers\FornecedorController::class, 'update'])->name('update');
+        Route::delete('/{fornecedor}',           [App\Http\Controllers\FornecedorController::class, 'destroy'])->name('destroy');
+        Route::get('/api/lista',                 [App\Http\Controllers\FornecedorController::class, 'apiLista'])->name('api.lista');
+    });
+
+    // =============================================
+    // CATEGORIAS DE CUSTO — gestão inline e CRUD
+    // =============================================
+    Route::prefix('categorias-custo')->name('categorias.')->group(function () {
+        Route::get('/',                          [App\Http\Controllers\CategoriaMaterialController::class, 'index'])->name('index');
+        Route::post('/',                         [App\Http\Controllers\CategoriaMaterialController::class, 'store'])->name('store');
+        Route::put('/{categoriaMaterial}',       [App\Http\Controllers\CategoriaMaterialController::class, 'update'])->name('update');
+        Route::delete('/{categoriaMaterial}',    [App\Http\Controllers\CategoriaMaterialController::class, 'destroy'])->name('destroy');
+        Route::post('/subcategoria',             [App\Http\Controllers\CategoriaMaterialController::class, 'storeSub'])->name('subcategoria.store');
+        Route::delete('/subcategoria/{subcategoriaMaterial}', [App\Http\Controllers\CategoriaMaterialController::class, 'destroySub'])->name('subcategoria.destroy');
+    });
+
+    // APIs inline (chamadas AJAX pelo formulário de lançamento)
+    Route::post('/api/categorias',    [App\Http\Controllers\CategoriaMaterialController::class, 'storeApi'])->name('api.categorias.store');
+    Route::post('/api/subcategorias', [App\Http\Controllers\CategoriaMaterialController::class, 'storeSubApi'])->name('api.subcategorias.store');
+
+    // =============================================
+    // DIÁRIO DE OBRA
+    // =============================================
+    Route::prefix('diario')->name('diario.')->group(function () {
+        Route::get('/',                  [DiarioObraController::class, 'index'])->name('index');
+        Route::get('/novo',              [DiarioObraController::class, 'create'])->name('create');
+        Route::post('/',                 [DiarioObraController::class, 'store'])->name('store');
+        Route::get('/{diario}',          [DiarioObraController::class, 'show'])->name('show');
+        Route::get('/{diario}/editar',   [DiarioObraController::class, 'edit'])->name('edit');
+        Route::put('/{diario}',          [DiarioObraController::class, 'update'])->name('update');
+        Route::delete('/{diario}',       [DiarioObraController::class, 'destroy'])->name('destroy');
+    });
+
+    // Diário por obra (aninhado em obras)
+    Route::get('/obras/{obra}/diario', [DiarioObraController::class, 'porObra'])->name('obras.diario');
+
+    // API: fases de uma obra para o formulário do diário
+    Route::get('/api/diario/fases-obra/{obra}', [DiarioObraController::class, 'fasesObra'])
+         ->name('api.diario.fases-obra');
+
+    // API: tarefas de uma fase para vincular às atividades do diário
+    Route::get('/api/diario/tarefas-fase/{fase}', [DiarioObraController::class, 'tarefasFase'])
+         ->name('api.diario.tarefas-fase');
+
+    // =============================================
+    // MÓDULO OBRAS / CRONOGRAMA
+    // =============================================
+
+    Route::prefix('obras')->name('obras.')->group(function () {
+        Route::get('/',         [ObraController::class, 'index'])->name('index');
+        Route::get('/nova',     [ObraController::class, 'create'])->name('create');
+        Route::post('/',        [ObraController::class, 'store'])->name('store');
+        Route::get('/{obra}/dashboard', [DashboardController::class, 'obraDashboard'])->name('dashboard');
+        Route::get('/{obra}',   [ObraController::class, 'show'])->name('show');
+        Route::get('/{obra}/editar', [ObraController::class, 'edit'])->name('edit');
+        Route::put('/{obra}',   [ObraController::class, 'update'])->name('update');
+        Route::delete('/{obra}',[ObraController::class, 'destroy'])->name('destroy');
+
+        // Fases
+        Route::post('/{obra}/fases/{fase}/avancar',        [ObraFaseController::class, 'avancar'])->name('fases.avancar');
+        Route::post('/{obra}/fases/{fase}/progresso',      [ObraFaseController::class, 'atualizarProgresso'])->name('fases.progresso');
+        Route::post('/{obra}/fases/{fase}/ocorrencia',     [ObraFaseController::class, 'registrarOcorrencia'])->name('fases.ocorrencia');
+
+        // Lançamentos financeiros
+        Route::get( '/{obra}/lancamentos',        [LancamentoObraController::class, 'index'])->name('lancamentos.index');
+        Route::get( '/{obra}/lancamentos/novo',   [LancamentoObraController::class, 'create'])->name('lancamentos.create');
+        Route::post('/{obra}/lancamentos',        [LancamentoObraController::class, 'store'])->name('lancamentos.store');
+        Route::delete('/{obra}/lancamentos/{lancamento}', [LancamentoObraController::class, 'destroy'])->name('lancamentos.destroy');
+    });
+
+    // API helpers (subcategorias por categoria)
+    Route::get('/api/subcategorias', [LancamentoObraController::class, 'subcategorias'])->name('api.subcategorias');
+
+    // =============================================
+    // ADMINISTRADORES — fichas e gestão
+    // =============================================
+    Route::prefix('obras/administradores')->name('obras.administradores.')->group(function () {
+        Route::get('/',                   [AdministradorController::class, 'index'])->name('index');
+        Route::get('/novo',               [AdministradorController::class, 'create'])->name('create');
+        Route::post('/',                  [AdministradorController::class, 'store'])->name('store');
+        Route::get('/{administrador}',    [AdministradorController::class, 'show'])->name('show');
+        Route::get('/{administrador}/editar', [AdministradorController::class, 'edit'])->name('edit');
+        Route::put('/{administrador}',    [AdministradorController::class, 'update'])->name('update');
+        Route::delete('/{administrador}', [AdministradorController::class, 'destroy'])->name('destroy');
+    });
+    Route::get('/api/administradores', [AdministradorController::class, 'apiListar'])->name('api.administradores');
+
+    // =============================================
+    // TAXA DE ADMINISTRAÇÃO — calcular e pagar
+    // =============================================
+    Route::prefix('obras/taxa-administracao')->name('obras.taxa-administracao.')->group(function () {
+        Route::get('/',              [TaxaAdministracaoController::class, 'index'])->name('index');
+        Route::get('/nova',          [TaxaAdministracaoController::class, 'create'])->name('create');
+        Route::post('/',             [TaxaAdministracaoController::class, 'store'])->name('store');
+        Route::get('/calcular-preview', [TaxaAdministracaoController::class, 'calcularPreview'])->name('calcular-preview');
+        Route::patch('/{taxa}/pagar',    [TaxaAdministracaoController::class, 'pagar'])->name('pagar');
+        Route::patch('/{taxa}/cancelar', [TaxaAdministracaoController::class, 'cancelar'])->name('cancelar');
+        Route::delete('/{taxa}',         [TaxaAdministracaoController::class, 'destroy'])->name('destroy');
+    });
 
     // =============================================
     // MÓDULO FINANCEIRO
@@ -89,6 +255,14 @@ Route::middleware(['auth'])->group(function () {
         // APIs Contas a Pagar
         Route::get('/api/contas-pagar/listar', [App\Http\Controllers\FinanceiroController::class, 'listarContasPagar'])
             ->name('api.contas-pagar.index');
+        
+        // APIs Exclusão em Lote (Importados via JSON) - ANTES das rotas com {id}
+        Route::get('/api/contas-pagar/datas-importacao-json', [App\Http\Controllers\FinanceiroController::class, 'listarDatasImportacaoJson'])
+            ->name('api.contas-pagar.datas-importacao');
+        Route::delete('/api/contas-pagar/excluir-lote-json', [App\Http\Controllers\FinanceiroController::class, 'excluirLoteImportacaoJson'])
+            ->name('api.contas-pagar.excluir-lote');
+        
+        // Rotas com parâmetro {id} devem vir DEPOIS das rotas específicas
         Route::get('/api/contas-pagar/{id}', [App\Http\Controllers\FinanceiroController::class, 'getContaPagar'])
             ->name('api.contas-pagar.show');
         Route::post('/api/contas-pagar', [App\Http\Controllers\FinanceiroController::class, 'storeContaPagar'])
@@ -99,6 +273,8 @@ Route::middleware(['auth'])->group(function () {
             ->name('api.contas-pagar.delete');
         Route::post('/api/contas-pagar/{id}/baixar', [App\Http\Controllers\FinanceiroController::class, 'baixarContaPagar'])
             ->name('api.contas-pagar.baixar');
+        Route::post('/api/contas-pagar/baixar-lote', [App\Http\Controllers\FinanceiroController::class, 'baixarContasPagarLote'])
+            ->name('api.contas-pagar.baixar-lote');
         Route::get('/api/contas-pagar/{id}/comprovantes', [App\Http\Controllers\FinanceiroController::class, 'listarComprovantes'])
             ->name('api.contas-pagar.comprovantes');
         Route::get('/api/contas-pagar/{id}/comprovante/{index?}', [App\Http\Controllers\FinanceiroController::class, 'verComprovante'])
@@ -159,6 +335,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/api/ordens-servico/{id}/reabrir', [App\Http\Controllers\OrdemServicoController::class, 'reabrir'])
             ->name('api.ordens-servico.reabrir');
         
+        // API para busca de materiais na O.S. (acessível a todos com permissão de O.S.)
+        Route::get('/api/materiais/buscar', [App\Http\Controllers\OrdemServicoController::class, 'buscarMateriais'])
+            ->name('api.materiais.buscar');
     });
     
     // =============================================
@@ -167,6 +346,98 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/funcionarios', [App\Http\Controllers\FuncionarioController::class, 'index'])
         ->middleware('can:funcionarios')
         ->name('funcionarios');
+
+    // Apontamentos (Daily Time Sheet)
+    Route::prefix('funcionarios/apontamento')->name('funcionarios.apontamento.')->group(function () {
+        Route::get('/',         [App\Http\Controllers\ApontamentoController::class, 'index'])
+            ->middleware('can:apontamento-ver')
+            ->name('index');
+        Route::post('/',        [App\Http\Controllers\ApontamentoController::class, 'store'])
+            ->middleware('can:apontamento-ver')
+            ->name('store');
+        Route::delete('/{apontamento}', [App\Http\Controllers\ApontamentoController::class, 'destroy'])
+            ->middleware('can:apontamento-ver')
+            ->name('destroy');
+        Route::get('/aprovar',  [App\Http\Controllers\ApontamentoController::class, 'aprovar'])
+            ->middleware('can:apontamento-aprovar')
+            ->name('aprovar');
+        Route::post('/aprovar-lote', [App\Http\Controllers\ApontamentoController::class, 'aprovarLote'])
+            ->middleware('can:apontamento-aprovar')
+            ->name('aprovar-lote');
+        Route::post('/{apontamento}/processar', [App\Http\Controllers\ApontamentoController::class, 'processarAprovacao'])
+            ->middleware('can:apontamento-aprovar')
+            ->name('processar');
+    });
+    // =============================================
+    // QUALIDADE
+    // =============================================
+    Route::prefix('qualidade')->name('qualidade.')->group(function () {
+        Route::get('/fases/{obra}',           [App\Http\Controllers\QualidadeController::class, 'fasesObra'])->name('fases');
+        Route::get('/checklist/{id}/itens',   [App\Http\Controllers\QualidadeController::class, 'checklistItens'])->name('checklist-itens');
+
+        Route::get('/checklists',             [App\Http\Controllers\QualidadeController::class, 'checklists'])->middleware('can:qualidade-checklist')->name('checklists');
+        Route::get('/checklists/criar',       [App\Http\Controllers\QualidadeController::class, 'checklistCriar'])->middleware('can:qualidade-checklist')->name('checklist-criar');
+        Route::post('/checklists',            [App\Http\Controllers\QualidadeController::class, 'checklistStore'])->middleware('can:qualidade-checklist')->name('checklist-store');
+        Route::delete('/checklists/{id}',     [App\Http\Controllers\QualidadeController::class, 'checklistDestroy'])->middleware('can:qualidade-checklist')->name('checklist-destroy');
+
+        Route::get('/inspecoes',              [App\Http\Controllers\QualidadeController::class, 'inspecoes'])->middleware('can:qualidade-inspecao')->name('inspecoes');
+        Route::get('/inspecoes/criar',        [App\Http\Controllers\QualidadeController::class, 'inspecaoCriar'])->middleware('can:qualidade-inspecao')->name('inspecao-criar');
+        Route::post('/inspecoes',             [App\Http\Controllers\QualidadeController::class, 'inspecaoStore'])->middleware('can:qualidade-inspecao')->name('inspecao-store');
+
+        Route::get('/nao-conformidades',      [App\Http\Controllers\QualidadeController::class, 'naoConformidades'])->middleware('can:qualidade-nao-conformidade')->name('nao-conformidades');
+        Route::get('/nao-conformidades/criar',[App\Http\Controllers\QualidadeController::class, 'naoConformidadeCriar'])->middleware('can:qualidade-nao-conformidade')->name('nao-conformidade-criar');
+        Route::post('/nao-conformidades',     [App\Http\Controllers\QualidadeController::class, 'naoConformidadeStore'])->middleware('can:qualidade-nao-conformidade')->name('nao-conformidade-store');
+        Route::patch('/nao-conformidades/{id}',[App\Http\Controllers\QualidadeController::class, 'naoConformidadeUpdate'])->middleware('can:qualidade-nao-conformidade')->name('nao-conformidade-update');
+    });
+
+    // =============================================
+    // RISCOS
+    // =============================================
+    Route::prefix('riscos')->name('riscos.')->middleware('can:riscos-ver')->group(function () {
+        Route::get('/',            [App\Http\Controllers\RiscoController::class, 'index'])->name('index');
+        Route::get('/criar',       [App\Http\Controllers\RiscoController::class, 'criar'])->middleware('can:riscos-criar')->name('criar');
+        Route::post('/',           [App\Http\Controllers\RiscoController::class, 'store'])->middleware('can:riscos-criar')->name('store');
+        Route::get('/{risco}/editar', [App\Http\Controllers\RiscoController::class, 'edit'])->middleware('can:riscos-editar')->name('edit');
+        Route::put('/{risco}',     [App\Http\Controllers\RiscoController::class, 'update'])->middleware('can:riscos-editar')->name('update');
+        Route::delete('/{risco}',  [App\Http\Controllers\RiscoController::class, 'destroy'])->middleware('can:riscos-excluir')->name('destroy');
+    });
+
+    // =============================================
+    // OCORRÊNCIAS DE OBRA
+    // =============================================
+    Route::prefix('ocorrencias')->name('ocorrencias-obra.')->group(function () {
+        Route::get('/',       [App\Http\Controllers\OcorrenciasObraController::class, 'index'])->middleware('can:ocorrencias-ver')->name('index');
+        Route::get('/criar',  [App\Http\Controllers\OcorrenciasObraController::class, 'criar'])->middleware('can:ocorrencias-criar')->name('criar');
+        Route::post('/',      [App\Http\Controllers\OcorrenciasObraController::class, 'store'])->middleware('can:ocorrencias-criar')->name('store');
+        Route::get('/fases/{obra}', [App\Http\Controllers\OcorrenciasObraController::class, 'fases'])->name('fases');
+    });
+
+    // =============================================
+    // PRODUÇÃO / MEDIÇÕES
+    // =============================================
+    Route::prefix('producao')->name('producao.')->group(function () {
+        Route::get('/',              [App\Http\Controllers\ProducaoController::class, 'index'])
+            ->middleware('can:producao-ver')
+            ->name('index');
+        Route::get('/medicao',       [App\Http\Controllers\ProducaoController::class, 'medicao'])
+            ->middleware('can:producao-lancar')
+            ->name('medicao');
+        Route::post('/medicao',      [App\Http\Controllers\ProducaoController::class, 'store'])
+            ->middleware('can:producao-lancar')
+            ->name('store');
+        Route::get('/fases/{obra}',  [App\Http\Controllers\ProducaoController::class, 'fases'])
+            ->name('fases');
+        Route::get('/aprovacao',     [App\Http\Controllers\ProducaoController::class, 'aprovacao'])
+            ->middleware('can:producao-aprovar')
+            ->name('aprovacao');
+        Route::post('/processar-lote', [App\Http\Controllers\ProducaoController::class, 'processarLote'])
+            ->middleware('can:producao-aprovar')
+            ->name('processar-lote');
+        Route::post('/{medicao}/processar', [App\Http\Controllers\ProducaoController::class, 'processar'])
+            ->middleware('can:producao-aprovar')
+            ->name('processar');
+    });
+
     Route::get('/api/funcionarios', [App\Http\Controllers\FuncionarioController::class, 'listar'])
         ->name('api.funcionarios.listar');
     Route::post('/api/funcionarios', [App\Http\Controllers\FuncionarioController::class, 'store'])
@@ -603,6 +874,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/ordens-compra/{id}', [App\Http\Controllers\SuprimentosController::class, 'deleteOrdemCompra']);
         
         // Recebimentos
+        Route::post('/recebimentos/validar', [App\Http\Controllers\SuprimentosController::class, 'validarRecebimento']);
         Route::post('/recebimentos', [App\Http\Controllers\SuprimentosController::class, 'storeRecebimento']);
         Route::get('/recebimentos/{id}', [App\Http\Controllers\SuprimentosController::class, 'getRecebimento']);
         Route::delete('/recebimentos/{id}', [App\Http\Controllers\SuprimentosController::class, 'destroyRecebimento']);
@@ -633,6 +905,7 @@ Route::middleware(['auth'])->group(function () {
     // Endpoint específico do módulo de estoque para evitar conflito com pedidos de compras
     Route::get('/api/estoque/produtos/buscar', [App\Http\Controllers\ControleEstoqueController::class, 'buscarProdutosPorNome']);
     Route::get('/api/estoque/produtos', [App\Http\Controllers\ControleEstoqueController::class, 'listarTodosProdutos']);
+    Route::get('/api/estoque/unidades-medida', [App\Http\Controllers\ControleEstoqueController::class, 'listarUnidadesMedida']);
     Route::post('/api/produtos', [App\Http\Controllers\ControleEstoqueController::class, 'criarProduto']);
     Route::put('/api/produtos/{id}', [App\Http\Controllers\ControleEstoqueController::class, 'atualizarProduto']);
     Route::post('/api/entradas', [App\Http\Controllers\ControleEstoqueController::class, 'registrarEntrada']);
@@ -887,6 +1160,8 @@ Route::middleware(['auth'])->prefix('frota')->name('frota.')->group(function () 
     // API para Baixa da O.S.
     Route::get('/api/baixa-os/listar', [App\Http\Controllers\BaixaOSController::class, 'listar']);
     Route::post('/api/baixa-os/{id}/liberar', [App\Http\Controllers\BaixaOSController::class, 'liberar']);
+    Route::post('/api/baixa-os/{id}/excluir', [App\Http\Controllers\BaixaOSController::class, 'excluir']);
+    Route::get('/api/baixa-os/logs', [App\Http\Controllers\BaixaOSController::class, 'listarLogs']);
     Route::get('/api/baixa-os/funcionarios', [App\Http\Controllers\BaixaOSController::class, 'buscarFuncionarios']);
 
     Route::get('/brs/estoque-min-max', function () {
@@ -901,6 +1176,8 @@ Route::middleware(['auth'])->prefix('frota')->name('frota.')->group(function () 
         ->middleware(['auth','throttle:120,1']);
     Route::post('/api/estoque/{produtoId}/min-max', [App\Http\Controllers\EstoqueMinMaxController::class, 'salvar'])
         ->middleware(['auth','throttle:120,1']);
+    Route::post('/api/estoque/{produtoId}/inativar', [App\Http\Controllers\EstoqueMinMaxController::class, 'inativar'])
+        ->middleware(['auth','throttle:60,1']);
 
     // Endpoints utilitários disponíveis para telas autenticadas (ex.: Controle de Estoque)
     Route::middleware(['auth','throttle:120,1'])->group(function () {
@@ -921,13 +1198,16 @@ Route::middleware(['auth'])->prefix('frota')->name('frota.')->group(function () 
         
         // Buscar centros de custo que CONTÊM o termo em qualquer parte (para autocomplete)
         Route::get('/api/centros-custo/buscar-inicio', function(\Illuminate\Http\Request $request) {
-            $termo = $request->input('termo', '');
+            $termo = trim((string) $request->input('termo', ''));
+            if (mb_strlen($termo) < 3) {
+                return response()->json([]);
+            }
             return response()->json(
                 \DB::table('centros_custo')
                     ->where('ativo', 1)
-                    ->where('nome', 'like', "%{$termo}%")
+                    ->where('nome', 'like', '%'.$termo.'%')
                     ->orderBy('nome')
-                    ->limit(15)
+                    ->limit(30)
                     ->get(['id', 'nome'])
             );
         });
@@ -1420,11 +1700,7 @@ Route::delete('/perfis/{id}', [\App\Http\Controllers\Admin\PerfilController::cla
     ->middleware(['auth'])
     ->name('perfis.destroy');
 
-// Licenciamento (Plano B) - protegido por autenticação
-Route::middleware(['auth'])->group(function () {
-    Route::get('/license', [LicenseController::class, 'index'])->name('license.index');
-    Route::post('/license/upload', [LicenseController::class, 'upload'])->name('license.upload');
-});
+// Licenciamento desativado
 
 // Rotas de administração
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
@@ -1780,4 +2056,19 @@ Route::middleware(['auth'])->prefix('api')->group(function () {
             'data' => $perfil
         ]);
     });
+});
+
+// =============================================
+// RELATÓRIOS DE OBRAS
+// =============================================
+Route::middleware(['auth'])->prefix('relatorios')->name('relatorios.')->group(function () {
+    Route::get('/curva-s-fisica',    [App\Http\Controllers\RelatorioObraController::class, 'curvaSFisica'])->middleware('can:relatorio-curva-s-fisica')->name('curva-s-fisica');
+    Route::get('/curva-s-financeira',[App\Http\Controllers\RelatorioObraController::class, 'curvaSFinanceira'])->middleware('can:relatorio-curva-s-financeira')->name('curva-s-financeira');
+    Route::get('/cronograma',        [App\Http\Controllers\RelatorioObraController::class, 'cronograma'])->middleware('can:relatorio-cronograma')->name('cronograma');
+    Route::get('/custos',            [App\Http\Controllers\RelatorioObraController::class, 'custos'])->middleware('can:relatorio-custos')->name('custos');
+    Route::get('/mao-de-obra',       [App\Http\Controllers\RelatorioObraController::class, 'maoDeObra'])->middleware('can:relatorio-mao-de-obra')->name('mao-de-obra');
+    Route::get('/suprimentos',       [App\Http\Controllers\RelatorioObraController::class, 'suprimentos'])->middleware('can:relatorio-suprimentos')->name('suprimentos');
+    Route::get('/producao',          [App\Http\Controllers\RelatorioObraController::class, 'producao'])->middleware('can:relatorio-producao')->name('producao');
+    Route::get('/riscos',            [App\Http\Controllers\RelatorioObraController::class, 'riscos'])->middleware('can:relatorio-riscos')->name('riscos');
+    Route::get('/qualidade',         [App\Http\Controllers\RelatorioObraController::class, 'qualidade'])->middleware('can:relatorio-qualidade')->name('qualidade');
 });

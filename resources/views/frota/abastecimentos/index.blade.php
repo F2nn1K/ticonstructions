@@ -187,7 +187,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="abastecimento_id">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save mr-1"></i>
                         Salvar

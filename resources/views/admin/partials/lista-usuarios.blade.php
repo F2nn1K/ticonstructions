@@ -5,9 +5,9 @@
     <td>{{ $usuario->profile ? $usuario->profile->name : 'Sem perfil' }}</td>
     <td>
         @if($usuario->active)
-            <span class="badge badge-success">Ativo</span>
+            <span class="badge badge-success">{{ __('Ativo') }}</span>
         @else
-            <span class="badge badge-danger">Inativo</span>
+            <span class="badge badge-danger">{{ __('Inativo') }}</span>
         @endif
     </td>
     <td class="text-center">

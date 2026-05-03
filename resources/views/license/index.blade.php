@@ -46,7 +46,7 @@
 				<div class="form-group">
 					<textarea name="license_text" class="form-control" rows="8" placeholder='{"key":"...","domain":"...","expires_at":"...","signature":"..."}'></textarea>
 				</div>
-				<button class="btn btn-primary">Salvar</button>
+				<button class="btn btn-primary">{{ __('Salvar') }}</button>
 			</form>
 		</div>
 	</div>

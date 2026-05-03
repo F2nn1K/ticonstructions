@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Frota - Relatório de Custo Total')
+@section('title', __('Frota - {{ __('Relatório de Custo Total') }}'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -9,9 +9,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-dollar-sign text-primary mr-3"></i>
-            Relatório de Custo Total
+            {{ __('Relatório de Custo Total') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Análise de custos da frota por período</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Análise de custos da frota por período') }}</p>
     </div>
     <div></div>
 </div>
@@ -397,7 +397,7 @@ function imprimirRelatorio(){
     <html>
     <head>
         <meta charset="utf-8">
-        <title>Relatório de Custo Total</title>
+        <title>{{ __('Relatório de Custo Total') }}</title>
         <style>
             @page { 
                 size: A4 landscape; 

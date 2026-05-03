@@ -30,6 +30,9 @@ class EstoqueMinMaxController extends Controller
 
         $dados = DB::table('estoque as e')
             ->leftJoin('estoque_min_max as mm', 'mm.produto_id', '=', 'e.id')
+            ->where(function($q) {
+                $q->where('e.ativo', 1)->orWhereNull('e.ativo');
+            })
             ->select('e.id','e.nome','e.descricao','e.quantidade',
                 DB::raw('COALESCE(mm.minimo, 0) as minimo'),
                 DB::raw('mm.maximo as maximo'))
@@ -84,6 +87,47 @@ class EstoqueMinMaxController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Níveis salvos com sucesso']);
+    }
+
+    /**
+     * Inativa um produto no estoque (soft delete).
+     */
+    public function inativar(int $produtoId)
+    {
+        if (!Auth::check() || !Auth::user()->temPermissao('est_mm')) {
+            return response()->json(['success' => false, 'message' => 'Não autorizado'], 403);
+        }
+
+        $produto = Estoque::find($produtoId);
+        
+        if (!$produto) {
+            return response()->json(['success' => false, 'message' => 'Produto não encontrado'], 404);
+        }
+
+        $produto->ativo = 0;
+        $produto->save();
+
+        try {
+            LogEstoqueMinMax::create([
+                'produto_id' => $produto->id,
+                'user_id' => Auth::id(),
+                'acao' => 'inativar',
+                'minimo_anterior' => null,
+                'maximo_anterior' => null,
+                'minimo_novo' => null,
+                'maximo_novo' => null,
+                'observacao' => 'Produto inativado pelo usuário',
+                'ip' => request()->ip(),
+                'user_agent' => substr((string) request()->userAgent(), 0, 255),
+            ]);
+        } catch (\Throwable $e) {
+            \Log::warning('Falha ao registrar log de inativação', [
+                'produto_id' => $produto->id,
+                'erro' => $e->getMessage(),
+            ]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Produto inativado com sucesso']);
     }
 }
 

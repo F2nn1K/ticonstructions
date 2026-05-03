@@ -247,9 +247,9 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2">
-                    <label>Status</label>
+                    <label>{{ __('Status') }}</label>
                     <select class="form-control" id="filtroStatus">
-                        <option value="">Todos</option>
+                        <option value="">{{ __('Todos') }}</option>
                         <option value="recebido">Recebidos</option>
                         <option value="pendente">A Receber</option>
                         <option value="vencido">Vencido</option>
@@ -258,7 +258,7 @@
                 <div class="col-md-3">
                     <label>Centro de Custo</label>
                     <select class="form-control" id="filtroCentroCusto">
-                        <option value="">Todos</option>
+                        <option value="">{{ __('Todos') }}</option>
                     </select>
                 </div>
                 <div class="col-md-2">

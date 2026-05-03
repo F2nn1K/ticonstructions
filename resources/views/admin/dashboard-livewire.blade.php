@@ -1,730 +1,350 @@
 @extends('adminlte::page')
-
-@section('title', 'Dashboard')
-
+@section('title', __('Painel Principal'))
 @section('content_header')
-<h1><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</h1>
-@stop
-
-@section('content')
-<div class="container-fluid">
-    <!-- Mensagem de Boas-vindas -->
-    <div class="row mb-3">
-        <div class="col-12">
-            <div class="alert alert-primary mb-0" style="border-left: 4px solid #007bff;">
-                <h4 class="mb-1"><i class="fas fa-user-circle mr-2"></i>Bem-vindo, <strong>{{ Auth::user()->name }}</strong>!</h4>
-                @if(isset($isAdmin) && $isAdmin)
-                <p class="mb-0">Aqui está uma visão geral do sistema.</p>
-                @else
-                <p class="mb-0">Utilize o menu lateral para acessar as funcionalidades do sistema.</p>
-                @endif
-            </div>
-        </div>
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="mb-0" style="font-size:1.5rem;font-weight:900">
+            <i class="fas fa-tachometer-alt mr-2" style="color:var(--ti-gold,#C9A84C)"></i>
+            {{ __('Painel Principal') }}
+        </h1>
+        <small class="text-muted">{{ __('Bem-vindo') }}, <strong>{{ Auth::user()->name }}</strong> — {{ now()->translatedFormat('l, d \d\e F \d\e Y') }}</small>
     </div>
-
-    @if(isset($isAdmin) && $isAdmin)
-    
-    <!-- Cards de Resumo -->
-    <div class="row">
-        <!-- O.C.s Pendentes -->
-        <div class="col-xl-3 col-lg-4 col-md-6 mb-3">
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3>{{ $stats['ocs_pendentes'] ?? 0 }}</h3>
-                    <p>O.C.s Aguardando Aprovação</p>
-                    <span class="text-dark" style="font-size: 14px;">
-                        <strong>R$ {{ number_format($stats['ocs_pendentes_valor'] ?? 0, 2, ',', '.') }}</strong>
-                    </span>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <a href="{{ route('suprimentos.ordem-compra') }}" class="small-box-footer">
-                    Ver O.C.s <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Cotações Abertas -->
-        <div class="col-xl-3 col-lg-4 col-md-6 mb-3">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>{{ $stats['cotacoes_abertas'] ?? 0 }}</h3>
-                    <p>Cotações Abertas</p>
-                    <span style="font-size: 14px;">Aguardando cotação</span>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                </div>
-                <a href="{{ route('suprimentos.cotacao') }}" class="small-box-footer">
-                    Ver Cotações <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Contas Vencidas -->
-        <div class="col-xl-3 col-lg-4 col-md-6 mb-3">
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3>{{ $stats['contas_vencidas'] ?? 0 }}</h3>
-                    <p>Contas Vencidas</p>
-                    <span style="font-size: 14px;">
-                        <strong>R$ {{ number_format($stats['contas_vencidas_valor'] ?? 0, 2, ',', '.') }}</strong>
-                    </span>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <a href="{{ route('financeiro.contas-pagar') }}" class="small-box-footer">
-                    Ver Contas <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
-        
-        <!-- O.S. Abertas -->
-        <div class="col-xl-3 col-lg-4 col-md-6 mb-3">
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h3>{{ $stats['os_abertas'] ?? 0 }}</h3>
-                    <p>Ordens de Serviço Abertas</p>
-                    @if(($stats['contas_hoje'] ?? 0) > 0)
-                    <span style="font-size: 14px; color: #fff;">
-                        <i class="fas fa-bell"></i> {{ $stats['contas_hoje'] }} conta(s) vence(m) hoje
-                    </span>
-                    @else
-                    <span style="font-size: 14px;">Em execução</span>
-                    @endif
-                </div>
-                <div class="icon">
-                    <i class="fas fa-clipboard-list"></i>
-                </div>
-                <a href="{{ route('area-tecnica.ordem-servico') }}" class="small-box-footer">
-                    Ver O.S. <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-        </div>
+    <div class="d-flex gap-2">
+        <a href="{{ route('obras.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus mr-1"></i>{{ __('Nova Obra') }}</a>
+        <a href="{{ route('gastos.create') }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-dollar-sign mr-1"></i>{{ __('Lançar Custo') }}</a>
     </div>
-
-    <!-- Aviso de Contas a Pagar Próximas do Vencimento -->
-    @if(isset($contasAVencer) && $contasAVencer->count() > 0)
-    <div class="row mb-3">
-        <div class="col-12">
-            <div class="card border-warning">
-                <div class="card-header bg-warning">
-                    <h3 class="card-title mb-0">
-                        <i class="fas fa-exclamation-circle mr-2"></i>
-                        <strong>Atenção!</strong> Contas a Pagar Próximas do Vencimento (Próximos 7 dias)
-                    </h3>
-                    <div class="card-tools">
-                        <a href="{{ route('financeiro.contas-pagar') }}" class="btn btn-sm btn-dark">
-                            <i class="fas fa-arrow-right mr-1"></i> Ver Todas
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body p-0">
-                    <table class="table table-hover mb-0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Descrição</th>
-                                <th>Fornecedor</th>
-                                <th class="text-right">Valor</th>
-                                <th class="text-center">Vencimento</th>
-                                <th class="text-center">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($contasAVencer as $conta)
-                            @php
-                                $vencimento = \Carbon\Carbon::parse($conta->vencimento);
-                                $diasRestantes = now()->startOfDay()->diffInDays($vencimento->startOfDay(), false);
-                                $badgeClass = 'badge-warning';
-                                $badgeText = 'Vence em ' . $diasRestantes . ' dias';
-                                
-                                if ($diasRestantes == 0) {
-                                    $badgeClass = 'badge-danger';
-                                    $badgeText = 'Vence HOJE';
-                                } elseif ($diasRestantes == 1) {
-                                    $badgeClass = 'badge-danger';
-                                    $badgeText = 'Vence AMANHÃ';
-                                } elseif ($diasRestantes < 0) {
-                                    $badgeClass = 'badge-dark';
-                                    $badgeText = 'VENCIDO';
-                                } elseif ($diasRestantes <= 3) {
-                                    $badgeClass = 'badge-danger';
-                                }
-                            @endphp
-                            <tr>
-                                <td>{{ $conta->descricao }}</td>
-                                <td>{{ $conta->fornecedor ?? '-' }}</td>
-                                <td class="text-right font-weight-bold text-danger">
-                                    R$ {{ number_format($conta->valor, 2, ',', '.') }}
-                                </td>
-                                <td class="text-center">
-                                    {{ $vencimento->format('d/m/Y') }}
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge {{ $badgeClass }}">{{ $badgeText }}</span>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot class="bg-light">
-                            <tr>
-                                <td colspan="2" class="text-right font-weight-bold">Total a Pagar:</td>
-                                <td class="text-right font-weight-bold text-danger">
-                                    R$ {{ number_format($contasAVencer->sum('valor'), 2, ',', '.') }}
-                                </td>
-                                <td colspan="2"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-
-    <!-- Primeira linha: Gráficos de Status -->
-    <div class="row">
-        <!-- Gráfico de Donut: O.C.s por Status -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-shopping-cart mr-2 text-primary"></i>Ordens de Compra por Status</h3>
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-center">
-                    <canvas id="chartOCsStatus" style="max-height: 220px;"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gráfico de Donut: Cotações por Status -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice-dollar mr-2 text-info"></i>Cotações por Status</h3>
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-center">
-                    <canvas id="chartCotacoesStatus" style="max-height: 220px;"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gráfico de Barras: Top Fornecedores -->
-        <div class="col-lg-4 col-md-12 mb-3">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-truck mr-2 text-success"></i>Top 5 Fornecedores</h3>
-                </div>
-                <div class="card-body">
-                    <canvas id="chartTopFornecedores" style="max-height: 220px;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Segunda linha: Gráfico de Compras e Top Centros de Custo -->
-    <div class="row">
-        <!-- Gráfico de Linha: Compras por Mês -->
-        <div class="col-lg-6 col-md-12 mb-3">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-chart-line mr-2 text-primary"></i>Compras por Mês (Últimos 6 meses)</h3>
-                </div>
-                <div class="card-body">
-                    <canvas id="chartComprasMes" style="max-height: 250px;"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tabela: Top Centros de Custo por Gasto -->
-        <div class="col-lg-6 col-md-12 mb-3">
-            <div class="card h-100">
-                <div class="card-header bg-gradient-primary text-white">
-                    <h3 class="card-title"><i class="fas fa-building mr-2"></i>Top 5 Centros de Custo (por Gasto)</h3>
-                </div>
-                <div class="card-body p-0">
-                    @if(isset($topCentrosCusto) && $topCentrosCusto->count() > 0)
-                    <table class="table table-striped table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Centro de Custo</th>
-                                <th class="text-center">Qtd O.C.s</th>
-                                <th class="text-right">Valor Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($topCentrosCusto as $index => $cc)
-                            <tr>
-                                <td>
-                                    @if($index == 0)
-                                    <span class="badge badge-warning"><i class="fas fa-trophy"></i></span>
-                                    @elseif($index == 1)
-                                    <span class="badge badge-secondary"><i class="fas fa-medal"></i></span>
-                                    @elseif($index == 2)
-                                    <span class="badge badge-dark"><i class="fas fa-award"></i></span>
-                                    @else
-                                    <span class="badge badge-light">{{ $index + 1 }}</span>
-                                    @endif
-                                </td>
-                                <td>{{ Str::limit($cc->nome, 40) }}</td>
-                                <td class="text-center">
-                                    <span class="badge badge-info">{{ $cc->qtd_ocs }}</span>
-                                </td>
-                                <td class="text-right font-weight-bold text-success">
-                                    R$ {{ number_format($cc->total, 2, ',', '.') }}
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @else
-                    <div class="text-center py-4">
-                        <i class="fas fa-info-circle fa-3x text-muted mb-3"></i>
-                        <p class="text-muted">Nenhum dado disponível ainda.</p>
-                    </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Terceira linha: Cards de Resumo por Módulo -->
-    <div class="row">
-        <!-- ORDENS DE SERVIÇO -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header bg-success text-white">
-                    <h3 class="card-title"><i class="fas fa-clipboard-list mr-2"></i>Ordens de Serviço</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('area-tecnica.ordem-servico') }}" class="btn btn-sm btn-light">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Total</span>
-                        <span class="badge badge-primary badge-lg" style="font-size: 1rem;">{{ $stats['os_total'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-folder-open text-warning mr-1"></i> Abertas</span>
-                        <span class="badge badge-warning">{{ $stats['os_abertas'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span><i class="fas fa-check-circle text-success mr-1"></i> Fechadas</span>
-                        <span class="badge badge-success">{{ $stats['os_fechadas'] ?? 0 }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- COTAÇÕES -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header bg-info text-white">
-                    <h3 class="card-title"><i class="fas fa-file-invoice-dollar mr-2"></i>Cotações</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('suprimentos.cotacao') }}" class="btn btn-sm btn-light">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Total</span>
-                        <span class="badge badge-primary badge-lg" style="font-size: 1rem;">{{ $stats['cotacoes_total'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-folder-open text-info mr-1"></i> Abertas</span>
-                        <span class="badge badge-info">{{ $stats['cotacoes_abertas'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-check-circle text-success mr-1"></i> Finalizadas</span>
-                        <span class="badge badge-success">{{ $stats['cotacoes_finalizadas'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span><i class="fas fa-exclamation-triangle text-danger mr-1"></i> Urgentes</span>
-                        <span class="badge badge-danger">{{ $stats['cotacoes_urgentes'] ?? 0 }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ORDENS DE COMPRA -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="card-title"><i class="fas fa-shopping-cart mr-2"></i>Ordens de Compra</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('suprimentos.ordem-compra') }}" class="btn btn-sm btn-light">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Total</span>
-                        <span class="badge badge-primary badge-lg" style="font-size: 1rem;">{{ $stats['ocs_total'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-clock text-warning mr-1"></i> Aguard. Aprovação</span>
-                        <span class="badge badge-warning">{{ $stats['ocs_pendentes'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-check text-success mr-1"></i> Aprovadas</span>
-                        <span class="badge badge-success">{{ $stats['ocs_aprovadas'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-box text-info mr-1"></i> Recebidas</span>
-                        <span class="badge badge-info">{{ $stats['ocs_recebidas'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span><i class="fas fa-truck text-secondary mr-1"></i> Aguard. Recebimento</span>
-                        <span class="badge badge-secondary">{{ $stats['ocs_aguardando_recebimento'] ?? 0 }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quarta linha: Mais Cards -->
-    <div class="row">
-        <!-- PRESTADORES/TERCEIRIZADOS -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header bg-secondary text-white">
-                    <h3 class="card-title"><i class="fas fa-hard-hat mr-2"></i>Terceirizados</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('area-tecnica.gestao-os') }}" class="btn btn-sm btn-light">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Total</span>
-                        <span class="badge badge-primary badge-lg" style="font-size: 1rem;">{{ $stats['terceirizados_total'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-hourglass-half text-info mr-1"></i> Aguard. Autorização</span>
-                        <span class="badge badge-info">{{ $stats['terceirizados_aguardando_autorizacao'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-clock text-warning mr-1"></i> Aguard. Pagamento</span>
-                        <span class="badge badge-warning">{{ $stats['terceirizados_aguardando_pagamento'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-check-circle text-success mr-1"></i> Pagos</span>
-                        <span class="badge badge-success">{{ $stats['terceirizados_pagos'] ?? 0 }}</span>
-                    </div>
-                    <hr class="my-2">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span><strong>Valor Total</strong></span>
-                        <span class="text-primary font-weight-bold">R$ {{ number_format($stats['terceirizados_valor'] ?? 0, 2, ',', '.') }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ESTOQUE -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header bg-purple text-white" style="background-color: #6f42c1 !important;">
-                    <h3 class="card-title"><i class="fas fa-boxes mr-2"></i>Estoque</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('brs.controle-estoque') }}" class="btn btn-sm btn-light">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Total de Produtos</span>
-                        <span class="badge badge-primary badge-lg" style="font-size: 1rem;">{{ $stats['estoque_total'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-exclamation-circle text-danger mr-1"></i> Estoque Zerado</span>
-                        <span class="badge badge-danger">{{ $stats['estoque_zerado'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span><i class="fas fa-arrow-down text-warning mr-1"></i> Abaixo do Mínimo</span>
-                        <span class="badge badge-warning">{{ $stats['estoque_abaixo_minimo'] ?? 0 }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- RECEBIMENTOS -->
-        <div class="col-lg-4 col-md-6 mb-3">
-            <div class="card h-100">
-                <div class="card-header bg-teal text-white" style="background-color: #20c997 !important;">
-                    <h3 class="card-title"><i class="fas fa-truck-loading mr-2"></i>Recebimentos</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('suprimentos.recebimento') }}" class="btn btn-sm btn-light">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span>Total</span>
-                        <span class="badge badge-primary badge-lg" style="font-size: 1rem;">{{ $stats['recebimentos_total'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="fas fa-calendar-day text-info mr-1"></i> Hoje</span>
-                        <span class="badge badge-info">{{ $stats['recebimentos_hoje'] ?? 0 }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span><i class="fas fa-calendar-alt text-success mr-1"></i> Este Mês</span>
-                        <span class="badge badge-success">{{ $stats['recebimentos_mes'] ?? 0 }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    @endif
 </div>
 @stop
 
-@section('css')
+@section('content')
 <style>
-    .card {
-        border-radius: 8px;
-        border: none;
-        box-shadow: 0 0 15px rgba(0,0,0,0.05);
-    }
-    
-    .card-header {
-        background-color: #fff;
-        border-bottom: 1px solid #eee;
-        font-weight: 600;
-    }
-    
-    .card-header.bg-gradient-primary {
-        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
-    }
-    
-    .card-header.bg-gradient-warning {
-        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%) !important;
-        color: #333;
-    }
-    
-    .alert-primary {
-        background-color: #e8f4fd;
-        border-color: #007bff;
-        color: #004085;
-    }
-    
-    .table th {
-        font-weight: 600;
-        font-size: 0.85rem;
-    }
-    
-    .table td {
-        vertical-align: middle;
-    }
-    
-    .h-100 {
-        height: 100%;
-    }
-    
-    .small-box {
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    
-    .small-box .inner h3 {
-        font-size: 2.2rem;
-        font-weight: 700;
-    }
-    
-    .small-box .inner p {
-        font-size: 1rem;
-    }
-    
-    .small-box .icon {
-        font-size: 70px;
-        opacity: 0.3;
-    }
-    
-    .small-box-footer {
-        background: rgba(0,0,0,0.1);
-    }
-    
-    .bg-gradient-primary .card-title,
-    .bg-gradient-warning .card-title {
-        color: inherit;
-    }
+:root { --ti-gold:#C9A84C; --ti-gold2:#A8873A; --ti-green:#1A9E6E; --ti-red:#C94040; }
+.kpi-top { border-radius:0; border:none; background:transparent; }
+.kpi-top .k-box { border-radius:10px; padding:14px 20px; min-width:160px; flex:1; }
+.k-box .k-lbl { font-size:.65rem; font-weight:800; text-transform:uppercase; letter-spacing:.07em; opacity:.8; margin-bottom:2px; }
+.k-box .k-val { font-size:1.35rem; font-weight:900; line-height:1.1; }
+.k-box .k-sub { font-size:.7rem; margin-top:3px; opacity:.75; }
+
+.obra-card { border-radius:12px; border:none; overflow:hidden; transition:.25s; box-shadow:0 2px 12px rgba(0,0,0,.09); }
+.obra-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.14); }
+.obra-card .oc-strip { height:4px; }
+.obra-card .oc-body  { padding:14px 16px 12px; }
+.obra-card .oc-nome  { font-weight:800; font-size:.95rem; line-height:1.2; }
+.obra-card .oc-cod   { font-size:.68rem; color:#999; }
+
+.badge-lucro   { background:#d4edda; color:#155724; font-size:.65rem; padding:3px 8px; border-radius:20px; font-weight:700; }
+.badge-prej    { background:#f8d7da; color:#721c24; font-size:.65rem; padding:3px 8px; border-radius:20px; font-weight:700; }
+.badge-neutro  { background:#e2e3e5; color:#383d41; font-size:.65rem; padding:3px 8px; border-radius:20px; font-weight:700; }
+.badge-cron-ok   { background:#cce5ff; color:#004085; font-size:.65rem; padding:3px 8px; border-radius:20px; font-weight:700; }
+.badge-cron-lat  { background:#d4edda; color:#155724; font-size:.65rem; padding:3px 8px; border-radius:20px; font-weight:700; }
+.badge-cron-atrs { background:#f8d7da; color:#721c24; font-size:.65rem; padding:3px 8px; border-radius:20px; font-weight:700; }
+
+.prog-sm { height:6px; background:#eee; border-radius:3px; overflow:hidden; margin:4px 0; }
+.prog-sm-fill { height:100%; border-radius:3px; }
+
+.kpi-row { display:flex; gap:10px; justify-content:space-between; }
+.kpi-item { flex:1; text-align:center; }
+.kpi-item .kv { font-size:1rem; font-weight:800; }
+.kpi-item .kl { font-size:.62rem; color:#aaa; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+
+.result-mes-val { font-size:1.15rem; font-weight:800; }
+.result-acum-val { font-size:.88rem; font-weight:700; }
+.sep-line { border-top:1px solid rgba(0,0,0,.06); margin:10px 0 8px; }
+
+.gasto-up   { color:var(--ti-red); }
+.gasto-down { color:var(--ti-green); }
+.gasto-eq   { color:#888; }
+
+.saldo-lucro { background:linear-gradient(90deg,#1A9E6E,#2DC48A); }
+.saldo-prej  { background:linear-gradient(90deg,#C94040,#E26060); }
+.saldo-neutro{ background:linear-gradient(90deg,#C9A84C,#E2C87A); }
 </style>
+
+{{-- ═══════════════════════════════════════════════════
+     BARRA DE KPIs GLOBAIS (estilo topo draga)
+     ═══════════════════════════════════════════════════ --}}
+<div class="d-flex flex-wrap gap-2 mb-4" style="gap:10px">
+
+    <div class="k-box" style="background:#f8d7da;flex:1;min-width:170px;border-radius:10px;padding:14px 20px">
+        <div class="k-lbl" style="color:#721c24">{{ __('Total de Despesas') }}</div>
+        <div class="k-val" style="color:#721c24">R$ {{ number_format($totalGastoMes,2,',','.') }}</div>
+        <div class="k-sub" style="color:#721c24">
+            {{ now()->format('m/Y') }}
+            @if($varGastoMes != 0)
+                <span class="{{ $varGastoMes > 0 ? 'gasto-up' : 'gasto-down' }}">
+                    ({{ $varGastoMes > 0 ? '+' : '' }}{{ $varGastoMes }}% vs mês ant.)
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <div class="k-box" style="background:#fff3cd;flex:1;min-width:170px;border-radius:10px;padding:14px 20px">
+        <div class="k-lbl" style="color:#856404">{{ __('Pendente a Pagar') }}</div>
+        <div class="k-val" style="color:#856404">R$ {{ number_format($totalGastoPendente,2,',','.') }}</div>
+        <div class="k-sub" style="color:#856404">{{ __('em aberto') }}</div>
+    </div>
+
+    <div class="k-box" style="background:#d1ecf1;flex:1;min-width:170px;border-radius:10px;padding:14px 20px">
+        <div class="k-lbl" style="color:#0c5460">{{ __('Gasto Acumulado') }}</div>
+        <div class="k-val" style="color:#0c5460">R$ {{ number_format($totalGastoAcum,2,',','.') }}</div>
+        <div class="k-sub" style="color:#0c5460">{{ __('todas as obras') }}</div>
+    </div>
+
+    <div class="k-box" style="background:#d4edda;flex:1;min-width:130px;border-radius:10px;padding:14px 20px">
+        <div class="k-lbl" style="color:#155724">{{ __('Obras Ativas') }}</div>
+        <div class="k-val" style="color:#155724">{{ $obrasEmAndamento }}</div>
+        <div class="k-sub" style="color:#155724">{{ $obrasPendentes }} {{ __('pendentes') }}</div>
+    </div>
+
+    <div class="k-box" style="background:{{ $totalFasesAtrasadas > 0 ? '#f8d7da' : '#e2e3e5' }};flex:1;min-width:130px;border-radius:10px;padding:14px 20px">
+        <div class="k-lbl" style="color:{{ $totalFasesAtrasadas > 0 ? '#721c24' : '#383d41' }}">{{ __('Fases Atrasadas') }}</div>
+        <div class="k-val" style="color:{{ $totalFasesAtrasadas > 0 ? 'var(--ti-red)' : '#383d41' }}">{{ $totalFasesAtrasadas }}</div>
+        <div class="k-sub" style="color:{{ $totalFasesAtrasadas > 0 ? '#721c24' : '#383d41' }}">{{ $obrasConcluidas }} {{ __('obras conc.') }}</div>
+    </div>
+
+    @if($taxasPendentes > 0)
+    <div class="k-box" style="background:#f3e8ff;flex:1;min-width:150px;border-radius:10px;padding:14px 20px">
+        <div class="k-lbl" style="color:#6f42c1">{{ __('Taxa ADM Pendente') }}</div>
+        <div class="k-val" style="color:#6f42c1">R$ {{ number_format($taxasPendentesValor,2,',','.') }}</div>
+        <div class="k-sub" style="color:#6f42c1">{{ $taxasPendentes }} {{ __('lançamento(s)') }}</div>
+    </div>
+    @endif
+
+</div>
+
+{{-- ═══════════════════════════════════════════════════
+     CARDS POR OBRA (estilo draga)
+     ═══════════════════════════════════════════════════ --}}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0 font-weight-bold" style="font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;color:#6a6259">
+        <i class="fas fa-hard-hat mr-2" style="color:var(--ti-gold)"></i>{{ __('Desempenho por Obra') }}
+    </h5>
+    <span class="badge badge-secondary">{{ $obrasCards->count() }} {{ __('ativas') }}</span>
+</div>
+
+@if($obrasCards->isEmpty())
+<div class="card" style="border-radius:12px;border:2px dashed #ddd;box-shadow:none">
+    <div class="card-body text-center py-5 text-muted">
+        <i class="fas fa-hard-hat fa-3x mb-3" style="opacity:.25"></i>
+        <p class="mb-3">{{ __('Nenhuma obra ativa no momento.') }}</p>
+        <a href="{{ route('obras.create') }}" class="btn btn-primary"><i class="fas fa-plus mr-1"></i>{{ __('Cadastrar Obra') }}</a>
+    </div>
+</div>
+@else
+<div class="row">
+@foreach($obrasCards as $card)
+@php
+    $obra = $card->obra;
+    $varCls = $card->varMes > 0 ? 'gasto-up' : ($card->varMes < 0 ? 'gasto-down' : 'gasto-eq');
+    $varIco = $card->varMes > 0 ? 'fa-arrow-up' : ($card->varMes < 0 ? 'fa-arrow-down' : 'fa-minus');
+    $stripCls = match($obra->status) {
+        'em_andamento' => $card->fasesAtrasadas > 0 ? 'saldo-prej' : 'saldo-lucro',
+        'pausada'      => 'saldo-neutro',
+        default        => 'saldo-neutro',
+    };
+    $cronLabel = match($card->cronStatus) {
+        'atrasado'  => ['text'=>__('Atrasado'),  'cls'=>'badge-cron-atrs', 'ico'=>'fa-exclamation-triangle'],
+        'adiantado' => ['text'=>__('Adiantado'), 'cls'=>'badge-cron-lat',  'ico'=>'fa-check-circle'],
+        default     => ['text'=>__('No Prazo'),  'cls'=>'badge-cron-ok',   'ico'=>'fa-clock'],
+    };
+    $progColor = $card->fasesAtrasadas > 0 ? 'var(--ti-red)' : ($card->progresso >= 75 ? 'var(--ti-green)' : 'var(--ti-gold)');
+@endphp
+<div class="col-md-6 col-xl-4 mb-4">
+    <div class="obra-card">
+        <div class="oc-strip {{ $stripCls }}"></div>
+        <div class="oc-body" style="background:#fff">
+
+            {{-- Nome + badges --}}
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <div style="flex:1;margin-right:8px">
+                    <div class="oc-nome">{{ $obra->nome }}</div>
+                    <div class="oc-cod">{{ $obra->codigo ?? '' }} @if($obra->cliente)· {{ $obra->cliente }}@endif</div>
+                </div>
+                <div class="d-flex flex-column align-items-end gap-1" style="gap:4px">
+                    <span class="{{ $card->cronStatus==='atrasado' ? 'badge-prej' : ($card->cronStatus==='adiantado' ? 'badge-lucro' : 'badge-neutro') }}">
+                        <i class="fas {{ $cronLabel['ico'] }} mr-1"></i>{{ $cronLabel['text'] }}
+                    </span>
+                    @if($obra->status==='pausada')
+                    <span class="badge-neutro"><i class="fas fa-pause mr-1"></i>{{ __('Pausada') }}</span>
+                    @endif
+                </div>
+            </div>
+
+            {{-- Resultado deste mês --}}
+            <div style="background:#f9f7f3;border-radius:8px;padding:10px 12px;margin-bottom:10px">
+                <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;color:#999;margin-bottom:4px">
+                    <i class="fas fa-calendar mr-1"></i>{{ __('RESULTADO DO MÊS') }} – {{ now()->format('m/Y') }}
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="result-mes-val" style="color:var(--ti-red)">
+                            - R$ {{ number_format($card->gastoMes, 2, ',', '.') }}
+                        </div>
+                        @if($card->varMes != 0)
+                        <div style="font-size:.7rem" class="{{ $varCls }}">
+                            <i class="fas {{ $varIco }} mr-1"></i>
+                            {{ abs($card->varMes) }}% vs {{ now()->subMonth()->format('m/Y') }}
+                        </div>
+                        @else
+                        <div style="font-size:.7rem;color:#aaa">{{ __('Sem mês anterior para comparar') }}</div>
+                        @endif
+                    </div>
+                    <div class="text-right">
+                        <div style="font-size:.62rem;color:#999">{{ __('Mês anterior') }}</div>
+                        <div style="font-size:.85rem;font-weight:700;color:#aaa">R$ {{ number_format($card->gastoMesAnt,2,',','.') }}</div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Saldo acumulado --}}
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                    <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;color:#999">{{ __('SALDO ACUMULADO') }}</div>
+                    <div class="result-acum-val" style="color:var(--ti-red)">- R$ {{ number_format($card->gastoAcum,2,',','.') }}</div>
+                </div>
+                @if($obra->orcamento_total)
+                <div class="text-right">
+                    <div style="font-size:.62rem;color:#999">{{ __('Orçamento') }}</div>
+                    <div style="font-size:.82rem;font-weight:600">R$ {{ number_format($obra->orcamento_total,2,',','.') }}</div>
+                </div>
+                @endif
+            </div>
+
+            <div class="sep-line"></div>
+
+            {{-- KPIs rápidos --}}
+            <div class="kpi-row mb-2">
+                <div class="kpi-item">
+                    <div class="kv" style="color:var(--ti-gold)">{{ $card->funcMes }}</div>
+                    <div class="kl">{{ __('Func. mês') }}</div>
+                    @if($card->funcMesAnt > 0)
+                    <div style="font-size:.6rem;color:{{ $card->funcMes > $card->funcMesAnt ? 'var(--ti-green)' : 'var(--ti-red)' }}">
+                        <i class="fas fa-{{ $card->funcMes >= $card->funcMesAnt ? 'arrow-up' : 'arrow-down' }}"></i>
+                        {{ abs($card->funcMes - $card->funcMesAnt) }} vs ant.
+                    </div>
+                    @endif
+                </div>
+                <div class="kpi-item">
+                    <div class="kv" style="color:#6f42c1">{{ $card->terceiros }}</div>
+                    <div class="kl">{{ __('Terceiros') }}</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kv">{{ $card->fasesConcl }}/{{ $card->totalFases }}</div>
+                    <div class="kl">{{ __('Fases') }}</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kv" style="color:{{ $progColor }}">{{ $card->progresso }}%</div>
+                    <div class="kl">{{ __('Progresso') }}</div>
+                </div>
+            </div>
+
+            {{-- Barra de progresso --}}
+            <div class="prog-sm">
+                <div class="prog-sm-fill" style="width:{{ $card->progresso }}%;background:{{ $progColor }}"></div>
+            </div>
+
+            {{-- Fase atual --}}
+            @if($card->faseAtual)
+            <div style="font-size:.72rem;margin-top:6px">
+                <i class="fas fa-dot-circle mr-1" style="color:var(--ti-green);font-size:.55rem"></i>
+                <span class="text-muted">{{ __('Fase atual:') }}</span>
+                <strong>{{ $card->faseAtual->nome_personalizado ?? $card->faseAtual->faseCatalogo->nome ?? '—' }}</strong>
+            </div>
+            @endif
+            {{-- Fases em atraso detalhadas --}}
+            @if($card->fasesAtrasadasColl->count() > 0)
+            <div style="background:#fff5f5;border:1px solid #f5c6cb;border-radius:6px;padding:6px 8px;margin-top:6px">
+                <div style="font-size:.62rem;font-weight:800;color:#721c24;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>{{ __('Fases em Atraso') }}
+                </div>
+                @foreach($card->fasesAtrasadasColl->take(3) as $fAtras)
+                <div style="font-size:.68rem;color:#721c24;display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+                    <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+                        {{ $fAtras->nome_personalizado ?? ($fAtras->faseCatalogo->nome ?? __('Fase')) }}
+                    </span>
+                    <span style="background:#f8d7da;color:#721c24;font-size:.6rem;padding:1px 6px;border-radius:10px;margin-left:6px;font-weight:700;white-space:nowrap">
+                        {{ $fAtras->dias_atrasados }}d {{ __('atras.') }}
+                    </span>
+                </div>
+                @endforeach
+                @if($card->fasesAtrasadasColl->count() > 3)
+                <div style="font-size:.62rem;color:#999;margin-top:2px">
+                    +{{ $card->fasesAtrasadasColl->count() - 3 }} {{ __('mais') }}
+                </div>
+                @endif
+            </div>
+            @endif
+
+            {{-- Prazo --}}
+            @if($obra->data_fim_prevista)
+            <div style="font-size:.68rem;color:#aaa;margin-top:4px">
+                <i class="fas fa-calendar-alt mr-1"></i>{{ __('Prazo') }}: {{ $obra->data_fim_prevista->format('d/m/Y') }}
+                @if($card->diasRestantes !== null)
+                <span style="font-weight:700;color:{{ $card->diasRestantes < 0 ? 'var(--ti-red)' : ($card->diasRestantes < 30 ? '#c9a84c' : 'var(--ti-green)') }}">
+                    ({{ $card->diasRestantes >= 0 ? $card->diasRestantes.' d' : abs($card->diasRestantes).' d atras.' }})
+                </span>
+                @endif
+            </div>
+            @endif
+
+            <div class="sep-line"></div>
+
+            {{-- Ações --}}
+            <div class="d-flex justify-content-between">
+                <a href="{{ route('obras.dashboard', $obra) }}" class="btn btn-sm" style="background:var(--ti-gold);color:#fff;border-radius:20px;font-size:.75rem;padding:4px 14px;font-weight:700">
+                    <i class="fas fa-chart-bar mr-1"></i>{{ __('Dashboard') }}
+                </a>
+                <div class="d-flex gap-2" style="gap:6px">
+                    <a href="{{ route('obras.show', $obra) }}" class="btn btn-sm btn-outline-secondary" style="border-radius:20px;font-size:.75rem;padding:4px 10px">{{ __('Detalhes') }}</a>
+                    <a href="{{ route('cronograma.index') }}?obra_id={{ $obra->id }}" class="btn btn-sm btn-outline-secondary" style="border-radius:20px;font-size:.75rem;padding:4px 10px">{{ __('Cronograma') }}</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endforeach
+</div>
+@endif
+
+{{-- ═══ Gráfico global de desembolso ══════════════════ --}}
+@if($gastosPorMes->count() > 0)
+<div class="card mt-3" style="border-radius:12px;border:none;box-shadow:0 2px 10px rgba(0,0,0,.07)">
+    <div class="card-header" style="background:#f7f5f0;border-radius:12px 12px 0 0">
+        <h6 class="mb-0 font-weight-bold"><i class="fas fa-chart-line mr-2" style="color:var(--ti-gold)"></i>{{ __('Desembolso Mensal — Todas as Obras') }}</h6>
+    </div>
+    <div class="card-body">
+        <canvas id="chartDesembolso" height="80"></canvas>
+    </div>
+</div>
+@endif
+
 @stop
 
 @section('js')
-@if(isset($isAdmin) && $isAdmin)
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@if($gastosPorMes->count() > 0)
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Gráfico de Donut: O.C.s por Status
-    const ctxOCs = document.getElementById('chartOCsStatus').getContext('2d');
-    new Chart(ctxOCs, {
-        type: 'doughnut',
-        data: {
-            labels: ['Pendentes', 'Aprovadas', 'Recebidas'],
-            datasets: [{
-                data: [{{ $ocsPorStatus['pendente'] ?? 0 }}, {{ $ocsPorStatus['aprovada'] ?? 0 }}, {{ $ocsPorStatus['recebida'] ?? 0 }}],
-                backgroundColor: ['#ffc107', '#28a745', '#17a2b8'],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            cutout: '60%',
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        padding: 15,
-                        usePointStyle: true
-                    }
-                }
-            }
-        }
-    });
+var meses  = @json($gastosPorMes->pluck('mes'));
+var totais = @json($gastosPorMes->pluck('total')->map(fn($v)=>(float)$v));
+var pagos  = @json($gastosPorMes->pluck('pago')->map(fn($v)=>(float)$v));
 
-    // Gráfico de Donut: Cotações por Status
-    const ctxCotacoes = document.getElementById('chartCotacoesStatus').getContext('2d');
-    new Chart(ctxCotacoes, {
-        type: 'doughnut',
-        data: {
-            labels: ['Abertas', 'Finalizadas', 'Parciais'],
-            datasets: [{
-                data: [{{ $cotacoesPorStatus['aberta'] ?? 0 }}, {{ $cotacoesPorStatus['finalizada'] ?? 0 }}, {{ $cotacoesPorStatus['parcial'] ?? 0 }}],
-                backgroundColor: ['#17a2b8', '#28a745', '#6c757d'],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            cutout: '60%',
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        padding: 15,
-                        usePointStyle: true
-                    }
-                }
-            }
+new Chart(document.getElementById('chartDesembolso'), {
+    type: 'bar',
+    data: {
+        labels: meses,
+        datasets: [
+            { label: '{{ __("Total Lançado") }}', data: totais, backgroundColor: 'rgba(201,168,76,.55)', borderColor: '#A8873A', borderWidth: 2, borderRadius: 5 },
+            { label: '{{ __("Pago") }}',           data: pagos,  backgroundColor: 'rgba(26,158,110,.5)',  borderColor: '#1A9E6E', borderWidth: 2, borderRadius: 5 },
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+            y: { ticks: { callback: v => 'R$ ' + Number(v).toLocaleString('pt-BR',{minimumFractionDigits:0}) } }
         }
-    });
-
-    // Gráfico de Barras Horizontal: Top Fornecedores
-    const ctxFornecedores = document.getElementById('chartTopFornecedores').getContext('2d');
-    new Chart(ctxFornecedores, {
-        type: 'bar',
-        data: {
-            labels: [
-                @foreach($topFornecedores as $f)
-                '{{ Str::limit($f->nome, 12) }}',
-                @endforeach
-            ],
-            datasets: [{
-                label: 'Qtd O.C.s',
-                data: [
-                    @foreach($topFornecedores as $f)
-                    {{ $f->qtd }},
-                    @endforeach
-                ],
-                backgroundColor: [
-                    '#007bff',
-                    '#28a745',
-                    '#ffc107',
-                    '#17a2b8',
-                    '#6c757d'
-                ],
-                borderWidth: 0,
-                borderRadius: 4
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    }
-                }
-            }
-        }
-    });
-
-    // Gráfico de Linha: Compras por Mês
-    const ctxCompras = document.getElementById('chartComprasMes').getContext('2d');
-    new Chart(ctxCompras, {
-        type: 'line',
-        data: {
-            labels: [
-                @foreach($comprasPorMes as $mes)
-                '{{ \Carbon\Carbon::createFromFormat("Y-m", $mes->mes)->format("M/y") }}',
-                @endforeach
-            ],
-            datasets: [{
-                label: 'Valor (R$)',
-                data: [
-                    @foreach($comprasPorMes as $mes)
-                    {{ $mes->total }},
-                    @endforeach
-                ],
-                borderColor: '#007bff',
-                backgroundColor: 'rgba(0, 123, 255, 0.1)',
-                fill: true,
-                tension: 0.4,
-                pointBackgroundColor: '#007bff',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-                pointRadius: 5
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return 'R$ ' + context.parsed.y.toLocaleString('pt-BR', {minimumFractionDigits: 2});
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return 'R$ ' + value.toLocaleString('pt-BR');
-                        }
-                    }
-                }
-            }
-        }
-    });
+    }
 });
 </script>
 @endif

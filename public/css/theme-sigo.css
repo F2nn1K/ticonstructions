@@ -1,133 +1,208 @@
 /**
- * SIGO - Tema BRS
- * Cores baseadas na identidade visual BRS: Azul, Amarelo e Branco
- * Versão: 2.1
+ * SIGO — Tema TI Construções  ·  Premium Edition
+ * Paleta: Ouro rico, Marfim, Taupe, Preto ébano — estética de alto padrão
+ * Versão: 3.1
  */
 
 /* ===============================================
-   VARIÁVEIS CSS - PALETA BRS
+   VARIÁVEIS CSS — PALETA PREMIUM TI CONSTRUÇÕES
    =============================================== */
 :root {
-    /* Cores principais BRS */
-    --brs-azul: #2B7DE9;
-    --brs-azul-dark: #1E5BB8;
-    --brs-azul-light: #4A9BFF;
-    --brs-azul-gradient: linear-gradient(135deg, #1E5BB8 0%, #4A9BFF 100%);
-    
-    --brs-amarelo: #F5A623;
-    --brs-amarelo-dark: #E09000;
-    --brs-amarelo-light: #FFBE4D;
-    --brs-amarelo-gradient: linear-gradient(135deg, #E09000 0%, #FFBE4D 100%);
-    
-    /* Cores de status */
-    --brs-success: #10B981;
-    --brs-success-light: #34D399;
-    --brs-warning: #F5A623;
-    --brs-warning-light: #FFBE4D;
-    --brs-danger: #EF4444;
-    --brs-danger-light: #F87171;
-    --brs-info: #2B7DE9;
-    --brs-info-light: #4A9BFF;
-    
-    /* Neutros */
-    --brs-dark: #1a1a2e;
-    --brs-gray-900: #16213e;
-    --brs-gray-800: #1f2937;
-    --brs-gray-700: #374151;
-    --brs-gray-600: #4b5563;
-    --brs-gray-500: #6b7280;
-    --brs-gray-400: #9ca3af;
-    --brs-gray-300: #d1d5db;
-    --brs-gray-200: #e5e7eb;
-    --brs-gray-100: #f3f4f6;
-    --brs-white: #ffffff;
-    
-    /* Sombras */
-    --brs-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --brs-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --brs-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --brs-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --brs-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    --brs-shadow-azul: 0 4px 15px rgba(43, 125, 233, 0.3);
-    --brs-shadow-amarelo: 0 4px 15px rgba(245, 166, 35, 0.3);
-    
-    /* Bordas */
+    /* ── Ouro rico (premium) ── */
+    --ti-gold:        #C9A84C;   /* ouro escuro, metálico */
+    --ti-gold-dark:   #A8873A;   /* ouro mais profundo (hover) */
+    --ti-gold-light:  #E2C87A;   /* ouro claro */
+    --ti-gold-shine:  #F0DFA0;   /* brilho dourado */
+    --ti-gold-gradient: linear-gradient(135deg, #A8873A 0%, #E2C87A 60%, #C9A84C 100%);
+    --ti-gold-metallic: linear-gradient(135deg, #8B6914 0%, #C9A84C 35%, #F0DFA0 50%, #C9A84C 65%, #8B6914 100%);
+
+    /* ── Bege / Marfim (fundos) ── */
+    --ti-cream:       #FAF6EF;   /* marfim quase branco */
+    --ti-cream-mid:   #EFE6D5;   /* creme suave */
+    --ti-cream-deep:  #DDD0BB;   /* creme mais profundo */
+    --ti-bege:        #C4A882;   /* bege areia */
+    --ti-bege-dark:   #A88E6A;   /* bege escuro */
+
+    /* ── Taupe / Madeira (detalhes) ── */
+    --ti-taupe:       #7D6A52;   /* marrom taupe rico */
+    --ti-taupe-dark:  #5C4D3A;   /* taupe escuro */
+    --ti-taupe-light: #A08870;   /* taupe claro */
+
+    /* ── Preto ébano (fundo sidebar / títulos) ── */
+    --ti-dark:        #0F0D0A;   /* preto ébano quente */
+    --ti-dark-soft:   #1C1914;   /* preto suave */
+    --ti-dark-mid:    #2E2A22;   /* dark intermediário */
+    --ti-white:       #FAF6EF;   /* marfim — áreas limpas */
+    --ti-gray:        #6A6259;   /* cinza quente */
+
+    /* ── Aliases de compatibilidade ── */
+    --brs-azul:            #C9A84C;
+    --brs-azul-dark:       #A8873A;
+    --brs-azul-light:      #E2C87A;
+    --brs-azul-gradient:   linear-gradient(135deg, #A8873A 0%, #E2C87A 100%);
+    --brs-amarelo:         #7D6A52;
+    --brs-amarelo-dark:    #5C4D3A;
+    --brs-amarelo-light:   #A08870;
+    --brs-amarelo-gradient: linear-gradient(135deg, #5C4D3A 0%, #A08870 100%);
+
+    /* ── Status funcional ── */
+    --brs-success:      #1A9E6E;
+    --brs-success-light:#2DC48A;
+    --brs-warning:      #C9A84C;
+    --brs-warning-light:#E2C87A;
+    --brs-danger:       #C94040;
+    --brs-danger-light: #E26060;
+    --brs-info:         #7D6A52;
+    --brs-info-light:   #A08870;
+
+    /* ── Neutros quentes (escala terra) ── */
+    --brs-dark:       #0F0D0A;
+    --brs-gray-900:   #0F0D0A;
+    --brs-gray-800:   #1C1914;
+    --brs-gray-700:   #2E2A22;
+    --brs-gray-600:   #6A6259;
+    --brs-gray-500:   #8A8077;
+    --brs-gray-400:   #B0A898;
+    --brs-gray-300:   #D0C8BA;
+    --brs-gray-200:   #EFE6D5;
+    --brs-gray-100:   #FAF6EF;
+    --brs-white:      #FFFFFF;
+
+    /* ── Sombras premium quentes ── */
+    --brs-shadow-sm:  0 1px 3px rgba(15, 13, 10, 0.08);
+    --brs-shadow:     0 4px 12px rgba(15, 13, 10, 0.10), 0 2px 4px rgba(15, 13, 10, 0.06);
+    --brs-shadow-md:  0 10px 25px rgba(15, 13, 10, 0.12), 0 4px 8px rgba(15, 13, 10, 0.06);
+    --brs-shadow-lg:  0 20px 40px rgba(15, 13, 10, 0.14), 0 8px 16px rgba(15, 13, 10, 0.06);
+    --brs-shadow-xl:  0 30px 60px rgba(15, 13, 10, 0.20);
+    --brs-shadow-azul:    0 4px 20px rgba(201, 168, 76, 0.35);
+    --brs-shadow-amarelo: 0 4px 15px rgba(125, 106, 82, 0.30);
+    --brs-shadow-gold:    0 0 0 1px rgba(201, 168, 76, 0.25), 0 4px 20px rgba(201, 168, 76, 0.25);
+
+    /* ── Bordas ── */
     --brs-radius-sm: 6px;
-    --brs-radius: 10px;
+    --brs-radius:    10px;
     --brs-radius-lg: 16px;
     --brs-radius-xl: 24px;
-    
-    /* Transições */
-    --brs-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --brs-transition-fast: all 0.15s ease;
+
+    /* ── Transições premium ── */
+    --brs-transition:      all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --brs-transition-fast: all 0.18s ease;
+    --brs-transition-gold: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* ===============================================
    TIPOGRAFIA
    =============================================== */
-@import url('https://fonts.bunny.net/css?family=dm-sans:400,500,600,700|outfit:400,500,600,700&display=swap');
+@import url('https://fonts.bunny.net/css?family=dm-sans:400,500,600,700|playfair-display:400,500,600,700&display=swap');
 
 body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--brs-gray-100) !important;
-    color: var(--brs-gray-800);
+    background: var(--ti-cream) !important;
+    color: var(--ti-dark-soft);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6, .card-title {
-    font-family: 'Outfit', 'DM Sans', sans-serif;
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
     font-weight: 600;
-    color: var(--brs-gray-900);
+    color: var(--ti-dark);
+    letter-spacing: -0.01em;
+}
+
+/* Accent dourado em textos especiais */
+.text-gold {
+    background: var(--ti-gold-metallic);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* ===============================================
-   SIDEBAR BRS - Azul Escuro com Amarelo
+   SIDEBAR — Ébano com Ouro Metálico (Premium)
    =============================================== */
 .main-sidebar {
-    background: linear-gradient(180deg, var(--brs-dark) 0%, var(--brs-gray-900) 100%) !important;
+    background: linear-gradient(180deg, var(--ti-dark) 0%, var(--ti-dark-soft) 60%, var(--ti-dark-mid) 100%) !important;
     border-right: none !important;
-    box-shadow: var(--brs-shadow-lg) !important;
+    box-shadow: 4px 0 24px rgba(15, 13, 10, 0.25) !important;
 }
 
 .main-sidebar, .main-sidebar::before {
     transition: var(--brs-transition) !important;
 }
 
+/* Linha dourada decorativa na lateral direita da sidebar */
+.main-sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, var(--ti-gold) 20%, var(--ti-gold-light) 50%, var(--ti-gold) 80%, transparent 100%);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 /* Logo/Brand */
 .brand-link {
-    background: rgba(43, 125, 233, 0.1) !important;
-    border-bottom: 1px solid rgba(245, 166, 35, 0.2) !important;
-    padding: 16px 20px !important;
-    transition: var(--brs-transition) !important;
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.08) 0%, rgba(201, 168, 76, 0.03) 100%) !important;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.20) !important;
+    padding: 10px 16px !important;
+    min-height: 72px !important;
+    transition: var(--brs-transition-gold) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
     overflow: hidden !important;
+    position: relative !important;
+}
+
+.brand-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 22px;
+    right: 22px;
+    height: 1px;
+    background: var(--ti-gold-metallic);
+    opacity: 0.4;
 }
 
 .brand-link:hover {
-    background: rgba(43, 125, 233, 0.15) !important;
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.14) 0%, rgba(201, 168, 76, 0.06) 100%) !important;
 }
 
 .brand-text {
-    font-family: 'Outfit', sans-serif !important;
+    font-family: 'Playfair Display', Georgia, serif !important;
     font-weight: 700 !important;
-    font-size: 1.4rem !important;
-    background: linear-gradient(135deg, var(--brs-azul-light), var(--brs-amarelo));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 1.35rem !important;
+    background: var(--ti-gold-metallic) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
     transition: var(--brs-transition) !important;
+    letter-spacing: 0.02em !important;
 }
 
 /* Logo image styling */
-.brand-link .brand-image {
-    max-height: 36px !important;
+.brand-link .brand-image,
+.main-sidebar .brand-link .brand-image,
+.main-sidebar .brand-link img {
+    height: auto !important;
+    max-height: 56px !important;
+    min-height: 40px !important;
     width: auto !important;
+    max-width: 160px !important;
     margin-right: 10px !important;
     margin-left: 0 !important;
+    margin-top: 0 !important;
+    float: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
     transition: var(--brs-transition) !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
 }
 
 /* ===============================================
@@ -222,20 +297,30 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 }
 
 .nav-sidebar .nav-item > .nav-link:hover {
-    background: rgba(43, 125, 233, 0.15) !important;
-    color: var(--brs-white) !important;
-    transform: translateX(4px);
+    background: rgba(201, 168, 76, 0.12) !important;
+    color: var(--ti-gold-light) !important;
+    transform: translateX(5px);
 }
 
-/* Menu Ativo - Azul BRS */
+/* Menu Ativo — Ouro Metálico */
 .nav-sidebar .nav-item > .nav-link.active {
-    background: var(--brs-azul-gradient) !important;
-    color: var(--brs-white) !important;
-    box-shadow: var(--brs-shadow-azul) !important;
+    background: var(--ti-gold-gradient) !important;
+    color: var(--ti-dark) !important;
+    box-shadow: 0 4px 16px rgba(201, 168, 76, 0.40), inset 0 1px 0 rgba(255,255,255,0.20) !important;
+    font-weight: 600 !important;
 }
 
 .nav-sidebar .nav-item > .nav-link.active .nav-icon {
-    color: var(--brs-white) !important;
+    color: var(--ti-dark) !important;
+}
+
+/* Separador de categoria no menu */
+.nav-sidebar .nav-header {
+    color: rgba(201, 168, 76, 0.5) !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    padding: 16px 20px 6px !important;
 }
 
 /* Menu Icons */
@@ -291,32 +376,50 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 }
 
 /* ===============================================
-   NAVBAR SUPERIOR - Branco com Acentos Azul
+   NAVBAR SUPERIOR — Marfim com detalhe dourado premium
    =============================================== */
 .main-header {
     background: var(--brs-white) !important;
     border: none !important;
-    box-shadow: var(--brs-shadow) !important;
-    border-bottom: 3px solid var(--brs-azul) !important;
+    box-shadow: 0 2px 16px rgba(15, 13, 10, 0.08) !important;
+    border-bottom: 2px solid transparent !important;
+    background-image: linear-gradient(white, white),
+                      var(--ti-gold-metallic) !important;
+    background-origin: border-box !important;
+    background-clip: padding-box, border-box !important;
+    position: relative !important;
+}
+
+/* Linha dourada na base do header via pseudo-elemento */
+.main-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ti-gold-metallic);
+    opacity: 0.8;
 }
 
 .main-header .nav-link {
-    color: var(--brs-gray-700) !important;
+    color: var(--ti-dark-soft) !important;
     transition: var(--brs-transition) !important;
     border-radius: var(--brs-radius) !important;
-    padding: 8px 12px !important;
+    padding: 8px 14px !important;
+    font-weight: 500 !important;
 }
 
 .main-header .nav-link:hover {
-    background: rgba(43, 125, 233, 0.1) !important;
-    color: var(--brs-azul) !important;
+    background: rgba(201, 168, 76, 0.10) !important;
+    color: var(--ti-gold-dark) !important;
 }
 
 /* ===============================================
    CONTENT AREA
    =============================================== */
 .content-wrapper {
-    background: var(--brs-gray-100) !important;
+    background: var(--ti-cream) !important;
 }
 
 .content-header {
@@ -335,26 +438,40 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 }
 
 /* ===============================================
-   CARDS MODERNOS - Branco com Acentos
+   CARDS — Luxo com detalhe metálico superior
    =============================================== */
 .card {
     background: var(--brs-white) !important;
-    border: none !important;
+    border: 1px solid rgba(201, 168, 76, 0.12) !important;
     border-radius: var(--brs-radius-lg) !important;
     box-shadow: var(--brs-shadow) !important;
-    transition: var(--brs-transition) !important;
+    transition: var(--brs-transition-gold) !important;
     overflow: hidden !important;
-    border-top: 4px solid var(--brs-azul) !important;
+    position: relative !important;
+}
+
+/* Faixa dourada metálica no topo */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--ti-gold-metallic);
+    opacity: 0.85;
+    z-index: 1;
 }
 
 .card:hover {
-    box-shadow: var(--brs-shadow-md) !important;
-    transform: translateY(-2px);
+    box-shadow: var(--brs-shadow-md), 0 0 0 1px rgba(201, 168, 76, 0.18) !important;
+    transform: translateY(-3px);
+    border-color: rgba(201, 168, 76, 0.22) !important;
 }
 
 .card-header {
-    background: var(--brs-white) !important;
-    border-bottom: 1px solid var(--brs-gray-200) !important;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FAF6EF 100%) !important;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.12) !important;
     padding: 20px 24px !important;
 }
 
@@ -369,7 +486,7 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 }
 
 .card-header .card-title i {
-    color: var(--brs-azul) !important;
+    color: var(--ti-gold-dark) !important;
     font-size: 1.1rem !important;
 }
 
@@ -446,7 +563,7 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
     transform: translateY(-50%) scale(1.1) !important;
 }
 
-/* Cores customizadas BRS para small-box - TODOS com fonte branca */
+/* Cores TI Construções para small-box */
 .small-box {
     color: var(--brs-white) !important;
 }
@@ -457,34 +574,34 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
     color: var(--brs-white) !important;
 }
 
-/* Azul BRS Principal */
+/* Bege areia escuro → bege (principal) */
 .small-box.bg-info {
-    background: linear-gradient(135deg, #1E5BB8 0%, #2B7DE9 100%) !important;
+    background: linear-gradient(135deg, #8A7763 0%, #C2A88C 100%) !important;
 }
 
-/* Azul BRS Claro */
+/* Dourado médio → dourado claro */
 .small-box.bg-success {
-    background: linear-gradient(135deg, #2B7DE9 0%, #4A9BFF 100%) !important;
+    background: linear-gradient(135deg, #B8966F 0%, #D4B48C 100%) !important;
 }
 
-/* Amarelo BRS */
+/* Taupe escuro → taupe */
 .small-box.bg-warning {
-    background: linear-gradient(135deg, #E09000 0%, #F5A623 100%) !important;
+    background: linear-gradient(135deg, #6B5D4F 0%, #8A7763 100%) !important;
 }
 
-/* Azul Escuro */
+/* Preto suave → cinza escuro */
 .small-box.bg-primary {
-    background: linear-gradient(135deg, #0F4C81 0%, #1E5BB8 100%) !important;
+    background: linear-gradient(135deg, #1C1C1C 0%, #3A3A3A 100%) !important;
 }
 
-/* Azul Médio */
+/* Creme → bege claro */
 .small-box.bg-secondary {
-    background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%) !important;
+    background: linear-gradient(135deg, #A89080 0%, #C2A88C 100%) !important;
 }
 
-/* Amarelo Escuro/Laranja */
+/* Dourado escuro */
 .small-box.bg-danger {
-    background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%) !important;
+    background: linear-gradient(135deg, #9A7A5A 0%, #B8966F 100%) !important;
 }
 
 /* ===============================================
@@ -495,7 +612,7 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 }
 
 .table thead th {
-    background: linear-gradient(135deg, var(--brs-azul) 0%, var(--brs-azul-light) 100%) !important;
+    background: linear-gradient(135deg, var(--ti-taupe) 0%, var(--ti-bege) 100%) !important;
     color: var(--brs-white) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
@@ -507,8 +624,8 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 
 .table tbody td {
     padding: 16px 20px !important;
-    border-color: var(--brs-gray-200) !important;
-    color: var(--brs-gray-700) !important;
+    border-color: var(--ti-cream) !important;
+    color: var(--ti-dark-soft) !important;
     vertical-align: middle !important;
 }
 
@@ -517,15 +634,15 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 }
 
 .table tbody tr:hover {
-    background: rgba(43, 125, 233, 0.05) !important;
+    background: rgba(212, 180, 140, 0.06) !important;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background: rgba(43, 125, 233, 0.02) !important;
+    background: rgba(212, 180, 140, 0.03) !important;
 }
 
 .table-striped tbody tr:nth-of-type(odd):hover {
-    background: rgba(43, 125, 233, 0.08) !important;
+    background: rgba(212, 180, 140, 0.10) !important;
 }
 
 /* ===============================================
@@ -561,59 +678,105 @@ body.sidebar-mini .main-sidebar:hover .brand-image {
 }
 
 /* ===============================================
-   BOTÕES MODERNOS - Azul e Amarelo BRS
+   BOTÕES — Ouro metálico premium
    =============================================== */
 .btn {
     font-weight: 500 !important;
     border-radius: var(--brs-radius) !important;
-    padding: 10px 20px !important;
-    transition: var(--brs-transition) !important;
+    padding: 10px 22px !important;
+    transition: var(--brs-transition-gold) !important;
     border: none !important;
     box-shadow: var(--brs-shadow-sm) !important;
+    letter-spacing: 0.01em !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Shimmer nos botões ao hover */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: skewX(-15deg);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.btn:hover::after {
+    left: 125%;
 }
 
 .btn:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: var(--brs-shadow) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--brs-shadow-md) !important;
 }
 
 .btn:active {
     transform: translateY(0) !important;
+    box-shadow: var(--brs-shadow-sm) !important;
 }
 
 .btn-primary {
-    background: var(--brs-azul-gradient) !important;
+    background: var(--ti-gold-gradient) !important;
+    color: var(--ti-dark) !important;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--brs-azul-dark) 0%, var(--brs-azul) 100%) !important;
-    box-shadow: var(--brs-shadow-azul) !important;
+    background: linear-gradient(135deg, #8B6914 0%, #C9A84C 50%, #E2C87A 100%) !important;
+    box-shadow: var(--brs-shadow-gold) !important;
+    color: var(--ti-dark) !important;
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #059669 0%, #10B981 100%) !important;
+    background: linear-gradient(135deg, #0D7A52 0%, #1A9E6E 100%) !important;
+    color: #fff !important;
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%) !important;
+    background: linear-gradient(135deg, #A83030 0%, #C94040 100%) !important;
+    color: #fff !important;
 }
 
 .btn-warning {
-    background: var(--brs-amarelo-gradient) !important;
-    color: var(--brs-white) !important;
+    background: var(--ti-gold-gradient) !important;
+    color: var(--ti-dark) !important;
 }
 
 .btn-warning:hover {
-    box-shadow: var(--brs-shadow-amarelo) !important;
-    color: var(--brs-white) !important;
+    box-shadow: var(--brs-shadow-gold) !important;
+    color: var(--ti-dark) !important;
 }
 
 .btn-info {
-    background: var(--brs-azul-gradient) !important;
+    background: linear-gradient(135deg, #5C4D3A 0%, #7D6A52 100%) !important;
+    color: #fff !important;
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, var(--brs-gray-600) 0%, var(--brs-gray-500) 100%) !important;
+    background: linear-gradient(135deg, var(--ti-dark-mid) 0%, var(--ti-dark-soft) 100%) !important;
+    color: var(--ti-gold-light) !important;
+}
+
+.btn-secondary:hover {
+    color: var(--ti-gold) !important;
+    background: linear-gradient(135deg, var(--ti-dark-soft) 0%, var(--ti-dark-mid) 100%) !important;
+}
+
+/* Botão contornado dourado */
+.btn-outline-gold {
+    background: transparent !important;
+    border: 1.5px solid var(--ti-gold) !important;
+    color: var(--ti-gold-dark) !important;
+}
+
+.btn-outline-gold:hover {
+    background: var(--ti-gold-gradient) !important;
+    color: var(--ti-dark) !important;
+    box-shadow: var(--brs-shadow-gold) !important;
 }
 
 /* Button Group */
@@ -650,8 +813,8 @@ textarea.form-control {
 }
 
 .form-control:focus {
-    border-color: var(--brs-azul) !important;
-    box-shadow: 0 0 0 3px rgba(43, 125, 233, 0.15) !important;
+    border-color: var(--ti-gold) !important;
+    box-shadow: 0 0 0 3px rgba(212, 180, 140, 0.20) !important;
     outline: none !important;
 }
 
@@ -698,8 +861,8 @@ form select.form-control {
 
 select:focus,
 select.form-control:focus {
-    border-color: var(--brs-azul) !important;
-    box-shadow: 0 0 0 3px rgba(43, 125, 233, 0.15) !important;
+    border-color: var(--ti-gold) !important;
+    box-shadow: 0 0 0 3px rgba(212, 180, 140, 0.20) !important;
     outline: none !important;
 }
 
@@ -751,7 +914,8 @@ select option {
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: var(--brs-azul) !important;
+    background-color: var(--ti-gold) !important;
+    color: var(--ti-dark) !important;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
@@ -771,8 +935,8 @@ select option {
 }
 
 .bootstrap-select > .dropdown-toggle:focus {
-    border-color: var(--brs-azul) !important;
-    box-shadow: 0 0 0 3px rgba(43, 125, 233, 0.15) !important;
+    border-color: var(--ti-gold) !important;
+    box-shadow: 0 0 0 3px rgba(212, 180, 140, 0.20) !important;
 }
 
 /* ===============================================
@@ -804,9 +968,9 @@ select option {
 }
 
 .alert-info {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
-    color: var(--brs-azul-dark) !important;
-    border-left: 4px solid var(--brs-azul) !important;
+    background: linear-gradient(135deg, #f5ede3 0%, #ede3d8 100%) !important;
+    color: var(--ti-taupe-dark) !important;
+    border-left: 4px solid var(--ti-bege) !important;
 }
 
 /* ===============================================
@@ -830,7 +994,7 @@ select option {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, var(--brs-azul), var(--brs-amarelo));
+    background: linear-gradient(90deg, var(--ti-taupe), var(--ti-gold));
 }
 
 .welcome-card::after {
@@ -840,21 +1004,21 @@ select option {
     right: -100px;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(43, 125, 233, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 180, 140, 0.08) 0%, transparent 70%);
     pointer-events: none;
 }
 
 .welcome-icon {
     width: 100px !important;
     height: 100px !important;
-    background: var(--brs-azul-gradient) !important;
+    background: var(--ti-gold-gradient) !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     margin: 0 auto 30px !important;
     font-size: 42px !important;
-    color: var(--brs-white) !important;
+    color: var(--ti-dark) !important;
     box-shadow: var(--brs-shadow-azul) !important;
 }
 
@@ -868,7 +1032,7 @@ select option {
 
 .welcome-subtitle {
     font-size: 1.25rem !important;
-    color: var(--brs-azul) !important;
+    color: var(--ti-gold-dark) !important;
     font-weight: 600 !important;
     margin-bottom: 20px !important;
 }
@@ -933,23 +1097,23 @@ select option {
 }
 
 .lic-item:hover {
-    background: rgba(43, 125, 233, 0.03) !important;
+    background: rgba(212, 180, 140, 0.05) !important;
 }
 
 .lic-placa {
     font-weight: 700 !important;
-    color: var(--brs-gray-900) !important;
+    color: var(--ti-dark) !important;
     font-size: 0.95rem !important;
 }
 
 .lic-modelo {
     font-size: 0.8rem !important;
-    color: var(--brs-gray-500) !important;
+    color: var(--ti-gray) !important;
 }
 
 .lic-date {
-    background: rgba(43, 125, 233, 0.1) !important;
-    color: var(--brs-azul) !important;
+    background: rgba(212, 180, 140, 0.15) !important;
+    color: var(--ti-taupe-dark) !important;
     padding: 4px 10px !important;
     border-radius: 20px !important;
     font-size: 0.75rem !important;
@@ -971,7 +1135,7 @@ select option {
 }
 
 /* ===============================================
-   SCROLLBAR CUSTOMIZADA - Azul BRS
+   SCROLLBAR CUSTOMIZADA - Dourado TI Construções
    =============================================== */
 ::-webkit-scrollbar {
     width: 8px;
@@ -979,17 +1143,17 @@ select option {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--brs-gray-100);
+    background: var(--ti-cream);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--brs-azul);
+    background: var(--ti-bege);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--brs-azul-dark);
+    background: var(--ti-taupe);
 }
 
 /* Sidebar scrollbar */
@@ -998,7 +1162,7 @@ select option {
 }
 
 .main-sidebar ::-webkit-scrollbar-thumb {
-    background: var(--brs-amarelo);
+    background: var(--ti-gold);
 }
 
 /* ===============================================
@@ -1146,20 +1310,20 @@ select option {
 }
 
 /* ===============================================
-   UTILITÁRIOS - Cores BRS
+   UTILITÁRIOS - Cores TI Construções
    =============================================== */
-.text-primary { color: var(--brs-azul) !important; }
+.text-primary { color: var(--ti-gold-dark) !important; }
 .text-success { color: var(--brs-success) !important; }
-.text-warning { color: var(--brs-amarelo) !important; }
+.text-warning { color: var(--ti-taupe) !important; }
 .text-danger { color: var(--brs-danger) !important; }
-.text-info { color: var(--brs-azul-light) !important; }
+.text-info { color: var(--ti-bege) !important; }
 
 .bg-gradient-brs {
-    background: linear-gradient(135deg, var(--brs-azul) 0%, var(--brs-amarelo) 100%) !important;
+    background: linear-gradient(135deg, var(--ti-taupe) 0%, var(--ti-gold) 100%) !important;
 }
 
 .border-left-primary {
-    border-left: 4px solid var(--brs-azul) !important;
+    border-left: 4px solid var(--ti-gold) !important;
 }
 
 .border-left-success {
@@ -1167,7 +1331,7 @@ select option {
 }
 
 .border-left-warning {
-    border-left: 4px solid var(--brs-amarelo) !important;
+    border-left: 4px solid var(--ti-taupe) !important;
 }
 
 .border-left-danger {
@@ -1176,12 +1340,12 @@ select option {
 
 /* Accent dourado para elementos especiais */
 .accent-gold {
-    border-color: var(--brs-amarelo) !important;
+    border-color: var(--ti-gold) !important;
 }
 
 .bg-gold {
-    background: var(--brs-amarelo-gradient) !important;
-    color: white !important;
+    background: var(--ti-gold-gradient) !important;
+    color: var(--ti-dark) !important;
 }
 
 /* ===============================================
@@ -1200,7 +1364,7 @@ html[data-theme="dark"] .content-wrapper {
 html[data-theme="dark"] .card {
     background: #1e293b !important;
     border-color: #334155 !important;
-    border-top-color: var(--brs-azul) !important;
+    border-top-color: var(--ti-gold) !important;
 }
 
 html[data-theme="dark"] .card-header {
@@ -1221,7 +1385,7 @@ html[data-theme="dark"] .card-body {
 html[data-theme="dark"] .main-header,
 html[data-theme="dark"] .main-header.navbar {
     background: #1e293b !important;
-    border-bottom-color: var(--brs-azul) !important;
+    border-bottom-color: var(--ti-gold) !important;
 }
 
 html[data-theme="dark"] .main-header .nav-link,
@@ -1230,8 +1394,8 @@ html[data-theme="dark"] .navbar-nav .nav-link {
 }
 
 html[data-theme="dark"] .main-header .nav-link:hover {
-    color: var(--brs-azul-light) !important;
-    background: rgba(43, 125, 233, 0.15) !important;
+    color: var(--ti-gold-light) !important;
+    background: rgba(212, 180, 140, 0.15) !important;
 }
 
 /* Títulos no modo escuro */
@@ -1254,7 +1418,7 @@ html[data-theme="dark"] .table {
 }
 
 html[data-theme="dark"] .table thead th {
-    background: linear-gradient(135deg, var(--brs-azul) 0%, var(--brs-azul-light) 100%) !important;
+    background: linear-gradient(135deg, var(--ti-taupe-dark) 0%, var(--ti-taupe) 100%) !important;
     color: #ffffff !important;
 }
 
@@ -1264,7 +1428,7 @@ html[data-theme="dark"] .table tbody td {
 }
 
 html[data-theme="dark"] .table tbody tr:hover {
-    background: rgba(43, 125, 233, 0.2) !important;
+    background: rgba(212, 180, 140, 0.12) !important;
 }
 
 html[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd) {
@@ -1384,7 +1548,7 @@ html[data-theme="dark"] .dropdown-item {
 }
 
 html[data-theme="dark"] .dropdown-item:hover {
-    background: rgba(43, 125, 233, 0.2) !important;
+    background: rgba(212, 180, 140, 0.15) !important;
 }
 
 /* Breadcrumb no modo escuro */
@@ -1437,9 +1601,9 @@ html[data-theme="dark"] .dataTables_wrapper .dataTables_paginate .paginate_butto
 }
 
 html[data-theme="dark"] .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: var(--brs-azul) !important;
-    border-color: var(--brs-azul) !important;
-    color: white !important;
+    background: var(--ti-gold) !important;
+    border-color: var(--ti-gold) !important;
+    color: var(--ti-dark) !important;
 }
 
 /* Widgets especiais no modo escuro */
@@ -1463,60 +1627,10 @@ html[data-theme="dark"] .pedido-centro {
 }
 
 /* ===============================================
-   BOTÃO DE TOGGLE DE TEMA - Design Moderno
+   BOTÃO DE TOGGLE DE TEMA - Removido
    =============================================== */
 .theme-toggle-btn {
-    background: linear-gradient(135deg, #1E5BB8 0%, #4A9BFF 100%) !important;
-    border: none !important;
-    border-radius: 25px !important;
-    padding: 8px 16px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    color: #ffffff !important;
-    font-size: 0.85rem !important;
-    font-weight: 600 !important;
-    box-shadow: 0 2px 8px rgba(43, 125, 233, 0.3) !important;
-    text-transform: none !important;
-    letter-spacing: 0 !important;
-}
-
-.theme-toggle-btn:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(43, 125, 233, 0.4) !important;
-}
-
-.theme-toggle-btn:active {
-    transform: translateY(0) !important;
-}
-
-.theme-toggle-btn i {
-    font-size: 1rem !important;
-}
-
-.theme-toggle-btn .fa-sun {
-    color: #fbbf24 !important;
-}
-
-.theme-toggle-btn .fa-moon {
-    color: #ffffff !important;
-}
-
-/* Botão no modo escuro - estilo invertido */
-html[data-theme="dark"] .theme-toggle-btn {
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
-    color: #1e293b !important;
-    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3) !important;
-}
-
-html[data-theme="dark"] .theme-toggle-btn:hover {
-    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4) !important;
-}
-
-html[data-theme="dark"] .theme-toggle-btn .fa-sun {
-    color: #1e293b !important;
+    display: none !important;
 }
 
 /* ===============================================
@@ -2134,4 +2248,38 @@ html[data-theme="dark"] ul[style*="position: absolute"] > li:hover {
 /* Transição suave entre temas */
 html, body, .main-header, .content-wrapper, .card, .form-control, .modal-content, .table, .search-result-item, .modern-card {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* ===============================================
+   DARK MODE TOGGLE - COMPLETAMENTE REMOVIDO
+   =============================================== */
+.theme-toggle-btn,
+button.theme-toggle-btn,
+#themeToggleBtn,
+button#themeToggleBtn,
+#brs-darkmode-toggle,
+#darkModeToggle,
+#dark-mode-toggle,
+[id*="darkmode"],
+[id*="dark-mode"],
+[id*="theme-toggle"],
+[class*="theme-toggle"],
+li:has(> .theme-toggle-btn),
+li:has(> #themeToggleBtn),
+.nav-item:has(> .theme-toggle-btn),
+.nav-item:has(> #themeToggleBtn) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
 }

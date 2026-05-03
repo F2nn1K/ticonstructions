@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Relatório de Manutenções (Frota)')
+@section('title', __('Relatório de Manutenções (Frota)'))
 
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
-    <h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-tools text-primary mr-2"></i>Relatório de Manutenções</h1>
-    <span class="text-muted small">Mês corrente por padrão</span>
+    <h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-tools text-primary mr-2"></i>{{ __('Relatório de Manutenções') }}</h1>
+    <span class="text-muted small">{{ __('Mês corrente por padrão') }}</span>
   </div>
 @stop
 

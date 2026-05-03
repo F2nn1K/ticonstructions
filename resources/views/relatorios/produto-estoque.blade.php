@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Relatório por Produto (Estoque)')
+@section('title', __('{{ __('Relatório por Produto (Estoque)') }}'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -9,9 +9,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-box-open text-primary mr-3"></i>
-            Relatório por Produto (Estoque)
+            {{ __('Relatório por Produto (Estoque)') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Consulta por produto e centro de custo</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Consulta por produto e centro de custo') }}</p>
     </div>
 </div>
 @stop
@@ -258,7 +258,7 @@ function imprimirRelatorioProduto() {
         <html lang="pt-BR">
         <head>
             <meta charset="UTF-8">
-            <title>Relatório por Produto (Estoque)</title>
+            <title>{{ __('Relatório por Produto (Estoque)') }}</title>
             <style>
                 @page { 
                     size: A4 landscape; 
@@ -406,7 +406,7 @@ function imprimirRelatorioProduto() {
         <body>
             <div class="header-container">
                 <div class="logo-section">
-                    <img src="/img/brs-logo.png" alt="BRS Logo" class="logo" />
+                    <img src="/img/logo.png" alt="Logo" class="logo" />
                     <div class="company-info">
                         <h1>RELATÓRIO POR PRODUTO</h1>
                         <p class="subtitle">Consulta de Estoque por Produto</p>
@@ -414,7 +414,7 @@ function imprimirRelatorioProduto() {
                 </div>
                 <div class="report-info">
                     <div class="date">Emitido em: ${new Date().toLocaleString('pt-BR')}</div>
-                    <div>Sistema SIGO - BRS Transportes</div>
+                    <div>Sistema SIGO</div>
                 </div>
             </div>
             
@@ -491,7 +491,7 @@ function imprimirRelatorioProduto() {
             </div>
             
             <div class="footer">
-                <p>Sistema Integrado de Gestão Operacional (SIGO) - BRS Transportes</p>
+                <p>Sistema Integrado de Gestão Operacional (SIGO)</p>
             </div>
         </body>
         </html>`;

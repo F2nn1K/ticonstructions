@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Ocorrências - Frota')
+@section('title', __('Ocorrências - Frota'))
 
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
-<h1>Ocorrências da Frota</h1>
+<h1>{{ __('Ocorrências da Frota') }}</h1>
 @stop
 
 @section('content')
@@ -25,7 +25,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Registrar Ocorrência</h3>
+            <h3 class="card-title">__('Registrar Ocorrência')</h3>
         </div>
         <div class="card-body">
             <form action="{{ route('frota.ocorrencias.store') }}" method="POST" enctype="multipart/form-data">

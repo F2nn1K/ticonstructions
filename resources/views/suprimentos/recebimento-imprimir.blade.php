@@ -303,7 +303,7 @@
     
     @if($recebimento->observacoes)
     <div class="observations">
-        <label>Observações</label>
+        <label>{{ __('Observações') }}</label>
         <p>{{ $recebimento->observacoes }}</p>
     </div>
     @endif

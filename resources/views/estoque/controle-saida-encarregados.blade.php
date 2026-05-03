@@ -2,7 +2,7 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Controle de Saída de Encarregados')
+@section('title', __('Controle de Saída de Encarregados'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -11,9 +11,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-hard-hat text-primary mr-3"></i>
-            Controle de Saída de Encarregados
+            {{ __('Controle de Saída de Encarregados') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Controle de saída de uniforme e EPI para os encarregados</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Controle de saída de uniforme e EPI para os encarregados') }}</p>
     </div>
 </div>
 @stop

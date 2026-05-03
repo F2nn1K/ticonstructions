@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Frota - Relatório de KM Percorrido')
+@section('title', __('Frota - {{ __('Relatório de KM Percorrido') }}'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -9,9 +9,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-road text-primary mr-3"></i>
-            Relatório de KM Percorrido
+            {{ __('Relatório de KM Percorrido') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Total de quilômetros percorridos por veículo/usuário no período</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Total de quilômetros percorridos por veículo/usuário no período') }}</p>
     </div>
 </div>
 @stop
@@ -161,7 +161,7 @@
         <div class="col-12">
             <div class="text-center py-5">
                 <i class="fas fa-road fa-4x text-muted mb-3"></i>
-                <h4 class="text-muted">Relatório de KM Percorrido</h4>
+                <h4 class="text-muted">{{ __('Relatório de KM Percorrido') }}</h4>
                 <p class="text-muted">Escolha um período e, se quiser, um veículo/usuário específico para calcular os quilômetros percorridos.</p>
             </div>
         </div>
@@ -339,7 +339,7 @@ function imprimirRelatorioKm(){
     <html>
     <head>
         <meta charset="utf-8" />
-        <title>Relatório de KM Percorrido</title>
+        <title>{{ __('Relatório de KM Percorrido') }}</title>
         <style>
             @page { 
                 size: A4 landscape; 

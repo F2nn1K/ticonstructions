@@ -2,7 +2,7 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Estoque - Mínimo e Máximo')
+@section('title', __('Estoque - Mínimo e Máximo'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -11,9 +11,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-layer-group text-primary mr-3"></i>
-            Estoque - Mínimo e Máximo
+            {{ __('Estoque - Mínimo e Máximo') }}
         </h1>
-        <p class="text-muted mt-1 mb-0">Configure os níveis ideais para cada produto do seu estoque</p>
+        <p class="text-muted mt-1 mb-0">{{ __('Configure os níveis ideais para cada produto do seu estoque') }}</p>
     </div>
 </div>
 @stop
@@ -402,9 +402,12 @@ $(function(){
                     <td class="text-center">
                         <input type="number" class="form-control form-control-sm input-maximo" min="0" value="${maximo}">
                     </td>
-                    <td class="text-center">
-                        <button type="button" class="btn btn-primary btn-sm btn-salvar">
-                            <i class="fas fa-save mr-1"></i>Salvar
+                    <td class="text-center text-nowrap">
+                        <button type="button" class="btn btn-primary btn-sm btn-salvar mr-1" title="Salvar">
+                            <i class="fas fa-save"></i><span class="d-none d-md-inline ml-1">Salvar</span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm btn-inativar" title="Inativar Produto">
+                            <i class="fas fa-ban"></i>
                         </button>
                     </td>
                 </tr>`;
@@ -495,6 +498,69 @@ $(function(){
             .always(function(){
                 btn.prop('disabled', false).html('<i class="fas fa-save mr-1"></i>Salvar');
             });
+    });
+
+    // Inativar produto
+    tabela.on('click', '.btn-inativar', function(){
+        const tr = $(this).closest('tr');
+        const id = tr.data('id');
+        const nome = tr.find('td:eq(1)').text();
+        const btn = $(this);
+
+        Swal.fire({
+            title: 'Inativar Produto?',
+            html: `Deseja inativar o produto <strong>${escapeHtml(nome)}</strong>?<br><small class="text-muted">O produto poderá ser reativado posteriormente.</small>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sim, Inativar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
+                
+                $.post(`/api/estoque/${id}/inativar`)
+                    .done(function(resp){
+                        if(resp && resp.success){
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Produto Inativado!',
+                                text: 'O produto foi inativado com sucesso.',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                            // Remover da lista
+                            tr.fadeOut(300, function(){
+                                $(this).remove();
+                                dados = dados.filter(item => item.id != id);
+                                atualizarEstatisticas();
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro',
+                                text: resp.message || 'Falha ao inativar produto.',
+                                confirmButtonColor: '#007bff'
+                            });
+                            btn.prop('disabled', false).html('<i class="fas fa-ban"></i>');
+                        }
+                    })
+                    .fail(function(xhr){
+                        let msg = 'Erro ao inativar produto.';
+                        if(xhr && xhr.responseJSON && xhr.responseJSON.message){
+                            msg = xhr.responseJSON.message;
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro',
+                            text: msg,
+                            confirmButtonColor: '#007bff'
+                        });
+                        btn.prop('disabled', false).html('<i class="fas fa-ban"></i>');
+                    });
+            }
+        });
     });
 
     function escapeHtml(text){

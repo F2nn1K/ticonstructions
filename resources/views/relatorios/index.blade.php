@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Relatórios')
+@section('title', __('app.menu.reports'))
 
 @section('content_header')
 <h1>Relatórios</h1>

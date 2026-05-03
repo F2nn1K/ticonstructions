@@ -14,7 +14,7 @@
     <div class="px-3 py-2 bg-danger text-white d-flex justify-content-between align-items-center">
       <strong>Solicitações Rejeitadas</strong>
       <div class="d-flex align-items-center">
-        <a href="{{ route('pedidos.autorizacao') }}" class="btn btn-outline-light btn-sm mr-2 text-white"><i class="fas fa-arrow-left mr-1"></i>Voltar</a>
+        <a href="{{ route('pedidos.autorizacao') }}" class="btn btn-outline-light btn-sm mr-2 text-white"><i class="fas fa-arrow-left mr-1"></i>{{ __('Voltar') }}</a>
         <span class="badge badge-light" id="badge-rejeitadas">0 rejeitadas</span>
       </div>
     </div>
@@ -152,8 +152,8 @@ function verRejeitado(hash){
               `).join('') || '<li class="list-group-item text-muted">Sem interações</li>'}</ul>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-outline-secondary" onclick="imprimirRejeitado('${hash}')"><i class="fas fa-print mr-1"></i>Imprimir</button>
-              <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button class="btn btn-outline-secondary" onclick="imprimirRejeitado('${hash}')"><i class="fas fa-print mr-1"></i>{{ __('Imprimir') }}</button>
+              <button class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
             </div>
           </div>
         </div>

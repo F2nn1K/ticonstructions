@@ -39,7 +39,7 @@
     <div class="card" id="resultadoCard" style="display:none;">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0"><i class="fas fa-table mr-2"></i>Resultados</h5>
-            <button class="btn btn-success btn-sm" id="btnImprimir"><i class="fas fa-print mr-1"></i> Imprimir</button>
+            <button class="btn btn-success btn-sm" id="btnImprimir"><i class="fas fa-print mr-1"></i>{{ __('Imprimir') }}</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -333,7 +333,7 @@ function imprimirRelatorio() {
     <body>
         <div class="header-container">
             <div class="logo-section">
-                <img src="/img/brs-logo.png" alt="BRS Logo" class="logo" />
+                <img src="/img/logo.png" alt="Logo" class="logo" />
                 <div class="company-info">
                     <h1>RELATÓRIO DE ESTOQUE</h1>
                     <p class="subtitle">Controle de Níveis Mínimos e Máximos</p>
@@ -387,7 +387,7 @@ function imprimirRelatorio() {
         </div>
         
         <div class="footer">
-            <p>Sistema Integrado de Gestão Operacional (SIGO) - BRS Transportes</p>
+            <p>Sistema Integrado de Gestão Operacional (SIGO)</p>
         </div>
     </body>
     </html>`;

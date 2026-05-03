@@ -17,9 +17,9 @@
                 <input type="date" id="dataFim" class="form-control mr-2">
                 <label class="mr-2">Veículo:</label>
                 <select id="vehicleFiltro" class="form-control mr-2" style="min-width:220px">
-                    <option value="">Todos</option>
+                    <option value="">{{ __('Todos') }}</option>
                 </select>
-                <button class="btn btn-primary mr-2" onclick="carregarAbastecimentos()">Buscar</button>
+                <button class="btn btn-primary mr-2" onclick="carregarAbastecimentos()">{{ __('Buscar') }}</button>
                 <button class="btn btn-outline-secondary" onclick="limparFiltros()">Limpar</button>
                 <div class="ml-auto d-flex">
                     <button id="btnAbrirNF" class="btn btn-success mr-2" disabled onclick="abrirModalNF()">
@@ -105,7 +105,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
         <button type="button" class="btn btn-primary" onclick="finalizarNF()">
           <i class="fas fa-check mr-1"></i>
           Finalizar
@@ -157,13 +157,13 @@
           <input type="text" id="avl_posto" class="form-control" maxlength="150" value="Auto Posto Estrela D'alva">
         </div>
         <div class="form-group">
-          <label>Observações</label>
+          <label>{{ __('Observações') }}</label>
           <textarea id="avl_observacoes" class="form-control" rows="3" maxlength="1000" placeholder="Opcional"></textarea>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-warning" onclick="salvarAvulso()">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
+        <button type="button" class="btn btn-warning" onclick="salvarAvulso()">{{ __('Salvar') }}</button>
       </div>
     </div>
   </div>

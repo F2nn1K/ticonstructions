@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'SIGO',
+    'title' => 'TI Constructions',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>SIGO</b>',
+    'logo' => '',
     'logo_img' => 'img/logo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img_class' => 'elevation-0',
     'logo_img_xl' => null,
     'logo_img_xl_class' => '',
-    'logo_img_alt' => 'SIGO',
+    'logo_img_alt' => 'TI Constructions',
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ return [
         'enabled' => true,
         'img' => [
             'path' => 'img/logo.png',
-            'alt' => 'SIGO',
+            'alt' => 'TI Constructions',
             'class' => '',
             'width' => 250,
             'height' => null,
@@ -114,7 +114,7 @@ return [
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'img/brs-logo.png',
-            'alt' => 'SIGO',
+            'alt' => 'TI Constructions',
             'effect' => 'animation__shake',
             'width' => 60,
             'height' => 60,
@@ -299,363 +299,343 @@ return [
     */
     
     'menu' => [
+
+        // ── Dashboard ────────────────────────────────────────────────────────
         [
-            'text' => 'Dashboard',
-            'url'  => 'dashboard',
+            'text' => 'app.menu.dashboard',
+            'url'  => 'home',
             'icon' => 'fas fa-tachometer-alt',
+            'can'  => 'dashboard-ver',
         ],
+
+        // ── Cronograma de Obra ───────────────────────────────────────────────
         [
-            'text'        => 'Estoque',
-            'icon'        => 'fas fa-boxes',
-            'submenu'     => [
-                [
-                    'text' => 'Controle de Estoque',
-                    'url'  => 'brs/controle-estoque',
-                    'icon' => 'fas fa-boxes',
-                    'can'  => 'controle-estoque',
-                ],
-                [
-                    'text' => 'Estoque Mínimo e Máximo',
-                    'url'  => 'brs/estoque-min-max',
-                    'icon' => 'fas fa-layer-group',
-                    'can'  => 'est_mm',
-                ],
-                [
-                    'text' => 'Baixa da O.S.',
-                    'url'  => 'brs/baixa-os',
-                    'icon' => 'fas fa-clipboard-check',
-                    'can'  => 'baixa_os',
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Documentos DP',
-            'icon'        => 'fas fa-folder-open',
-            'submenu'     => [
-                [
-                    'text' => 'Inclusão Documentos',
-                    'url'  => 'documentos-dp/inclusao',
-                    'icon' => 'fas fa-file-upload',
-                    'can'  => 'doc_dp',
-                ],
-                [
-                    'text' => 'Funcionários',
-                    'url'  => 'documentos-dp/funcionarios',
-                    'icon' => 'fas fa-users-cog',
-                    'can'  => 'vis_func',
-                ],
-            ],
-        ],
-        [
-            'text' => 'Controle de Frete',
-            'url'  => 'frete',
-            'icon' => 'fas fa-truck',
-            'can'  => 'frete',
-        ],
-        [
-            'text'        => 'Área Técnica',
-            'icon'        => 'fas fa-tools',
-            'submenu'     => [
-                [
-                    'text' => 'Ordem de Serviço',
-                    'url'  => 'area-tecnica/ordem-servico',
-                    'icon' => 'fas fa-clipboard-list',
-                    'can'  => 'ordem_servico',
-                ],
-                [
-                    'text' => 'Gestão de O.S.',
-                    'url'  => 'area-tecnica/gestao-os',
-                    'icon' => 'fas fa-tasks',
-                    'can'  => 'gestao_os',
-                ],
-                [
-                    'text' => 'Centros de Custo',
-                    'url'  => 'suprimentos/centros-custo',
-                    'icon' => 'fas fa-sitemap',
-                    'can'  => 'cc_financeiro',
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Suprimentos',
-            'icon'        => 'fas fa-truck-loading',
-            'submenu'     => [
-                [
-                    'text' => 'Fornecedores',
-                    'url'  => 'suprimentos/fornecedores',
-                    'icon' => 'fas fa-building',
-                    'can'  => 'fornecedores',
-                ],
-                [
-                    'text' => 'Solicitação',
-                    'url'  => 'suprimentos/solicitacao',
-                    'icon' => 'fas fa-hand-paper',
-                    'can'  => 'Solicitacao',
-                ],
-                [
-                    'text' => 'Cotação',
-                    'url'  => 'suprimentos/cotacao',
-                    'icon' => 'fas fa-file-invoice-dollar',
-                    'can'  => 'cotacao',
-                ],
-                [
-                    'text' => 'Ordem de Compra',
-                    'url'  => 'suprimentos/ordem-compra',
-                    'icon' => 'fas fa-file-contract',
-                    'can'  => 'ordem_compra',
-                ],
-                [
-                    'text' => 'Recebimento',
-                    'url'  => 'suprimentos/recebimento',
-                    'icon' => 'fas fa-clipboard-check',
-                    'can'  => 'recebimento',
-                ],
-                [
-                    'text' => 'Nota Fiscal Entrada',
-                    'url'  => 'suprimentos/nf-entrada',
-                    'icon' => 'fas fa-file-alt',
-                    'can'  => 'nf_entrada',
-                ],
-                // Vale de Retirada - DESATIVADO
-                // [
-                //     'text' => 'Vale de Retirada',
-                //     'url'  => 'suprimentos/vale-retirada',
-                //     'icon' => 'fas fa-hand-holding-box',
-                //     'can'  => 'vale_retirada',
-                // ],
-            ],
-        ],
-        [
-            'text'        => 'Financeiro',
-            'icon'        => 'fas fa-dollar-sign',
-            'can'         => 'Financeiro',
-            'submenu'     => [
-                [
-                    'text' => 'Contas a Pagar',
-                    'url'  => 'financeiro/contas-pagar',
-                    'icon' => 'fas fa-file-invoice',
-                    'can'  => 'contas_pagar',
-                ],
-                [
-                    'text' => 'Contas a Receber',
-                    'url'  => 'financeiro/contas-receber',
-                    'icon' => 'fas fa-hand-holding-usd',
-                    'can'  => 'contas_receber',
-                ],
-                [
-                    'text' => 'Fluxo de Caixa',
-                    'url'  => 'financeiro/fluxo-caixa',
-                    'icon' => 'fas fa-chart-line',
-                    'can'  => 'fluxo_caixa',
-                ],
-                [
-                    'text' => 'Bancos',
-                    'url'  => 'financeiro/bancos',
-                    'icon' => 'fas fa-university',
-                    'can'  => 'bancos',
-                ],
-                [
-                    'text' => 'Categorias',
-                    'url'  => 'financeiro/categorias',
-                    'icon' => 'fas fa-tags',
-                    'can'  => 'cat',
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Frota',
-            'icon'        => 'fas fa-car-side',
-            'submenu'     => [
-                [
-                    'text' => 'Veículos',
-                    'url'  => 'frota/veiculos',
-                    'icon' => 'fas fa-car',
-                    'can'  => 'veiculos',
-                ],
-                [
-                    'text' => 'Abastecimentos',
-                    'url'  => 'frota/abastecimentos',
-                    'icon' => 'fas fa-gas-pump',
-                    'can'  => 'abastecimento',
-                ],
-                [
-                    'text' => 'Manutenções',
-                    'url'  => 'frota/manutencoes',
-                    'icon' => 'fas fa-tools',
-                    'can'  => 'manutencao',
-                ],
-                [
-                    'text' => 'Viagens',
-                    'url'  => 'frota/viagens',
-                    'icon' => 'fas fa-route',
-                    'can'  => 'viagens',
-                ],
-                [
-                    'text' => 'Ocorrências',
-                    'url'  => 'frota/ocorrencias',
-                    'icon' => 'fas fa-exclamation-triangle',
-                    'can'  => 'ocorrencia',
-                ],
-                [
-                    'text' => 'Gestor de Ocorrências',
-                    'url'  => 'frota/ocorrencias/gestor',
-                    'icon' => 'fas fa-tasks',
-                    'can'  => 'Gestão de Ocorrencia',
-                ],
-                [
-                    // Relatórios foram movidos para o menu principal "Relatórios"
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Relatório Estoque',
-            'icon'        => 'fas fa-boxes',
-            'submenu'     => [
-                [
-                    'text' => 'Relatório Estoque',
-                    'url'  => 'relatorios/estoque',
-                    'icon' => 'fas fa-boxes',
-                    'can'  => 'relatorio-estoque',
-                ],
-                [
-                    'text' => 'Rel. Máximo e Mínimo',
-                    'url'  => 'relatorios/estoque-min-max',
-                    'icon' => 'fas fa-level-down-alt',
-                    'can'  => 'rel_maxmin',
-                ],
-                [
-                    'text' => 'Relatório C.C.(estoque)',
-                    'url'  => 'relatorios/centro-custo',
-                    'icon' => 'fas fa-building',
-                    'can'  => 'relatorio-centro-custo',
-                ],
-                [
-                    'text' => 'Relatório por Funcionário(estoque)',
-                    'url'  => 'relatorios/funcionario',
-                    'icon' => 'fas fa-user-tie',
-                    'can'  => 'relatorio-funcionario',
-                ],
-                [
-                    'text' => 'Relatório por Produto (Estoque)',
-                    'url'  => 'relatorios/produto-estoque',
-                    'icon' => 'fas fa-box-open',
-                    'can'  => 'rel_por_prod',
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Relatório Frota',
-            'icon'        => 'fas fa-car-side',
-            'submenu'     => [
-                [
-                    'text' => 'Relatório de Abastecimento (Frota)',
-                    'url'  => 'frota/relatorios/abastecimento',
-                    'icon' => 'fas fa-gas-pump',
-                    'can'  => 'rel_abast',
-                ],
-                [
-                    'text' => 'Relatório Consumo (Frota)',
-                    'url'  => 'frota/relatorios/consumo',
-                    'icon' => 'fas fa-chart-line',
-                    'can'  => 'rel_consm',
-                ],
-                [
-                    'text' => 'Relatório Custo Total (Frota)',
-                    'url'  => 'frota/relatorios/custo',
-                    'icon' => 'fas fa-dollar-sign',
-                    'can'  => 'rel_cust',
-                ],
-                [
-                    'text' => 'Relatório Manutenções (Frota)',
-                    'url'  => 'frota/relatorios/manutencoes',
-                    'icon' => 'fas fa-tools',
-                    'can'  => 'Rel_manu',
-                ],
-                [
-                    'text' => 'Relatório de Ocorrências',
-                    'url'  => 'frota/relatorios/ocorrencias',
-                    'icon' => 'fas fa-exclamation-triangle',
-                    'can'  => 'rel_ocorr',
-                ],
-                [
-                    'text' => 'Relatório KM Percorrido (Frota)',
-                    'url'  => 'frota/relatorios/km-percorrido',
-                    'icon' => 'fas fa-road',
-                    'can'  => 'rel_km',
-                ],
-                [
-                    'text' => 'Conferência de NF (Frota)',
-                    'url'  => 'frota/relatorios/conferencia-nf',
-                    'icon' => 'fas fa-file-search',
-                    'can'  => 'Rel_conf_nf',
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Relatório Financeiro',
-            'icon'        => 'fas fa-chart-pie',
-            'submenu'     => [
-                [
-                    'text' => 'Contas a Pagar',
-                    'url'  => 'relatorios/contas-pagar',
-                    'icon' => 'fas fa-file-invoice-dollar',
-                    'can'  => 'Rel_cp',
-                ],
-                [
-                    'text' => 'Contas a Receber',
-                    'url'  => 'relatorios/contas-receber',
-                    'icon' => 'fas fa-hand-holding-usd',
-                    'can'  => 'rel_crec',
-                ],
-                [
-                    'text' => 'Relatório de O.S.',
-                    'url'  => 'relatorios/ordem-servico',
-                    'icon' => 'fas fa-clipboard-list',
-                    'can'  => 'rel_os',
-                ],
-            ],
-        ],
-        [
-            'text' => 'Relatório de Suprimentos',
-            'icon' => 'fas fa-boxes',
-            'url'  => '#',
-            'can_any' => ['Rel_cot', 'rel_sol'],
+            'text'    => 'app.menu.schedule',
+            'icon'    => 'fas fa-calendar-alt',
+            'can_any' => ['cronograma-ver', 'cronograma-criar'],
             'submenu' => [
                 [
-                    'text' => 'Solicitações',
-                    'url'  => 'relatorios/solicitacoes',
-                    'icon' => 'fas fa-clipboard-list',
-                    'can'  => 'rel_sol',
+                    'text' => 'app.menu.construction_schedule',
+                    'url'  => 'cronograma',
+                    'icon' => 'fas fa-tasks',
+                    'can'  => 'cronograma-ver',
                 ],
                 [
-                    'text' => 'Cotações',
-                    'url'  => 'relatorios/cotacoes',
-                    'icon' => 'fas fa-file-invoice-dollar',
-                    'can'  => 'Rel_cot',
+                    'text' => 'app.menu.new_activity',
+                    'url'  => 'cronograma/criar',
+                    'icon' => 'fas fa-plus-circle',
+                    'can'  => 'cronograma-criar',
+                ],
+                [
+                    'text' => 'app.menu.schedule_occurrences',
+                    'url'  => 'cronograma/ocorrencias',
+                    'icon' => 'fas fa-exclamation-circle',
+                    'can'  => 'ocorrencias-cronograma-ver',
                 ],
             ],
         ],
+
+        // ── Diário de Obra ───────────────────────────────────────────────────
         [
-            'text' => 'Gerenciamento',
-            'icon' => 'fas fa-users-cog',
-            'url'  => '#',
-            // Só mostra se o usuário tiver pelo menos uma dessas permissões
+            'text'    => 'app.menu.work_diary',
+            'icon'    => 'fas fa-book-open',
+            'can_any' => ['diario-ver', 'diario-criar'],
+            'submenu' => [
+                [
+                    'text' => 'app.menu.all_records',
+                    'url'  => 'diario',
+                    'icon' => 'fas fa-list',
+                    'can'  => 'diario-ver',
+                ],
+                [
+                    'text' => 'app.menu.new_record',
+                    'url'  => 'diario/novo',
+                    'icon' => 'fas fa-plus-circle',
+                    'can'  => 'diario-criar',
+                ],
+            ],
+        ],
+
+        // ── Controle de Gastos ───────────────────────────────────────────────
+        [
+            'text'    => 'app.menu.cost_control',
+            'icon'    => 'fas fa-dollar-sign',
+            'can_any' => ['gastos-ver', 'fluxo-caixa-ver'],
+            'submenu' => [
+                [
+                    'text' => 'app.menu.project_costs',
+                    'url'  => 'gastos',
+                    'icon' => 'fas fa-file-invoice-dollar',
+                    'can'  => 'gastos-ver',
+                ],
+                [
+                    'text' => 'app.menu.record_cost',
+                    'url'  => 'gastos/criar',
+                    'icon' => 'fas fa-plus-circle',
+                    'can'  => 'gastos-criar',
+                ],
+                [
+                    'text' => 'app.menu.cash_flow',
+                    'url'  => 'gastos/fluxo-caixa',
+                    'icon' => 'fas fa-chart-line',
+                    'can'  => 'fluxo-caixa-ver',
+                ],
+            ],
+        ],
+
+        // ── Gestão de Compras / Fornecedores ────────────────────────────────
+        [
+            'text'    => 'Gestão de Compras',
+            'icon'    => 'fas fa-truck',
+            'submenu' => [
+                [
+                    'text' => 'Fornecedores',
+                    'url'  => 'fornecedores',
+                    'icon' => 'fas fa-building',
+                ],
+                [
+                    'text' => 'Novo Fornecedor',
+                    'url'  => 'fornecedores/novo',
+                    'icon' => 'fas fa-plus',
+                ],
+                [
+                    'text' => 'Comparar Preços',
+                    'url'  => 'fornecedores/relatorio-comparacao',
+                    'icon' => 'fas fa-chart-bar',
+                ],
+                ['header' => 'Categorias'],
+                [
+                    'text' => 'Categorias de Custo',
+                    'url'  => 'categorias-custo',
+                    'icon' => 'fas fa-tags',
+                ],
+            ],
+        ],
+
+        // ── Funcionários (RH de Obra) ────────────────────────────────────────
+        [
+            'text'    => 'app.menu.employees',
+            'icon'    => 'fas fa-hard-hat',
+            'can_any' => ['funcionarios-ver', 'apontamento-ver'],
+            'submenu' => [
+                [
+                    'text' => 'app.menu.employee_registration',
+                    'url'  => 'funcionarios',
+                    'icon' => 'fas fa-users',
+                    'can'  => 'funcionarios-ver',
+                ],
+                [
+                    'text' => 'app.menu.daily_timesheet',
+                    'url'  => 'funcionarios/apontamento',
+                    'icon' => 'fas fa-clock',
+                    'can'  => 'apontamento-ver',
+                ],
+                [
+                    'text' => 'app.menu.approve_timesheets',
+                    'url'  => 'funcionarios/apontamento/aprovar',
+                    'icon' => 'fas fa-check-circle',
+                    'can'  => 'apontamento-aprovar',
+                ],
+            ],
+        ],
+
+        // ── Suprimentos ─────────────────────────────────────────────────────
+        // DESATIVADO — módulo não será utilizado
+        // [
+        //     'text'    => 'app.menu.supplies',
+        //     'icon'    => 'fas fa-truck-loading',
+        //     'can_any' => ['materiais-ver', 'solicitacao-compra-ver', 'cotacao-ver', 'ordem-compra-ver', 'estoque-ver', 'fornecedores-ver'],
+        //     'submenu' => [
+        //         ['text' => 'app.menu.materials',       'url' => 'suprimentos/materiais',      'icon' => 'fas fa-box',                'can' => 'materiais-ver'],
+        //         ['text' => 'app.menu.suppliers',       'url' => 'suprimentos/fornecedores',   'icon' => 'fas fa-building',           'can' => 'fornecedores-ver'],
+        //         ['text' => 'app.menu.purchase_request','url' => 'suprimentos/solicitacoes',   'icon' => 'fas fa-hand-paper',         'can' => 'solicitacao-compra-ver'],
+        //         ['text' => 'app.menu.quotations',      'url' => 'suprimentos/cotacoes',       'icon' => 'fas fa-file-invoice-dollar','can' => 'cotacao-ver'],
+        //         ['text' => 'app.menu.purchase_orders', 'url' => 'suprimentos/ordens-compra',  'icon' => 'fas fa-file-contract',      'can' => 'ordem-compra-ver'],
+        //         ['text' => 'app.menu.inventory',       'url' => 'suprimentos/estoque',        'icon' => 'fas fa-boxes',              'can' => 'estoque-ver'],
+        //     ],
+        // ],
+
+        // ── Produção e Avanço Físico ─────────────────────────────────────────
+        [
+            'text'    => 'app.menu.production',
+            'icon'    => 'fas fa-hard-hat',
+            'can_any' => ['producao-ver', 'producao-lancar'],
+            'submenu' => [
+                [
+                    'text' => 'app.menu.physical_progress',
+                    'url'  => 'producao',
+                    'icon' => 'fas fa-chart-bar',
+                    'can'  => 'producao-ver',
+                ],
+                [
+                    'text' => 'app.menu.record_measurement',
+                    'url'  => 'producao/medicao',
+                    'icon' => 'fas fa-ruler-combined',
+                    'can'  => 'producao-lancar',
+                ],
+                [
+                    'text' => 'app.menu.approve_measurements',
+                    'url'  => 'producao/aprovacao',
+                    'icon' => 'fas fa-check-double',
+                    'can'  => 'producao-aprovar',
+                ],
+            ],
+        ],
+
+        // ── Riscos e Ocorrências ─────────────────────────────────────────────
+        [
+            'text'    => 'app.menu.risks_occurrences',
+            'icon'    => 'fas fa-exclamation-triangle',
+            'can_any' => ['riscos-ver', 'ocorrencias-ver'],
+            'submenu' => [
+                [
+                    'text' => 'app.menu.risk_matrix',
+                    'url'  => 'riscos',
+                    'icon' => 'fas fa-shield-alt',
+                    'can'  => 'riscos-ver',
+                ],
+                [
+                    'text' => 'app.menu.register_risk',
+                    'url'  => 'riscos/criar',
+                    'icon' => 'fas fa-plus-circle',
+                    'can'  => 'riscos-criar',
+                ],
+                [
+                    'text' => 'app.menu.occurrences',
+                    'url'  => 'ocorrencias',
+                    'icon' => 'fas fa-clipboard-list',
+                    'can'  => 'ocorrencias-ver',
+                ],
+                [
+                    'text' => 'app.menu.register_occurrence',
+                    'url'  => 'ocorrencias/criar',
+                    'icon' => 'fas fa-plus-circle',
+                    'can'  => 'ocorrencias-criar',
+                ],
+            ],
+        ],
+
+        // ── Qualidade ────────────────────────────────────────────────────────
+        [
+            'text'    => 'app.menu.quality',
+            'icon'    => 'fas fa-medal',
+            'can_any' => ['qualidade-ver', 'qualidade-checklist'],
+            'submenu' => [
+                [
+                    'text' => 'app.menu.checklists',
+                    'url'  => 'qualidade/checklists',
+                    'icon' => 'fas fa-list-ol',
+                    'can'  => 'qualidade-checklist',
+                ],
+                [
+                    'text' => 'app.menu.inspections',
+                    'url'  => 'qualidade/inspecoes',
+                    'icon' => 'fas fa-search',
+                    'can'  => 'qualidade-inspecao',
+                ],
+                [
+                    'text' => 'app.menu.non_conformities',
+                    'url'  => 'qualidade/nao-conformidades',
+                    'icon' => 'fas fa-times-circle',
+                    'can'  => 'qualidade-nao-conformidade',
+                ],
+            ],
+        ],
+
+        // ── Relatórios ───────────────────────────────────────────────────────
+        [
+            'text'    => 'app.menu.reports',
+            'icon'    => 'fas fa-chart-pie',
+            'can_any' => [
+                'relatorio-curva-s-fisica',
+                'relatorio-curva-s-financeira',
+                'relatorio-cronograma',
+                'relatorio-custos',
+                'relatorio-mao-de-obra',
+                'relatorio-suprimentos',
+                'relatorio-producao',
+                'relatorio-riscos',
+                'relatorio-qualidade',
+            ],
+            'submenu' => [
+                [
+                    'text' => 'app.menu.physical_s_curve',
+                    'url'  => 'relatorios/curva-s-fisica',
+                    'icon' => 'fas fa-chart-area',
+                    'can'  => 'relatorio-curva-s-fisica',
+                ],
+                [
+                    'text' => 'app.menu.financial_s_curve',
+                    'url'  => 'relatorios/curva-s-financeira',
+                    'icon' => 'fas fa-chart-line',
+                    'can'  => 'relatorio-curva-s-financeira',
+                ],
+                [
+                    'text' => 'app.menu.schedule_report',
+                    'url'  => 'relatorios/cronograma',
+                    'icon' => 'fas fa-calendar-check',
+                    'can'  => 'relatorio-cronograma',
+                ],
+                [
+                    'text' => 'app.menu.costs_report',
+                    'url'  => 'relatorios/custos',
+                    'icon' => 'fas fa-file-invoice-dollar',
+                    'can'  => 'relatorio-custos',
+                ],
+                [
+                    'text' => 'app.menu.labor_report',
+                    'url'  => 'relatorios/mao-de-obra',
+                    'icon' => 'fas fa-users',
+                    'can'  => 'relatorio-mao-de-obra',
+                ],
+                [
+                    'text' => 'app.menu.supplies_report',
+                    'url'  => 'relatorios/suprimentos',
+                    'icon' => 'fas fa-boxes',
+                    'can'  => 'relatorio-suprimentos',
+                ],
+                [
+                    'text' => 'app.menu.production_report',
+                    'url'  => 'relatorios/producao',
+                    'icon' => 'fas fa-industry',
+                    'can'  => 'relatorio-producao',
+                ],
+                [
+                    'text' => 'app.menu.risks_report',
+                    'url'  => 'relatorios/riscos',
+                    'icon' => 'fas fa-exclamation-triangle',
+                    'can'  => 'relatorio-riscos',
+                ],
+                [
+                    'text' => 'app.menu.quality_report',
+                    'url'  => 'relatorios/qualidade',
+                    'icon' => 'fas fa-medal',
+                    'can'  => 'relatorio-qualidade',
+                ],
+            ],
+        ],
+
+        // ── Gerenciamento ────────────────────────────────────────────────────
+        [
+            'text'    => 'app.menu.management',
+            'icon'    => 'fas fa-users-cog',
             'can_any' => ['gerenciar-usuarios', 'gerenciar-permissoes'],
             'submenu' => [
                 [
-                    'text' => 'Gerenciar Usuários',
+                    'text' => 'app.menu.users',
                     'url'  => 'usuarios',
                     'icon' => 'fas fa-user-cog',
                     'can'  => 'gerenciar-usuarios',
                 ],
                 [
-                    'text' => 'Gerenciar Permissões',
+                    'text' => 'app.menu.permissions',
                     'url'  => 'permissoes',
                     'icon' => 'fas fa-key',
                     'can'  => 'gerenciar-permissoes',
                 ],
             ],
         ],
+
     ],
 
     /*
@@ -715,12 +695,7 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '/css/theme-sigo.css?v=3.4',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '/js/theme-toggle.js?v=1.1',
+                    'location' => '/css/theme-sigo.css?v=3.6',
                 ],
             ],
         ],

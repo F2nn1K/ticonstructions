@@ -2,7 +2,7 @@
     <!-- Área de Filtros -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Filtros</h3>
+            <h3 class="card-title">{{ __('Filtros') }}</h3>
         </div>
         <div class="card-body">
             <form wire:submit.prevent="buscarDiarias">

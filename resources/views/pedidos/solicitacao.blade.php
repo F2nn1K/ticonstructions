@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Solicitação de Pedido de Compras')
+@section('title', __('Solicitação de Pedido de Compras'))
 
 @section('plugins.Sweetalert2', true)
 
@@ -9,9 +9,9 @@
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-plus-circle text-primary mr-3"></i>
-            Solicitação de Pedido de Compras
+            {{ __('Solicitação de Pedido de Compras') }}
         </h1>
-        <small class="text-muted">Solicite seus pedidos de compras</small>
+        <small class="text-muted">{{ __('Solicite seus pedidos de compras') }}</small>
     </div>
 </div>
 @stop
@@ -24,20 +24,20 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-shopping-cart mr-2"></i>
-                        Nova Solicitação de Compra
+                        {{ __('Nova Solicitação de Compra') }}
                     </h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="data_solicitacao">Data da Solicitação</label>
+                                <label for="data_solicitacao">{{ __('Data da Solicitação') }}</label>
                                 <input type="date" class="form-control" id="data_solicitacao" value="{{ date('Y-m-d') }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="solicitante">Solicitante</label>
+                                <label for="solicitante">{{ __('Solicitante') }}</label>
                                 <input type="text" class="form-control" id="solicitante" value="{{ auth()->user()->name }}" readonly>
                             </div>
                         </div>
@@ -46,17 +46,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="prioridade">Prioridade</label>
+                                <label for="prioridade">{{ __('Prioridade') }}</label>
                                 <select class="form-control" id="prioridade">
-                                    <option value="baixa">Baixa</option>
-                                    <option value="media" selected>Média</option>
-                                    <option value="alta">Alta</option>
+                                    <option value="baixa">{{ __('Baixa') }}</option>
+                                    <option value="media" selected>{{ __('Média') }}</option>
+                                    <option value="alta">{{ __('Alta') }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="centro_custo">Centro de Custo</label>
+                                <label for="centro_custo">{{ __('Centro de Custo') }}</label>
                                 <input type="text" class="form-control" id="centro_custo" placeholder="Digite ao menos 3 letras para buscar centro de custo..." autocomplete="off">
                                 <input type="hidden" id="centro_custo_id" name="centro_custo_id">
                                 <div id="cc-suggestions" class="dropdown-menu w-100" style="display: none;"></div>
@@ -68,7 +68,7 @@
                     <div class="row" id="rota-container">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="rota">Rota</label>
+                                <label for="rota">{{ __('Rota') }}</label>
                                 <select class="form-control" id="rota" disabled>
                                     <option value="">Selecione primeiro um centro de custo...</option>
                                 </select>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="roteirizacao">Roteirização</label>
+                                <label for="roteirizacao">{{ __('Roteirização') }}</label>
                                 <select class="form-control" id="roteirizacao" disabled>
                                     <option value="">Selecione primeiro uma rota...</option>
                                 </select>
@@ -90,7 +90,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="produto">Produto <span class="text-danger">*</span></label>
+                                <label for="produto">{{ __('Produto') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="produto" placeholder="Digite ao menos 3 letras para buscar produtos..." autocomplete="off">
                                 <div id="produto-suggestions" class="dropdown-menu w-100" style="display: none;"></div>
                                 <input type="hidden" id="produto_id" name="produto_id">
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="quantidade">Quantidade <span class="text-danger">*</span></label>
+                                <label for="quantidade">{{ __('Quantidade') }} <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" id="quantidade" min="1" value="1" required>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             <div class="form-group">
                                 <label>&nbsp;</label>
                                 <button type="button" class="btn btn-success btn-block" id="btn-adicionar-produto">
-                                    <i class="fas fa-plus mr-2"></i>Adicionar Produto
+                                    <i class="fas fa-plus mr-2"></i>{{ __('Adicionar Produto') }}
                                 </button>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="observacoes">Observações</label>
+                                <label for="observacoes">{{ __('Observações') }}</label>
                                 <textarea class="form-control" id="observacoes" rows="3" placeholder="Observações adicionais..."></textarea>
                             </div>
                         </div>
@@ -125,11 +125,11 @@
                 <div class="card-footer">
                     <button type="button" class="btn btn-primary" id="btn-enviar-solicitacao">
                         <i class="fas fa-paper-plane mr-2"></i>
-                        Enviar Solicitação
+                        {{ __('Enviar Solicitação') }}
                     </button>
                     <button type="button" class="btn btn-secondary ml-2" id="btn-cancelar">
                         <i class="fas fa-times mr-2"></i>
-                        Cancelar
+                        {{ __('Cancelar') }}
                     </button>
                 </div>
             </div>
@@ -141,10 +141,10 @@
                         <div class="card-header">
                             <h5 class="card-title mb-0">
                                 <i class="fas fa-eye mr-2 text-muted"></i>
-                                <span class="text-muted">Produtos para Conferência</span>
+                                <span class="text-muted">{{ __('Produtos para Conferência') }}</span>
                                 <span class="badge badge-secondary ml-2" id="contador-produtos">0</span>
                             </h5>
-                            <small class="text-muted">Confira os produtos selecionados antes de enviar</small>
+                            <small class="text-muted">{{ __('Confira os produtos selecionados antes de enviar') }}</small>
                         </div>
                         <div class="card-body">
                             <div id="produtos-list">

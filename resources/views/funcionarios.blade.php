@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Funcionários')
+@section('title', __('app.menu.employees'))
 
 @section('content_header')
-    <h1><i class="fas fa-users mr-2"></i>Funcionários</h1>
+    <h1><i class="fas fa-users mr-2"></i>{{ __('app.menu.employees') }}</h1>
 @stop
 
 @section('content')
@@ -124,7 +124,7 @@
                 <div class="col-md-2">
                     <label class="form-label">Status</label>
                     <select id="filtroStatus" class="form-control">
-                        <option value="todos" selected>Todos</option>
+                        <option value="todos" selected>{{ __('Todos') }}</option>
                         <option value="trabalhando">Trabalhando</option>
                         <option value="demitido">Demitido</option>
                         <option value="afastado">Afastado</option>
@@ -225,7 +225,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Status</label>
+                                <label>{{ __('Status') }}</label>
                                 <select id="status" class="form-control">
                                     <option value="trabalhando">Trabalhando</option>
                                     <option value="demitido">Demitido</option>
@@ -237,12 +237,12 @@
                     </div>
                     
                     <div class="form-group">
-                        <label>Observações</label>
+                        <label>{{ __('Observações') }}</label>
                         <textarea id="observacoes" class="form-control" rows="3" placeholder="Observações adicionais..."></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save mr-1"></i> Salvar
                     </button>

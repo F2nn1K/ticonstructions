@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Autorizações de Compras')
+@section('title', __('Autorizações de Compras'))
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
     <div>
         <h1 class="m-0 text-dark font-weight-bold">
             <i class="fas fa-check-circle text-success mr-3"></i>
-            Autorização de Pedido de Compras
+            {{ __('Autorização de Pedido de Compras') }}
         </h1>
-        <small class="text-muted">Autorize ou recuse solicitações de compras</small>
+        <small class="text-muted">{{ __('Autorize ou recuse solicitações de compras') }}</small>
     </div>
 </div>
 @stop

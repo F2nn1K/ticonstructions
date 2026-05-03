@@ -44,9 +44,9 @@
                                 <td>{{ ucfirst($centro->tipo ?? '-') }}</td>
                                 <td>
                                     @if($centro->ativo)
-                                        <span class="badge badge-success">Ativo</span>
+                                        <span class="badge badge-success">{{ __('Ativo') }}</span>
                                     @else
-                                        <span class="badge badge-secondary">Inativo</span>
+                                        <span class="badge badge-secondary">{{ __('Inativo') }}</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -122,8 +122,8 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form-control" id="status" name="status">
-                                    <option value="ativo">Ativo</option>
-                                    <option value="inativo">Inativo</option>
+                                    <option value="ativo">{{ __('Ativo') }}</option>
+                                    <option value="inativo">{{ __('Inativo') }}</option>
                                 </select>
                             </div>
                         </div>

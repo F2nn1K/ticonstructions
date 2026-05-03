@@ -4,6 +4,51 @@
 
 @section('css')
 <style>
+    /* Autocomplete para O.S. */
+    .os-autocomplete-wrapper {
+        position: relative;
+    }
+    .os-autocomplete-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ced4da;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 9999;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        display: none;
+    }
+    .os-autocomplete-list .os-item {
+        padding: 10px 12px;
+        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .os-autocomplete-list .os-item:hover {
+        background: #e9f7ef;
+    }
+    .os-autocomplete-list .os-item.selected {
+        background: #28a745;
+        color: #fff;
+    }
+    .os-autocomplete-list .os-item .os-numero {
+        font-weight: bold;
+        color: #28a745;
+    }
+    .os-autocomplete-list .os-item.selected .os-numero {
+        color: #fff;
+    }
+    .os-autocomplete-list .os-item .os-info {
+        font-size: 12px;
+        color: #666;
+    }
+    .os-autocomplete-list .os-item.selected .os-info {
+        color: #ddd;
+    }
     .urgencia-alta { background-color: #f8d7da !important; }
     .urgencia-media { background-color: #fff3cd !important; }
     .urgencia-normal { background-color: #d4edda !important; }
@@ -236,7 +281,7 @@
                             <option value="em_cotacao" {{ request('filtro_status') == 'em_cotacao' ? 'selected' : '' }}>Em Cotação</option>
                             <option value="finalizada" {{ request('filtro_status') == 'finalizada' ? 'selected' : '' }}>Finalizadas</option>
                             <option value="rejeitada" {{ request('filtro_status') == 'rejeitada' ? 'selected' : '' }}>Rejeitadas</option>
-                            <option value="todas" {{ request('filtro_status') == 'todas' ? 'selected' : '' }}>Todas</option>
+                            <option value="todas" {{ request('filtro_status') == 'todas' ? 'selected' : '' }}>{{ __('Todas') }}</option>
                         </select>
                     </div>
                     <div class="col-md-4">
@@ -435,7 +480,7 @@
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-primary" id="btnSalvar">
                         <i class="fas fa-save"></i> Salvar Solicitação
                     </button>
@@ -478,9 +523,13 @@
                     <strong>Descrição:</strong><br>
                     <span id="det-descricao"></span>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" id="det-justificativa-wrapper">
                     <strong>Justificativa:</strong><br>
-                    <span id="det-justificativa"></span>
+                    <span id="det-justificativa" class="d-block text-break" style="white-space: pre-wrap;"></span>
+                </div>
+                <div class="mb-3" id="det-obra-container" style="display: none;">
+                    <strong><i class="fas fa-building text-warning"></i> Obra (Centro de Custo):</strong><br>
+                    <span id="det-obra" class="text-warning font-weight-bold"></span>
                 </div>
                 
                 <hr>
@@ -526,9 +575,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Ordem de Serviço *</label>
-                                <select class="form-control" id="os_id" name="os_id" required>
-                                    <option value="">Selecione uma O.S...</option>
-                                </select>
+                                <div class="os-autocomplete-wrapper">
+                                    <input type="text" class="form-control" id="os_busca" placeholder="Digite para pesquisar (ex: mercado, escola...)" autocomplete="off">
+                                    <input type="hidden" id="os_id" name="os_id" required>
+                                    <input type="hidden" id="os_cc_id" name="centro_custo_id">
+                                    <div class="os-autocomplete-list" id="os_lista"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -629,7 +681,7 @@
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
                     <button type="submit" class="btn btn-success" id="btnSalvarOS">
                         <i class="fas fa-save"></i> Criar Solicitação Vinculada
                     </button>
@@ -643,6 +695,9 @@
 
 @section('js')
 <script>
+// Variável global para armazenar todas as O.S.
+var todasOrdensServico = [];
+
 $(function() {
     // ===== SOLICITAÇÃO VIA O.S. =====
     
@@ -683,42 +738,99 @@ $(function() {
         
         // Carregar O.S. abertas (todas=1 para mostrar todas as O.S. de todos os usuários)
         $.get('/area-tecnica/api/gestao-os/listar?status=aberta&todas=1', function(response) {
-            var select = $('#os_id');
-            select.html('<option value="">Selecione uma O.S...</option>');
-            if (response.ordens && response.ordens.length > 0) {
-                response.ordens.forEach(function(os) {
-                    // Montar texto com número, centro de custo e criado por
-                    var texto = os.numero_os;
-                    if (os.centro_custo_nome) {
-                        texto += ' | ' + os.centro_custo_nome;
-                    }
-                    if (os.criado_por) {
-                        texto += ' | ' + os.criado_por;
-                    }
-                    select.append('<option value="' + os.id + '" data-numero="' + os.numero_os + '" data-data="' + os.data_os + '" data-descricao="' + (os.descricao_servico || '') + '" data-cc="' + (os.centro_custo_nome || '-') + '" data-cc-id="' + (os.centro_custo_id || '') + '" data-criador="' + (os.criado_por || '-') + '">' + texto + '</option>');
-                });
-            }
+            // Armazenar globalmente para uso posterior
+            todasOrdensServico = response.ordens || [];
+            
+            // Limpar campo de busca
+            $('#os_busca').val('');
+            $('#os_id').val('');
+            $('#os_lista').hide();
         });
         
         $('#modalSolicitacaoOS').modal('show');
     });
     
-    // Ao selecionar uma O.S., mostrar informações
-    $('#os_id').on('change', function() {
-        var selected = $(this).find(':selected');
-        if (selected.val()) {
-            $('#os-numero').text(selected.data('numero'));
-            $('#os-data').text(selected.data('data') ? new Date(selected.data('data') + 'T00:00:00').toLocaleDateString('pt-BR') : '-');
-            $('#os-centro-custo').text(selected.data('cc'));
-            $('#os-descricao').text(selected.data('descricao') || '-');
-            $('#infoOS').show();
+    // Autocomplete de O.S. - ao digitar no campo de busca
+    var timeoutBuscaOS;
+    $('#os_busca').on('input', function() {
+        var termo = $(this).val().trim().toLowerCase();
+        var lista = $('#os_lista');
+        
+        clearTimeout(timeoutBuscaOS);
+        
+        if (termo.length < 2) {
+            lista.hide();
+            return;
+        }
+        
+        timeoutBuscaOS = setTimeout(function() {
+            // Filtrar O.S.s que contêm o termo
+            var resultados = todasOrdensServico.filter(function(os) {
+                var textoCompleto = (os.numero_os || '') + ' ' + (os.centro_custo_nome || '') + ' ' + (os.criado_por || '') + ' ' + (os.descricao_servico || '');
+                return textoCompleto.toLowerCase().indexOf(termo) > -1;
+            });
             
-            // Preencher descrição automaticamente
-            if (!$('#descricao_os').val()) {
-                $('#descricao_os').val('Material para O.S. ' + selected.data('numero'));
+            lista.empty();
+            
+            if (resultados.length === 0) {
+                lista.html('<div class="os-item text-muted text-center">Nenhuma O.S. encontrada</div>');
+            } else {
+                resultados.slice(0, 20).forEach(function(os) {
+                    var html = '<div class="os-item" data-id="' + os.id + '" data-numero="' + os.numero_os + '" data-data="' + (os.data_os || '') + '" data-descricao="' + (os.descricao_servico || '').replace(/"/g, '&quot;') + '" data-cc="' + (os.centro_custo_nome || '-') + '" data-cc-id="' + (os.centro_custo_id || '') + '">';
+                    html += '<span class="os-numero">' + os.numero_os + '</span>';
+                    html += '<span class="os-info"> | ' + (os.centro_custo_nome || '-') + '</span>';
+                    if (os.criado_por) {
+                        html += '<span class="os-info"> | ' + os.criado_por + '</span>';
+                    }
+                    html += '</div>';
+                    lista.append(html);
+                });
             }
-        } else {
-            $('#infoOS').hide();
+            
+            lista.show();
+        }, 200);
+    });
+    
+    // Ao clicar em uma O.S. da lista
+    $(document).on('click', '.os-item[data-id]', function() {
+        var item = $(this);
+        var id = item.data('id');
+        var numero = item.data('numero');
+        var data = item.data('data');
+        var descricao = item.data('descricao');
+        var cc = item.data('cc');
+        var ccId = item.data('cc-id');
+        
+        // Preencher campos (incluindo hidden para centro de custo)
+        $('#os_id').val(id);
+        $('#os_cc_id').val(ccId);
+        $('#os_busca').val(numero + ' | ' + cc);
+        $('#os_lista').hide();
+        
+        // Mostrar informações
+        $('#os-numero').text(numero);
+        $('#os-data').text(data ? new Date(data + 'T00:00:00').toLocaleDateString('pt-BR') : '-');
+        $('#os-centro-custo').text(cc);
+        $('#os-descricao').text(descricao || '-');
+        $('#infoOS').show();
+        
+        // Preencher descrição automaticamente
+        if (!$('#descricao_os').val()) {
+            $('#descricao_os').val('Material para O.S. ' + numero);
+        }
+    });
+    
+    // Fechar lista ao clicar fora
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.os-autocomplete-wrapper').length) {
+            $('#os_lista').hide();
+        }
+    });
+    
+    // Mostrar lista ao focar no campo
+    $('#os_busca').on('focus', function() {
+        if ($(this).val().length >= 2) {
+            $('#os_lista').show();
         }
     });
     
@@ -873,8 +985,8 @@ $(function() {
             return;
         }
         
-        var selected = $('#os_id').find(':selected');
-        var centroCustoId = selected.data('cc-id');
+        var centroCustoId = $('#os_cc_id').val();
+        var numeroOS = $('#os-numero').text(); // Pegar do campo de exibição
         
         // Ativar flag e desabilitar botão
         salvandoSolicitacaoOS = true;
@@ -888,7 +1000,7 @@ $(function() {
             data: {
                 _token: '{{ csrf_token() }}',
                 ordem_servico_id: osId,
-                numero_os: selected.data('numero'),
+                numero_os: numeroOS,
                 centro_custo_id: centroCustoId,
                 urgencia: $('#urgencia_os').val(),
                 descricao: $('#descricao_os').val(),
@@ -1191,7 +1303,17 @@ $(function() {
                 $('#det-data').text(new Date(sol.created_at).toLocaleDateString('pt-BR'));
                 $('#det-solicitante').text(sol.solicitante || '-');
                 $('#det-descricao').text(sol.descricao);
-                $('#det-justificativa').text(sol.justificativa || '-');
+                var textoJust = sol.justificativa || sol.observacoes;
+                textoJust = (textoJust != null && String(textoJust).trim() !== '') ? String(textoJust) : '-';
+                $('#det-justificativa').text(textoJust);
+                
+                // Obra (Centro de Custo)
+                if (sol.centro_custo) {
+                    $('#det-obra').text(sol.centro_custo);
+                    $('#det-obra-container').show();
+                } else {
+                    $('#det-obra-container').hide();
+                }
                 
                 // Status badge
                 var statusBadge = '';

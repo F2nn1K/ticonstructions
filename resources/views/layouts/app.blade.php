@@ -4,6 +4,29 @@
 
 @section('plugins.Sweetalert2', true)
 
+@section('content_top_nav_right')
+    @php $currentLocale = app()->getLocale(); @endphp
+    <li class="nav-item d-flex align-items-center mx-1">
+        @if($currentLocale === 'en')
+            <a href="{{ route('lang.switch', 'pt_BR') }}"
+               class="btn btn-sm btn-outline-light d-flex align-items-center gap-1"
+               title="Mudar para Português"
+               style="font-size:0.78rem; padding:3px 10px; border-radius:20px;">
+                <span style="font-size:1rem;">🇧🇷</span>
+                <span class="d-none d-sm-inline ml-1">PT</span>
+            </a>
+        @else
+            <a href="{{ route('lang.switch', 'en') }}"
+               class="btn btn-sm btn-outline-light d-flex align-items-center gap-1"
+               title="Switch to English"
+               style="font-size:0.78rem; padding:3px 10px; border-radius:20px;">
+                <span style="font-size:1rem;">🇺🇸</span>
+                <span class="d-none d-sm-inline ml-1">EN</span>
+            </a>
+        @endif
+    </li>
+@stop
+
 @section('head')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Meta tags de performance mobile -->
@@ -40,7 +63,7 @@
 
     @if($__showLicenseBanner)
         <div class="alert alert-warning" role="alert">
-            licença do Sistema SIGO expirada entre em contato com suporte
+            {{ __('licença do Sistema SIGO expirada entre em contato com suporte') }}
         </div>
     @endif
 

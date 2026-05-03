@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', 'Autorizações de Compras')
+@section('title', __('Autorizações de Compras'))
 
 @section('content_header')
-<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-gavel text-primary mr-2"></i>Autorizações</h1>
+<h1 class="m-0 text-dark font-weight-bold"><i class="fas fa-gavel text-primary mr-2"></i>{{ __('Autorizações') }}</h1>
 @stop
 
 @section('content')
 <div class="container-fluid">
     <div class="row mb-3">
         <div class="col-md-4">
-            <label for="filtro_mes" class="font-weight-bold text-dark mb-1">Filtrar por mês</label>
+            <label for="filtro_mes" class="font-weight-bold text-dark mb-1">{{ __('Filtrar por mês') }}</label>
             <input type="month" id="filtro_mes" class="form-control">
         </div>
         <div class="col-md-2 d-flex align-items-end">
-            <button type="button" id="btn-limpar-mes" class="btn btn-outline-secondary">Limpar</button>
+            <button type="button" id="btn-limpar-mes" class="btn btn-outline-secondary">{{ __('Limpar') }}</button>
         </div>
     </div>
     <div class="row">
@@ -22,11 +22,11 @@
             <div class="small-box bg-warning shadow-sm box-hover">
                 <div class="inner">
                     <h3 id="count-pendentes" class="mb-0">0</h3>
-                    <p class="mb-0">Pendentes</p>
+                    <p class="mb-0">{{ __('Pendentes') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-clock"></i></div>
                 <a id="lnk-pendentes" href="{{ route('pedidos.autorizacao.pendentes') }}" class="small-box-footer">
-                    Ver pendentes <i class="fas fa-arrow-circle-right"></i>
+                    {{ __('Ver pendentes') }} <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -35,11 +35,11 @@
             <div class="small-box bg-success shadow-sm box-hover">
                 <div class="inner">
                     <h3 id="count-aprovadas" class="mb-0">0</h3>
-                    <p class="mb-0">Aprovadas</p>
+                    <p class="mb-0">{{ __('Aprovadas') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-check"></i></div>
                 <a id="lnk-aprovadas" href="{{ route('pedidos.autorizacao.aprovadas') }}" class="small-box-footer">
-                    Ver aprovadas <i class="fas fa-arrow-circle-right"></i>
+                    {{ __('Ver aprovadas') }} <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -48,11 +48,11 @@
             <div class="small-box bg-danger shadow-sm box-hover">
                 <div class="inner">
                     <h3 id="count-rejeitadas" class="mb-0">0</h3>
-                    <p class="mb-0">Rejeitadas</p>
+                    <p class="mb-0">{{ __('Rejeitadas') }}</p>
                 </div>
                 <div class="icon"><i class="fas fa-times"></i></div>
                 <a id="lnk-rejeitadas" href="{{ route('pedidos.autorizacao.rejeitadas') }}" class="small-box-footer">
-                    Ver rejeitadas <i class="fas fa-arrow-circle-right"></i>
+                    {{ __('Ver rejeitadas') }} <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>

@@ -83,7 +83,7 @@
         <ul class="list-group mb-3" id="md-interacoes"></ul>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button class="btn btn-secondary" data-dismiss="modal">{{ __('Fechar') }}</button>
       </div>
     </div>
   </div>
