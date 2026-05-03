@@ -68,6 +68,16 @@
     color: #198754;
     font-weight: 700;
 }
+
+/* Fluxo lançamento → valores */
+.secao-valores-highlight {
+    transition: box-shadow .35s ease, border-color .35s ease;
+}
+.secao-valores-highlight.ativo {
+    box-shadow: 0 8px 28px rgba(168,135,58,.28) !important;
+    border: 2px solid #A8873A !important;
+}
+#resumoAntesValores { border-radius: 10px; }
 </style>
 @stop
 
@@ -155,7 +165,7 @@
 </div>
 
 {{-- ── 3. Categoria, Tipo e Modo ──────────────────────────────────── --}}
-<div class="card bloco-card">
+<div class="card bloco-card" id="secaoProdutoTipo">
     <div class="bloco-header"><h6><i class="fas fa-tags mr-2"></i>{{ __('Categoria e Tipo de Lançamento') }}</h6></div>
     <div class="card-body pb-2">
         {{-- Descrição (primeiro) — mesmo texto no histórico preenche categoria/unidade --}}
@@ -167,7 +177,7 @@
                        placeholder="{{ __('Ex: Cimento CP II 50kg, Pedreiro hora extra, Empreitada alvenaria...') }}">
                 <div id="dropdownCatalogoProduto" class="list-group" role="listbox" style="display:none"></div>
             </div>
-            <small class="text-muted" style="font-size:.72rem">{{ __('Descrições salvas nesta obra completam automaticamente categoria, subcategoria, tipo e unidade; alterações são gravadas para o próximo uso.') }}</small>
+            <small class="text-muted" style="font-size:.72rem">{{ __('Descrições já usadas nesta obra aparecem ao digitar. Use Cadastrar (novo insumo) com obra, categoria e tipo preenchidos para gravar categoria, subcategoria, tipo e unidade; depois escolha o item na lista (pode alterar antes de salvar o lançamento).') }}</small>
             @error('descricao')<span class="invalid-feedback">{{ $message }}</span>@enderror
         </div>
 
@@ -251,13 +261,39 @@
                 </button>
             </div>
         </div>
+
+        {{-- Confirmar dados do item e enviar usuário ao bloco de valores --}}
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-stretch align-items-md-center mt-3 pt-3 border-top">
+            <p class="small text-muted mb-2 mb-md-0 mr-md-3 flex-grow-1" id="hintLancarValores">{{ __('Confira descrição, categoria e modo. Clique em Lançar para preencher o valor logo abaixo.') }}</p>
+            <button type="button" class="btn font-weight-bold px-4 align-self-md-end shadow-sm text-white flex-shrink-0" id="btnLancarParaValores"
+                    style="background:linear-gradient(135deg,#1A9E6E,#2abf8f);border:none;border-radius:8px">
+                <i class="fas fa-level-down-alt mr-2"></i>{{ __('Lançar') }}
+            </button>
+        </div>
     </div>
 </div>
 
 {{-- ── 4. Valores ───────────────────────────────────────────────────── --}}
-<div class="card bloco-card">
+<div class="card bloco-card secao-valores-highlight" id="secaoValores">
     <div class="bloco-header"><h6 id="tituloBloco3"><i class="fas fa-calculator mr-2"></i>{{ __('Valores') }}</h6></div>
     <div class="card-body pb-2">
+        <p id="avisoValoresVazio" class="small text-muted mb-3 border rounded p-3 bg-white" style="border-color:#eee!important;">
+            <i class="fas fa-info-circle mr-1" style="color:#A8873A"></i>
+            {{ __('Use o botão Lançar no bloco acima para consolidar os dados do item aqui e informar o valor.') }}
+        </p>
+
+        <div id="resumoAntesValores" class="mb-3 p-3 bg-white border" style="display:none;border-radius:10px;background:linear-gradient(135deg,#fdfbf5,#fff)!important;border-color:rgba(168,135,58,.42)!important;">
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start">
+                <div>
+                    <small class="text-muted font-weight-bold text-uppercase" style="font-size:.65rem">{{ __('Item definido para este lançamento') }}</small>
+                    <div id="resumoDescLinha" class="font-weight-bold text-dark mb-1" style="font-size:1rem"></div>
+                    <div id="resumoMetaLinha" class="small text-muted" style="line-height:1.45"></div>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-secondary flex-shrink-0" id="btnAlterarItemValores">
+                    <i class="fas fa-edit mr-1"></i>{{ __('Alterar dados do item') }}
+                </button>
+            </div>
+        </div>
 
         <div id="blocoComMedida">
             <div class="row align-items-end">
@@ -459,6 +495,131 @@ var MODOS = {
 
 var modoAtual = document.getElementById('hiddenModo').value || 'por_unidade';
 
+// ── Fluxo: botão Lançar leva dados do item à secção Valores
+function textoOpcaoSelect(idSel) {
+    var sel = document.getElementById(idSel);
+    if (!sel || sel.selectedIndex < 0) return '';
+    var t = sel.options[sel.selectedIndex].text || '';
+    return String(t).replace(/\s+/g, ' ').trim();
+}
+
+function subCatUsavel() {
+    var sel = document.getElementById('selectSubcategoria');
+    if (!sel || !String(sel.value || '').trim()) return '';
+    return textoOpcaoSelect('selectSubcategoria');
+}
+
+function refreshResumoValoresPainel() {
+    document.getElementById('resumoDescLinha').textContent =
+        (document.getElementById('campoDescricao').value || '').trim();
+
+    var catTxt = textoOpcaoSelect('selectCategoria');
+    var sub = subCatUsavel();
+    var tipoLbl = textoOpcaoSelect('selectTipo');
+    var modoLbl = (MODOS[modoAtual] || MODOS['por_unidade']).label;
+
+    var bullets = [];
+    bullets.push({!! json_encode(__('Categoria')) !!} + ': ' + catTxt);
+    if (sub) bullets.push({!! json_encode(__('Subcategoria')) !!} + ': ' + sub);
+    bullets.push({!! json_encode(__('Tipo')) !!} + ': ' + tipoLbl);
+    bullets.push({!! json_encode(__('Modo')) !!} + ': ' + modoLbl);
+
+    var qFmt = '';
+    if (!isModoValorDireto()) {
+        var qRaw = parseFloat(document.getElementById('qtd').value);
+        var uni = '';
+        if (modoAtual === 'por_hora') uni = 'h';
+        else uni = (document.getElementById('unidade').value || '').trim();
+
+        qFmt = '';
+        if (!isNaN(qRaw) && qRaw >= 0.001)
+            qFmt = qRaw.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 3 }) +
+                (uni ? ' \u00D7 ' + uni : '');
+        bullets.push({!! json_encode(__('Quantidade')) !!} + ': ' + (qFmt || '—'));
+    } else {
+        bullets.push({!! json_encode(__('Quantidade')) !!} + ': ' + {!! json_encode(__('1 (valor direto)')) !!});
+    }
+
+    document.getElementById('resumoMetaLinha').textContent = bullets.join(' · ');
+}
+
+function atualizarResumoSeVisivel() {
+    var r = document.getElementById('resumoAntesValores');
+    if (!r || r.style.display === 'none' || window.getComputedStyle(r).display === 'none') return;
+    refreshResumoValoresPainel();
+}
+
+function expandirPainelResumoValor() {
+    refreshResumoValoresPainel();
+    document.getElementById('avisoValoresVazio').style.display = 'none';
+    document.getElementById('resumoAntesValores').style.display = 'block';
+    document.getElementById('secaoValores').classList.add('ativo');
+
+    var hk = document.getElementById('hintLancarValores');
+    if (hk) {
+        hk.classList.remove('text-muted');
+        hk.classList.add('text-success', 'small', 'font-weight-bold', 'mb-2', 'mb-md-0');
+        hk.innerHTML = '<i class="fas fa-check-circle mr-1"></i>{{ __("Dados lançados. Informe abaixo o valor ou preço.") }}';
+    }
+}
+
+function tentarExpandirPainelValorComValidacao(opts) {
+    opts = opts || {};
+    var errs = [];
+
+    if (!document.getElementById('selectObra').value) errs.push({!! json_encode(__('Selecione a obra.')) !!});
+    if (!(document.getElementById('campoDescricao').value || '').trim()) errs.push({!! json_encode(__('Informe a descricao.')) !!});
+    if (!document.getElementById('selectCategoria').value) errs.push({!! json_encode(__('Selecione a categoria.')) !!});
+    if (!document.getElementById('selectTipo').value) errs.push({!! json_encode(__('Selecione o tipo.')) !!});
+
+    if (!isModoValorDireto()) {
+        var q = parseFloat(document.getElementById('qtd').value);
+        if (!q || q < 0.001) errs.push({!! json_encode(__('Informe uma quantidade valida (minimo 0,001).')) !!});
+        if (modoAtual === 'por_unidade' && !(document.getElementById('unidade').value || '').trim())
+            errs.push({!! json_encode(__('Informe a unidade.')) !!});
+    }
+
+    if (errs.length) {
+        if (!opts.silentValidation) {
+            Swal.fire({
+                icon: 'warning',
+                title: {!! json_encode(__('Revise antes de lancar')) !!},
+                html: errs.join('<br>'),
+                confirmButtonColor: '#A8873A'
+            });
+        }
+        return false;
+    }
+
+    expandirPainelResumoValor();
+
+    var scrollOk = opts.scroll !== false;
+    var focusOk = opts.focus !== false;
+    var flashBtn = opts.flashBtn !== false;
+
+    if (scrollOk && document.getElementById('secaoValores'))
+        setTimeout(function () {
+            document.getElementById('secaoValores').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 120);
+
+    if (focusOk) {
+        setTimeout(function () {
+            var el = document.getElementById(isModoValorDireto() ? 'valorDireto' : 'custoUnitReal');
+            if (el) el.focus();
+        }, 480);
+    }
+
+    if (flashBtn) {
+        var b = document.getElementById('btnLancarParaValores');
+        if (b) {
+            b.style.transform = 'scale(0.96)';
+            setTimeout(function () { b.style.transition = '.2s'; b.style.transform = 'scale(1)'; }, 140);
+        }
+    }
+
+    return true;
+}
+
 function setModo(modo) {
     modoAtual = modo;
     document.getElementById('hiddenModo').value = modo;
@@ -493,7 +654,7 @@ function setModo(modo) {
 
     var t = document.getElementById('tituloBloco3');
     if (t) t.innerHTML = '<i class="fas fa-calculator mr-2"></i>' +
-        (valorDireto ? @json(__('Valor do lançamento')) : @json(__('Valores')));
+        (valorDireto ? {!! json_encode(__('Valor do lancamento')) !!} : {!! json_encode(__('Valores')) !!});
 
     document.querySelectorAll('.modo-btn').forEach(function(b) {
         b.classList.remove('ativo','ativo-blue','ativo-red');
@@ -506,6 +667,7 @@ function setModo(modo) {
     }
 
     recalcular();
+    atualizarResumoSeVisivel();
 }
 
 function atualizarModosBotoes() {
@@ -596,6 +758,7 @@ document.getElementById('selectCategoria').addEventListener('change', function()
     initSelect2Subcategoria();
 
     persistCatalogoDebounced();
+    atualizarResumoSeVisivel();
 });
 
 // ── Preencher unidade ao escolher subcategoria
@@ -605,6 +768,7 @@ document.getElementById('selectSubcategoria').addEventListener('change', functio
     if (match && modoAtual !== 'por_hora') document.getElementById('unidade').value = match[1];
 
     persistCatalogoDebounced();
+    atualizarResumoSeVisivel();
 });
 
 // ── Calcular total
@@ -718,8 +882,8 @@ function renderOpcoesAutocomplete(items, textoDigitado) {
         return normCatalogoTxt(it.descricao) === nDig;
     });
 
-    var cadastrarLabel  = @json(__('Cadastrar'));
-    var novoInsumoLabel = @json(__('(novo insumo)'));
+    var cadastrarLabel  = {!! json_encode(__('Cadastrar')) !!};
+    var novoInsumoLabel = {!! json_encode(__('(novo insumo)')) !!};
 
     if (!temExato && textoDigitado.trim().length >= 2) {
         var semObra = !obra;
@@ -750,13 +914,27 @@ function renderOpcoesAutocomplete(items, textoDigitado) {
     Array.prototype.slice.call(box.querySelectorAll('.catalogo-opt-novo')).forEach(function (btn) {
         btn.onclick = function () {
             if (!obraSelecionadaId()) {
-                Swal.fire({ icon: 'warning', title: @json(__('Atenção')), text: @json(__('Selecione a obra antes de cadastrar o insumo.')), confirmButtonColor: '#A8873A' });
+                Swal.fire({ icon: 'warning', title: {!! json_encode(__('Atenção')) !!}, text: {!! json_encode(__('Selecione a obra antes de cadastrar o insumo.')) !!}, confirmButtonColor: '#A8873A' });
                 return;
             }
             if (!podePersistCatalogo()) {
-                Swal.fire({ icon: 'info', title: @json(__('Atenção')), text: @json(__('Selecione categoria e tipo antes de registrar o novo insumo na memória.')), confirmButtonColor: '#A8873A' });
+                Swal.fire({ icon: 'info', title: {!! json_encode(__('Atenção')) !!}, text: {!! json_encode(__('Selecione categoria e tipo antes de registrar o novo insumo na memória.')) !!}, confirmButtonColor: '#A8873A' });
                 return;
             }
+            if (!isModoValorDireto() && modoAtual === 'por_unidade') {
+                var uCad = (document.getElementById('unidade').value || '').trim();
+                if (!uCad && !document.getElementById('unidade').readOnly) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: {!! json_encode(__('Unidade')) !!},
+                        text: {!! json_encode(__('Informe a unidade (ex.: un, kg, m2) para gravar este insumo completo na memoria da obra.')) !!},
+                        confirmButtonColor: '#A8873A'
+                    });
+                    document.getElementById('unidade').focus();
+                    return;
+                }
+            }
+            var payloadCad = payloadUpsertCatalogo();
             fetch(URL_CATALOGO_UPSERT, {
                 method: 'POST',
                 headers: {
@@ -764,12 +942,42 @@ function renderOpcoesAutocomplete(items, textoDigitado) {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-                body: JSON.stringify(payloadUpsertCatalogo())
+                body: JSON.stringify(payloadCad)
             })
-                .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
-                .then(function () { fecharDropdownCatalogo(); })
-                .catch(function () {
-                    Swal.fire({ icon: 'error', title: @json(__('Erro')), text: @json(__('Não foi possível salvar o insumo.')), confirmButtonColor: '#A8873A' });
+                .then(function (r) {
+                    return r.json().catch(function () { return {}; }).then(function (body) {
+                        if (!r.ok) {
+                            var linhas = [];
+                            if (body && body.errors) {
+                                Object.keys(body.errors || {}).forEach(function (k) {
+                                    (body.errors[k] || []).forEach(function (m) { linhas.push(m); });
+                                });
+                            }
+                            if (body && body.message && !linhas.length) linhas.push(body.message);
+                            if (!linhas.length) linhas.push({!! json_encode(__('Não foi possível salvar. Verifique os dados.')) !!});
+                            Swal.fire({ icon: 'error', title: {!! json_encode(__('Não gravado')) !!}, html: linhas.join('<br>'), confirmButtonColor: '#A8873A' });
+                            throw new Error('upsert_erro');
+                        }
+                        return body;
+                    });
+                })
+                .then(function (gravado) {
+                    aplicarLinhaSalvaLista(gravado);
+                    Swal.fire({
+                        icon: 'success',
+                        title: {!! json_encode(__('Insumo salvo na obra')) !!},
+                        text: {!! json_encode(__('Ao digitar o nome, escolha o item na lista - categoria, subcategoria, tipo e unidade sao preenchidos automaticamente. Voce pode alterar antes de lancar.')) !!},
+                        confirmButtonColor: '#A8873A'
+                    }).then(function () {
+                        var cx = document.getElementById('campoDescricao');
+                        var tq = cx ? cx.value.trim() : '';
+                        if (tq.length >= 2 && obraSelecionadaId()) buscarCatalogoDebounced(tq);
+                        if (cx) cx.focus();
+                    });
+                })
+                .catch(function (err) {
+                    if (err && err.message === 'upsert_erro') return;
+                    Swal.fire({ icon: 'error', title: {!! json_encode(__('Erro')) !!}, text: {!! json_encode(__('Não foi possível salvar o insumo.')) !!}, confirmButtonColor: '#A8873A' });
                 });
         };
     });
@@ -864,6 +1072,7 @@ var campoDescEl = document.getElementById('campoDescricao');
 if (campoDescEl) {
     campoDescEl.addEventListener('input', function () {
         buscarCatalogoDebounced(this.value.trim());
+        atualizarResumoSeVisivel();
     });
     campoDescEl.addEventListener('focus', function () {
         var t = this.value.trim();
@@ -891,16 +1100,40 @@ campoDescEl && campoDescEl.addEventListener('blur', function () {
 });
 
 // ── Persistir alterações nos selects / qtd / unidade na memória do catálogo
-document.getElementById('selectTipo').addEventListener('change', persistCatalogoDebounced);
+document.getElementById('selectTipo').addEventListener('change', function () {
+    persistCatalogoDebounced();
+    atualizarResumoSeVisivel();
+});
 
-document.getElementById('qtd').addEventListener('input', persistCatalogoDebounced);
-document.getElementById('unidade').addEventListener('input', persistCatalogoDebounced);
+document.getElementById('qtd').addEventListener('input', function () {
+    persistCatalogoDebounced();
+    atualizarResumoSeVisivel();
+});
+document.getElementById('unidade').addEventListener('input', function () {
+    persistCatalogoDebounced();
+    atualizarResumoSeVisivel();
+});
+
+// ── Lançar item para bloco Valores (+ voltar aos dados acima)
+var btnLz = document.getElementById('btnLancarParaValores');
+if (btnLz) {
+    btnLz.addEventListener('click', function () {
+        tentarExpandirPainelValorComValidacao({});
+    });
+}
+var btnEd = document.getElementById('btnAlterarItemValores');
+if (btnEd) {
+    btnEd.addEventListener('click', function () {
+        document.getElementById('secaoProdutoTipo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+}
 
 // ── Obra info
 document.getElementById('selectObra').addEventListener('change', function() {
     document.getElementById('faseInfo').style.display = this.value ? 'block' : 'none';
     fecharDropdownCatalogo();
     persistCatalogoDebounced();
+    atualizarResumoSeVisivel();
 });
 (function() { if (document.getElementById('selectObra').value) document.getElementById('faseInfo').style.display = 'block'; })();
 
@@ -983,7 +1216,7 @@ document.getElementById('btnSalvarModalFornecedor').addEventListener('click', fu
 document.getElementById('btnSalvarCategoria').addEventListener('click', function() {
     var nome = document.getElementById('novaCategoriaNome').value.trim();
     var tipo = document.getElementById('novaCategoriaTipo').value;
-    if (!nome) { Swal.fire({ icon: 'warning', title: @json(__('Atenção')), text: '{{ __("Informe o nome") }}', confirmButtonColor: '#A8873A' }); return; }
+    if (!nome) { Swal.fire({ icon: 'warning', title: {!! json_encode(__('Atenção')) !!}, text: '{{ __("Informe o nome") }}', confirmButtonColor: '#A8873A' }); return; }
     fetch('{{ route("api.categorias.store") }}', {
         method:'POST', headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}','Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({nome:nome,tipo:tipo})
@@ -1001,7 +1234,7 @@ document.getElementById('btnSalvarSubcategoria').addEventListener('click', funct
     var catId=document.getElementById('selectCategoria').value;
     var nome=document.getElementById('novaSubcategNome').value.trim();
     var unid=document.getElementById('novaSubcategUnidade').value.trim();
-    if (!nome) { Swal.fire({ icon: 'warning', title: @json(__('Atenção')), text: '{{ __("Informe o nome") }}', confirmButtonColor: '#A8873A' }); return; }
+    if (!nome) { Swal.fire({ icon: 'warning', title: {!! json_encode(__('Atenção')) !!}, text: '{{ __("Informe o nome") }}', confirmButtonColor: '#A8873A' }); return; }
     fetch('{{ route("api.subcategorias.store") }}', {
         method:'POST', headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}','Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({categoria_id:catId,nome:nome,unidade:unid})
@@ -1030,6 +1263,12 @@ document.getElementById('btnNovaSubcateg').addEventListener('click', function() 
     document.getElementById('modosMaoObra').style.display = isMaoObra ? 'flex' : 'none';
     document.getElementById('modosGeral').style.display   = isMaoObra ? 'none' : 'flex';
     setModo(modo);
+
+    @if(old('descricao'))
+    setTimeout(function () {
+        expandirPainelResumoValor();
+    }, 280);
+    @endif
 })();
 </script>
 @stop
