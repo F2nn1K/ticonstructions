@@ -253,25 +253,22 @@ class GastosController extends Controller
 
     public function store(Request $request)
     {
-        $modo = $request->input('modo_lancamento', 'por_unidade');
-        $modoValorDireto = in_array($modo, ['salario', 'empreitada', 'valor_total']);
-
-        $rules = [
+        // Validar campos comuns
+        $request->validate([
             'obra_id'          => 'required|exists:obras,id',
-            'categoria_id'     => 'required|exists:categorias_material,id',
-            'tipo'             => 'required|in:material,servico,mao_de_obra,equipamento,terceiro',
-            'descricao'        => 'required|string|max:255',
             'data_lancamento'  => 'required|date',
-        ];
-        if ($modoValorDireto) {
-            $rules['valor_total_direto'] = 'required|numeric|min:0';
-        } else {
-            $rules['quantidade']           = 'required|numeric|min:0.001';
-            $rules['custo_unitario_real']  = 'required|numeric|min:0';
-        }
-        $request->validate($rules);
+            'itens_json'       => 'required|string',
+        ]);
 
-        $obra      = Obra::findOrFail($request->obra_id);
+        // Decodificar itens
+        $itensJson = $request->input('itens_json', '[]');
+        $itens = json_decode($itensJson, true);
+
+        if (!is_array($itens) || count($itens) === 0) {
+            return back()->withInput()->with('error', __('Adicione pelo menos um item ao lançamento.'));
+        }
+
+        $obra = Obra::findOrFail($request->obra_id);
         $faseAtiva = $obra->faseAtiva;
 
         if (!$faseAtiva) {
@@ -279,56 +276,90 @@ class GastosController extends Controller
                 ->with('error', __('A obra selecionada não possui fase ativa. Verifique o cronograma.'));
         }
 
-        if ($modoValorDireto) {
-            $quantidade         = 1;
-            $unidade            = match($modo) { 'salario' => 'mês', 'empreitada' => 'vb', default => 'vb' };
-            $custoUnitOrcado    = $request->valor_total_orcado ?: null;
-            $custoUnitReal      = $request->valor_total_direto;
-        } elseif ($modo === 'por_hora') {
-            $quantidade         = $request->quantidade;
-            $unidade            = 'h';
-            $custoUnitOrcado    = null;
-            $custoUnitReal      = $request->custo_unitario_real;
-        } else {
-            $quantidade         = $request->quantidade;
-            $unidade            = $request->unidade;
-            $custoUnitOrcado    = null;
-            $custoUnitReal      = $request->custo_unitario_real;
-        }
-
+        // Dados comuns do lançamento
         $nomeFornecedor = $request->fornecedor;
         if ($request->filled('fornecedor_id')) {
             $forn = Fornecedor::find($request->fornecedor_id);
             if ($forn) $nomeFornecedor = $forn->nome_exibicao;
         }
 
-        LancamentoObra::create([
-            'obra_id'                  => $obra->id,
-            'obra_fase_id'             => $faseAtiva->id,
-            'fornecedor_id'            => $request->fornecedor_id ?: null,
-            'categoria_id'             => $request->categoria_id,
-            'subcategoria_id'          => $request->subcategoria_id ?: null,
-            'tipo'                     => $request->tipo,
-            'modo_lancamento'          => $modo,
-            'descricao'                => $request->descricao,
-            'produto_codigo'           => null,
-            'fornecedor'               => $nomeFornecedor,
-            'nota_fiscal'              => $request->nota_fiscal,
-            'quantidade'               => $quantidade,
-            'unidade'                  => $unidade,
-            'custo_unitario_orcado'    => $custoUnitOrcado,
-            'custo_unitario_real'      => $custoUnitReal,
-            'data_lancamento'          => $request->data_lancamento,
-            'data_prevista_pagamento'  => $request->data_prevista_pagamento,
-            'status_pagamento'         => 'pendente',
-            'excluir_base_taxa_admin'  => $request->boolean('excluir_base_taxa_admin'),
-            'observacoes'              => $request->observacoes,
-            'created_by'               => Auth::id(),
+        $qtdCriados = 0;
+
+        DB::beginTransaction();
+        try {
+            foreach ($itens as $item) {
+                $modo = $item['modo_lancamento'] ?? 'por_unidade';
+                $modoValorDireto = in_array($modo, ['salario', 'empreitada', 'valor_total']);
+
+                // Validar item
+                if (empty($item['descricao']) || empty($item['categoria_id']) || empty($item['tipo'])) {
+                    continue; // Pular item inválido
+                }
+
+                if ($modoValorDireto) {
+                    $quantidade      = 1;
+                    $unidade         = match($modo) { 'salario' => 'mês', 'empreitada' => 'vb', default => 'vb' };
+                    $custoUnitOrcado = $item['valor_total_orcado'] ?? null;
+                    $custoUnitReal   = $item['valor_total_direto'] ?? 0;
+                } elseif ($modo === 'por_hora') {
+                    $quantidade      = $item['quantidade'] ?? 1;
+                    $unidade         = 'h';
+                    $custoUnitOrcado = null;
+                    $custoUnitReal   = $item['custo_unitario_real'] ?? 0;
+                } else {
+                    $quantidade      = $item['quantidade'] ?? 1;
+                    $unidade         = $item['unidade'] ?? 'un';
+                    $custoUnitOrcado = null;
+                    $custoUnitReal   = $item['custo_unitario_real'] ?? 0;
+                }
+
+                LancamentoObra::create([
+                    'obra_id'                  => $obra->id,
+                    'obra_fase_id'             => $faseAtiva->id,
+                    'fornecedor_id'            => $request->fornecedor_id ?: null,
+                    'categoria_id'             => $item['categoria_id'],
+                    'subcategoria_id'          => $item['subcategoria_id'] ?: null,
+                    'tipo'                     => $item['tipo'],
+                    'modo_lancamento'          => $modo,
+                    'descricao'                => $item['descricao'],
+                    'produto_codigo'           => null,
+                    'fornecedor'               => $nomeFornecedor,
+                    'nota_fiscal'              => $request->nota_fiscal,
+                    'quantidade'               => $quantidade,
+                    'unidade'                  => $unidade,
+                    'custo_unitario_orcado'    => $custoUnitOrcado,
+                    'custo_unitario_real'      => $custoUnitReal,
+                    'data_lancamento'          => $request->data_lancamento,
+                    'data_prevista_pagamento'  => $request->data_prevista_pagamento,
+                    'status_pagamento'         => 'pendente',
+                    'excluir_base_taxa_admin'  => $item['excluir_taxa_adm'] ?? false,
+                    'observacoes'              => $request->observacoes,
+                    'created_by'               => Auth::id(),
+                ]);
+
+                // Persistir no catálogo
+                $this->persistCatalogoItem((int) $obra->id, $item['descricao'], [
+                    'categoria_id'      => (int) $item['categoria_id'],
+                    'subcategoria_id'   => !empty($item['subcategoria_id']) ? (int) $item['subcategoria_id'] : null,
+                    'tipo'              => $item['tipo'],
+                    'unidade'           => $unidade ?: null,
+                    'quantidade_padrao' => !$modoValorDireto ? round((float) $quantidade, 3) : null,
+                ]);
+
+                $qtdCriados++;
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withInput()->with('error', __('Erro ao salvar lançamentos: ') . $e->getMessage());
+        }
+
+        $msg = __(':qtd item(ns) registrado(s) na fase ":fase" da obra ":obra".', [
+            'qtd'  => $qtdCriados,
+            'fase' => $faseAtiva->nome,
+            'obra' => $obra->nome
         ]);
-
-        $this->persistCatalogoFromGastoRequest((int) $obra->id, $request, $modoValorDireto, $quantidade, $unidade);
-
-        $msg = __('Custo registrado na fase ":fase" da obra ":obra".', ['fase' => $faseAtiva->nome, 'obra' => $obra->nome]);
 
         if ($request->input('action') === 'save_new') {
             return redirect()->route('gastos.create', ['obra_id' => $obra->id])->with('success', $msg);

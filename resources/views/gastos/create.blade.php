@@ -77,7 +77,163 @@
     box-shadow: 0 8px 28px rgba(168,135,58,.28) !important;
     border: 2px solid #A8873A !important;
 }
-#resumoAntesValores { border-radius: 10px; }
+
+/* Tabela de itens do lançamento */
+#tabelaItens tbody tr { transition: background .15s; }
+#tabelaItens tbody tr:hover { background: rgba(168,135,58,.08); }
+#tabelaItens .btn-acoes { padding: 2px 6px; font-size: .7rem; }
+#wrapTabelaItens { border-radius: 8px; overflow: hidden; border: 1px solid #dee2e6; }
+
+/* Painel de entrada de valor - estilo O.C. com cores do sistema */
+#painelEntradaValor {
+    border-radius: 10px;
+    border: 1.5px solid rgba(168,135,58,.55) !important;
+    background: linear-gradient(135deg, #3a2e10 0%, #2c2208 100%);
+    box-shadow: 0 4px 20px rgba(168,135,58,.15);
+    overflow: hidden;
+}
+.painel-oc-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+}
+.painel-oc-produto {
+    flex: 2 1 180px;
+    min-width: 140px;
+}
+.painel-oc-produto .prod-nome {
+    font-size: .95rem;
+    font-weight: 700;
+    color: #f5e6c0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.painel-oc-produto .prod-meta {
+    font-size: .7rem;
+    color: #c9a84c;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.painel-oc-field {
+    flex: 1 1 90px;
+    min-width: 80px;
+}
+.painel-oc-field label {
+    font-size: .6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #c9a84c;
+    margin-bottom: 3px;
+    display: block;
+}
+.painel-oc-field .form-control,
+.painel-oc-field .input-group .form-control {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(168,135,58,.5);
+    color: #f5e6c0;
+    font-weight: 600;
+    border-radius: 6px;
+    font-size: .9rem;
+    height: 36px;
+}
+.painel-oc-field .form-control:focus,
+.painel-oc-field .input-group .form-control:focus {
+    background: rgba(255,255,255,.12);
+    border-color: #A8873A;
+    color: #fff;
+    box-shadow: 0 0 0 2px rgba(168,135,58,.3);
+}
+.painel-oc-field .form-control[readonly] {
+    background: rgba(0,0,0,.2);
+    color: #c9a84c;
+    cursor: default;
+}
+.painel-oc-field .input-group-text {
+    background: rgba(168,135,58,.2);
+    border: 1px solid rgba(168,135,58,.5);
+    color: #d4a843;
+    font-weight: 700;
+    font-size: .82rem;
+    height: 36px;
+    padding: 0 10px;
+}
+.painel-oc-total {
+    flex: 1 1 110px;
+    min-width: 100px;
+    text-align: center;
+}
+.painel-oc-total label {
+    font-size: .6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #c9a84c;
+    margin-bottom: 3px;
+    display: block;
+}
+.painel-oc-total .total-valor {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #f5c842;
+    background: rgba(168,135,58,.18);
+    border: 1px solid rgba(168,135,58,.45);
+    border-radius: 6px;
+    padding: 5px 10px;
+    display: block;
+    height: 36px;
+    line-height: 24px;
+}
+.painel-oc-adm {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+.painel-oc-adm label.adm-lbl {
+    font-size: .6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #c9a84c;
+    letter-spacing: .06em;
+}
+.painel-oc-adm .custom-control-label { color: #c9a84c !important; }
+.painel-oc-cancelar {
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.2);
+    color: rgba(255,255,255,.5);
+    font-size: .75rem;
+    padding: 0 12px;
+    border-radius: 6px;
+    height: 36px;
+    transition: all .2s;
+    align-self: flex-end;
+    white-space: nowrap;
+}
+.painel-oc-cancelar:hover { border-color: #e57373; color: #e57373; background: rgba(229,115,115,.08); }
+.btn-oc-adicionar {
+    flex: 0 0 auto;
+    background: linear-gradient(135deg, #A8873A, #c9a234);
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: .88rem;
+    padding: 0 22px;
+    border-radius: 7px;
+    height: 36px;
+    box-shadow: 0 2px 8px rgba(168,135,58,.4);
+    transition: all .2s;
+    white-space: nowrap;
+    align-self: flex-end;
+}
+.btn-oc-adicionar:hover { background: linear-gradient(135deg, #8a6c28, #A8873A); color:#fff; box-shadow: 0 4px 14px rgba(168,135,58,.5); transform: translateY(-1px); }
 </style>
 @stop
 
@@ -273,97 +429,159 @@
     </div>
 </div>
 
-{{-- ── 4. Valores ───────────────────────────────────────────────────── --}}
+{{-- ── 4. Itens do Lançamento (tabela de múltiplos itens) ──────────────── --}}
 <div class="card bloco-card secao-valores-highlight" id="secaoValores">
-    <div class="bloco-header"><h6 id="tituloBloco3"><i class="fas fa-calculator mr-2"></i>{{ __('Valores') }}</h6></div>
+    <div class="bloco-header d-flex justify-content-between align-items-center">
+        <h6 class="mb-0"><i class="fas fa-list-alt mr-2"></i>{{ __('Itens do Lançamento') }}</h6>
+        <span id="badgeQtdItens" class="badge badge-pill badge-secondary" style="font-size:.75rem">0 {{ __('itens') }}</span>
+    </div>
     <div class="card-body pb-2">
-        <p id="avisoValoresVazio" class="small text-muted mb-3 border rounded p-3 bg-white" style="border-color:#eee!important;">
+
+        {{-- Aviso inicial --}}
+        <p id="avisoItensVazio" class="small text-muted mb-3 border rounded p-3 bg-white" style="border-color:#eee!important;">
             <i class="fas fa-info-circle mr-1" style="color:#A8873A"></i>
-            {{ __('Use o botão Lançar no bloco acima para consolidar os dados do item aqui e informar o valor.') }}
+            {{ __('Preencha os dados acima e clique em Lançar para adicionar itens. Informe o valor unitário e clique em + Adicionar.') }}
         </p>
 
-        <div id="resumoAntesValores" class="mb-3 p-3 bg-white border" style="display:none;border-radius:10px;background:linear-gradient(135deg,#fdfbf5,#fff)!important;border-color:rgba(168,135,58,.42)!important;">
-            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start">
-                <div>
-                    <small class="text-muted font-weight-bold text-uppercase" style="font-size:.65rem">{{ __('Item definido para este lançamento') }}</small>
-                    <div id="resumoDescLinha" class="font-weight-bold text-dark mb-1" style="font-size:1rem"></div>
-                    <div id="resumoMetaLinha" class="small text-muted" style="line-height:1.45"></div>
+        {{-- Painel de entrada de valor - estilo O.C. (aparece após clicar Lançar) --}}
+        <div id="painelEntradaValor" class="mb-3" style="display:none;">
+
+            {{-- Modo Por Unidade / Por Hora / Salário / Empreitada --}}
+            <div id="blocoComMedida" class="painel-oc-row">
+                {{-- Produto --}}
+                <div class="painel-oc-produto">
+                    <div id="painelDescItem" class="prod-nome"></div>
+                    <div id="painelMetaItem" class="prod-meta"></div>
                 </div>
-                <button type="button" class="btn btn-sm btn-outline-secondary flex-shrink-0" id="btnAlterarItemValores">
-                    <i class="fas fa-edit mr-1"></i>{{ __('Alterar dados do item') }}
+                {{-- Unidade (readonly, exibição) --}}
+                <div class="painel-oc-field" style="flex:0 0 70px">
+                    <label>Unidade</label>
+                    <input type="text" id="painelUnidadeExib" class="form-control text-center" readonly style="cursor:default;">
+                </div>
+                {{-- Qtd (readonly) --}}
+                <div class="painel-oc-field" style="flex:0 0 80px">
+                    <label>Qtd.</label>
+                    <input type="text" id="painelQtdExib" class="form-control text-center" readonly style="cursor:default;">
+                </div>
+                {{-- Valor Unit. --}}
+                <div class="painel-oc-field" style="flex:1 1 120px">
+                    <label id="lblUnitReal">{{ __('Preço Unit.') }} <span style="color:#ff7070">*</span></label>
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend"><span class="input-group-text">R$</span></div>
+                        <input type="number" id="custoUnitReal" class="form-control" step="0.01" min="0" placeholder="0,00">
+                    </div>
+                </div>
+                {{-- Total --}}
+                <div class="painel-oc-total">
+                    <label>Total</label>
+                    <span class="total-valor" id="totalCalc">R$ 0,00</span>
+                </div>
+                {{-- Excluir ADM --}}
+                <div class="painel-oc-adm">
+                    <label class="adm-lbl">Taxa ADM</label>
+                    <div class="custom-control custom-switch mt-1">
+                        <input type="checkbox" class="custom-control-input" id="excluirTaxaAdmItem">
+                        <label class="custom-control-label" for="excluirTaxaAdmItem" style="font-size:.65rem;color:#81c784;">Excluir</label>
+                    </div>
+                </div>
+                {{-- Botão Adicionar --}}
+                <button type="button" class="btn-oc-adicionar" id="btnAdicionarItem">
+                    <i class="fas fa-plus mr-1"></i>{{ __('Adicionar') }}
+                </button>
+                {{-- Cancelar --}}
+                <button type="button" class="painel-oc-cancelar" id="btnCancelarItem">
+                    <i class="fas fa-times mr-1"></i>{{ __('Cancelar') }}
+                </button>
+            </div>
+
+            {{-- Modo Valor Direto --}}
+            <div id="blocoValorDireto" class="painel-oc-row" style="display:none">
+                {{-- Produto --}}
+                <div class="painel-oc-produto">
+                    <div class="prod-nome" id="painelDescItemDireto"></div>
+                    <div class="prod-meta" id="painelMetaItemDireto"></div>
+                </div>
+                {{-- Valor Orçado --}}
+                <div class="painel-oc-field" style="flex:1 1 120px">
+                    <label>{{ __('Valor Orçado') }}</label>
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend"><span class="input-group-text">R$</span></div>
+                        <input type="number" id="valorOrc" class="form-control" step="0.01" min="0" placeholder="0,00">
+                    </div>
+                </div>
+                {{-- Valor Real --}}
+                <div class="painel-oc-field" style="flex:1 1 120px">
+                    <label>{{ __('Valor Real') }} <span style="color:#ff7070">*</span></label>
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend"><span class="input-group-text">R$</span></div>
+                        <input type="number" id="valorDireto" class="form-control" step="0.01" min="0" placeholder="0,00">
+                    </div>
+                </div>
+                {{-- Excluir ADM --}}
+                <div class="painel-oc-adm">
+                    <label class="adm-lbl">Taxa ADM</label>
+                    <div class="custom-control custom-switch mt-1">
+                        <input type="checkbox" class="custom-control-input" id="excluirTaxaAdmDireto">
+                        <label class="custom-control-label" for="excluirTaxaAdmDireto" style="font-size:.65rem;color:#81c784;">Excluir</label>
+                    </div>
+                </div>
+                {{-- Botão Adicionar --}}
+                <button type="button" class="btn-oc-adicionar" id="btnAdicionarItemDireto">
+                    <i class="fas fa-plus mr-1"></i>{{ __('Adicionar') }}
+                </button>
+                {{-- Cancelar --}}
+                <button type="button" class="painel-oc-cancelar" id="btnCancelarItemDireto">
+                    <i class="fas fa-times mr-1"></i>{{ __('Cancelar') }}
                 </button>
             </div>
         </div>
 
-        <div id="blocoComMedida">
-            <div class="row align-items-end">
-                <div class="col-md-4 form-group">
-                    <label class="font-weight-bold small" id="lblUnitReal">{{ __('Unit. Real') }} <span class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text" style="font-size:.75rem">R$</span></div>
-                        <input type="number" name="custo_unitario_real" id="custoUnitReal" class="form-control @error('custo_unitario_real') is-invalid @enderror" step="0.01" min="0" value="{{ old('custo_unitario_real') }}">
-                        @error('custo_unitario_real')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                    </div>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label class="font-weight-bold small">{{ __('Total') }}</label>
-                    <div class="form-control bg-light text-success font-weight-bold text-right" id="totalCalc">R$ 0,00</div>
-                </div>
-                <div class="col-md-5 form-group d-flex align-items-end">
-                    <div class="custom-control custom-switch ml-1 pb-1">
-                        <input type="checkbox" class="custom-control-input" id="excluirTaxaAdm" name="excluir_base_taxa_admin" value="1" {{ old('excluir_base_taxa_admin') ? 'checked':'' }}>
-                        <label class="custom-control-label" for="excluirTaxaAdm" style="font-size:.75rem;line-height:1.3;padding-top:1px">
-                            {{ __('Excluir taxa ADM') }}
-                            <i class="fas fa-info-circle text-muted" title="{{ __('Marque para custos de repasse que não entram na base da taxa de administração.') }}"></i>
-                        </label>
-                    </div>
-                </div>
+        {{-- Tabela de itens adicionados --}}
+        <div id="wrapTabelaItens" style="display:none">
+            <div class="table-responsive">
+                <table class="table table-sm table-hover mb-0" id="tabelaItens" style="font-size:.82rem">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="min-width:200px">{{ __('Produto') }}</th>
+                            <th class="text-center" style="width:70px">{{ __('Qtd') }}</th>
+                            <th class="text-center" style="width:60px">{{ __('Un') }}</th>
+                            <th class="text-right" style="width:100px">{{ __('Unit.') }}</th>
+                            <th class="text-right" style="width:110px">{{ __('Total') }}</th>
+                            <th class="text-center" style="width:70px">{{ __('Ações') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyItens"></tbody>
+                    <tfoot class="bg-light font-weight-bold">
+                        <tr>
+                            <td colspan="4" class="text-right">{{ __('Total Geral:') }}</td>
+                            <td class="text-right text-success" id="totalGeralItens">R$ 0,00</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
 
-        <div id="blocoValorDireto" style="display:none">
-            <div class="row align-items-end">
-                <div class="col-md-3 form-group">
-                    <label class="font-weight-bold" id="lblValorOrc">{{ __('Valor Orçado') }}</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text">R$</span></div>
-                        <input type="number" name="valor_total_orcado" id="valorOrc" class="form-control" step="0.01" min="0" value="{{ old('valor_total_orcado') }}" placeholder="0,00">
-                    </div>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label class="font-weight-bold" id="lblValorReal">{{ __('Valor Real') }} <span class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text">R$</span></div>
-                        <input type="number" name="valor_total_direto" id="valorDireto" class="form-control @error('valor_total_direto') is-invalid @enderror" step="0.01" min="0" value="{{ old('valor_total_direto') }}" placeholder="0,00">
-                        @error('valor_total_direto')<span class="invalid-feedback">{{ $message }}</span>@enderror
-                    </div>
-                </div>
-                <div class="col-md-3 form-group d-flex align-items-end">
-                    <div class="custom-control custom-switch ml-1 pb-1">
-                        <input type="checkbox" class="custom-control-input" id="excluirTaxaAdm2" name="excluir_base_taxa_admin" value="1" {{ old('excluir_base_taxa_admin') ? 'checked':'' }}>
-                        <label class="custom-control-label" for="excluirTaxaAdm2" style="font-size:.75rem;line-height:1.3;padding-top:1px">
-                            {{ __('Excluir taxa ADM') }}
-                        </label>
-                    </div>
-                </div>
-                <div class="col-md-3 form-group d-flex align-items-end">
-                    <div id="badgeModo" class="badge badge-secondary" style="font-size:.75rem;padding:6px 10px;border-radius:20px"></div>
-                </div>
-            </div>
-        </div>
+        {{-- Hidden input para enviar itens como JSON --}}
+        <input type="hidden" name="itens_json" id="itensJsonInput" value="[]">
 
     </div>
 </div>
 
 {{-- Botões --}}
-<div class="d-flex justify-content-end mb-4">
-    <a href="{{ route('gastos.index') }}" class="btn btn-outline-secondary mr-2">{{ __('Cancelar') }}</a>
-    <button type="submit" name="action" value="save" class="btn btn-success px-4">
-        <i class="fas fa-save mr-2"></i>{{ __('Salvar Lançamento') }}
-    </button>
-    <button type="submit" name="action" value="save_new" class="btn btn-primary ml-2 px-4">
-        <i class="fas fa-plus mr-2"></i>{{ __('Salvar e Lançar Outro') }}
-    </button>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <span id="resumoItensRodape" class="text-muted small"></span>
+    </div>
+    <div>
+        <a href="{{ route('gastos.index') }}" class="btn btn-outline-secondary mr-2">{{ __('Cancelar') }}</a>
+        <button type="submit" name="action" value="save" class="btn btn-success px-4" id="btnSalvarLancamento" disabled>
+            <i class="fas fa-save mr-2"></i>{{ __('Salvar Lançamento') }}
+        </button>
+        <button type="submit" name="action" value="save_new" class="btn btn-primary ml-2 px-4" id="btnSalvarNovo" disabled>
+            <i class="fas fa-plus mr-2"></i>{{ __('Salvar e Lançar Outro') }}
+        </button>
+    </div>
 </div>
 
 </form>
@@ -466,6 +684,7 @@
 <script>
 // ── Dados de subcategorias por categoria
 var subcatsData = @json($categorias->mapWithKeys(fn($c) => [$c->id => $c->subcategorias->map(fn($s) => ['id'=>$s->id,'nome'=>$s->nome,'unidade'=>$s->unidade])]));
+console.log('subcatsData carregado:', subcatsData);
 
 var URL_CATALOGO_BUSCAR = @json(route('gastos.catalogo.buscar'));
 var URL_CATALOGO_UPSERT = @json(route('gastos.catalogo.upsert'));
@@ -510,114 +729,27 @@ function subCatUsavel() {
 }
 
 function refreshResumoValoresPainel() {
-    document.getElementById('resumoDescLinha').textContent =
-        (document.getElementById('campoDescricao').value || '').trim();
-
-    var catTxt = textoOpcaoSelect('selectCategoria');
-    var sub = subCatUsavel();
-    var tipoLbl = textoOpcaoSelect('selectTipo');
-    var modoLbl = (MODOS[modoAtual] || MODOS['por_unidade']).label;
-
-    var bullets = [];
-    bullets.push({!! json_encode(__('Categoria')) !!} + ': ' + catTxt);
-    if (sub) bullets.push({!! json_encode(__('Subcategoria')) !!} + ': ' + sub);
-    bullets.push({!! json_encode(__('Tipo')) !!} + ': ' + tipoLbl);
-    bullets.push({!! json_encode(__('Modo')) !!} + ': ' + modoLbl);
-
-    var qFmt = '';
-    if (!isModoValorDireto()) {
-        var qRaw = parseFloat(document.getElementById('qtd').value);
-        var uni = '';
-        if (modoAtual === 'por_hora') uni = 'h';
-        else uni = (document.getElementById('unidade').value || '').trim();
-
-        qFmt = '';
-        if (!isNaN(qRaw) && qRaw >= 0.001)
-            qFmt = qRaw.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 3 }) +
-                (uni ? ' \u00D7 ' + uni : '');
-        bullets.push({!! json_encode(__('Quantidade')) !!} + ': ' + (qFmt || '—'));
-    } else {
-        bullets.push({!! json_encode(__('Quantidade')) !!} + ': ' + {!! json_encode(__('1 (valor direto)')) !!});
-    }
-
-    document.getElementById('resumoMetaLinha').textContent = bullets.join(' · ');
+    // Função mantida para compatibilidade - no novo sistema, o painel de entrada de valor
+    // é preenchido pela função mostrarPainelEntradaValor()
 }
 
 function atualizarResumoSeVisivel() {
-    var r = document.getElementById('resumoAntesValores');
-    if (!r || r.style.display === 'none' || window.getComputedStyle(r).display === 'none') return;
-    refreshResumoValoresPainel();
+    // Mantido para compatibilidade - no novo sistema o resumo é atualizado ao adicionar itens
 }
 
 function expandirPainelResumoValor() {
-    refreshResumoValoresPainel();
-    document.getElementById('avisoValoresVazio').style.display = 'none';
-    document.getElementById('resumoAntesValores').style.display = 'block';
-    document.getElementById('secaoValores').classList.add('ativo');
-
+    // Redireciona para o novo sistema de painel de entrada
     var hk = document.getElementById('hintLancarValores');
     if (hk) {
         hk.classList.remove('text-muted');
         hk.classList.add('text-success', 'small', 'font-weight-bold', 'mb-2', 'mb-md-0');
-        hk.innerHTML = '<i class="fas fa-check-circle mr-1"></i>{{ __("Dados lançados. Informe abaixo o valor ou preço.") }}';
+        hk.innerHTML = '<i class="fas fa-check-circle mr-1"></i>{{ __("Dados lancados. Informe abaixo o valor ou preco.") }}';
     }
 }
 
 function tentarExpandirPainelValorComValidacao(opts) {
-    opts = opts || {};
-    var errs = [];
-
-    if (!document.getElementById('selectObra').value) errs.push({!! json_encode(__('Selecione a obra.')) !!});
-    if (!(document.getElementById('campoDescricao').value || '').trim()) errs.push({!! json_encode(__('Informe a descricao.')) !!});
-    if (!document.getElementById('selectCategoria').value) errs.push({!! json_encode(__('Selecione a categoria.')) !!});
-    if (!document.getElementById('selectTipo').value) errs.push({!! json_encode(__('Selecione o tipo.')) !!});
-
-    if (!isModoValorDireto()) {
-        var q = parseFloat(document.getElementById('qtd').value);
-        if (!q || q < 0.001) errs.push({!! json_encode(__('Informe uma quantidade valida (minimo 0,001).')) !!});
-        if (modoAtual === 'por_unidade' && !(document.getElementById('unidade').value || '').trim())
-            errs.push({!! json_encode(__('Informe a unidade.')) !!});
-    }
-
-    if (errs.length) {
-        if (!opts.silentValidation) {
-            Swal.fire({
-                icon: 'warning',
-                title: {!! json_encode(__('Revise antes de lancar')) !!},
-                html: errs.join('<br>'),
-                confirmButtonColor: '#A8873A'
-            });
-        }
-        return false;
-    }
-
-    expandirPainelResumoValor();
-
-    var scrollOk = opts.scroll !== false;
-    var focusOk = opts.focus !== false;
-    var flashBtn = opts.flashBtn !== false;
-
-    if (scrollOk && document.getElementById('secaoValores'))
-        setTimeout(function () {
-            document.getElementById('secaoValores').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 120);
-
-    if (focusOk) {
-        setTimeout(function () {
-            var el = document.getElementById(isModoValorDireto() ? 'valorDireto' : 'custoUnitReal');
-            if (el) el.focus();
-        }, 480);
-    }
-
-    if (flashBtn) {
-        var b = document.getElementById('btnLancarParaValores');
-        if (b) {
-            b.style.transform = 'scale(0.96)';
-            setTimeout(function () { b.style.transition = '.2s'; b.style.transform = 'scale(1)'; }, 140);
-        }
-    }
-
-    return true;
+    // Esta função é chamada pelo botão Lançar antigo - agora delegamos para o novo sistema
+    // O novo listener do btnLancarParaValores já faz a validação
 }
 
 function setModo(modo) {
@@ -737,25 +869,18 @@ $(function() {
 // ── Carregar subcategorias
 document.getElementById('selectCategoria').addEventListener('change', function() {
     var catId = this.value;
-    var btn   = document.getElementById('btnNovaSubcateg');
-    btn.disabled = !catId;
-
-    if ($('#selectSubcategoria').hasClass('select2-hidden-accessible')) {
-        $('#selectSubcategoria').select2('destroy');
-    }
-
-    var sel = document.getElementById('selectSubcategoria');
     if (!catId) {
-        sel.innerHTML = '<option value="">{{ __("Selecione a categoria primeiro") }}</option>';
+        var sel = document.getElementById('selectSubcategoria');
+        if ($('#selectSubcategoria').hasClass('select2-hidden-accessible')) {
+            $('#selectSubcategoria').select2('destroy');
+        }
+        sel.innerHTML = '<option value="">-- Selecione a categoria primeiro --</option>';
+        initSelect2Subcategoria();
+        var btn = document.getElementById('btnNovaSubcateg');
+        if (btn) btn.disabled = true;
     } else {
-        var subs = subcatsData[catId] || [];
-        sel.innerHTML = '<option value="">-- {{ __("Nenhuma") }} --</option>';
-        subs.forEach(function(s) {
-            sel.innerHTML += '<option value="' + s.id + '">' + s.nome + (s.unidade ? ' (' + s.unidade + ')' : '') + '</option>';
-        });
+        popularSubcategorias(catId, null);
     }
-
-    initSelect2Subcategoria();
 
     persistCatalogoDebounced();
     atualizarResumoSeVisivel();
@@ -821,8 +946,15 @@ function payloadUpsertCatalogo() {
         unidade = unidEl.value.trim() || null;
     }
 
-    var subVal = $('#selectSubcategoria').val();
-    return {
+    // Pegar subcategoria de múltiplas formas para garantir
+    var selSub = document.getElementById('selectSubcategoria');
+    var subVal = selSub ? selSub.value : null;
+    // Se Select2 está ativo, tenta pegar dele também
+    if (!subVal && $('#selectSubcategoria').length) {
+        subVal = $('#selectSubcategoria').val();
+    }
+    
+    var payload = {
         obra_id: obraId ? parseInt(obraId, 10) : null,
         descricao: desc,
         categoria_id: parseInt(document.getElementById('selectCategoria').value, 10),
@@ -831,11 +963,16 @@ function payloadUpsertCatalogo() {
         unidade: unidade,
         quantidade_padrao: qParsed
     };
+    
+    console.log('payloadUpsertCatalogo - subVal:', subVal, 'payload:', payload);
+    return payload;
 }
 
 function persistCatalogoDebounced() {
     clearTimeout(catalogoPersistTimer);
     catalogoPersistTimer = setTimeout(function () {
+        // Não salvar se estamos carregando dados do catálogo (evita sobrescrever)
+        if (carregandoDoCatalogo) return;
         if (!podePersistCatalogo()) return;
         fetch(URL_CATALOGO_UPSERT, {
             method: 'POST',
@@ -849,13 +986,32 @@ function persistCatalogoDebounced() {
     }, 550);
 }
 
+var carregandoDoCatalogo = false; // Flag para evitar sobrescrever dados durante carregamento
+
 function aplicarLinhaSalvaLista(it) {
+    // Marcar que estamos carregando do catálogo para não sobrescrever
+    carregandoDoCatalogo = true;
+    
+    // Preencher a descrição com o texto do item selecionado
+    var campoDesc = document.getElementById('campoDescricao');
+    if (campoDesc && it.descricao) {
+        campoDesc.value = it.descricao;
+    }
+    
     var data = Object.assign({ source: 'catalogo' }, it);
     aplicarHintLancamento(data);
     fecharDropdownCatalogo();
+    
+    // Liberar a flag após os dados serem carregados (1500ms - maior que o debounce de 550ms)
+    setTimeout(function() {
+        carregandoDoCatalogo = false;
+        var nextField = document.getElementById('qtd');
+        if (nextField) nextField.focus();
+    }, 1500);
 }
 
 function renderOpcoesAutocomplete(items, textoDigitado) {
+    console.log('renderOpcoesAutocomplete:', items.length, 'itens, texto:', textoDigitado);
     var box = document.getElementById('dropdownCatalogoProduto');
     if (textoDigitado.length < 2) {
         box.style.display = 'none';
@@ -883,25 +1039,35 @@ function renderOpcoesAutocomplete(items, textoDigitado) {
     });
 
     var cadastrarLabel  = {!! json_encode(__('Cadastrar')) !!};
+    var atualizarLabel  = {!! json_encode(__('Salvar')) !!};
     var novoInsumoLabel = {!! json_encode(__('(novo insumo)')) !!};
+    var atualizarInsumoLabel = {!! json_encode(__('(atualizar dados)')) !!};
 
-    if (!temExato && textoDigitado.trim().length >= 2) {
+    // Sempre mostrar opção de cadastrar/atualizar quando texto >= 2 chars
+    if (textoDigitado.trim().length >= 2) {
         var semObra = !obra;
+        var labelBtn = temExato ? atualizarLabel : cadastrarLabel;
+        var labelTipo = temExato ? atualizarInsumoLabel : novoInsumoLabel;
+        var iconClass = temExato ? 'fas fa-save' : 'fas fa-plus-circle';
+        
         html += '<button type="button" class="list-group-item list-group-item-action catalogo-opt cat-nuevo-insumo catalogo-opt-novo py-2"' +
             (semObra ? ' style="opacity:.55"' : '') + '>';
-        html += '<span class="mr-2 cat-plus"><i class="fas fa-plus-circle"></i></span>';
-        html += cadastrarLabel + ' \u201c' + escHtml(textoDigitado.trim()) + '\u201d ' + novoInsumoLabel;
+        html += '<span class="mr-2 cat-plus"><i class="' + iconClass + '"></i></span>';
+        html += labelBtn + ' \u201c' + escHtml(textoDigitado.trim()) + '\u201d ' + labelTipo;
         if (semObra) {
             html += ' <small class="text-muted ml-1">({{ __("selecione a obra primeiro") }})</small>';
         }
         html += '</button>';
     }
 
+    console.log('HTML gerado:', html.length, 'chars, temExato:', temExato);
     if (!html.length) {
+        console.log('Nenhum HTML, ocultando dropdown');
         box.style.display = 'none';
         return;
     }
     box.innerHTML = html;
+    console.log('Dropdown preenchido, exibindo');
 
     Array.prototype.slice.call(box.querySelectorAll('.catalogo-opt-linha')).forEach(function (btn) {
         var ix = parseInt(btn.getAttribute('data-cat-i'), 10);
@@ -913,6 +1079,7 @@ function renderOpcoesAutocomplete(items, textoDigitado) {
 
     Array.prototype.slice.call(box.querySelectorAll('.catalogo-opt-novo')).forEach(function (btn) {
         btn.onclick = function () {
+            console.log('=== BOTAO SALVAR/CADASTRAR CLICADO ===');
             if (!obraSelecionadaId()) {
                 Swal.fire({ icon: 'warning', title: {!! json_encode(__('Atenção')) !!}, text: {!! json_encode(__('Selecione a obra antes de cadastrar o insumo.')) !!}, confirmButtonColor: '#A8873A' });
                 return;
@@ -935,6 +1102,7 @@ function renderOpcoesAutocomplete(items, textoDigitado) {
                 }
             }
             var payloadCad = payloadUpsertCatalogo();
+            console.log('Enviando para API:', payloadCad);
             fetch(URL_CATALOGO_UPSERT, {
                 method: 'POST',
                 headers: {
@@ -962,6 +1130,7 @@ function renderOpcoesAutocomplete(items, textoDigitado) {
                     });
                 })
                 .then(function (gravado) {
+                    console.log('Resposta do servidor:', gravado);
                     aplicarLinhaSalvaLista(gravado);
                     Swal.fire({
                         icon: 'success',
@@ -995,24 +1164,73 @@ function buscarCatalogoDebounced(txt) {
     clearTimeout(catalogoBuscaTimer);
     catalogoBuscaTimer = setTimeout(function () {
         var obra = obraSelecionadaId();
+        console.log('buscarCatalogoDebounced:', txt, 'obra:', obra);
         if (txt.length < 2) {
             fecharDropdownCatalogo();
             return;
         }
         if (!obra) {
             // Sem obra: mostra só o botão de cadastrar (desabilitado por obra)
+            console.log('Sem obra selecionada, mostrando opcao cadastrar desabilitada');
             renderOpcoesAutocomplete([], txt);
             return;
         }
+        console.log('Buscando catalogo em:', URL_CATALOGO_BUSCAR);
         fetch(URL_CATALOGO_BUSCAR + '?obra_id=' + encodeURIComponent(obra) + '&q=' + encodeURIComponent(txt), {
             headers: { Accept: 'application/json' }
         })
             .then(function (r) { return r.json(); })
             .then(function (lista) {
+                console.log('Resultado busca:', lista);
                 renderOpcoesAutocomplete(Array.isArray(lista) ? lista : [], txt);
             })
-            .catch(function () { renderOpcoesAutocomplete([], txt); });
+            .catch(function (err) { 
+                console.error('Erro busca catalogo:', err);
+                renderOpcoesAutocomplete([], txt); 
+            });
     }, 220);
+}
+
+// ── Preenche as opções de subcategoria no <select> e no Select2
+function popularSubcategorias(catId, subIdParaSelecionar) {
+    var sel = document.getElementById('selectSubcategoria');
+    if (!sel) return;
+
+    // Destruir Select2 antes de manipular opções
+    if ($('#selectSubcategoria').hasClass('select2-hidden-accessible')) {
+        $('#selectSubcategoria').select2('destroy');
+    }
+
+    // Popular opções do <select> nativo
+    var subs = subcatsData[catId] || subcatsData[String(catId)] || subcatsData[parseInt(catId)] || [];
+    sel.innerHTML = '<option value="">-- Nenhuma --</option>';
+    subs.forEach(function(s) {
+        var opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = s.nome + (s.unidade ? ' (' + s.unidade + ')' : '');
+        sel.appendChild(opt);
+    });
+
+    // Selecionar subcategoria se informada
+    if (subIdParaSelecionar) {
+        for (var i = 0; i < sel.options.length; i++) {
+            if (String(sel.options[i].value) === String(subIdParaSelecionar)) {
+                sel.selectedIndex = i;
+                break;
+            }
+        }
+    }
+
+    // Re-inicializar Select2
+    initSelect2Subcategoria();
+
+    // Forçar Select2 a mostrar o valor selecionado
+    if (subIdParaSelecionar) {
+        $('#selectSubcategoria').val(String(subIdParaSelecionar)).trigger('change.select2');
+    }
+
+    var btnSub = document.getElementById('btnNovaSubcateg');
+    if (btnSub) btnSub.disabled = !catId;
 }
 
 // ── Dica ao sair da descrição ou ao repetir lançamento: catálogo da obra primeiro, depois histórico
@@ -1024,45 +1242,39 @@ function aplicarHintLancamento(data) {
     // Histórico de lançamento só sugere quando a categoria está vazia; catálogo salvo sempre aplica os dados armazenados
     if (!fromCatalogo && document.getElementById('selectCategoria').value) return;
 
-    $('#selectCategoria').val(String(data.categoria_id)).trigger('change');
+    var catId  = String(data.categoria_id);
+    var subId  = (data.subcategoria_id != null && data.subcategoria_id !== '') ? String(data.subcategoria_id) : null;
 
-    var subId = data.subcategoria_id != null && data.subcategoria_id !== '' ? String(data.subcategoria_id) : null;
+    // 1. Setar categoria no Select2
+    if ($('#selectCategoria').hasClass('select2-hidden-accessible')) {
+        $('#selectCategoria').val(catId).trigger('change.select2');
+    } else {
+        document.getElementById('selectCategoria').value = catId;
+    }
 
-    var tries = 0;
-    var iv = setInterval(function () {
-        tries++;
-        var prontoParaUnidade = false;
-        if (subId) {
-            if ($('#selectSubcategoria option[value="' + subId + '"]').length) {
-                $('#selectSubcategoria').val(subId).trigger('change');
-                prontoParaUnidade = true;
-            }
-        } else {
-            prontoParaUnidade = tries >= 3;
-        }
-        if (prontoParaUnidade || tries >= 40) {
-            clearInterval(iv);
-            if (data.unidade && modoAtual !== 'por_hora') {
-                var u = document.getElementById('unidade');
-                if (u && !u.readOnly) u.value = (data.unidade || '').trim();
-            }
-            if (
-                fromCatalogo && data.quantidade_padrao != null && String(data.quantidade_padrao) !== ''
-                && data.quantidade_padrao !== undefined && !isModoValorDireto()
-            ) {
-                var qEl = document.getElementById('qtd');
-                var cur = parseFloat(qEl.value);
-                if (!cur || cur === 1 || isNaN(cur)) {
-                    qEl.value = parseFloat(data.quantidade_padrao);
-                    recalcular();
-                }
-            }
-        }
-    }, 55);
+    // 2. Popular subcategorias e selecionar a correta DIRETAMENTE (sem depender de eventos)
+    popularSubcategorias(catId, subId);
 
+    // 3. Tipo
     if (data.tipo) {
         document.getElementById('selectTipo').value = data.tipo;
         atualizarModosBotoes();
+    }
+
+    // 4. Unidade
+    if (data.unidade && modoAtual !== 'por_hora') {
+        var u = document.getElementById('unidade');
+        if (u && !u.readOnly) u.value = (data.unidade || '').trim();
+    }
+
+    // 5. Quantidade padrão
+    if (fromCatalogo && data.quantidade_padrao != null && String(data.quantidade_padrao) !== '' && !isModoValorDireto()) {
+        var qEl = document.getElementById('qtd');
+        var cur = parseFloat(qEl.value);
+        if (!cur || cur === 1 || isNaN(cur)) {
+            qEl.value = parseFloat(data.quantidade_padrao);
+            recalcular();
+        }
     }
 
     persistCatalogoDebounced();
@@ -1121,12 +1333,7 @@ if (btnLz) {
         tentarExpandirPainelValorComValidacao({});
     });
 }
-var btnEd = document.getElementById('btnAlterarItemValores');
-if (btnEd) {
-    btnEd.addEventListener('click', function () {
-        document.getElementById('secaoProdutoTipo').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-}
+// Botão "Alterar dados do item" agora está no sistema de edição da tabela de itens
 
 // ── Obra info
 document.getElementById('selectObra').addEventListener('change', function() {
@@ -1177,10 +1384,13 @@ document.getElementById('btnSalvarModalFornecedor').addEventListener('click', fu
         uf: document.getElementById('modalFornecedorUf').value.trim() || null,
         observacoes: document.getElementById('modalFornecedorObservacoes').value.trim() || null
     };
+    var csrfToken = document.querySelector('meta[name="csrf-token"]');
+    csrfToken = csrfToken ? csrfToken.getAttribute('content') : '{{ csrf_token() }}';
+    
     fetch('{{ route("fornecedores.store") }}', {
         method: 'POST',
         headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'X-CSRF-TOKEN': csrfToken,
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
@@ -1207,8 +1417,18 @@ document.getElementById('btnSalvarModalFornecedor').addEventListener('click', fu
         }
         if (msgs.length === 0 && body && body.message) msgs.push(body.message);
         if (msgs.length === 0) msgs.push('{{ __("Não foi possível salvar. Verifique os dados.") }}');
+        
+        // Mostrar erro no modal E no SweetAlert para debug
         errBox.innerHTML = '<ul class="mb-0">' + msgs.map(function(m) { return '<li>' + m + '</li>'; }).join('') + '</ul>';
         errBox.style.display = 'block';
+        
+        Swal.fire({
+            icon: 'error',
+            title: '{{ __("Erro ao salvar fornecedor") }}',
+            html: msgs.join('<br>'),
+            confirmButtonColor: '#A8873A'
+        });
+        console.error('Erro fornecedor:', body);
     });
 });
 
@@ -1255,6 +1475,390 @@ document.getElementById('btnNovaSubcateg').addEventListener('click', function() 
     document.getElementById('msgSubCategPai').textContent='{{ __("Categoria") }}: ' + texto;
 });
 
+// ══════════════════════════════════════════════════════════════════════════
+// ══ SISTEMA DE MÚLTIPLOS ITENS ════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════════════
+
+var itensLancamento = []; // Array de itens adicionados
+var itemEditandoIdx = null; // null = novo, número = editando índice
+
+function formatBRL(v) {
+    return 'R$ ' + parseFloat(v || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function getCategoriaNome(catId) {
+    var sel = document.getElementById('selectCategoria');
+    for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value == catId) return sel.options[i].text;
+    }
+    return '';
+}
+
+function getSubcategoriaNome(subId) {
+    var sel = document.getElementById('selectSubcategoria');
+    for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value == subId) return sel.options[i].text;
+    }
+    return '';
+}
+
+function getTipoLabel(tipo) {
+    var map = {
+        'material': '{{ __("Material") }}',
+        'servico': '{{ __("Servico") }}',
+        'mao_de_obra': '{{ __("Mao de Obra") }}',
+        'equipamento': '{{ __("Equipamento") }}',
+        'terceiro': '{{ __("Terceiro") }}'
+    };
+    return map[tipo] || tipo;
+}
+
+// Coleta dados do formulário para um item
+function coletarDadosItem() {
+    return {
+        descricao: (document.getElementById('campoDescricao').value || '').trim(),
+        categoria_id: document.getElementById('selectCategoria').value,
+        categoria_nome: getCategoriaNome(document.getElementById('selectCategoria').value),
+        subcategoria_id: document.getElementById('selectSubcategoria').value || null,
+        subcategoria_nome: getSubcategoriaNome(document.getElementById('selectSubcategoria').value),
+        tipo: document.getElementById('selectTipo').value,
+        tipo_label: getTipoLabel(document.getElementById('selectTipo').value),
+        modo_lancamento: modoAtual,
+        quantidade: parseFloat(document.getElementById('qtd').value) || 1,
+        unidade: (document.getElementById('unidade').value || '').trim(),
+        custo_unitario_real: null,
+        valor_total_orcado: null,
+        valor_total_direto: null,
+        excluir_taxa_adm: false
+    };
+}
+
+// Valida campos obrigatórios antes de lançar
+function validarCamposLancar() {
+    var erros = [];
+    if (!document.getElementById('selectObra').value) erros.push('{{ __("Selecione a obra") }}');
+    if (!(document.getElementById('campoDescricao').value || '').trim()) erros.push('{{ __("Informe a descricao") }}');
+    if (!document.getElementById('selectCategoria').value) erros.push('{{ __("Selecione a categoria") }}');
+    if (!document.getElementById('selectTipo').value) erros.push('{{ __("Selecione o tipo") }}');
+    var modoDir = isModoValorDireto();
+    if (!modoDir) {
+        var q = parseFloat(document.getElementById('qtd').value) || 0;
+        if (q < 0.001) erros.push('{{ __("Informe quantidade valida") }}');
+    }
+    return erros;
+}
+
+// Mostra painel de entrada de valor
+function mostrarPainelEntradaValor(dados) {
+    var painel = document.getElementById('painelEntradaValor');
+    var aviso = document.getElementById('avisoItensVazio');
+    
+    var modoDir = isModoValorDireto();
+
+    // Montar texto de meta (categoria > subcategoria | tipo)
+    var meta = dados.categoria_nome || '';
+    if (dados.subcategoria_nome) meta += ' > ' + dados.subcategoria_nome;
+    if (dados.tipo_label) meta += ' | ' + dados.tipo_label;
+
+    // Preencher bloco por unidade
+    var dDesc = document.getElementById('painelDescItem');
+    var dMeta = document.getElementById('painelMetaItem');
+    if (dDesc) dDesc.textContent = dados.descricao;
+    if (dMeta) dMeta.textContent = meta;
+
+    // Campos Unidade e Qtd (exibição)
+    var elUnid = document.getElementById('painelUnidadeExib');
+    var elQtd  = document.getElementById('painelQtdExib');
+    if (elUnid) elUnid.value = dados.unidade || 'un';
+    if (elQtd)  elQtd.value  = dados.quantidade || 1;
+
+    // Preencher bloco valor direto
+    var dDescD = document.getElementById('painelDescItemDireto');
+    var dMetaD = document.getElementById('painelMetaItemDireto');
+    if (dDescD) dDescD.textContent = dados.descricao;
+    if (dMetaD) dMetaD.textContent = meta;
+
+    // Mostrar bloco correto (por unidade ou valor direto) usando flex
+    document.getElementById('blocoComMedida').style.display  = modoDir ? 'none' : 'flex';
+    document.getElementById('blocoValorDireto').style.display = modoDir ? 'flex' : 'none';
+    
+    // Limpar campos de valor
+    document.getElementById('custoUnitReal').value = '';
+    document.getElementById('valorOrc').value = '';
+    document.getElementById('valorDireto').value = '';
+    document.getElementById('excluirTaxaAdmItem').checked = false;
+    document.getElementById('excluirTaxaAdmDireto').checked = false;
+    document.getElementById('totalCalc').textContent = 'R$ 0,00';
+    
+    // Se editando, preencher valores existentes
+    if (itemEditandoIdx !== null && itensLancamento[itemEditandoIdx]) {
+        var it = itensLancamento[itemEditandoIdx];
+        if (modoDir) {
+            document.getElementById('valorOrc').value = it.valor_total_orcado || '';
+            document.getElementById('valorDireto').value = it.valor_total_direto || '';
+            document.getElementById('excluirTaxaAdmDireto').checked = it.excluir_taxa_adm;
+        } else {
+            document.getElementById('custoUnitReal').value = it.custo_unitario_real || '';
+            document.getElementById('excluirTaxaAdmItem').checked = it.excluir_taxa_adm;
+            recalcularTotalItem();
+        }
+    }
+    
+    aviso.style.display = 'none';
+    painel.style.display = 'block';
+    
+    // Scroll suave
+    document.getElementById('secaoValores').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.getElementById('secaoValores').classList.add('ativo');
+    
+    // Focus no campo de valor
+    setTimeout(function() {
+        if (modoDir) document.getElementById('valorDireto').focus();
+        else document.getElementById('custoUnitReal').focus();
+    }, 300);
+}
+
+// Esconde painel de entrada
+function esconderPainelEntrada() {
+    document.getElementById('painelEntradaValor').style.display = 'none';
+    document.getElementById('secaoValores').classList.remove('ativo');
+    itemEditandoIdx = null;
+    if (itensLancamento.length === 0) {
+        document.getElementById('avisoItensVazio').style.display = 'block';
+    }
+}
+
+// Recalcular total do item atual
+function recalcularTotalItem() {
+    var qtd = parseFloat(document.getElementById('qtd').value) || 0;
+    var unit = parseFloat(document.getElementById('custoUnitReal').value) || 0;
+    var total = qtd * unit;
+    document.getElementById('totalCalc').textContent = formatBRL(total);
+}
+
+// Adiciona item à tabela
+function adicionarItemATabela(dados) {
+    if (itemEditandoIdx !== null) {
+        // Atualizando item existente
+        itensLancamento[itemEditandoIdx] = dados;
+    } else {
+        // Novo item
+        itensLancamento.push(dados);
+    }
+    
+    renderizarTabelaItens();
+    esconderPainelEntrada();
+    limparCamposItem();
+    atualizarBotoesSubmit();
+    
+    // Scroll para topo para adicionar outro item
+    document.getElementById('secaoProdutoTipo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('campoDescricao').focus();
+}
+
+// Limpa campos do item para adicionar outro
+function limparCamposItem() {
+    document.getElementById('campoDescricao').value = '';
+    document.getElementById('selectSubcategoria').value = '';
+    if ($('#selectSubcategoria').hasClass('select2-hidden-accessible')) {
+        $('#selectSubcategoria').val('').trigger('change');
+    }
+    document.getElementById('qtd').value = '1';
+    document.getElementById('unidade').value = '';
+}
+
+// Renderiza tabela de itens
+function renderizarTabelaItens() {
+    var tbody = document.getElementById('tbodyItens');
+    var wrap = document.getElementById('wrapTabelaItens');
+    var badge = document.getElementById('badgeQtdItens');
+    var totalGeral = 0;
+    
+    tbody.innerHTML = '';
+    
+    if (itensLancamento.length === 0) {
+        wrap.style.display = 'none';
+        badge.textContent = '0 {{ __("itens") }}';
+        document.getElementById('resumoItensRodape').textContent = '';
+        return;
+    }
+    
+    wrap.style.display = 'block';
+    
+    itensLancamento.forEach(function(it, idx) {
+        var modoDir = ['salario', 'empreitada', 'valor_total'].indexOf(it.modo_lancamento) >= 0;
+        var qtd = modoDir ? 1 : it.quantidade;
+        var unit = modoDir ? (it.valor_total_direto || 0) : (it.custo_unitario_real || 0);
+        var totalItem = qtd * unit;
+        totalGeral += totalItem;
+        
+        var tr = document.createElement('tr');
+        tr.innerHTML = 
+            '<td>' +
+                '<div class="font-weight-bold">' + escHtml(it.descricao) + '</div>' +
+                '<small class="text-muted">' + escHtml(it.categoria_nome) + (it.subcategoria_nome ? ' > ' + escHtml(it.subcategoria_nome) : '') + '</small>' +
+            '</td>' +
+            '<td class="text-center">' + (modoDir ? '1' : it.quantidade) + '</td>' +
+            '<td class="text-center">' + escHtml(it.unidade || 'vb') + '</td>' +
+            '<td class="text-right">' + formatBRL(unit) + '</td>' +
+            '<td class="text-right font-weight-bold text-success">' + formatBRL(totalItem) + '</td>' +
+            '<td class="text-center">' +
+                '<button type="button" class="btn btn-outline-primary btn-acoes mr-1" data-idx="' + idx + '" title="{{ __("Editar") }}"><i class="fas fa-edit"></i></button>' +
+                '<button type="button" class="btn btn-outline-danger btn-acoes" data-idx="' + idx + '" title="{{ __("Remover") }}"><i class="fas fa-trash"></i></button>' +
+            '</td>';
+        tbody.appendChild(tr);
+    });
+    
+    document.getElementById('totalGeralItens').textContent = formatBRL(totalGeral);
+    badge.textContent = itensLancamento.length + ' {{ __("iten") }}' + (itensLancamento.length > 1 ? 's' : '');
+    document.getElementById('resumoItensRodape').textContent = itensLancamento.length + ' item(ns) - Total: ' + formatBRL(totalGeral);
+    
+    // Event listeners para editar/remover
+    tbody.querySelectorAll('.btn-outline-primary').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            editarItem(parseInt(this.dataset.idx));
+        });
+    });
+    tbody.querySelectorAll('.btn-outline-danger').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            removerItem(parseInt(this.dataset.idx));
+        });
+    });
+    
+    // Atualizar hidden input com JSON
+    document.getElementById('itensJsonInput').value = JSON.stringify(itensLancamento);
+}
+
+// Editar item existente
+function editarItem(idx) {
+    if (idx < 0 || idx >= itensLancamento.length) return;
+    
+    var it = itensLancamento[idx];
+    itemEditandoIdx = idx;
+    
+    // Preencher campos do formulário com dados do item
+    document.getElementById('campoDescricao').value = it.descricao;
+    document.getElementById('selectCategoria').value = it.categoria_id;
+    if ($('#selectCategoria').hasClass('select2-hidden-accessible')) {
+        $('#selectCategoria').val(it.categoria_id).trigger('change');
+    }
+    document.getElementById('selectCategoria').dispatchEvent(new Event('change'));
+    
+    setTimeout(function() {
+        document.getElementById('selectSubcategoria').value = it.subcategoria_id || '';
+        if ($('#selectSubcategoria').hasClass('select2-hidden-accessible')) {
+            $('#selectSubcategoria').val(it.subcategoria_id || '').trigger('change');
+        }
+    }, 100);
+    
+    document.getElementById('selectTipo').value = it.tipo;
+    document.getElementById('selectTipo').dispatchEvent(new Event('change'));
+    document.getElementById('qtd').value = it.quantidade;
+    document.getElementById('unidade').value = it.unidade || '';
+    
+    setModo(it.modo_lancamento);
+    
+    // Scroll para seção de produto e mostrar painel de valor
+    document.getElementById('secaoProdutoTipo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    setTimeout(function() {
+        mostrarPainelEntradaValor(it);
+    }, 400);
+}
+
+// Remover item
+function removerItem(idx) {
+    if (idx < 0 || idx >= itensLancamento.length) return;
+    
+    Swal.fire({
+        title: '{{ __("Remover item?") }}',
+        text: itensLancamento[idx].descricao,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '{{ __("Sim, remover") }}',
+        cancelButtonText: '{{ __("Cancelar") }}'
+    }).then(function(result) {
+        if (result.isConfirmed) {
+            itensLancamento.splice(idx, 1);
+            renderizarTabelaItens();
+            atualizarBotoesSubmit();
+            if (itensLancamento.length === 0) {
+                document.getElementById('avisoItensVazio').style.display = 'block';
+            }
+        }
+    });
+}
+
+// Atualiza estado dos botões de submit
+function atualizarBotoesSubmit() {
+    var tem = itensLancamento.length > 0;
+    document.getElementById('btnSalvarLancamento').disabled = !tem;
+    document.getElementById('btnSalvarNovo').disabled = !tem;
+}
+
+// ── Event Listeners para o sistema de itens ──
+
+// Botão Lançar → abre painel de entrada de valor
+document.getElementById('btnLancarParaValores').addEventListener('click', function() {
+    var erros = validarCamposLancar();
+    if (erros.length > 0) {
+        Swal.fire({
+            icon: 'warning',
+            title: '{{ __("Campos obrigatorios") }}',
+            html: '<ul style="text-align:left;margin:0;padding-left:20px">' + erros.map(function(e) { return '<li>' + e + '</li>'; }).join('') + '</ul>',
+            confirmButtonColor: '#A8873A'
+        });
+        return;
+    }
+    
+    itemEditandoIdx = null; // Novo item
+    var dados = coletarDadosItem();
+    mostrarPainelEntradaValor(dados);
+});
+
+// Botões Cancelar no painel
+document.getElementById('btnCancelarItem').addEventListener('click', esconderPainelEntrada);
+var btnCancelDireto = document.getElementById('btnCancelarItemDireto');
+if (btnCancelDireto) btnCancelDireto.addEventListener('click', esconderPainelEntrada);
+
+// Botão Adicionar (modo por unidade)
+document.getElementById('btnAdicionarItem').addEventListener('click', function() {
+    var unit = parseFloat(document.getElementById('custoUnitReal').value);
+    if (!unit || unit <= 0) {
+        Swal.fire({ icon: 'warning', title: '{{ __("Atenção") }}', text: '{{ __("Informe o valor unitario") }}', confirmButtonColor: '#A8873A' });
+        return;
+    }
+    
+    var dados = coletarDadosItem();
+    dados.custo_unitario_real = unit;
+    dados.excluir_taxa_adm = document.getElementById('excluirTaxaAdmItem').checked;
+    
+    adicionarItemATabela(dados);
+});
+
+// Botão Adicionar (modo valor direto)
+document.getElementById('btnAdicionarItemDireto').addEventListener('click', function() {
+    var vReal = parseFloat(document.getElementById('valorDireto').value);
+    if (!vReal || vReal <= 0) {
+        Swal.fire({ icon: 'warning', title: '{{ __("Atenção") }}', text: '{{ __("Informe o valor real") }}', confirmButtonColor: '#A8873A' });
+        return;
+    }
+    
+    var dados = coletarDadosItem();
+    dados.valor_total_orcado = parseFloat(document.getElementById('valorOrc').value) || null;
+    dados.valor_total_direto = vReal;
+    dados.quantidade = 1;
+    dados.unidade = modoAtual === 'salario' ? 'mes' : 'vb';
+    dados.excluir_taxa_adm = document.getElementById('excluirTaxaAdmDireto').checked;
+    
+    adicionarItemATabela(dados);
+});
+
+// Recalcular total ao digitar valor unitário
+document.getElementById('custoUnitReal').addEventListener('input', recalcularTotalItem);
+
 // ── Inicializar com modo salvo
 (function() {
     var modo = '{{ old("modo_lancamento","por_unidade") }}';
@@ -1263,12 +1867,7 @@ document.getElementById('btnNovaSubcateg').addEventListener('click', function() 
     document.getElementById('modosMaoObra').style.display = isMaoObra ? 'flex' : 'none';
     document.getElementById('modosGeral').style.display   = isMaoObra ? 'none' : 'flex';
     setModo(modo);
-
-    @if(old('descricao'))
-    setTimeout(function () {
-        expandirPainelResumoValor();
-    }, 280);
-    @endif
+    atualizarBotoesSubmit();
 })();
 </script>
 @stop
